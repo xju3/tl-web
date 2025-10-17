@@ -4,6 +4,7 @@ export default {
   'menu.home': 'Home',
   'menu.admin': 'Admin',
   'menu.admin.sub-page': 'Sub-Page',
+  'menu.admin.attributes': 'Attributes',
   'menu.login': 'Login',
   'menu.register': 'Register',
   'menu.register-result': 'Register Result',
@@ -49,4 +50,10 @@ export default {
   'menu.editor.flow': 'Flow Editor',
   'menu.editor.mind': 'Mind Editor',
   'menu.editor.koni': 'Koni Editor',
+  'menu.device': 'Device',
+  'menu.device.hosts': 'Hosts',
+  'menu.device.peripherals': 'Peripherals',
+  'menu.device.serial-ports': 'Serial Ports',
+  'menu.device.cabinets': 'Cabinets',
+  'menu.device.products': 'Products',
 };

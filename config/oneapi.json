@@ -41,7 +41,7 @@
           }
         }
       },
-      "x-swagger-router-controller": "api"
+      "x-s:wagger-router-controller": "api"
     },
     "/api/login/captcha": {
       "post": {

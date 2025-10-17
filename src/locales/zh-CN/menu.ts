@@ -4,6 +4,7 @@ export default {
   'menu.home': '首页',
   'menu.admin': '管理页',
   'menu.admin.sub-page': '二级管理页',
+  'menu.admin.attributes': '属性',
   'menu.login': '登录',
   'menu.register': '注册',
   'menu.register-result': '注册结果',
@@ -49,4 +50,10 @@ export default {
   'menu.editor.flow': '流程编辑器',
   'menu.editor.mind': '脑图编辑器',
   'menu.editor.koni': '拓扑编辑器',
+  'menu.device': '设备',
+  'menu.device.hosts': '主机',
+  'menu.device.peripherals': '外设',
+  'menu.device.serial-ports': '串口',
+  'menu.device.cabinets': '机柜',
+  'menu.device.products': '产品',
 };

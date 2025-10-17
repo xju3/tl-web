@@ -189,6 +189,8 @@ const Login: React.FC = () => {
           })}
           initialValues={{
             autoLogin: true,
+            username: 'admin',
+            password: 'ant.design',
           }}
           actions={[
             <FormattedMessage
@@ -242,7 +244,7 @@ const Login: React.FC = () => {
                 }}
                 placeholder={intl.formatMessage({
                   id: 'pages.login.username.placeholder',
-                  defaultMessage: '用户名: admin or user',
+                  defaultMessage: '用户名(abc): admin or user',
                 })}
                 rules={[
                   {

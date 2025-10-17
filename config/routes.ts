@@ -43,6 +43,12 @@ export default [
         name: 'sub-page',
         component: './Admin',
       },
+      {
+        name: 'attributes',
+        icon: 'profile',
+        path: '/admin/attributes',
+        component: './Attributes',
+      },
     ],
   },
   {
@@ -50,6 +56,102 @@ export default [
     icon: 'table',
     path: '/list',
     component: './table-list',
+  },
+  {
+    path: '/device',
+    name: 'device',
+    icon: 'cluster',
+    routes: [
+      {
+        path: '/device',
+        redirect: '/device/host',
+      },
+
+      {
+        name: 'hosts',
+        icon: 'hdd',
+        path: '/device/hosts',
+        component: './Device/Host/List',
+      },
+      {
+        name: 'add',
+        path: '/device/hosts/add',
+        component: './Device/Host/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'edit',
+        path: '/device/hosts/edit/:id',
+        component: './Device/Host/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'view',
+        path: '/device/hosts/view/:id',
+        component: './Device/Host/View',
+        hideInMenu: true,
+      },
+      {
+        name: 'edit-port',
+        path: '/device/hosts/:hostId/ports/:portId/edit',
+        component: './Device/Host/Ports/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'peripherals',
+        icon: 'appstore',
+        path: '/device/peripherals',
+        component: './Device/Peripherals/List',
+      },
+      {
+        name: 'add',
+        path: '/device/peripherals/add',
+        component: './Device/Peripherals/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'edit',
+        path: '/device/peripherals/edit/:id',
+        component: './Device/Peripherals/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'view',
+        path: '/device/peripherals/view/:id',
+        component: './Device/Peripherals/View',
+        hideInMenu: true,
+      },
+      {
+        name: 'serial-ports',
+        icon: 'branches',
+        path: '/device/serial-ports',
+        component: './Device/SerialPort/List',
+      },
+      {
+        name: 'add',
+        path: '/device/serial-ports/add',
+        component: './Device/SerialPort/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'edit',
+        path: '/device/serial-ports/edit/:id',
+        component: './Device/SerialPort/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'view',
+        path: '/device/serial-ports/view/:id',
+        component: './Device/SerialPort/View',
+        hideInMenu: true,
+      },
+      {
+        name: 'products',
+        icon: 'shopping',
+        path: '/device/products',
+        component: './Products',
+      },
+    ],
   },
   {
     path: '/',

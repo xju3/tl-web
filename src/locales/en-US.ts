@@ -1,4 +1,6 @@
+import common from './en-US/common';
 import component from './en-US/component';
+import host from './en-US/device/host';
 import globalHeader from './en-US/globalHeader';
 import menu from './en-US/menu';
 import pages from './en-US/pages';
@@ -7,6 +9,8 @@ import settingDrawer from './en-US/settingDrawer';
 import settings from './en-US/settings';
 
 export default {
+  ...host,
+  ...common,
   'navBar.lang': 'Languages',
   'layout.user.link.help': 'Help',
   'layout.user.link.privacy': 'Privacy',
