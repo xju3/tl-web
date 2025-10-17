@@ -76,14 +76,23 @@ export const errorConfig: RequestConfig = {
         const errorBody: ErrorBody | undefined = data?.body;
 
         if (errorBody && errorBody.code && errorBody.message) {
-          const description = `${errorBody.message}${
-            errorBody.extra
-              ? `\n额外信息: ${JSON.stringify(errorBody.extra, null, 2)}`
-              : ''
-          }`;
           notification.error({
             message: `Code: ${errorBody.code}`,
-            description,
+            description: (
+              <div>
+                <p>
+                  <strong>Message:</strong> {errorBody.message}
+                </p>
+                {errorBody.extra && (
+                  <pre
+                    style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}
+                  >
+                    <strong>Contents:</strong>{' '}
+                    {JSON.stringify(errorBody.extra, null, 2)}
+                  </pre>
+                )}
+              </div>
+            ),
             duration: 10, // 持续10秒
           });
         } else {

@@ -1,6 +1,7 @@
 // src/services/common.d.ts
 export interface ErrorBody {
   code: string;
-  message: string;
-  extra?: Record<string, any>;
+  message?: string;
+  i18n?: string;
+  extra?: any;
 }
