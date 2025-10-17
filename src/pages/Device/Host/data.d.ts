@@ -25,7 +25,7 @@ export type HostPageParams = {
   name?: string;
   ip?: string;
   // ProTable 自动注入的排序参数
-  sorter?: string;
+  sorter?: Record<string, 'ascend' | 'descend' | null>;
 };
 
 // API 异常响应体结构

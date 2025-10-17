@@ -121,9 +121,9 @@ const HostListPage = () => {
             <PlusOutlined /> {intl.formatMessage({ id: 'host.add' })}
           </Button>,
         ]}
-        request={async (params) => {
+        request={async (params, sorter) => {
           const { current, pageSize, ...rest } = params;
-          return getHosts({ ...rest, currPage: current, pageSize });
+          return getHosts({ ...rest, currPage: current, pageSize, sorter });
         }}
         columns={columns}
         pagination={{

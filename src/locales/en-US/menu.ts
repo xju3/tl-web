@@ -56,4 +56,11 @@ export default {
   'menu.device.serial-ports': 'Serial Ports',
   'menu.device.cabinets': 'Cabinets',
   'menu.device.products': 'Products',
+  'menu.device.add': 'Create Device',
+  'menu.device.edit': 'Edit Device',
+  'menu.device.view': 'View Device',
+  'menu.device.delete': 'Delete Device',
+  'menu.device.edit-port': 'Edit Port',
+  'menu.device.add-port': 'Add Port',
+  'menu.device.delete-port': 'Delete Port',
 };
