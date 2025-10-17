@@ -1,6 +1,7 @@
 ﻿import type { RequestOptions } from '@@/plugin-request/request';
 import type { RequestConfig } from '@umijs/max';
 import { message, notification } from 'antd';
+import type { ErrorBody } from '@/services/common';
 
 // 错误处理方案： 错误类型
 enum ErrorShowType {
@@ -70,9 +71,25 @@ export const errorConfig: RequestConfig = {
           }
         }
       } else if (error.response) {
-        // Axios 的错误
-        // 请求成功发出且服务器也响应了状态码，但状态代码超出了 2xx 的范围
-        message.error(`Response status:${error.response.status}`);
+        // Axios 的错误, 包含了更详细的错误信息
+        const { status, data } = error.response;
+        const errorBody: ErrorBody | undefined = data?.body;
+
+        if (errorBody && errorBody.code && errorBody.message) {
+          const description = `${errorBody.message}${
+            errorBody.extra
+              ? `\n额外信息: ${JSON.stringify(errorBody.extra, null, 2)}`
+              : ''
+          }`;
+          notification.error({
+            message: `Code: ${errorBody.code}`,
+            description,
+            duration: 10, // 持续10秒
+          });
+        } else {
+          // 如果没有详细的错误体，则显示通用状态信息
+          message.error(`请求失败，状态码: ${status}`);
+        }
       } else if (error.request) {
         // 请求已经成功发起，但没有收到响应
         // \`error.request\` 在浏览器中是 XMLHttpRequest 的实例，
