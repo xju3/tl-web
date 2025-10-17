@@ -85,7 +85,9 @@ const HostViewPage = () => {
                 <Space>
                   <Button
                     type="primary"
-                    onClick={() => history.push(`/device/hosts/edit/${id}`)}
+                    onClick={() =>
+                      history.push(`/device/hosts/edit/${id}`, location.state)
+                    }
                   >
                     {intl.formatMessage({ id: 'common.edit' })}
                   </Button>
@@ -95,7 +97,7 @@ const HostViewPage = () => {
                     onConfirm={async () => {
                       if (id) {
                         await deleteHost(id);
-                        history.push('/device/hosts');
+                        history.push('/device/hosts', location.state);
                       }
                     }}
                   >

@@ -27,10 +27,11 @@ const HostEditPage = () => {
   const onFinish = async (values: Partial<Host>) => {
     if (id) {
       await updateHost({ ...values, id });
+      history.back();
     } else {
       await addHost({ ...values, id: uuidv4() });
+      history.push('/device/hosts');
     }
-    history.back();
   };
 
   return (
