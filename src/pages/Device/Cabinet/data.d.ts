@@ -3,9 +3,19 @@ export type Cabinet = {
   id: string;
   code: string;
   name: string;
-  attributes: any | null;
-  parentId?: string | null;
-  children?: Cabinet[] | null;
+  ip: string;
+  parentId?: string;
+  children: Cabinet[];
+};
+
+// 机柜外设绑定关系
+export type CabinetPeripheral = {
+  id: string;
+  cabinetId: string;
+  peripheralId: string;
+  code: string;
+  name: string;
+  quantity: number;
 };
 
 // 分页查询参数类型
@@ -27,4 +37,12 @@ export type ErrorBody = {
   message: string;
   i18n?: string;
   extra?: any;
+};
+
+export type Cable = {
+  id: string;
+  cabinetId: string;
+  code: string;
+  name: string;
+  description: string;
 };

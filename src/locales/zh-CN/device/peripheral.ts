@@ -5,4 +5,5 @@ export default {
   'peripheral.code': '外设编码',
   'peripheral.name': '外设名称',
   'peripheral.type': '类型',
+  'peripheral.quantity': '数量',
 };

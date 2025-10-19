@@ -6,4 +6,12 @@ export default {
   'cabinet.view.title': '机柜详情',
   'cabinet.delete.confirm': '确定要删除此机柜吗？',
   'cabinet.view.bindPeripheral': '绑定外设',
+  'cable.list.title': '线缆列表',
+  'cable.add.title': '新增线缆',
+  'cable.edit.title': '编辑线缆',
+  'cable.code': '线缆编码',
+  'cable.name': '线缆名称',
+  'cable.description': '描述',
+  'cable.code.required': '请输入线缆编码',
+  'cable.name.required': '请输入线缆名称',
 };

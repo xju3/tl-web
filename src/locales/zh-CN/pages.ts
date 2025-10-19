@@ -74,4 +74,5 @@ export default {
   'cabinet.add.child': '新增子机柜',
   'cabinet.basic-info.title': '机柜基本信息',
   'cabinet.children.title': '子机柜列表',
+  'cable.list.title': '线缆列表',
 };

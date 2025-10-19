@@ -60,4 +60,9 @@ export default {
   'menu.device.create-cabinet-add-child': '新建机柜(子机柜)',
   'menu.device.edit-cabinet': '编辑机柜',
   'menu.device.view-cabinet': '查看机柜',
+  'menu.cabinet.edit': '编辑机柜',
+  'menu.cabinet.view': '查看机柜',
+  'menu.cabinet.delete': '删除机柜',
+  'menu.device.edit-binding': '编辑绑定',
+  'menu.device.bind-peripheral': '绑定外设',
 };

@@ -5,4 +5,13 @@ export default {
   'cabinet.name': 'Cabinet Name',
   'cabinet.view.title': 'Cabinet Details',
   'cabinet.delete.confirm': 'Are you sure you want to delete this cabinet?',
+  'cabinet.view.bindPeripheral': 'Bind Peripheral',
+  'cable.list.title': 'Cable List',
+  'cable.add.title': 'Add Cable',
+  'cable.edit.title': 'Edit Cable',
+  'cable.code': 'Cable Code',
+  'cable.name': 'Cable Name',
+  'cable.description': 'Description',
+  'cable.code.required': 'Please enter the cable code',
+  'cable.name.required': 'Please enter the cable name',
 };

@@ -13,6 +13,7 @@ import settings from './en-US/settings';
 export default {
   ...host,
   ...peripheral,
+  ...cabinet,
   ...common,
   'navBar.lang': 'Languages',
   'layout.user.link.help': 'Help',

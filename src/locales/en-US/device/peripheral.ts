@@ -6,4 +6,5 @@ export default {
   'peripheral.code': 'Peripheral Code',
   'peripheral.name': 'Peripheral Name',
   'peripheral.type': 'Type',
+  'peripheral.quantity': 'Quantity',
 };

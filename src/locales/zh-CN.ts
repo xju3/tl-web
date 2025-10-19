@@ -13,6 +13,7 @@ import settings from './zh-CN/settings';
 export default {
   ...host,
   ...peripheral,
+  ...cabinet,
   ...common,
   'navBar.lang': '语言',
   'layout.user.link.help': '帮助',

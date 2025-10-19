@@ -1,6 +1,11 @@
 import { request } from '@umijs/max';
 import type { Peripheral } from '../Peripherals/data.d';
-import type { Cabinet, CabinetPageParams } from './data.d';
+import type {
+  Cabinet,
+  CabinetPageParams,
+  CabinetPeripheral,
+  Cable,
+} from './data.d';
 
 // 通用API响应结构 (成功时)
 type ApiResponse<T> = {
@@ -98,4 +103,86 @@ export async function getPeripheralsByCabinetId(
     success: true,
     total: response.body.total || 0,
   };
+}
+
+// 7. 新增机柜外设绑定
+export async function addCabinetPeripheral(data: CabinetPeripheral) {
+  return request<ApiResponse<string>>('/cabinets/peripherals', {
+    method: 'POST',
+    data,
+  });
+}
+
+// 8. 更新机柜外设绑定
+export async function updateCabinetPeripheral(data: CabinetPeripheral) {
+  return request<ApiResponse<null>>('/cabinets/peripherals', {
+    method: 'PUT',
+    data,
+  });
+}
+
+// 9. 获取单个机柜外设绑定详情
+export async function getCabinetPeripheralById(id: string) {
+  const response = await request<ApiResponse<CabinetPeripheral>>(
+    `/cabinets/peripherals/${id}`,
+    {
+      method: 'GET',
+    },
+  );
+  return response.body;
+}
+
+// 10. 删除机柜外设绑定
+export async function deleteCabinetPeripheral(cabinetId: string, id: string) {
+  return request<ApiResponse<null>>(
+    `/cabinets/peripherals/${cabinetId}/${id}`,
+    {
+      method: 'DELETE',
+    },
+  );
+}
+
+// 11. 获取机柜下的线缆列表
+export async function getCabinetCables(cabinetId: string) {
+  const response = await request<ApiResponse<Cable[]>>(
+    `/cabinets/${cabinetId}/cables`,
+    {
+      method: 'GET',
+    },
+  );
+  return {
+    data: response.body || [],
+    success: true,
+  };
+}
+
+// Get single cable by id
+export async function getCabinetCableById(id: string) {
+  const response = await request<ApiResponse<Cable>>(`/cabinets/cables/${id}`, {
+    method: 'GET',
+  });
+  return response.body;
+}
+
+// 12. 新增机柜线缆
+export async function addCabinetCables(data: Cable) {
+  return request<ApiResponse<string>>('/cabinets/cables', {
+    method: 'POST',
+    data,
+  });
+}
+
+// 13. 更新机柜线缆
+export async function updateCabinetCables(data: Cable) {
+  return request<ApiResponse<null>>('/cabinets/cables', {
+    method: 'PUT',
+    data,
+  });
+}
+
+// 14. 删除机柜线缆
+export async function deleteCabinetCable(cabinetId: string, id: string) {
+  return request<ApiResponse<null>>(`/cabinets/cables/${cabinetId}/${id}`, {
+    method: 'DELETE',
+  });
 }

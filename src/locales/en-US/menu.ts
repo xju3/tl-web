@@ -70,4 +70,9 @@ export default {
   'menu.device.create-cabinet-add-child': 'New Cabinet (Child)',
   'menu.device.edit-cabinet': 'Edit Cabinet',
   'menu.device.view-cabinet': 'View Cabinet',
+  'menu.cabinet.edit': 'Edit Cabinet',
+  'menu.cabinet.view': 'View Cabinet',
+  'menu.cabinet.delete': 'Delete Cabinet',
+  'menu.device.edit-binding': 'Edit Binding',
+  'menu.device.bind-peripheral': 'Bind Peripheral',
 };

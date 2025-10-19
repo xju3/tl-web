@@ -79,4 +79,5 @@ export default {
   'cabinet.add.child': 'Add Child Cabinet',
   'cabinet.basic-info.title': 'Cabinet Basic Info',
   'cabinet.children.title': 'Child Cabinets',
+  'cable.list.title': 'Cable List',
 };

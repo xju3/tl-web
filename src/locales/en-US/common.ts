@@ -11,7 +11,7 @@ export default {
   'common.ip': 'IP Address',
   'common.port': 'Port',
   'common.description': 'Description',
-
+  'common.delete.confirm': 'Are you sure you want to delete this item?',
   'common.err.code.required': 'code is required',
   'common.err.name.required': 'name is required',
   'common.err.ip.required': 'ip is required',

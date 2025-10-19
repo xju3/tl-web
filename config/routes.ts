@@ -12,6 +12,12 @@
  */
 export default [
   {
+    path: '/welcome',
+    name: 'welcome',
+    icon: 'smile',
+    component: './Welcome',
+  },
+  {
     path: '/user',
     layout: false,
     routes: [
@@ -94,6 +100,24 @@ export default [
         name: 'edit-cabinet',
         path: '/device/cabinets/edit/:id',
         component: './Device/Cabinet/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'bind-peripheral',
+        path: '/device/cabinets/:cabinetId/bind',
+        component: './Device/Cabinet/Bind',
+        hideInMenu: true,
+      },
+      {
+        name: 'edit-binding',
+        path: '/device/cabinets/bindings/:bindingId/edit',
+        component: './Device/Cabinet/Bind',
+        hideInMenu: true,
+      },
+      {
+        name: 'edit-cable',
+        path: '/device/cabinets/:cabinetId/cables/:id/edit',
+        component: './Device/Cabinet/Cables/Edit',
         hideInMenu: true,
       },
       {
@@ -182,6 +206,7 @@ export default [
       },
     ],
   },
+
   {
     path: '/',
     redirect: '/welcome',
