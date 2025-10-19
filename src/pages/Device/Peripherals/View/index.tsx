@@ -1,5 +1,5 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { useParams } from '@umijs/max';
+import { useIntl, useParams } from '@umijs/max';
 import { Descriptions } from 'antd';
 import { useEffect, useState } from 'react';
 import type { Peripheral } from '../data.d';
@@ -8,6 +8,7 @@ import { getPeripheralById } from '../service';
 const PeripheralViewPage = () => {
   const { id } = useParams<{ id: string }>();
   const [peripheral, setPeripheral] = useState<Peripheral>();
+  const intl = useIntl();
 
   useEffect(() => {
     if (id) {
@@ -21,10 +22,14 @@ const PeripheralViewPage = () => {
     <PageContainer>
       {peripheral && (
         <Descriptions bordered>
-          <Descriptions.Item label="外设编码">
+          <Descriptions.Item
+            label={intl.formatMessage({ id: 'peripheral.code' })}
+          >
             {peripheral.code}
           </Descriptions.Item>
-          <Descriptions.Item label="外设名称">
+          <Descriptions.Item
+            label={intl.formatMessage({ id: 'peripheral.name' })}
+          >
             {peripheral.name}
           </Descriptions.Item>
         </Descriptions>

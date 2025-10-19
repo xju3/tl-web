@@ -23,10 +23,16 @@ export default [
     ],
   },
   {
-    path: '/welcome',
-    name: 'welcome',
-    icon: 'smile',
-    component: './Welcome',
+    path: '/device/cabinets/edit/:id',
+    name: 'cabinet.edit',
+    component: './Device/Cabinet/Edit',
+    hideInMenu: true,
+  },
+  {
+    path: '/device/cabinets/view/:id',
+    name: 'cabinet.view',
+    component: './Device/Cabinet/View',
+    hideInMenu: true,
   },
   {
     path: '/admin',
@@ -66,7 +72,30 @@ export default [
         path: '/device',
         redirect: '/device/host',
       },
-
+      {
+        name: 'cabinets',
+        icon: 'hdd',
+        path: '/device/cabinets',
+        component: './Device/Cabinet/List',
+      },
+      {
+        name: 'create-cabinet',
+        path: '/device/cabinets/add',
+        component: './Device/Cabinet/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'create-cabinet-add-child',
+        path: '/device/cabinets/add-child/:parentId',
+        component: './Device/Cabinet/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'edit-cabinet',
+        path: '/device/cabinets/edit/:id',
+        component: './Device/Cabinet/Edit',
+        hideInMenu: true,
+      },
       {
         name: 'hosts',
         icon: 'hdd',

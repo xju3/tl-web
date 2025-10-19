@@ -10,12 +10,12 @@ import { history, useIntl } from '@umijs/max';
 import { Button, Popconfirm } from 'antd';
 import type { SortOrder } from 'antd/es/table/interface';
 import { useCallback, useMemo, useRef } from 'react';
-import type { Host } from '../data.d';
-import { deleteHost, getHosts } from '../service';
+import type { Cabinet } from '../data.d';
+import { deleteCabinet, getCabinets } from '../service';
 
-const SESSION_KEY = 'hostListState';
+const SESSION_KEY = 'cabinetListState';
 
-const HostListPage = () => {
+const CabinetListPage = () => {
   const actionRef = useRef<ActionType>(undefined);
   const formRef = useRef<ProFormInstance>(undefined);
   const intl = useIntl();
@@ -48,7 +48,7 @@ const HostListPage = () => {
     history.push(pathname);
   }, []);
 
-  const columns: ProColumns<Host>[] = useMemo(
+  const columns: ProColumns<Cabinet>[] = useMemo(
     () => [
       {
         title: intl.formatMessage({ id: 'common.code' }),
@@ -63,21 +63,23 @@ const HostListPage = () => {
         sorter: true,
       },
       {
-        title: intl.formatMessage({ id: 'common.ip' }),
-        dataIndex: 'ip',
-        key: 'ip',
-        sorter: true,
-      },
-      {
         title: intl.formatMessage({ id: 'common.actions' }),
         dataIndex: 'option',
         valueType: 'option',
         width: '150px',
         render: (_, record) => [
           <a
+            key="create"
+            onClick={() =>
+              saveStateAndNavigate(`/device/cabinets/add-child/${record.id}`)
+            }
+          >
+            {intl.formatMessage({ id: 'common.create' })}
+          </a>,
+          <a
             key="edit"
             onClick={() =>
-              saveStateAndNavigate(`/device/hosts/edit/${record.id}`)
+              saveStateAndNavigate(`/device/cabinets/edit/${record.id}`)
             }
           >
             {intl.formatMessage({ id: 'common.edit' })}
@@ -85,16 +87,16 @@ const HostListPage = () => {
           <a
             key="view"
             onClick={() =>
-              saveStateAndNavigate(`/device/hosts/view/${record.id}`)
+              saveStateAndNavigate(`/device/cabinets/view/${record.id}`)
             }
           >
             {intl.formatMessage({ id: 'common.view' })}
           </a>,
           <Popconfirm
             key="delete"
-            title={intl.formatMessage({ id: 'host.delete.confirm' })}
+            title={intl.formatMessage({ id: 'cabinet.delete.confirm' })}
             onConfirm={async () => {
-              await deleteHost(record.id);
+              await deleteCabinet(record.id);
               actionRef.current?.reload();
             }}
           >
@@ -108,12 +110,12 @@ const HostListPage = () => {
 
   return (
     <PageContainer>
-      <ProTable<Host>
-        headerTitle={intl.formatMessage({ id: 'host.list.title' })}
+      <ProTable<Cabinet>
+        headerTitle={intl.formatMessage({ id: 'cabinet.list.title' })}
         actionRef={actionRef}
         formRef={formRef}
         showSorterTooltip={{
-          title: '按住 Shift 键可以进行多字段排序',
+          title: intl.formatMessage({ id: 'common.sorter.tooltip' }),
         }}
         rowKey="id"
         search={{
@@ -127,10 +129,10 @@ const HostListPage = () => {
             type="primary"
             key="primary"
             onClick={() => {
-              history.push('/device/hosts/add');
+              history.push('/device/cabinets/add');
             }}
           >
-            <PlusOutlined /> {intl.formatMessage({ id: 'host.add' })}
+            <PlusOutlined /> {intl.formatMessage({ id: 'cabinet.add' })}
           </Button>,
         ]}
         request={useCallback(
@@ -166,18 +168,20 @@ const HostListPage = () => {
                   orderedSorter[key] = sort[key] as 'ascend' | 'descend';
                 }
               }
-              return getHosts({
+              return getCabinets({
                 ...rest,
-                currPage: current,
-                pageSize,
+                currPage: current || 1,
+                pageSize: pageSize || 10,
+                nullParentId: true,
                 sorter: orderedSorter,
               });
             }
 
-            return getHosts({
+            return getCabinets({
               ...rest,
-              currPage: current,
-              pageSize,
+              currPage: current || 1,
+              pageSize: pageSize || 10,
+              nullParentId: true,
               sorter: sort,
             });
           },
@@ -194,4 +198,4 @@ const HostListPage = () => {
   );
 };
 
-export default HostListPage;
+export default CabinetListPage;

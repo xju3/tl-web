@@ -1,6 +1,8 @@
 import common from './zh-CN/common';
 import component from './zh-CN/component';
+import cabinet from './zh-CN/device/cabinet';
 import host from './zh-CN/device/host';
+import peripheral from './zh-CN/device/peripheral';
 import globalHeader from './zh-CN/globalHeader';
 import menu from './zh-CN/menu';
 import pages from './zh-CN/pages';
@@ -10,6 +12,7 @@ import settings from './zh-CN/settings';
 
 export default {
   ...host,
+  ...peripheral,
   ...common,
   'navBar.lang': '语言',
   'layout.user.link.help': '帮助',

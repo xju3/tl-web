@@ -1,6 +1,8 @@
 import common from './en-US/common';
 import component from './en-US/component';
+import cabinet from './en-US/device/cabinet';
 import host from './en-US/device/host';
+import peripheral from './en-US/device/peripheral';
 import globalHeader from './en-US/globalHeader';
 import menu from './en-US/menu';
 import pages from './en-US/pages';
@@ -10,6 +12,7 @@ import settings from './en-US/settings';
 
 export default {
   ...host,
+  ...peripheral,
   ...common,
   'navBar.lang': 'Languages',
   'layout.user.link.help': 'Help',

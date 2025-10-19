@@ -3,7 +3,7 @@ import {
   ProForm,
   ProFormText,
 } from '@ant-design/pro-components';
-import { history, useParams } from '@umijs/max';
+import { history, useIntl, useParams } from '@umijs/max';
 import { Form } from 'antd';
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -13,6 +13,7 @@ import { addPeripheral, getPeripheralById, updatePeripheral } from '../service';
 const PeripheralEditPage = () => {
   const { id } = useParams<{ id: string }>();
   const [form] = Form.useForm<Peripheral>();
+  const intl = useIntl();
 
   useEffect(() => {
     if (id) {
@@ -34,8 +35,14 @@ const PeripheralEditPage = () => {
   return (
     <PageContainer>
       <ProForm form={form} onFinish={onFinish}>
-        <ProFormText name="code" label="外设编码" />
-        <ProFormText name="name" label="外设名称" />
+        <ProFormText
+          name="code"
+          label={intl.formatMessage({ id: 'peripheral.code' })}
+        />
+        <ProFormText
+          name="name"
+          label={intl.formatMessage({ id: 'peripheral.name' })}
+        />
       </ProForm>
     </PageContainer>
   );

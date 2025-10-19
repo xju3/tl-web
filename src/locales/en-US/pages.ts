@@ -73,4 +73,10 @@ export default {
   'pages.searchTable.tenThousand': '0000',
   'pages.searchTable.batchDeletion': 'batch deletion',
   'pages.searchTable.batchApproval': 'batch approval',
+  'cabinet.list.title': 'Cabinet List',
+  'cabinet.add': 'Add Cabinet',
+  'cabinet.delete.confirm': 'Are you sure you want to delete this cabinet?',
+  'cabinet.add.child': 'Add Child Cabinet',
+  'cabinet.basic-info.title': 'Cabinet Basic Info',
+  'cabinet.children.title': 'Child Cabinets',
 };

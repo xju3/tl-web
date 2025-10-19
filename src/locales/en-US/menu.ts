@@ -66,4 +66,8 @@ export default {
   'menu.device.edit-port': 'Edit Port',
   'menu.device.add-port': 'Add Port',
   'menu.device.delete-port': 'Delete Port',
+  'menu.device.create-cabinet': 'New Cabinet',
+  'menu.device.create-cabinet-add-child': 'New Cabinet (Child)',
+  'menu.device.edit-cabinet': 'Edit Cabinet',
+  'menu.device.view-cabinet': 'View Cabinet',
 };

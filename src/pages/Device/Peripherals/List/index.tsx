@@ -1,57 +1,59 @@
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
-import { history } from '@umijs/max';
+import { history, useIntl } from '@umijs/max';
 import { Button, Popconfirm } from 'antd';
 import { useRef } from 'react';
 import type { Peripheral } from '../data.d';
 import { deletePeripheral, getPeripherals } from '../service';
 
 const PeripheralListPage = () => {
-  const actionRef = useRef<ActionType>();
+  const actionRef = useRef<ActionType>(undefined);
+  const intl = useIntl();
 
   const columns: ProColumns<Peripheral>[] = [
     {
-      title: '外设编码',
+      title: intl.formatMessage({ id: 'peripheral.code' }),
       dataIndex: 'code',
       sorter: true,
     },
     {
-      title: '外设名称',
+      title: intl.formatMessage({ id: 'peripheral.name' }),
       dataIndex: 'name',
       sorter: true,
     },
     {
-      title: '类型',
+      title: intl.formatMessage({ id: 'peripheral.type' }),
       dataIndex: 'type',
       sorter: true,
     },
     {
-      title: '操作',
+      title: intl.formatMessage({ id: 'common.operate' }),
       dataIndex: 'option',
       valueType: 'option',
+      width: '150px',
       render: (_, record) => [
         <a
           key="edit"
           onClick={() => history.push(`/device/peripherals/edit/${record.id}`)}
         >
-          编辑
+          {intl.formatMessage({ id: 'common.edit' })}
         </a>,
         <a
           key="view"
           onClick={() => history.push(`/device/peripherals/view/${record.id}`)}
         >
-          查看
+          {intl.formatMessage({ id: 'common.view' })}
         </a>,
         <Popconfirm
           key="delete"
-          title="您确定要删除该外设吗？"
+          title={intl.formatMessage({ id: 'peripheral.delete.confirm' })}
           onConfirm={async () => {
             await deletePeripheral(record.id);
             actionRef.current?.reload();
           }}
         >
-          <a>删除</a>
+          <a>{intl.formatMessage({ id: 'common.delete' })}</a>
         </Popconfirm>,
       ],
     },
@@ -60,7 +62,7 @@ const PeripheralListPage = () => {
   return (
     <PageContainer>
       <ProTable<Peripheral>
-        headerTitle="外设列表"
+        headerTitle={intl.formatMessage({ id: 'peripheral.list.title' })}
         actionRef={actionRef}
         rowKey="id"
         search={{
@@ -74,7 +76,7 @@ const PeripheralListPage = () => {
               history.push('/device/peripherals/add');
             }}
           >
-            <PlusOutlined /> 新增外设
+            <PlusOutlined /> {intl.formatMessage({ id: 'peripheral.add' })}
           </Button>,
         ]}
         request={async (params) => {

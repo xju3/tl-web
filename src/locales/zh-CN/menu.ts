@@ -56,4 +56,8 @@ export default {
   'menu.device.serial-ports': '串口',
   'menu.device.cabinets': '机柜',
   'menu.device.products': '产品',
+  'menu.device.create-cabinet': '新建机柜',
+  'menu.device.create-cabinet-add-child': '新建机柜(子机柜)',
+  'menu.device.edit-cabinet': '编辑机柜',
+  'menu.device.view-cabinet': '查看机柜',
 };

@@ -45,6 +45,7 @@ const SerialPortListPage = () => {
       title: '操作',
       dataIndex: 'option',
       valueType: 'option',
+      width: '150px',
       render: (_, record) => [
         <a
           key="edit"

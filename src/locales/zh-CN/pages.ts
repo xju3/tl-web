@@ -68,4 +68,10 @@ export default {
   'pages.searchTable.tenThousand': '万',
   'pages.searchTable.batchDeletion': '批量删除',
   'pages.searchTable.batchApproval': '批量审批',
+  'cabinet.list.title': '机柜列表',
+  'cabinet.add': '新增机柜',
+  'cabinet.delete.confirm': '确定要删除这个机柜吗？',
+  'cabinet.add.child': '新增子机柜',
+  'cabinet.basic-info.title': '机柜基本信息',
+  'cabinet.children.title': '子机柜列表',
 };
