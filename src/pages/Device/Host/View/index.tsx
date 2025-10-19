@@ -4,7 +4,7 @@ import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { history, useIntl, useLocation, useParams } from '@umijs/max';
 import { Button, Card, Descriptions, Popconfirm, Space, Tabs } from 'antd';
 import { useEffect, useRef, useState } from 'react';
-import SerialPortSelectModal from '../../SerialPort/components/SelectModal';
+import SerialPortSelectModal from '../../../../components/Selectors/SerialPortSelectModal';
 import type { Host, HostSerialPort } from '../data.d';
 import {
   addHostPort,

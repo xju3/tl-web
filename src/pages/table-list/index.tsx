@@ -248,6 +248,9 @@ const TableList: React.FC = () => {
             setSelectedRows(selectedRows);
           },
         }}
+        pagination={{
+          pageSize: 10,
+        }}
       />
       {selectedRowsState?.length > 0 && (
         <FooterToolbar

@@ -2,8 +2,8 @@ import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Modal } from 'antd';
 import { useRef } from 'react';
-import type { SerialPort } from '../data.d';
-import { getSerialPorts } from '../service';
+import type { SerialPort } from '../../pages/Device/SerialPort/data';
+import { getSerialPorts } from '../../pages/Device/SerialPort/service';
 
 export type SerialPortSelectModalProps = {
   open: boolean;
@@ -66,8 +66,8 @@ const SerialPortSelectModal = ({
           const { current, pageSize, ...rest } = params;
           const adjustedParams = {
             ...rest,
-            currPage: current ? current - 1 : 0,
-            pageSize,
+            currPage: 1,
+            pageSize: 10,
           };
           return getSerialPorts(adjustedParams);
         }}

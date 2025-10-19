@@ -74,19 +74,19 @@ export default [
         component: './Device/Host/List',
       },
       {
-        name: 'add',
+        name: 'create-host',
         path: '/device/hosts/add',
         component: './Device/Host/Edit',
         hideInMenu: true,
       },
       {
-        name: 'edit',
+        name: 'edit-host',
         path: '/device/hosts/edit/:id',
         component: './Device/Host/Edit',
         hideInMenu: true,
       },
       {
-        name: 'view',
+        name: 'view-host',
         path: '/device/hosts/view/:id',
         component: './Device/Host/View',
         hideInMenu: true,

@@ -97,7 +97,7 @@ const SerialPortListPage = () => {
           // The backend uses 0-based indexing for pages, so we subtract 1.
           const adjustedParams = {
             ...rest,
-            currPage: current ? current - 1 : 0,
+            currPage: current,
             pageSize,
           };
           return getSerialPorts(adjustedParams);

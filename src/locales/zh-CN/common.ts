@@ -9,4 +9,8 @@ export default {
   'common.ip': 'IP 地址',
   'common.port': '端口',
   'common.description': '描述',
+  'common.err.code.required': '编码为必填项',
+  'common.err.name.required': '名称为必填项',
+  'common.err.ip': 'ip地址格式不正确',
+  'common.err.length.range': '{field}的长度必须在{min}到{max}个字符之间',
 };

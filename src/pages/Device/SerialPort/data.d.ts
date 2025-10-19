@@ -12,11 +12,11 @@ export type SerialPort = {
 
 // 分页查询参数类型
 export type SerialPortPageParams = {
-  currPage?: number;
-  pageSize?: number;
+  currPage: number;
+  pageSize: number;
   // 其他查询参数
+  code?: string;
   name?: string;
-  port?: string;
   // ProTable 自动注入的排序参数
-  sorter?: string;
+  sorters?: { fieldName: string; direction: number }[];
 };

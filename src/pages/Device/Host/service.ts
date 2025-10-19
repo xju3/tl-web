@@ -12,26 +12,41 @@ type ApiResponse<T> = {
 
 // 1. 获取主机列表 (分页)
 export async function getHosts(params: HostPageParams) {
-  const { currPage = 1, pageSize = 10, code, name, ip, sorter } = params;
-  const filter = { code, name, ip };
+  const {
+    currPage = 1,
+    pageSize = 10,
+    code,
+    name,
+    nullParentId = true,
+    ip,
+    sorter,
+  } = params;
+  const filter: {
+    code?: string;
+    name?: string;
+    nullParentId?: boolean;
+    ip?: string;
+    sorters?: { fieldName: string; direction: number }[];
+  } = { code, name, ip, nullParentId };
 
-  let sorterBody = {};
   if (sorter && Object.keys(sorter).length > 0) {
-    const [fieldName, direction] = Object.entries(sorter)[0];
-    sorterBody = {
-      fieldName,
-      direction: direction === 'ascend' ? 0 : 1,
-    };
+    const proTableSorter = sorter as Record<
+      string,
+      'ascend' | 'descend' | null
+    >;
+    filter.sorters = Object.keys(proTableSorter)
+      .filter((key) => proTableSorter[key])
+      .map((key) => ({
+        fieldName: key,
+        direction: proTableSorter[key] === 'ascend' ? 0 : 1,
+      }));
   }
 
   const response = await request<
     ApiResponse<{ records: Host[]; total: number }>
   >(`/hosts/${currPage}/${pageSize}`, {
     method: 'PUT',
-    data: {
-      filter,
-      sorter: sorterBody,
-    },
+    data: filter,
   });
   // 直接返回 ProTable 需要的数据结构
   return {

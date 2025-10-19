@@ -24,6 +24,7 @@ export type HostPageParams = {
   code?: string;
   name?: string;
   ip?: string;
+  nullParentId?: boolean;
   // ProTable 自动注入的排序参数
   sorter?: Record<string, 'ascend' | 'descend' | null>;
 };

@@ -22,7 +22,7 @@ export type PeripheralPageParams = {
   code?: string;
   name?: string;
   // ProTable 自动注入的排序参数
-  sorter?: string;
+  sorters?: { fieldName: string; direction: number }[];
 };
 
 // API 异常响应体结构

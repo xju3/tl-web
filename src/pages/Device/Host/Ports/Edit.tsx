@@ -2,7 +2,7 @@ import { PageContainer } from '@ant-design/pro-components';
 import { history, useParams } from '@umijs/max';
 import { Button } from 'antd';
 import { useState } from 'react';
-import SerialPortSelectModal from '../../SerialPort/components/SelectModal';
+import SerialPortSelectModal from '../../../../components/Selectors/SerialPortSelectModal';
 import { updateHostPort } from '../service';
 
 const HostPortEditPage = () => {

@@ -38,16 +38,66 @@ const HostEditPage = () => {
     <PageContainer onBack={() => history.back()}>
       <ProForm form={form} onFinish={onFinish}>
         <ProFormText
+          rules={[
+            {
+              required: true,
+              message: intl.formatMessage({ id: 'common.err.code.required' }),
+            },
+            {
+              min: 2,
+              max: 8,
+              message: intl.formatMessage(
+                { id: 'common.err.length.range' },
+                {
+                  field: intl.formatMessage({ id: 'common.code' }),
+                  min: 2,
+                  max: 8,
+                },
+              ),
+            },
+          ]}
+          bordered={true}
+          width={'lg'}
+          placeholder={'input code here, max length less than 8'}
           name="code"
           label={intl.formatMessage({ id: 'common.code' })}
         />
         <ProFormText
           name="name"
+          rules={[
+            {
+              required: true,
+              min: 2,
+              max: 32,
+              message: intl.formatMessage({ id: 'common.err.name.required' }),
+            },
+            {
+              min: 2,
+              max: 32,
+              message: intl.formatMessage(
+                { id: 'common.err.length.range' },
+                {
+                  field: intl.formatMessage({ id: 'common.name' }),
+                  min: 2,
+                  max: 32,
+                },
+              ),
+            },
+          ]}
+          width={'lg'}
           label={intl.formatMessage({ id: 'common.name' })}
         />
         <ProFormText
+          width={'lg'}
           name="ip"
           label={intl.formatMessage({ id: 'common.ip' })}
+          rules={[
+            {
+              pattern:
+                /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
+              message: intl.formatMessage({ id: 'common.err.ip' }),
+            },
+          ]}
         />
       </ProForm>
     </PageContainer>

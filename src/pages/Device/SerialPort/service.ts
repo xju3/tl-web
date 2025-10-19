@@ -11,17 +11,18 @@ type ApiResponse<T> = {
 
 // 1. 获取串口列表 (分页)
 export async function getSerialPorts(params: SerialPortPageParams) {
-  if (!params.currPage) {
-    params.currPage = 1;
-  }
-  if (!params.pageSize) {
-    params.pageSize = 10;
-  }
+  const { currPage = 1, pageSize = 10, code, name, sorters: sorter } = params;
+  const filter: {
+    code?: string;
+    name?: string;
+    sorters: { fieldName: string; direction: number }[];
+  } = { code, name, sorters: [] };
+
   const response = await request<
     ApiResponse<{ records: SerialPort[]; total: number }>
-  >('/serial-ports', {
-    method: 'GET',
-    params,
+  >(`/serial-ports/${params.currPage}/${params.pageSize}`, {
+    method: 'PUT',
+    data: filter,
   });
   // 直接返回 ProTable 需要的数据结构
   return {
