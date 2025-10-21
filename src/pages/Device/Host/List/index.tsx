@@ -51,13 +51,13 @@ const HostListPage = () => {
   const columns: ProColumns<Host>[] = useMemo(
     () => [
       {
-        title: intl.formatMessage({ id: 'common.code' }),
+        title: intl.formatMessage({ id: 'device.host.code' }),
         dataIndex: 'code',
         key: 'code',
         sorter: true,
       },
       {
-        title: intl.formatMessage({ id: 'common.name' }),
+        title: intl.formatMessage({ id: 'device.host.name' }),
         dataIndex: 'name',
         key: 'name',
         sorter: true,
@@ -80,7 +80,7 @@ const HostListPage = () => {
               saveStateAndNavigate(`/device/hosts/edit/${record.id}`)
             }
           >
-            {intl.formatMessage({ id: 'common.edit' })}
+            {intl.formatMessage({ id: 'common.actions.edit' })}
           </a>,
           <a
             key="view"
@@ -88,17 +88,17 @@ const HostListPage = () => {
               saveStateAndNavigate(`/device/hosts/view/${record.id}`)
             }
           >
-            {intl.formatMessage({ id: 'common.view' })}
+            {intl.formatMessage({ id: 'common.actions.view' })}
           </a>,
           <Popconfirm
             key="delete"
-            title={intl.formatMessage({ id: 'host.delete.confirm' })}
+            title={intl.formatMessage({ id: 'device.host.delete.confirm' })}
             onConfirm={async () => {
               await deleteHost(record.id);
               actionRef.current?.reload();
             }}
           >
-            <a>{intl.formatMessage({ id: 'common.delete' })}</a>
+            <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
           </Popconfirm>,
         ],
       },
@@ -109,11 +109,11 @@ const HostListPage = () => {
   return (
     <PageContainer>
       <ProTable<Host>
-        headerTitle={intl.formatMessage({ id: 'host.list.title' })}
+        headerTitle={intl.formatMessage({ id: 'device.host.list.title' })}
         actionRef={actionRef}
         formRef={formRef}
         showSorterTooltip={{
-          title: '按住 Shift 键可以进行多字段排序',
+          title: intl.formatMessage({ id: 'common.sorter.tooltip' }),
         }}
         rowKey="id"
         search={{
@@ -130,7 +130,7 @@ const HostListPage = () => {
               history.push('/device/hosts/add');
             }}
           >
-            <PlusOutlined /> {intl.formatMessage({ id: 'host.add' })}
+            <PlusOutlined /> {intl.formatMessage({ id: 'device.host.add' })}
           </Button>,
         ]}
         request={useCallback(

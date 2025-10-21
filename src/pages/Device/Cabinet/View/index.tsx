@@ -40,23 +40,23 @@ const CabinetViewPage = () => {
 
   const peripheralColumns: ProColumns<Peripheral>[] = [
     {
-      title: intl.formatMessage({ id: 'peripheral.code' }),
+      title: intl.formatMessage({ id: 'device.peripheral.code' }),
       dataIndex: 'code',
     },
     {
-      title: intl.formatMessage({ id: 'peripheral.name' }),
+      title: intl.formatMessage({ id: 'device.peripheral.name' }),
       dataIndex: 'name',
     },
     {
-      title: intl.formatMessage({ id: 'cabinet.cable.code' }),
+      title: intl.formatMessage({ id: 'device.cabinet.cable.code' }),
       dataIndex: 'cableCode',
     },
     {
-      title: intl.formatMessage({ id: 'cabinet.cable.name' }),
+      title: intl.formatMessage({ id: 'device.cabinet.cable.name' }),
       dataIndex: 'cableName',
     },
     {
-      title: intl.formatMessage({ id: 'peripheral.quantity' }),
+      title: intl.formatMessage({ id: 'device.peripheral.quantity' }),
       dataIndex: 'quantity',
     },
     {
@@ -71,7 +71,7 @@ const CabinetViewPage = () => {
             history.push(`/device/cabinets/bindings/${record.id}/edit`);
           }}
         >
-          {intl.formatMessage({ id: 'common.edit' })}
+          {intl.formatMessage({ id: 'common.actions.edit' })}
         </a>,
 
         <Popconfirm
@@ -84,7 +84,7 @@ const CabinetViewPage = () => {
             }
           }}
         >
-          <a>{intl.formatMessage({ id: 'common.delete' })}</a>
+          <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
         </Popconfirm>,
       ],
     },
@@ -92,27 +92,27 @@ const CabinetViewPage = () => {
 
   const cableColumns: ProColumns<Cable>[] = [
     {
-      title: intl.formatMessage({ id: 'cable.code' }),
+      title: intl.formatMessage({ id: 'device.cabinet.cable.code' }),
       dataIndex: 'code',
     },
     {
-      title: intl.formatMessage({ id: 'cable.name' }),
+      title: intl.formatMessage({ id: 'device.cabinet.cable.name' }),
       dataIndex: 'name',
     },
     {
-      title: intl.formatMessage({ id: 'host.code' }),
+      title: intl.formatMessage({ id: 'device.host.code' }),
       dataIndex: 'hostCode',
     },
     {
-      title: intl.formatMessage({ id: 'host.name' }),
+      title: intl.formatMessage({ id: 'device.host.name' }),
       dataIndex: 'hostName',
     },
     {
-      title: intl.formatMessage({ id: 'host.port.code' }),
+      title: intl.formatMessage({ id: 'device.host.port.code' }),
       dataIndex: 'hostPortCode',
     },
     {
-      title: intl.formatMessage({ id: 'cable.description' }),
+      title: intl.formatMessage({ id: 'device.cabinet.cable.description' }),
       dataIndex: 'description',
     },
     {
@@ -127,7 +127,7 @@ const CabinetViewPage = () => {
             history.push(`/device/cabinets/${id}/cables/${record.id}/edit`);
           }}
         >
-          {intl.formatMessage({ id: 'common.edit' })}
+          {intl.formatMessage({ id: 'common.actions.edit' })}
         </a>,
 
         <Popconfirm
@@ -140,7 +140,7 @@ const CabinetViewPage = () => {
             }
           }}
         >
-          <a>{intl.formatMessage({ id: 'common.delete' })}</a>
+          <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
         </Popconfirm>,
       ],
     },
@@ -148,15 +148,15 @@ const CabinetViewPage = () => {
 
   const usageColumns: ProColumns<CabinetPeripheralUsage>[] = [
     {
-      title: intl.formatMessage({ id: 'peripheral.code' }),
+      title: intl.formatMessage({ id: 'device.peripheral.code' }),
       dataIndex: 'peripheralCode',
     },
     {
-      title: intl.formatMessage({ id: 'peripheral.name' }),
+      title: intl.formatMessage({ id: 'device.peripheral.name' }),
       dataIndex: 'peripheralName',
     },
     {
-      title: intl.formatMessage({ id: 'cabinet.usage.sequence' }),
+      title: intl.formatMessage({ id: 'device.cabinet.usage.sequence' }),
       dataIndex: 'sequence',
     },
     {
@@ -171,7 +171,7 @@ const CabinetViewPage = () => {
             history.push(`/device/cabinets/${id}/usages/${record.id}/edit`);
           }}
         >
-          {intl.formatMessage({ id: 'common.edit' })}
+          {intl.formatMessage({ id: 'common.actions.edit' })}
         </a>,
 
         <Popconfirm
@@ -184,7 +184,7 @@ const CabinetViewPage = () => {
             }
           }}
         >
-          <a>{intl.formatMessage({ id: 'common.delete' })}</a>
+          <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
         </Popconfirm>,
       ],
     },
@@ -193,7 +193,7 @@ const CabinetViewPage = () => {
   return (
     <PageContainer
       header={{
-        title: intl.formatMessage({ id: 'cabinet.view.title' }),
+        title: intl.formatMessage({ id: 'device.cabinet.view.title' }),
         onBack: () => history.back(),
       }}
     >
@@ -210,10 +210,12 @@ const CabinetViewPage = () => {
                   history.push(`/device/cabinets/edit/${id}`);
                 }}
               >
-                {intl.formatMessage({ id: 'common.edit' })}
+                {intl.formatMessage({ id: 'common.actions.edit' })}
               </Button>
               <Popconfirm
-                title={intl.formatMessage({ id: 'cabinet.delete.confirm' })}
+                title={intl.formatMessage({
+                  id: 'device.cabinet.delete.confirm',
+                })}
                 onConfirm={async () => {
                   if (id) {
                     await deleteCabinet(id);
@@ -222,7 +224,7 @@ const CabinetViewPage = () => {
                 }}
               >
                 <Button type="primary" danger>
-                  {intl.formatMessage({ id: 'common.delete' })}
+                  {intl.formatMessage({ id: 'common.actions.delete' })}
                 </Button>
               </Popconfirm>
             </>
@@ -230,11 +232,11 @@ const CabinetViewPage = () => {
         >
           <ProDescriptions.Item
             dataIndex="code"
-            label={intl.formatMessage({ id: 'common.code' })}
+            label={intl.formatMessage({ id: 'device.cabinet.code' })}
           />
           <ProDescriptions.Item
             dataIndex="name"
-            label={intl.formatMessage({ id: 'common.name' })}
+            label={intl.formatMessage({ id: 'device.cabinet.name' })}
           />
         </ProDescriptions>
       </Card>
@@ -250,12 +252,12 @@ const CabinetViewPage = () => {
           }}
         >
           <Tabs.TabPane
-            tab={intl.formatMessage({ id: 'peripheral.list.title' })}
+            tab={intl.formatMessage({ id: 'device.peripheral.list.title' })}
             key="peripherals"
           >
             <ProTable<Peripheral>
               headerTitle={intl.formatMessage({
-                id: 'peripheral.list.title',
+                id: 'device.peripheral.list.title',
               })}
               actionRef={peripheralsActionRef}
               rowKey="id"
@@ -268,7 +270,9 @@ const CabinetViewPage = () => {
                     history.push(`/device/cabinets/${id}/bind`);
                   }}
                 >
-                  {intl.formatMessage({ id: 'cabinet.view.bindPeripheral' })}
+                  {intl.formatMessage({
+                    id: 'device.cabinet.view.bindPeripheral',
+                  })}
                 </Button>,
               ]}
               request={(params) =>
@@ -286,11 +290,15 @@ const CabinetViewPage = () => {
 
           {cabinet?.parentId == null && (
             <Tabs.TabPane
-              tab={intl.formatMessage({ id: 'cable.list.title' })}
+              tab={intl.formatMessage({
+                id: 'device.cabinet.cable.list.title',
+              })}
               key="cables"
             >
               <ProTable<Cable>
-                headerTitle={intl.formatMessage({ id: 'cable.list.title' })}
+                headerTitle={intl.formatMessage({
+                  id: 'device.cabinet.cable.list.title',
+                })}
                 actionRef={cablesActionRef}
                 rowKey="id"
                 search={false}
@@ -302,7 +310,7 @@ const CabinetViewPage = () => {
                       history.push(`/device/cabinets/${id}/cables/add/edit`);
                     }}
                   >
-                    {intl.formatMessage({ id: 'common.add' })}
+                    {intl.formatMessage({ id: 'common.actions.add' })}
                   </Button>,
                 ]}
                 request={() => getCabinetCables(id!)}
@@ -316,12 +324,14 @@ const CabinetViewPage = () => {
 
           {cabinet?.parentId != null && (
             <Tabs.TabPane
-              tab={intl.formatMessage({ id: 'cabinet.usage.list.title' })}
+              tab={intl.formatMessage({
+                id: 'device.cabinet.usage.list.title',
+              })}
               key="usages"
             >
               <ProTable<CabinetPeripheralUsage>
                 headerTitle={intl.formatMessage({
-                  id: 'cabinet.usage.list.title',
+                  id: 'device.cabinet.usage.list.title',
                 })}
                 actionRef={usagesActionRef}
                 rowKey="id"
@@ -334,7 +344,7 @@ const CabinetViewPage = () => {
                       history.push(`/device/cabinets/${id}/usages/add`);
                     }}
                   >
-                    {intl.formatMessage({ id: 'common.add' })}
+                    {intl.formatMessage({ id: 'common.actions.add' })}
                   </Button>,
                 ]}
                 request={() => getCabinetPeripheralUsages(id!)}

@@ -16,11 +16,15 @@ const Instructions: React.FC<InstructionsProps> = ({ peripheralId }) => {
   const intl = useIntl();
 
   const handleDelete = async (id: string) => {
-    const hide = message.loading(intl.formatMessage({ id: 'common.deleting' }));
+    const hide = message.loading(
+      intl.formatMessage({ id: 'common.actions.deleting' }),
+    );
     try {
       await deleteInstruction(peripheralId, id);
       hide();
-      message.success(intl.formatMessage({ id: 'common.delete.success' }));
+      message.success(
+        intl.formatMessage({ id: 'common.actions.delete.success' }),
+      );
       actionRef.current?.reload();
     } catch (error) {
       hide();
@@ -29,19 +33,25 @@ const Instructions: React.FC<InstructionsProps> = ({ peripheralId }) => {
 
   const columns: ProColumns<Instruction>[] = [
     {
-      title: intl.formatMessage({ id: 'peripheral.instruction.instruction' }),
+      title: intl.formatMessage({
+        id: 'device.peripheral.instruction.instruction',
+      }),
       dataIndex: 'instruction',
     },
     {
-      title: intl.formatMessage({ id: 'peripheral.instruction.acknowledge' }),
+      title: intl.formatMessage({
+        id: 'device.peripheral.instruction.acknowledge',
+      }),
       dataIndex: 'acknowledge',
     },
     {
-      title: intl.formatMessage({ id: 'peripheral.instruction.comment' }),
+      title: intl.formatMessage({
+        id: 'device.peripheral.instruction.comment',
+      }),
       dataIndex: 'comment',
     },
     {
-      title: intl.formatMessage({ id: 'common.columns.actions' }),
+      title: intl.formatMessage({ id: 'common.actions' }),
       valueType: 'option',
       width: 180,
       render: (_, record) => [
@@ -70,7 +80,7 @@ const Instructions: React.FC<InstructionsProps> = ({ peripheralId }) => {
     <>
       <ProTable<Instruction>
         headerTitle={intl.formatMessage({
-          id: 'peripheral.instruction.list.title',
+          id: 'device.peripheral.instruction.list.title',
         })}
         actionRef={actionRef}
         rowKey="id"

@@ -34,10 +34,12 @@ const CableEditPage: React.FC = () => {
     };
     if (id === 'add') {
       await addCabinetCables(cableToSave);
-      message.success(intl.formatMessage({ id: 'common.add.success' }));
+      message.success(intl.formatMessage({ id: 'common.actions.add.success' }));
     } else {
       await updateCabinetCables(cableToSave);
-      message.success(intl.formatMessage({ id: 'common.edit.success' }));
+      message.success(
+        intl.formatMessage({ id: 'common.actions.edit.success' }),
+      );
     }
     history.push(`/device/cabinets/view/${cabinetId}?tab=cables`);
   };
@@ -46,7 +48,10 @@ const CableEditPage: React.FC = () => {
     <PageContainer
       header={{
         title: intl.formatMessage({
-          id: id === 'add' ? 'cable.add.title' : 'cable.edit.title',
+          id:
+            id === 'add'
+              ? 'device.cabinet.cable.add.title'
+              : 'device.cabinet.cable.edit.title',
         }),
         onBack: () => history.back(),
       }}
@@ -70,32 +75,38 @@ const CableEditPage: React.FC = () => {
         >
           <ProFormText
             name="code"
-            label={intl.formatMessage({ id: 'cable.code' })}
+            label={intl.formatMessage({ id: 'device.cabinet.cable.code' })}
             rules={[
               {
                 required: true,
-                message: intl.formatMessage({ id: 'cable.code.required' }),
+                message: intl.formatMessage({
+                  id: 'device.cabinet.cable.code.required',
+                }),
               },
             ]}
           />
           <ProFormText
             name="name"
-            label={intl.formatMessage({ id: 'cable.name' })}
+            label={intl.formatMessage({ id: 'device.cabinet.cable.name' })}
             rules={[
               {
                 required: true,
-                message: intl.formatMessage({ id: 'cable.name.required' }),
+                message: intl.formatMessage({
+                  id: 'device.cabinet.cable.name.required',
+                }),
               },
             ]}
           />
           <ProFormTextArea
             name="description"
-            label={intl.formatMessage({ id: 'cable.description' })}
+            label={intl.formatMessage({
+              id: 'device.cabinet.cable.description',
+            })}
           />
           <ProForm.Group>
             <ProFormText
               name="hostName"
-              label={intl.formatMessage({ id: 'host.name' })}
+              label={intl.formatMessage({ id: 'device.host.name' })}
               disabled
             />
             <Button
@@ -103,7 +114,7 @@ const CableEditPage: React.FC = () => {
                 setHostSelectModalOpen(true);
               }}
             >
-              {intl.formatMessage({ id: 'common.select' })}
+              {intl.formatMessage({ id: 'common.actions.select' })}
             </Button>
           </ProForm.Group>
 
@@ -115,7 +126,7 @@ const CableEditPage: React.FC = () => {
               return (
                 <ProFormSelect
                   name="hostPortId"
-                  label={intl.formatMessage({ id: 'host.port.code' })}
+                  label={intl.formatMessage({ id: 'device.host.port.code' })}
                   request={async () => {
                     const res = await getHostPorts(hostId, {
                       currPage: 1,

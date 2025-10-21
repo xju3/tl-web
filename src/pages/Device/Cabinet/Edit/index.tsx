@@ -56,7 +56,7 @@ const CabinetEditPage = () => {
               message: intl.formatMessage(
                 { id: 'common.err.length.range' },
                 {
-                  field: intl.formatMessage({ id: 'common.code' }),
+                  field: intl.formatMessage({ id: 'device.cabinet.code' }),
                   min: 2,
                   max: 8,
                 },
@@ -67,7 +67,7 @@ const CabinetEditPage = () => {
           width={'lg'}
           placeholder={'input code here, max length less than 8'}
           name="code"
-          label={intl.formatMessage({ id: 'common.code' })}
+          label={intl.formatMessage({ id: 'device.cabinet.code' })}
         />
         <ProFormText
           name="name"
@@ -84,7 +84,7 @@ const CabinetEditPage = () => {
               message: intl.formatMessage(
                 { id: 'common.err.length.range' },
                 {
-                  field: intl.formatMessage({ id: 'common.name' }),
+                  field: intl.formatMessage({ id: 'device.cabinet.name' }),
                   min: 2,
                   max: 32,
                 },
@@ -92,7 +92,7 @@ const CabinetEditPage = () => {
             },
           ]}
           width={'lg'}
-          label={intl.formatMessage({ id: 'common.name' })}
+          label={intl.formatMessage({ id: 'device.cabinet.name' })}
         />
         <ProFormText width={'lg'} name="parentId" hidden={true} />
       </ProForm>

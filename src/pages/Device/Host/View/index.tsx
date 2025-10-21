@@ -39,9 +39,18 @@ const HostViewPage = () => {
   };
 
   const portsColumns: ProColumns<HostSerialPort>[] = [
-    { title: intl.formatMessage({ id: 'common.name' }), dataIndex: 'name' },
-    { title: intl.formatMessage({ id: 'common.port' }), dataIndex: 'port' },
-    { title: '波特率', dataIndex: 'baudRate' },
+    {
+      title: intl.formatMessage({ id: 'device.serialport.name' }),
+      dataIndex: 'name',
+    },
+    {
+      title: intl.formatMessage({ id: 'device.serialport.code' }),
+      dataIndex: 'port',
+    },
+    {
+      title: intl.formatMessage({ id: 'device.serialport.baudRate' }),
+      dataIndex: 'baudRate',
+    },
     {
       title: intl.formatMessage({ id: 'common.actions' }),
       dataIndex: 'option',
@@ -55,11 +64,13 @@ const HostViewPage = () => {
             )
           }
         >
-          {intl.formatMessage({ id: 'common.edit' })}
+          {intl.formatMessage({ id: 'common.actions.edit' })}
         </a>,
         <Popconfirm
           key="delete"
-          title={intl.formatMessage({ id: 'host.serial-ports.delete.confirm' })}
+          title={intl.formatMessage({
+            id: 'device.host.serial-ports.delete.confirm',
+          })}
           onConfirm={async () => {
             if (id) {
               await deleteHostPort(id, record.hostSerialPortId);
@@ -67,7 +78,7 @@ const HostViewPage = () => {
             }
           }}
         >
-          <a>{intl.formatMessage({ id: 'common.delete' })}</a>
+          <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
         </Popconfirm>,
       ],
     },
@@ -79,7 +90,7 @@ const HostViewPage = () => {
         <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
           <Card>
             <Descriptions
-              title={intl.formatMessage({ id: 'host.basic-info.title' })}
+              title={intl.formatMessage({ id: 'device.host.basic-info.title' })}
               bordered
               extra={
                 <Space>
@@ -89,11 +100,13 @@ const HostViewPage = () => {
                       history.push(`/device/hosts/edit/${id}`, location.state)
                     }
                   >
-                    {intl.formatMessage({ id: 'common.edit' })}
+                    {intl.formatMessage({ id: 'common.actions.edit' })}
                   </Button>
                   <Popconfirm
                     key="delete"
-                    title={intl.formatMessage({ id: 'host.delete.confirm' })}
+                    title={intl.formatMessage({
+                      id: 'device.host.delete.confirm',
+                    })}
                     onConfirm={async () => {
                       if (id) {
                         await deleteHost(id);
@@ -102,19 +115,19 @@ const HostViewPage = () => {
                     }}
                   >
                     <Button danger>
-                      {intl.formatMessage({ id: 'common.delete' })}
+                      {intl.formatMessage({ id: 'common.actions.delete' })}
                     </Button>
                   </Popconfirm>
                 </Space>
               }
             >
               <Descriptions.Item
-                label={intl.formatMessage({ id: 'common.code' })}
+                label={intl.formatMessage({ id: 'device.host.code' })}
               >
                 {host.code}
               </Descriptions.Item>
               <Descriptions.Item
-                label={intl.formatMessage({ id: 'common.name' })}
+                label={intl.formatMessage({ id: 'device.host.name' })}
               >
                 {host.name}
               </Descriptions.Item>
@@ -128,7 +141,9 @@ const HostViewPage = () => {
           <Card>
             <Tabs defaultActiveKey="1">
               <Tabs.TabPane
-                tab={intl.formatMessage({ id: 'host.serial-ports.title' })}
+                tab={intl.formatMessage({
+                  id: 'device.host.serial-ports.title',
+                })}
                 key="1"
               >
                 <ProTable<HostSerialPort>
@@ -143,7 +158,9 @@ const HostViewPage = () => {
                       onClick={() => setSelectModalOpen(true)}
                     >
                       <PlusOutlined />{' '}
-                      {intl.formatMessage({ id: 'host.serial-ports.add' })}
+                      {intl.formatMessage({
+                        id: 'device.host.serial-ports.add',
+                      })}
                     </Button>,
                   ]}
                   request={async (params) => {

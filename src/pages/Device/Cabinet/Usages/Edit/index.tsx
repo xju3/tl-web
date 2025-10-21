@@ -50,7 +50,9 @@ const CabinetPeripheralUsageEditPage = () => {
     <PageContainer
       header={{
         title: intl.formatMessage({
-          id: id ? 'cabinet.usage.edit.title' : 'cabinet.usage.add.title',
+          id: id
+            ? 'device.cabinet.usage.edit.title'
+            : 'device.cabinet.usage.add.title',
         }),
         onBack: () => history.back(),
       }}
@@ -58,10 +60,23 @@ const CabinetPeripheralUsageEditPage = () => {
       <Card>
         <ProForm form={form} onFinish={onFinish}>
           <ProFormText name="cabinetPeripheralId" hidden />
-          <ProFormText name="peripheralCode" label="外设编码" disabled />
-          <ProFormText name="peripheralName" label="外设名称" disabled />
-          <Button onClick={() => setSelectorOpen(true)}>选择外设</Button>
-          <ProFormDigit name="index" label="顺序" />
+          <ProFormText
+            name="peripheralCode"
+            label={intl.formatMessage({ id: 'device.peripheral.code' })}
+            disabled
+          />
+          <ProFormText
+            name="peripheralName"
+            label={intl.formatMessage({ id: 'device.peripheral.name' })}
+            disabled
+          />
+          <Button onClick={() => setSelectorOpen(true)}>
+            {intl.formatMessage({ id: 'common.actions.select' })}
+          </Button>
+          <ProFormDigit
+            name="index"
+            label={intl.formatMessage({ id: 'device.cabinet.usage.sequence' })}
+          />
         </ProForm>
       </Card>
       {cabinet?.parentId && (

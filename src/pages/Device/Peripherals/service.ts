@@ -11,20 +11,27 @@ type ApiResponse<T> = {
 
 // 1. 获取外设列表 (分页)
 export async function getPeripherals(params: PeripheralPageParams) {
-  const { currPage = 1, pageSize = 10, code, name, sorters: sorter } = params;
-  var url = `/peripherals/${currPage}/${pageSize}`;
-  const filter: {
-    code?: string;
-    name?: string;
-    sorters: { fieldName: string; direction: number }[];
-  } = { code, name, sorters: [] };
+  const { currPage = 0, pageSize = 10, sorter, ...filter } = params as any;
+
+  const payload: {
+    sorters?: { fieldName: string; direction: number }[];
+    [key: string]: any;
+  } = { ...filter };
+
+  if (sorter && Object.keys(sorter).length > 0) {
+    payload.sorters = Object.entries(sorter).map(([key, value]) => ({
+      fieldName: key,
+      direction: value === 'ascend' ? 0 : 1,
+    }));
+  }
 
   const response = await request<
     ApiResponse<{ records: Peripheral[]; total: number }>
-  >(url, {
+  >(`/peripherals/${currPage}/${pageSize}`, {
     method: 'PUT',
-    data: filter,
+    data: payload,
   });
+
   // 直接返回 ProTable 需要的数据结构
   return {
     data: response.body.records || [],

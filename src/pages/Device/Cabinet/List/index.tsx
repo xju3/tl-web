@@ -51,7 +51,7 @@ const CabinetListPage = () => {
   const columns: ProColumns<Cabinet>[] = useMemo(
     () => [
       {
-        title: intl.formatMessage({ id: 'common.code' }),
+        title: intl.formatMessage({ id: 'device.cabinet.code' }),
         dataIndex: 'code',
         key: 'code',
         sorter: {
@@ -59,7 +59,7 @@ const CabinetListPage = () => {
         },
       },
       {
-        title: intl.formatMessage({ id: 'common.name' }),
+        title: intl.formatMessage({ id: 'device.cabinet.name' }),
         dataIndex: 'name',
         key: 'name',
         sorter: {
@@ -68,7 +68,7 @@ const CabinetListPage = () => {
       },
 
       {
-        title: intl.formatMessage({ id: 'common.description' }),
+        title: intl.formatMessage({ id: 'device.cabinet.description' }),
         dataIndex: 'description',
         key: 'discription',
       },
@@ -84,7 +84,7 @@ const CabinetListPage = () => {
               saveStateAndNavigate(`/device/cabinets/add-child/${record.id}`)
             }
           >
-            {intl.formatMessage({ id: 'common.create' })}
+            {intl.formatMessage({ id: 'common.actions.add' })}
           </a>,
           <a
             key="edit"
@@ -92,7 +92,7 @@ const CabinetListPage = () => {
               saveStateAndNavigate(`/device/cabinets/edit/${record.id}`)
             }
           >
-            {intl.formatMessage({ id: 'common.edit' })}
+            {intl.formatMessage({ id: 'common.actions.edit' })}
           </a>,
           <a
             key="view"
@@ -100,17 +100,17 @@ const CabinetListPage = () => {
               saveStateAndNavigate(`/device/cabinets/view/${record.id}`)
             }
           >
-            {intl.formatMessage({ id: 'common.view' })}
+            {intl.formatMessage({ id: 'common.actions.view' })}
           </a>,
           <Popconfirm
             key="delete"
-            title={intl.formatMessage({ id: 'cabinet.delete.confirm' })}
+            title={intl.formatMessage({ id: 'device.cabinet.delete.confirm' })}
             onConfirm={async () => {
               await deleteCabinet(record.id);
               actionRef.current?.reload();
             }}
           >
-            <a>{intl.formatMessage({ id: 'common.delete' })}</a>
+            <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
           </Popconfirm>,
         ],
       },
@@ -123,7 +123,7 @@ const CabinetListPage = () => {
   return (
     <PageContainer>
       <ProTable<Cabinet>
-        headerTitle={intl.formatMessage({ id: 'cabinet.list.title' })}
+        headerTitle={intl.formatMessage({ id: 'device.cabinet.list.title' })}
         actionRef={actionRef}
         formRef={formRef}
         showSorterTooltip={{
@@ -144,7 +144,7 @@ const CabinetListPage = () => {
               history.push('/device/cabinets/add');
             }}
           >
-            <PlusOutlined /> {intl.formatMessage({ id: 'cabinet.add' })}
+            <PlusOutlined /> {intl.formatMessage({ id: 'device.cabinet.add' })}
           </Button>,
         ]}
         request={useCallback(

@@ -1,7 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
-import { history } from '@umijs/max';
+import { history, useIntl } from '@umijs/max';
 import { Button, Popconfirm } from 'antd';
 import { useRef } from 'react';
 import type { SerialPort } from '../data.d';
@@ -9,45 +9,73 @@ import { deleteSerialPort, getSerialPorts } from '../service';
 
 const SerialPortListPage = () => {
   const actionRef = useRef<ActionType>(null);
+  const intl = useIntl();
 
   const columns: ProColumns<SerialPort>[] = [
     {
-      title: '编号',
+      title: intl.formatMessage({ id: 'device.serialport.code' }),
       dataIndex: 'code',
       sorter: true,
     },
     {
-      title: '名称',
+      title: intl.formatMessage({ id: 'device.serialport.name' }),
       dataIndex: 'name',
       sorter: true,
     },
     {
-      title: '端口',
+      title: intl.formatMessage({ id: 'device.serialport.protocol' }),
       dataIndex: 'protocol',
       sorter: true,
     },
     {
-      title: '波特率',
+      title: intl.formatMessage({ id: 'device.serialport.baudRate' }),
       dataIndex: 'baudRate',
+      width: '120px',
       sorter: true,
+      valueEnum: {
+        9600: { text: '9600' },
+        19200: { text: '19200' },
+        38400: { text: '38400' },
+        57600: { text: '57600' },
+        115200: { text: '115200' },
+      },
     },
     {
-      title: '数据位',
+      title: intl.formatMessage({ id: 'device.serialport.dataBits' }),
       dataIndex: 'dataBits',
+      width: '120px',
       sorter: true,
+      valueEnum: {
+        5: { text: '5' },
+        6: { text: '6' },
+        7: { text: '7' },
+        8: { text: '8' },
+      },
     },
     {
-      title: '停止位',
+      title: intl.formatMessage({ id: 'device.serialport.stopBits' }),
       dataIndex: 'stopBits',
+      width: '120px',
       sorter: true,
+      valueEnum: {
+        1: { text: '1' },
+        1.5: { text: '1.5' },
+        2: { text: '2' },
+      },
     },
     {
-      title: '校验位',
+      title: intl.formatMessage({ id: 'device.serialport.parity' }),
       dataIndex: 'parity',
+      width: '120px',
       sorter: true,
+      valueEnum: {
+        0: { text: 'None' },
+        1: { text: 'Odd' },
+        2: { text: 'Even' },
+      },
     },
     {
-      title: '操作',
+      title: intl.formatMessage({ id: 'common.actions' }),
       dataIndex: 'option',
       valueType: 'option',
       width: '180px',
@@ -56,23 +84,25 @@ const SerialPortListPage = () => {
           key="edit"
           onClick={() => history.push(`/device/serial-ports/edit/${record.id}`)}
         >
-          编辑
+          {intl.formatMessage({ id: 'common.actions.edit' })}
         </a>,
         <a
           key="view"
           onClick={() => history.push(`/device/serial-ports/view/${record.id}`)}
         >
-          查看
+          {intl.formatMessage({ id: 'common.actions.view' })}
         </a>,
         <Popconfirm
           key="delete"
-          title="您确定要删除该串口吗？"
+          title={intl.formatMessage({
+            id: 'device.serialport.delete.confirm',
+          })}
           onConfirm={async () => {
             await deleteSerialPort(record.id);
             actionRef.current?.reload();
           }}
         >
-          <a>删除</a>
+          <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
         </Popconfirm>,
       ],
     },
@@ -81,7 +111,7 @@ const SerialPortListPage = () => {
   return (
     <PageContainer>
       <ProTable<SerialPort>
-        headerTitle="串口列表"
+        headerTitle={intl.formatMessage({ id: 'device.serialport.list.title' })}
         actionRef={actionRef}
         rowKey="id"
         search={{
@@ -95,17 +125,32 @@ const SerialPortListPage = () => {
               history.push('/device/serial-ports/add');
             }}
           >
-            <PlusOutlined /> 新增串口
+            <PlusOutlined />{' '}
+            {intl.formatMessage({ id: 'device.serialport.add' })}
           </Button>,
         ]}
-        request={async (params) => {
-          const { current, pageSize, ...rest } = params;
-          // The backend uses 0-based indexing for pages, so we subtract 1.
+        request={async (params, sorter, filter) => {
+          // Correctly handle the arguments provided by ProTable.
+          // `params` contains pagination and form data.
+          // `sorter` is the sorting object.
+          // `filter` contains filter values.
+          console.log('ProTable request:', { params, sorter, filter });
+
+          const sorters = sorter
+            ? Object.entries(sorter).map(([key, value]) => ({
+                fieldName: key,
+                direction: value === 'ascend' ? 0 : 1,
+              }))
+            : undefined;
+
           const adjustedParams = {
-            ...rest,
-            currPage: (current || 1) - 1,
-            pageSize: pageSize || 10,
+            currPage: (params.current || 1) - 1,
+            pageSize: params.pageSize || 10,
+            ...params, // Includes form values
+            ...filter, // Includes filter values
+            sorters,
           };
+
           return getSerialPorts(adjustedParams);
         }}
         columns={columns}

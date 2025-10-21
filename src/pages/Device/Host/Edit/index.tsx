@@ -49,7 +49,7 @@ const HostEditPage = () => {
               message: intl.formatMessage(
                 { id: 'common.err.length.range' },
                 {
-                  field: intl.formatMessage({ id: 'common.code' }),
+                  field: intl.formatMessage({ id: 'device.host.code' }),
                   min: 2,
                   max: 8,
                 },
@@ -60,7 +60,7 @@ const HostEditPage = () => {
           width={'lg'}
           placeholder={'input code here, max length less than 8'}
           name="code"
-          label={intl.formatMessage({ id: 'common.code' })}
+          label={intl.formatMessage({ id: 'device.host.code' })}
         />
         <ProFormText
           name="name"
@@ -77,7 +77,7 @@ const HostEditPage = () => {
               message: intl.formatMessage(
                 { id: 'common.err.length.range' },
                 {
-                  field: intl.formatMessage({ id: 'common.name' }),
+                  field: intl.formatMessage({ id: 'device.host.name' }),
                   min: 2,
                   max: 32,
                 },
@@ -85,7 +85,7 @@ const HostEditPage = () => {
             },
           ]}
           width={'lg'}
-          label={intl.formatMessage({ id: 'common.name' })}
+          label={intl.formatMessage({ id: 'device.host.name' })}
         />
         <ProFormText
           width={'lg'}

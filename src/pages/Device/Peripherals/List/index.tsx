@@ -13,22 +13,22 @@ const PeripheralListPage = () => {
 
   const columns: ProColumns<Peripheral>[] = [
     {
-      title: intl.formatMessage({ id: 'peripheral.code' }),
+      title: intl.formatMessage({ id: 'device.peripheral.code' }),
       dataIndex: 'code',
       sorter: true,
     },
     {
-      title: intl.formatMessage({ id: 'peripheral.name' }),
+      title: intl.formatMessage({ id: 'device.peripheral.name' }),
       dataIndex: 'name',
       sorter: true,
     },
     {
-      title: intl.formatMessage({ id: 'peripheral.type' }),
+      title: intl.formatMessage({ id: 'device.peripheral.type' }),
       dataIndex: 'type',
       sorter: true,
     },
     {
-      title: intl.formatMessage({ id: 'common.operate' }),
+      title: intl.formatMessage({ id: 'common.actions' }),
       dataIndex: 'option',
       valueType: 'option',
       width: '150px',
@@ -37,23 +37,25 @@ const PeripheralListPage = () => {
           key="edit"
           onClick={() => history.push(`/device/peripherals/edit/${record.id}`)}
         >
-          {intl.formatMessage({ id: 'common.edit' })}
+          {intl.formatMessage({ id: 'common.actions.edit' })}
         </a>,
         <a
           key="view"
           onClick={() => history.push(`/device/peripherals/view/${record.id}`)}
         >
-          {intl.formatMessage({ id: 'common.view' })}
+          {intl.formatMessage({ id: 'common.actions.view' })}
         </a>,
         <Popconfirm
           key="delete"
-          title={intl.formatMessage({ id: 'peripheral.delete.confirm' })}
+          title={intl.formatMessage({
+            id: 'device.peripheral.delete.confirm',
+          })}
           onConfirm={async () => {
             await deletePeripheral(record.id);
             actionRef.current?.reload();
           }}
         >
-          <a>{intl.formatMessage({ id: 'common.delete' })}</a>
+          <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
         </Popconfirm>,
       ],
     },
@@ -62,7 +64,7 @@ const PeripheralListPage = () => {
   return (
     <PageContainer>
       <ProTable<Peripheral>
-        headerTitle={intl.formatMessage({ id: 'peripheral.list.title' })}
+        headerTitle={intl.formatMessage({ id: 'device.peripheral.list.title' })}
         actionRef={actionRef}
         rowKey="id"
         search={{
@@ -76,7 +78,8 @@ const PeripheralListPage = () => {
               history.push('/device/peripherals/add');
             }}
           >
-            <PlusOutlined /> {intl.formatMessage({ id: 'peripheral.add' })}
+            <PlusOutlined />{' '}
+            {intl.formatMessage({ id: 'device.peripheral.add' })}
           </Button>,
         ]}
         request={async (params) => {

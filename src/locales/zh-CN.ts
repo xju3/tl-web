@@ -3,6 +3,7 @@ import component from './zh-CN/component';
 import cabinet from './zh-CN/device/cabinet';
 import host from './zh-CN/device/host';
 import peripheral from './zh-CN/device/peripheral';
+import serialport from './zh-CN/device/serialport';
 import globalHeader from './zh-CN/globalHeader';
 import menu from './zh-CN/menu';
 import pages from './zh-CN/pages';
@@ -15,6 +16,7 @@ export default {
   ...peripheral,
   ...cabinet,
   ...common,
+  ...serialport,
   'navBar.lang': '语言',
   'layout.user.link.help': '帮助',
   'layout.user.link.privacy': '隐私',

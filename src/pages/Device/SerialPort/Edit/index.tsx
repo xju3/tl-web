@@ -4,7 +4,7 @@ import {
   ProFormDigit,
   ProFormText,
 } from '@ant-design/pro-components';
-import { history, useParams } from '@umijs/max';
+import { history, useIntl, useParams } from '@umijs/max';
 import { Form } from 'antd';
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -14,6 +14,7 @@ import { addSerialPort, getSerialPortById, updateSerialPort } from '../service';
 const SerialPortEditPage = () => {
   const { id } = useParams<{ id: string }>();
   const [form] = Form.useForm<SerialPort>();
+  const intl = useIntl();
 
   useEffect(() => {
     if (id) {
@@ -35,14 +36,38 @@ const SerialPortEditPage = () => {
   return (
     <PageContainer>
       <ProForm form={form} onFinish={onFinish}>
-        <ProFormText name="code" label="编号" />
-        <ProFormText name="name" label="名称" />
-        <ProFormText name="protocol" label="端口" />
-        <ProFormDigit name="baudRate" label="波特率" />
-        <ProFormDigit name="dataBits" label="数据位" />
-        <ProFormDigit name="stopBits" label="停止位" />
-        <ProFormDigit name="parity" label="校验位" />
-        <ProFormText name="description" label="描述" />
+        <ProFormText
+          name="code"
+          label={intl.formatMessage({ id: 'device.serialport.code' })}
+        />
+        <ProFormText
+          name="name"
+          label={intl.formatMessage({ id: 'device.serialport.name' })}
+        />
+        <ProFormText
+          name="protocol"
+          label={intl.formatMessage({ id: 'device.serialport.protocol' })}
+        />
+        <ProFormDigit
+          name="baudRate"
+          label={intl.formatMessage({ id: 'device.serialport.baudRate' })}
+        />
+        <ProFormDigit
+          name="dataBits"
+          label={intl.formatMessage({ id: 'device.serialport.dataBits' })}
+        />
+        <ProFormDigit
+          name="stopBits"
+          label={intl.formatMessage({ id: 'device.serialport.stopBits' })}
+        />
+        <ProFormDigit
+          name="parity"
+          label={intl.formatMessage({ id: 'device.serialport.parity' })}
+        />
+        <ProFormText
+          name="description"
+          label={intl.formatMessage({ id: 'common.description' })}
+        />
       </ProForm>
     </PageContainer>
   );

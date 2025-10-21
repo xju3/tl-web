@@ -21,11 +21,15 @@ const PeripheralViewPage = () => {
 
   const handleDelete = async () => {
     if (!id) return;
-    const hide = message.loading(intl.formatMessage({ id: 'common.deleting' }));
+    const hide = message.loading(
+      intl.formatMessage({ id: 'common.actions.deleting' }),
+    );
     try {
       await deletePeripheral(id);
       hide();
-      message.success(intl.formatMessage({ id: 'common.delete.success' }));
+      message.success(
+        intl.formatMessage({ id: 'common.actions.delete.success' }),
+      );
       history.push('/device/peripherals');
     } catch (error) {
       hide();
@@ -34,6 +38,7 @@ const PeripheralViewPage = () => {
 
   return (
     <PageContainer
+      onBack={() => history.back()}
       extra={[
         <Button
           key="edit"
@@ -44,7 +49,9 @@ const PeripheralViewPage = () => {
         </Button>,
         <Popconfirm
           key="delete"
-          title={intl.formatMessage({ id: 'common.delete.confirm' })}
+          title={intl.formatMessage({
+            id: 'device.peripheral.delete.confirm',
+          })}
           onConfirm={handleDelete}
         >
           <Button danger>
@@ -58,12 +65,12 @@ const PeripheralViewPage = () => {
           <Card>
             <Descriptions bordered>
               <Descriptions.Item
-                label={intl.formatMessage({ id: 'peripheral.code' })}
+                label={intl.formatMessage({ id: 'device.peripheral.code' })}
               >
                 {peripheral.code}
               </Descriptions.Item>
               <Descriptions.Item
-                label={intl.formatMessage({ id: 'peripheral.name' })}
+                label={intl.formatMessage({ id: 'device.peripheral.name' })}
               >
                 {peripheral.name}
               </Descriptions.Item>

@@ -11,19 +11,20 @@ type ApiResponse<T> = {
 
 // 1. 获取串口列表 (分页)
 export async function getSerialPorts(params: SerialPortPageParams) {
-  const { currPage = 1, pageSize = 10, code, name, sorters: sorter } = params;
-  const filter: {
-    code?: string;
-    name?: string;
-    sorters: { fieldName: string; direction: number }[];
-  } = { code, name, sorters: [] };
+  const { currPage = 0, pageSize = 10, sorters, ...filter } = params;
+  console.log('getSerialPorts', params);
+  const payload = {
+    ...filter,
+    sorters,
+  };
 
   const response = await request<
     ApiResponse<{ records: SerialPort[]; total: number }>
-  >(`/serial-ports/${params.currPage}/${params.pageSize}`, {
+  >(`/serial-ports/${currPage}/${pageSize}`, {
     method: 'PUT',
-    data: filter,
+    data: payload,
   });
+
   // 直接返回 ProTable 需要的数据结构
   return {
     data: response.body.records || [],

@@ -47,7 +47,9 @@ const InstructionEditPage = () => {
   }, [peripheralId, instructionId]);
 
   const onFinish = async (values: any) => {
-    const hide = message.loading(intl.formatMessage({ id: 'common.saving' }));
+    const hide = message.loading(
+      intl.formatMessage({ id: 'common.actions.saving' }),
+    );
     try {
       if (instructionId && peripheralId) {
         await updateInstruction(peripheralId, instructionId, values);
@@ -55,7 +57,9 @@ const InstructionEditPage = () => {
         await addInstruction(peripheralId, values);
       }
       hide();
-      message.success(intl.formatMessage({ id: 'common.save.success' }));
+      message.success(
+        intl.formatMessage({ id: 'common.actions.save.success' }),
+      );
       history.back();
     } catch (error) {
       hide();
@@ -63,7 +67,7 @@ const InstructionEditPage = () => {
   };
 
   return (
-    <PageContainer>
+    <PageContainer onBack={() => history.back()}>
       <Card>
         <ProForm
           formRef={formRef}
@@ -77,13 +81,13 @@ const InstructionEditPage = () => {
           <ProFormText
             name="instruction"
             label={intl.formatMessage({
-              id: 'peripheral.instruction.instruction',
+              id: 'device.peripheral.instruction.instruction',
             })}
             rules={[
               {
                 required: true,
                 message: intl.formatMessage({
-                  id: 'peripheral.instruction.instruction.required',
+                  id: 'device.peripheral.instruction.instruction.required',
                 }),
               },
             ]}
@@ -91,12 +95,14 @@ const InstructionEditPage = () => {
           <ProFormText
             name="acknowledge"
             label={intl.formatMessage({
-              id: 'peripheral.instruction.acknowledge',
+              id: 'device.peripheral.instruction.acknowledge',
             })}
           />
           <ProFormTextArea
             name="comment"
-            label={intl.formatMessage({ id: 'peripheral.instruction.comment' })}
+            label={intl.formatMessage({
+              id: 'device.peripheral.instruction.comment',
+            })}
           />
           <Button type="primary" onClick={() => formRef.current?.submit()}>
             {intl.formatMessage({ id: 'common.actions.save' })}

@@ -82,7 +82,9 @@ const CabinetPeripheralBindPage = () => {
   return (
     <PageContainer
       header={{
-        title: isEdit ? '编辑外设绑定' : '绑定外设',
+        title: isEdit
+          ? intl.formatMessage({ id: 'device.cabinet.view.bindPeripheral' })
+          : intl.formatMessage({ id: 'device.cabinet.view.bindPeripheral' }),
         onBack: () => history.back(),
       }}
     >
@@ -102,14 +104,14 @@ const CabinetPeripheralBindPage = () => {
           <ProFormText
             width="lg"
             name="code"
-            label="外设编码"
+            label={intl.formatMessage({ id: 'device.peripheral.code' })}
             disabled={true}
           />
 
           <ProFormText
             width="lg"
             name="name"
-            label="外设名称"
+            label={intl.formatMessage({ id: 'device.peripheral.name' })}
             placeholder="请选择外设"
             disabled
             // 核心：使用 fieldProps 透传 suffix 属性
@@ -129,14 +131,14 @@ const CabinetPeripheralBindPage = () => {
           <ProFormText
             width="lg"
             name="cableCode"
-            label="线缆编码"
+            label={intl.formatMessage({ id: 'device.cabinet.cable.code' })}
             disabled={true}
           />
 
           <ProFormText
             width="lg"
             name="cableName"
-            label="线缆名称"
+            label={intl.formatMessage({ id: 'device.cabinet.cable.name' })}
             placeholder="请选择线缆"
             disabled
             fieldProps={{
@@ -155,7 +157,7 @@ const CabinetPeripheralBindPage = () => {
           <ProFormDigit
             width="lg"
             name="quantity"
-            label="数量"
+            label={intl.formatMessage({ id: 'device.peripheral.quantity' })}
             min={1}
             step={1}
             fieldProps={{ precision: 0 }}

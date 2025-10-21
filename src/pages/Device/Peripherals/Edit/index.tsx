@@ -33,15 +33,15 @@ const PeripheralEditPage = () => {
   };
 
   return (
-    <PageContainer>
+    <PageContainer onBack={() => history.back()}>
       <ProForm form={form} onFinish={onFinish}>
         <ProFormText
           name="code"
-          label={intl.formatMessage({ id: 'peripheral.code' })}
+          label={intl.formatMessage({ id: 'device.peripheral.code' })}
         />
         <ProFormText
           name="name"
-          label={intl.formatMessage({ id: 'peripheral.name' })}
+          label={intl.formatMessage({ id: 'device.peripheral.name' })}
         />
       </ProForm>
     </PageContainer>
