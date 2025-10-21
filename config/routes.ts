@@ -121,6 +121,18 @@ export default [
         hideInMenu: true,
       },
       {
+        name: 'add-usage',
+        path: '/device/cabinets/:cabinetId/usages/add',
+        component: './Device/Cabinet/Usages/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'edit-usage',
+        path: '/device/cabinets/:cabinetId/usages/:id/edit',
+        component: './Device/Cabinet/Usages/Edit',
+        hideInMenu: true,
+      },
+      {
         name: 'hosts',
         icon: 'hdd',
         path: '/device/hosts',
@@ -172,6 +184,18 @@ export default [
         name: 'view',
         path: '/device/peripherals/view/:id',
         component: './Device/Peripherals/View',
+        hideInMenu: true,
+      },
+      {
+        name: 'instruction.create',
+        path: '/device/peripherals/:peripheralId/instructions/edit',
+        component: './Device/Peripherals/Instructions/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'instruction.edit',
+        path: '/device/peripherals/:peripheralId/instructions/edit/:instructionId',
+        component: './Device/Peripherals/Instructions/Edit',
         hideInMenu: true,
       },
       {

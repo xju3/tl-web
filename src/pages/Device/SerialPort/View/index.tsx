@@ -22,7 +22,9 @@ const SerialPortViewPage = () => {
       {serialPort && (
         <Descriptions bordered>
           <Descriptions.Item label="名称">{serialPort.name}</Descriptions.Item>
-          <Descriptions.Item label="端口">{serialPort.port}</Descriptions.Item>
+          <Descriptions.Item label="端口">
+            {serialPort.protocol}
+          </Descriptions.Item>
           <Descriptions.Item label="波特率">
             {serialPort.baudRate}
           </Descriptions.Item>

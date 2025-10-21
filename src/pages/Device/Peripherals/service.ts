@@ -1,5 +1,5 @@
 import { request } from '@umijs/max';
-import type { Peripheral, PeripheralPageParams } from './data.d';
+import type { Instruction, Peripheral, PeripheralPageParams } from './data.d';
 
 // 通用API响应结构 (成功时)
 type ApiResponse<T> = {
@@ -66,4 +66,66 @@ export async function deletePeripheral(id: string) {
   return request<ApiResponse<null>>(`/peripherals/${id}`, {
     method: 'DELETE',
   });
+}
+
+// 6. 获取单个指令
+export async function getInstructionById(peripheralId: string, id: string) {
+  const response = await request<ApiResponse<Instruction>>(
+    `/peripherals/${peripheralId}/instructions/${id}`,
+    {
+      method: 'GET',
+    },
+  );
+  return response.body;
+}
+
+// 7. 获取指令列表
+export async function getInstructions(peripheralId: string) {
+  const response = await request<ApiResponse<Instruction[]>>(
+    `/peripherals/${peripheralId}/instructions`,
+    {
+      method: 'GET', // Note: The requirement says PUT, which is unusual for a list query.
+    },
+  );
+  return response.body;
+}
+
+// 8. 新增指令
+export async function addInstruction(
+  peripheralId: string,
+  data: Partial<Instruction>,
+) {
+  return request<ApiResponse<string>>(
+    `/peripherals/${peripheralId}/instructions`,
+    {
+      method: 'POST',
+      data,
+    },
+  );
+}
+
+// 9. 更新指令
+export async function updateInstruction(
+  peripheralId: string,
+  id: string,
+  data: Partial<Instruction>,
+) {
+  console.log(data);
+  return request<ApiResponse<null>>(
+    `/peripherals/${peripheralId}/instructions/${id}`,
+    {
+      method: 'PUT',
+      data,
+    },
+  );
+}
+
+// 10. 删除指令
+export async function deleteInstruction(peripheralId: string, id: string) {
+  return request<ApiResponse<null>>(
+    `/peripherals/${peripheralId}/instructions/${id}`,
+    {
+      method: 'DELETE',
+    },
+  );
 }

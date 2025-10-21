@@ -4,6 +4,7 @@ import type {
   Cabinet,
   CabinetPageParams,
   CabinetPeripheral,
+  CabinetPeripheralUsage,
   Cable,
 } from './data.d';
 
@@ -183,6 +184,59 @@ export async function updateCabinetCables(data: Cable) {
 // 14. 删除机柜线缆
 export async function deleteCabinetCable(cabinetId: string, id: string) {
   return request<ApiResponse<null>>(`/cabinets/cables/${cabinetId}/${id}`, {
+    method: 'DELETE',
+  });
+}
+
+// 15. Get cabinet peripheral usages
+export async function getCabinetPeripheralUsages(cabinetId: string) {
+  const response = await request<ApiResponse<CabinetPeripheralUsage[]>>(
+    `/cabinets/${cabinetId}/usages`,
+    {
+      method: 'GET',
+    },
+  );
+  return {
+    data: response.body || [],
+    success: true,
+  };
+}
+
+// 16. Get single cabinet peripheral usage by id
+export async function getCabinetPeripheralUsageById(id: string) {
+  const response = await request<ApiResponse<CabinetPeripheralUsage>>(
+    `/cabinets/usages/${id}`,
+    {
+      method: 'GET',
+    },
+  );
+  return response.body;
+}
+
+// 17. Add cabinet peripheral usage
+export async function addCabinetPeripheralUsage(data: CabinetPeripheralUsage) {
+  return request<ApiResponse<string>>('/cabinets/usages', {
+    method: 'POST',
+    data,
+  });
+}
+
+// 18. Update cabinet peripheral usage
+export async function updateCabinetPeripheralUsage(
+  data: CabinetPeripheralUsage,
+) {
+  return request<ApiResponse<null>>('/cabinets/usages', {
+    method: 'PUT',
+    data,
+  });
+}
+
+// 19. Delete cabinet peripheral usage
+export async function deleteCabinetPeripheralUsage(
+  cabinetId: string,
+  id: string,
+) {
+  return request<ApiResponse<null>>(`/cabinets/${cabinetId}/usages/${id}`, {
     method: 'DELETE',
   });
 }

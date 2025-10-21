@@ -12,13 +12,18 @@ const SerialPortListPage = () => {
 
   const columns: ProColumns<SerialPort>[] = [
     {
+      title: '编号',
+      dataIndex: 'code',
+      sorter: true,
+    },
+    {
       title: '名称',
       dataIndex: 'name',
       sorter: true,
     },
     {
       title: '端口',
-      dataIndex: 'port',
+      dataIndex: 'protocol',
       sorter: true,
     },
     {
@@ -45,7 +50,7 @@ const SerialPortListPage = () => {
       title: '操作',
       dataIndex: 'option',
       valueType: 'option',
-      width: '150px',
+      width: '180px',
       render: (_, record) => [
         <a
           key="edit"
@@ -98,8 +103,8 @@ const SerialPortListPage = () => {
           // The backend uses 0-based indexing for pages, so we subtract 1.
           const adjustedParams = {
             ...rest,
-            currPage: current,
-            pageSize,
+            currPage: (current || 1) - 1,
+            pageSize: pageSize || 10,
           };
           return getSerialPorts(adjustedParams);
         }}

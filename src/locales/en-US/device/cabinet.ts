@@ -3,6 +3,7 @@ export default {
   'cabinet.add': 'Add Cabinet',
   'cabinet.code': 'Cabinet Code',
   'cabinet.name': 'Cabinet Name',
+  'cabinet.description': 'Description',
   'cabinet.view.title': 'Cabinet Details',
   'cabinet.delete.confirm': 'Are you sure you want to delete this cabinet?',
   'cabinet.view.bindPeripheral': 'Bind Peripheral',
@@ -14,4 +15,10 @@ export default {
   'cable.description': 'Description',
   'cable.code.required': 'Please enter the cable code',
   'cable.name.required': 'Please enter the cable name',
+  'cabinet.cable.code': 'Cable Code',
+  'cabinet.cable.name': 'Cable Name',
+  'cabinet.usage.list.title': 'Peripheral Usage List',
+  'cabinet.usage.add.title': 'Add Peripheral Usage',
+  'cabinet.usage.edit.title': 'Edit Peripheral Usage',
+  'cabinet.usage.sequence': 'Sequence',
 };

@@ -1,13 +1,18 @@
 import {
   PageContainer,
   ProForm,
+  ProFormDependency,
+  ProFormSelect,
   ProFormText,
   ProFormTextArea,
 } from '@ant-design/pro-components';
 import { history, useIntl, useParams } from '@umijs/max';
-import { Card, message } from 'antd';
-import React from 'react';
+import { Button, Card, message } from 'antd';
+import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
+import HostSelectModal from '../../../../../components/Selectors/HostSelectModal';
+import type { Host, HostSerialPort } from '../../../Host/data.d';
+import { getHostPorts, getHosts } from '../../../Host/service';
 import type { Cable } from '../../data.d';
 import {
   addCabinetCables,
@@ -18,6 +23,8 @@ import {
 const CableEditPage: React.FC = () => {
   const intl = useIntl();
   const { cabinetId, id } = useParams<{ cabinetId: string; id: string }>();
+  const [form] = ProForm.useForm();
+  const [hostSelectModalOpen, setHostSelectModalOpen] = useState(false);
 
   const onFinish = async (values: Omit<Cable, 'id' | 'cabinetId'>) => {
     const cableToSave: Cable = {
@@ -46,6 +53,7 @@ const CableEditPage: React.FC = () => {
     >
       <Card>
         <ProForm
+          form={form}
           onFinish={onFinish}
           request={async () => {
             if (id && id !== 'add') {
@@ -55,6 +63,8 @@ const CableEditPage: React.FC = () => {
               code: '',
               name: '',
               description: '',
+              hostId: undefined,
+              hostPortId: undefined,
             };
           }}
         >
@@ -82,7 +92,71 @@ const CableEditPage: React.FC = () => {
             name="description"
             label={intl.formatMessage({ id: 'cable.description' })}
           />
+          <ProForm.Group>
+            <ProFormText
+              name="hostName"
+              label={intl.formatMessage({ id: 'host.name' })}
+              disabled
+            />
+            <Button
+              onClick={() => {
+                setHostSelectModalOpen(true);
+              }}
+            >
+              {intl.formatMessage({ id: 'common.select' })}
+            </Button>
+          </ProForm.Group>
+
+          <ProFormDependency name={['hostId']}>
+            {({ hostId }) => {
+              if (!hostId) {
+                return null;
+              }
+              return (
+                <ProFormSelect
+                  name="hostPortId"
+                  label={intl.formatMessage({ id: 'host.port.code' })}
+                  request={async () => {
+                    const res = await getHostPorts(hostId, {
+                      currPage: 1,
+                      pageSize: 1000,
+                    });
+                    return res.data.map((item: HostSerialPort) => ({
+                      label: item.code,
+                      value: item.id,
+                      hostPortCode: item.code,
+                    }));
+                  }}
+                  fieldProps={{
+                    onChange: (_, option) => {
+                      form.setFieldsValue({
+                        hostPortCode: option.hostPortCode,
+                      });
+                    },
+                  }}
+                />
+              );
+            }}
+          </ProFormDependency>
+
+          <ProFormText name="hostId" hidden />
+          <ProFormText name="hostCode" hidden />
+          <ProFormText name="hostPortCode" hidden />
         </ProForm>
+        <HostSelectModal
+          open={hostSelectModalOpen}
+          onCancel={() => setHostSelectModalOpen(false)}
+          onSelect={(host) => {
+            form.setFieldsValue({
+              hostId: host.id,
+              hostCode: host.code,
+              hostName: host.name,
+              hostPortId: undefined,
+              hostPortCode: undefined,
+            });
+            setHostSelectModalOpen(false);
+          }}
+        />
       </Card>
     </PageContainer>
   );

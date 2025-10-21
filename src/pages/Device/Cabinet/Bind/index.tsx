@@ -1,4 +1,4 @@
-import { MoreOutlined, ScanOutlined } from '@ant-design/icons';
+import { ScanOutlined } from '@ant-design/icons';
 import {
   PageContainer,
   ProForm,
@@ -6,12 +6,13 @@ import {
   ProFormText,
 } from '@ant-design/pro-components';
 import { history, useIntl, useParams } from '@umijs/max';
-import { Button, Card, Form, Input } from 'antd';
+import { Card, Form } from 'antd';
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import CabinetCableSelector from '../../../../components/Selectors/CabinetCableSelector';
 import PeripheralSelectModal from '../../../../components/Selectors/PeripheralSelectModal';
 import type { Peripheral } from '../../Peripherals/data';
-import type { Cabinet } from '../data';
+import type { Cable } from '../data';
 import {
   addCabinetPeripheral,
   getCabinetById,
@@ -22,26 +23,32 @@ import {
 const CabinetPeripheralBindPage = () => {
   const intl = useIntl();
   const [form] = Form.useForm();
-  const { cabinetId, bindingId } = useParams<{
+  const { cabinetId: cabinetIdFromUrl, bindingId } = useParams<{
     cabinetId: string;
     bindingId: string;
   }>();
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isPeripheralModalVisible, setIsPeripheralModalVisible] =
+    useState(false);
+  const [isCableModalVisible, setIsCableModalVisible] = useState(false);
+  const [cabinetId, setCabinetId] = useState<string | undefined>(
+    cabinetIdFromUrl,
+  );
   const isEdit = !!bindingId;
 
   useEffect(() => {
     if (isEdit) {
       getCabinetPeripheralById(bindingId).then((data) => {
         form.setFieldsValue(data);
+        setCabinetId(data.cabinetId);
       });
     } else {
       form.setFieldsValue({
         id: uuidv4(),
-        cabinetId: cabinetId,
+        cabinetId: cabinetIdFromUrl,
         quantity: 1,
       });
     }
-  }, [bindingId, cabinetId, form, isEdit]);
+  }, [bindingId, cabinetIdFromUrl, form, isEdit]);
 
   const handleSelectPeripheral = (peripheral: Peripheral) => {
     form.setFieldsValue({
@@ -49,7 +56,16 @@ const CabinetPeripheralBindPage = () => {
       code: peripheral.code,
       name: peripheral.name,
     });
-    setIsModalVisible(false);
+    setIsPeripheralModalVisible(false);
+  };
+
+  const handleSelectCable = (cable: Cable) => {
+    form.setFieldsValue({
+      cableId: cable.id,
+      cableCode: cable.code,
+      cableName: cable.name,
+    });
+    setIsCableModalVisible(false);
   };
 
   const handleSubmit = async (values: any) => {
@@ -58,7 +74,9 @@ const CabinetPeripheralBindPage = () => {
     } else {
       await addCabinetPeripheral(values);
     }
-    history.push(`/device/cabinets/view/${cabinetId || values.cabinetId}`);
+    history.push(
+      `/device/cabinets/view/${cabinetIdFromUrl || values.cabinetId}`,
+    );
   };
 
   return (
@@ -79,6 +97,7 @@ const CabinetPeripheralBindPage = () => {
           <ProForm.Item name="id" hidden />
           <ProForm.Item name="cabinetId" hidden />
           <ProForm.Item name="peripheralId" hidden />
+          <ProForm.Item name="cableId" hidden />
 
           <ProFormText
             width="lg"
@@ -97,10 +116,36 @@ const CabinetPeripheralBindPage = () => {
             fieldProps={{
               suffix: (
                 <ScanOutlined
-                  onClick={() => setIsModalVisible(true)}
+                  onClick={() => setIsPeripheralModalVisible(true)}
                   style={{
                     cursor: 'pointer',
                     color: '#1677ff', // 使用 AntD 的主色
+                  }}
+                />
+              ),
+            }}
+          />
+
+          <ProFormText
+            width="lg"
+            name="cableCode"
+            label="线缆编码"
+            disabled={true}
+          />
+
+          <ProFormText
+            width="lg"
+            name="cableName"
+            label="线缆名称"
+            placeholder="请选择线缆"
+            disabled
+            fieldProps={{
+              suffix: (
+                <ScanOutlined
+                  onClick={() => setIsCableModalVisible(true)}
+                  style={{
+                    cursor: 'pointer',
+                    color: '#1677ff',
                   }}
                 />
               ),
@@ -118,10 +163,18 @@ const CabinetPeripheralBindPage = () => {
         </ProForm>
       </Card>
       <PeripheralSelectModal
-        open={isModalVisible}
-        onCancel={() => setIsModalVisible(false)}
+        open={isPeripheralModalVisible}
+        onCancel={() => setIsPeripheralModalVisible(false)}
         onSelect={handleSelectPeripheral}
       />
+      {cabinetId && (
+        <CabinetCableSelector
+          open={isCableModalVisible}
+          cabinetId={cabinetId}
+          onCancel={() => setIsCableModalVisible(false)}
+          onSelect={handleSelectCable}
+        />
+      )}
     </PageContainer>
   );
 };

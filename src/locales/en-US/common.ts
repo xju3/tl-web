@@ -1,5 +1,11 @@
 export default {
   'common.actions': 'Actions',
+  'common.actions.operate': 'Operate',
+  'common.columns.actions': 'Actions',
+  'common.actions.edit': 'Edit',
+  'common.actions.view': 'View',
+  'common.actions.delete': 'Delete',
+  'common.actions.add': 'Create',
   'common.operate': 'Operate',
   'common.edit': 'Edit',
   'common.view': 'View',

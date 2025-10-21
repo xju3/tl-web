@@ -16,6 +16,9 @@ export type CabinetPeripheral = {
   code: string;
   name: string;
   quantity: number;
+  cableId?: string;
+  cableCode?: string;
+  cableName?: string;
 };
 
 // 分页查询参数类型
@@ -45,4 +48,19 @@ export type Cable = {
   code: string;
   name: string;
   description: string;
+  hostId?: string;
+  hostPortId?: string;
+  hostCode?: string;
+  hostName?: string;
+  hostPortCode?: string;
+};
+
+export type CabinetPeripheralUsage = {
+  id: string;
+  cabinetId: string;
+  cabinetPeripheralId: string;
+  peripheralId?: string;
+  peripheralCode: string;
+  peripheralName: string;
+  sequence: number;
 };

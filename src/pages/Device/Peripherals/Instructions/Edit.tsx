@@ -1,0 +1,110 @@
+import {
+  PageContainer,
+  ProForm,
+  ProFormText,
+  ProFormTextArea,
+} from '@ant-design/pro-components';
+import { history, useIntl, useParams } from '@umijs/max';
+import { Button, Card, message } from 'antd';
+import { useEffect, useRef, useState } from 'react';
+import type { Instruction } from '../data';
+import {
+  addInstruction,
+  getInstructionById,
+  updateInstruction,
+} from '../service';
+
+const InstructionEditPage = () => {
+  const intl = useIntl();
+  const { peripheralId, instructionId } = useParams<{
+    peripheralId: string;
+    instructionId: string;
+  }>();
+  const formRef = useRef<any>(null);
+  const [instruction, setInstruction] = useState<Instruction | undefined>(
+    undefined,
+  );
+
+  useEffect(() => {
+    // If editing (instructionId present), load data and populate the form
+    if (peripheralId && instructionId) {
+      getInstructionById(peripheralId, instructionId)
+        .then((res: Instruction) => {
+          if (res) {
+            setInstruction(res);
+            formRef.current?.setFieldsValue(res);
+          } else {
+            message.error('Instruction not found!');
+          }
+        })
+        .catch(() => {
+          message.error('Failed to load instruction data.');
+        });
+    } else if (peripheralId) {
+      // Creating new instruction: ensure peripheralId is in the form values
+      formRef.current?.setFieldsValue({ peripheralId });
+    }
+  }, [peripheralId, instructionId]);
+
+  const onFinish = async (values: any) => {
+    const hide = message.loading(intl.formatMessage({ id: 'common.saving' }));
+    try {
+      if (instructionId && peripheralId) {
+        await updateInstruction(peripheralId, instructionId, values);
+      } else if (peripheralId) {
+        await addInstruction(peripheralId, values);
+      }
+      hide();
+      message.success(intl.formatMessage({ id: 'common.save.success' }));
+      history.back();
+    } catch (error) {
+      hide();
+    }
+  };
+
+  return (
+    <PageContainer>
+      <Card>
+        <ProForm
+          formRef={formRef}
+          onFinish={onFinish}
+          submitter={{
+            render: (_, dom) => dom,
+          }}
+        >
+          <ProFormText name="id" hidden />
+          <ProFormText name="peripheralId" hidden />
+          <ProFormText
+            name="instruction"
+            label={intl.formatMessage({
+              id: 'peripheral.instruction.instruction',
+            })}
+            rules={[
+              {
+                required: true,
+                message: intl.formatMessage({
+                  id: 'peripheral.instruction.instruction.required',
+                }),
+              },
+            ]}
+          />
+          <ProFormText
+            name="acknowledge"
+            label={intl.formatMessage({
+              id: 'peripheral.instruction.acknowledge',
+            })}
+          />
+          <ProFormTextArea
+            name="comment"
+            label={intl.formatMessage({ id: 'peripheral.instruction.comment' })}
+          />
+          <Button type="primary" onClick={() => formRef.current?.submit()}>
+            {intl.formatMessage({ id: 'common.actions.save' })}
+          </Button>
+        </ProForm>
+      </Card>
+    </PageContainer>
+  );
+};
+
+export default InstructionEditPage;

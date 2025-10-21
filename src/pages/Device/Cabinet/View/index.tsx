@@ -8,13 +8,15 @@ import { history, useIntl, useLocation, useParams } from '@umijs/max';
 import { Button, Card, Popconfirm, Tabs } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import type { Peripheral } from '../../Peripherals/data';
-import type { Cabinet, Cable } from '../data.d';
+import type { Cabinet, CabinetPeripheralUsage, Cable } from '../data.d';
 import {
   deleteCabinet,
   deleteCabinetCable,
   deleteCabinetPeripheral,
+  deleteCabinetPeripheralUsage,
   getCabinetById,
   getCabinetCables,
+  getCabinetPeripheralUsages,
   getPeripheralsByCabinetId,
 } from '../service';
 
@@ -24,6 +26,7 @@ const CabinetViewPage = () => {
   const searchParams = new URLSearchParams(location.search);
   const peripheralsActionRef = useRef<ActionType>(null);
   const cablesActionRef = useRef<ActionType>(null);
+  const usagesActionRef = useRef<ActionType>(null);
   const [cabinet, setCabinet] = useState<Cabinet>();
   const intl = useIntl();
 
@@ -43,6 +46,14 @@ const CabinetViewPage = () => {
     {
       title: intl.formatMessage({ id: 'peripheral.name' }),
       dataIndex: 'name',
+    },
+    {
+      title: intl.formatMessage({ id: 'cabinet.cable.code' }),
+      dataIndex: 'cableCode',
+    },
+    {
+      title: intl.formatMessage({ id: 'cabinet.cable.name' }),
+      dataIndex: 'cableName',
     },
     {
       title: intl.formatMessage({ id: 'peripheral.quantity' }),
@@ -89,6 +100,18 @@ const CabinetViewPage = () => {
       dataIndex: 'name',
     },
     {
+      title: intl.formatMessage({ id: 'host.code' }),
+      dataIndex: 'hostCode',
+    },
+    {
+      title: intl.formatMessage({ id: 'host.name' }),
+      dataIndex: 'hostName',
+    },
+    {
+      title: intl.formatMessage({ id: 'host.port.code' }),
+      dataIndex: 'hostPortCode',
+    },
+    {
       title: intl.formatMessage({ id: 'cable.description' }),
       dataIndex: 'description',
     },
@@ -114,6 +137,50 @@ const CabinetViewPage = () => {
             if (id) {
               await deleteCabinetCable(id, record.id);
               cablesActionRef.current?.reload();
+            }
+          }}
+        >
+          <a>{intl.formatMessage({ id: 'common.delete' })}</a>
+        </Popconfirm>,
+      ],
+    },
+  ];
+
+  const usageColumns: ProColumns<CabinetPeripheralUsage>[] = [
+    {
+      title: intl.formatMessage({ id: 'peripheral.code' }),
+      dataIndex: 'peripheralCode',
+    },
+    {
+      title: intl.formatMessage({ id: 'peripheral.name' }),
+      dataIndex: 'peripheralName',
+    },
+    {
+      title: intl.formatMessage({ id: 'cabinet.usage.sequence' }),
+      dataIndex: 'sequence',
+    },
+    {
+      title: intl.formatMessage({ id: 'common.actions' }),
+      key: 'action',
+      valueType: 'option',
+      width: '150px',
+      render: (_, record) => [
+        <a
+          key="edit"
+          onClick={() => {
+            history.push(`/device/cabinets/${id}/usages/${record.id}/edit`);
+          }}
+        >
+          {intl.formatMessage({ id: 'common.edit' })}
+        </a>,
+
+        <Popconfirm
+          key="delete"
+          title={intl.formatMessage({ id: 'common.delete.confirm' })}
+          onConfirm={async () => {
+            if (id) {
+              await deleteCabinetPeripheralUsage(id, record.id);
+              usagesActionRef.current?.reload();
             }
           }}
         >
@@ -240,6 +307,38 @@ const CabinetViewPage = () => {
                 ]}
                 request={() => getCabinetCables(id!)}
                 columns={cableColumns}
+                pagination={{
+                  pageSize: 10,
+                }}
+              />
+            </Tabs.TabPane>
+          )}
+
+          {cabinet?.parentId != null && (
+            <Tabs.TabPane
+              tab={intl.formatMessage({ id: 'cabinet.usage.list.title' })}
+              key="usages"
+            >
+              <ProTable<CabinetPeripheralUsage>
+                headerTitle={intl.formatMessage({
+                  id: 'cabinet.usage.list.title',
+                })}
+                actionRef={usagesActionRef}
+                rowKey="id"
+                search={false}
+                toolBarRender={() => [
+                  <Button
+                    key="add"
+                    type="primary"
+                    onClick={() => {
+                      history.push(`/device/cabinets/${id}/usages/add`);
+                    }}
+                  >
+                    {intl.formatMessage({ id: 'common.add' })}
+                  </Button>,
+                ]}
+                request={() => getCabinetPeripheralUsages(id!)}
+                columns={usageColumns}
                 pagination={{
                   pageSize: 10,
                 }}

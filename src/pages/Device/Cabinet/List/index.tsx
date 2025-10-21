@@ -54,19 +54,29 @@ const CabinetListPage = () => {
         title: intl.formatMessage({ id: 'common.code' }),
         dataIndex: 'code',
         key: 'code',
-        sorter: true,
+        sorter: {
+          multiple: 1,
+        },
       },
       {
         title: intl.formatMessage({ id: 'common.name' }),
         dataIndex: 'name',
         key: 'name',
-        sorter: true,
+        sorter: {
+          multiple: 2,
+        },
+      },
+
+      {
+        title: intl.formatMessage({ id: 'common.description' }),
+        dataIndex: 'description',
+        key: 'discription',
       },
       {
         title: intl.formatMessage({ id: 'common.actions' }),
         dataIndex: 'option',
         valueType: 'option',
-        width: '150px',
+        width: '180px',
         render: (_, record) => [
           <a
             key="create"
@@ -108,6 +118,8 @@ const CabinetListPage = () => {
     [intl, saveStateAndNavigate],
   );
 
+  // Keep the latest sorter (including multi-sort array) so request() can use it
+  const externalSortRef = useRef<Record<string, SortOrder> | null>(null);
   return (
     <PageContainer>
       <ProTable<Cabinet>
@@ -139,8 +151,11 @@ const CabinetListPage = () => {
           async (params: ParamsType, sort: Record<string, SortOrder>) => {
             const { current, pageSize, ...rest } = params;
 
+            // Prefer external sorter captured from onChange (supports multi-sort array)
+            const effectiveSort = externalSortRef.current ?? sort;
+
             // Correctly handle multi-field sorting
-            if (sort && Object.keys(sort).length > 0) {
+            if (effectiveSort && Object.keys(effectiveSort).length > 0) {
               const sorterPriorityMap = new Map<string, number>();
               columns.forEach((col) => {
                 if (
@@ -155,8 +170,7 @@ const CabinetListPage = () => {
                   );
                 }
               });
-
-              const sortedKeys = Object.keys(sort).sort((a, b) => {
+              const sortedKeys = Object.keys(effectiveSort).sort((a, b) => {
                 const priorityA = sorterPriorityMap.get(a) || 999;
                 const priorityB = sorterPriorityMap.get(b) || 999;
                 return priorityA - priorityB;
@@ -164,8 +178,10 @@ const CabinetListPage = () => {
 
               const orderedSorter: Record<string, 'ascend' | 'descend'> = {};
               for (const key of sortedKeys) {
-                if (sort[key]) {
-                  orderedSorter[key] = sort[key] as 'ascend' | 'descend';
+                if (effectiveSort[key]) {
+                  orderedSorter[key] = effectiveSort[key] as
+                    | 'ascend'
+                    | 'descend';
                 }
               }
               return getCabinets({
@@ -182,7 +198,7 @@ const CabinetListPage = () => {
               currPage: current || 1,
               pageSize: pageSize || 10,
               nullParentId: true,
-              sorter: sort,
+              sorter: effectiveSort,
             });
           },
           [columns],
@@ -192,6 +208,26 @@ const CabinetListPage = () => {
           defaultCurrent: (initialValues as any).current,
           defaultPageSize: (initialValues as any).pageSize,
           pageSize: 10,
+        }}
+        onChange={(pagination, filters, sorter) => {
+          // Normalize sorter (can be object or array when multi-sort is used)
+          const map: Record<string, SortOrder> = {};
+          if (Array.isArray(sorter)) {
+            sorter.forEach((s: any) => {
+              if (s && s.field) map[s.field] = s.order;
+            });
+          } else if (
+            sorter &&
+            typeof sorter === 'object' &&
+            'field' in sorter
+          ) {
+            // single sorter
+            const s: any = sorter;
+            if (s.field) map[s.field] = s.order;
+          }
+          externalSortRef.current = Object.keys(map).length ? map : null;
+          // Trigger reload so request() picks up externalSortRef
+          actionRef.current?.reload();
         }}
       />
     </PageContainer>

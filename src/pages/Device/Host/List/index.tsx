@@ -72,7 +72,7 @@ const HostListPage = () => {
         title: intl.formatMessage({ id: 'common.actions' }),
         dataIndex: 'option',
         valueType: 'option',
-        width: '150px',
+        width: '180px',
         render: (_, record) => [
           <a
             key="edit"

@@ -1,9 +1,10 @@
 // 指令
 export type Instruction = {
   id: string;
-  action: string;
-  polling: string;
-  notification: string;
+  peripheralId: string;
+  instruction: string;
+  acknowledge: string;
+  comment: string;
 };
 
 // 外设数据类型

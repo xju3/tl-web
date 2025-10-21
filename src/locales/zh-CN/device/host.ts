@@ -1,4 +1,7 @@
 export default {
+  'host.code': '主机编号',
+  'host.name': '主机名称',
+  'host.port.code': '串口编号',
   'host.list.title': '主机列表',
   'host.details.title': '主机详情',
   'host.add': '新增主机',

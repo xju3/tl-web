@@ -1,8 +1,9 @@
 // 串口数据类型
 export type SerialPort = {
   id: string;
+  code: string;
   name: string;
-  port: string;
+  protocol: string;
   baudRate: number;
   dataBits: number;
   stopBits: number;

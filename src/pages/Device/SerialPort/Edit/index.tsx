@@ -35,8 +35,9 @@ const SerialPortEditPage = () => {
   return (
     <PageContainer>
       <ProForm form={form} onFinish={onFinish}>
+        <ProFormText name="code" label="编号" />
         <ProFormText name="name" label="名称" />
-        <ProFormText name="port" label="端口" />
+        <ProFormText name="protocol" label="端口" />
         <ProFormDigit name="baudRate" label="波特率" />
         <ProFormDigit name="dataBits" label="数据位" />
         <ProFormDigit name="stopBits" label="停止位" />

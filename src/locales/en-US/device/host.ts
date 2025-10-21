@@ -1,4 +1,7 @@
 export default {
+  'host.code': 'Host Code',
+  'host.name': 'Host Name',
+  'host.port.code': 'Serial Port Code',
   'host.list.title': 'Host List',
   'host.details.title': 'Host Details',
   'host.add': 'Add Host',
