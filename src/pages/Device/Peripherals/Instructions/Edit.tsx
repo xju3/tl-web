@@ -7,6 +7,7 @@ import {
 import { history, useIntl, useParams } from '@umijs/max';
 import { Button, Card, message } from 'antd';
 import { useEffect, useRef, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import type { Instruction } from '../data';
 import {
   addInstruction,
@@ -42,7 +43,7 @@ const InstructionEditPage = () => {
         });
     } else if (peripheralId) {
       // Creating new instruction: ensure peripheralId is in the form values
-      formRef.current?.setFieldsValue({ peripheralId });
+      formRef.current?.setFieldsValue({ peripheralId, id: uuidv4() });
     }
   }, [peripheralId, instructionId]);
 

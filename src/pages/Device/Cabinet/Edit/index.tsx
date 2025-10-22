@@ -52,13 +52,13 @@ const CabinetEditPage = () => {
             },
             {
               min: 2,
-              max: 8,
+              max: 16,
               message: intl.formatMessage(
                 { id: 'common.err.length.range' },
                 {
                   field: intl.formatMessage({ id: 'device.cabinet.code' }),
                   min: 2,
-                  max: 8,
+                  max: 16,
                 },
               ),
             },

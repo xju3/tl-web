@@ -1,5 +1,5 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { history, useIntl, useParams } from '@umijs/max';
+import { history, useIntl, useLocation, useParams } from '@umijs/max';
 import { Button, Card, Descriptions, message, Popconfirm } from 'antd';
 import { useEffect, useState } from 'react';
 import type { Peripheral } from '../data.d';
@@ -8,6 +8,7 @@ import Instructions from './Instructions';
 
 const PeripheralViewPage = () => {
   const { id } = useParams<{ id: string }>();
+  const location = useLocation();
   const [peripheral, setPeripheral] = useState<Peripheral>();
   const intl = useIntl();
 
@@ -30,7 +31,7 @@ const PeripheralViewPage = () => {
       message.success(
         intl.formatMessage({ id: 'common.actions.delete.success' }),
       );
-      history.push('/device/peripherals');
+      history.push('/device/peripherals', location.state);
     } catch (error) {
       hide();
     }
@@ -43,7 +44,9 @@ const PeripheralViewPage = () => {
         <Button
           key="edit"
           type="primary"
-          onClick={() => history.push(`/device/peripherals/edit/${id}`)}
+          onClick={() =>
+            history.push(`/device/peripherals/edit/${id}`, location.state)
+          }
         >
           {intl.formatMessage({ id: 'common.actions.edit' })}
         </Button>,

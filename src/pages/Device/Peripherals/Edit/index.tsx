@@ -20,14 +20,17 @@ const PeripheralEditPage = () => {
       getPeripheralById(id).then((res) => {
         form.setFieldsValue(res);
       });
+    } else {
+      form.setFieldsValue({ id: uuidv4() });
     }
-  }, [id, form]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
-  const onFinish = async (values: Partial<Peripheral>) => {
+  const onFinish = async (values: Peripheral) => {
     if (id) {
       await updatePeripheral({ ...values, id });
     } else {
-      await addPeripheral({ ...values, id: uuidv4() });
+      await addPeripheral(values);
     }
     history.push('/device/peripherals');
   };
@@ -35,6 +38,7 @@ const PeripheralEditPage = () => {
   return (
     <PageContainer onBack={() => history.back()}>
       <ProForm form={form} onFinish={onFinish}>
+        <ProFormText name="id" hidden />
         <ProFormText
           name="code"
           label={intl.formatMessage({ id: 'device.peripheral.code' })}
