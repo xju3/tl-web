@@ -36,6 +36,10 @@ export default {
       target: 'http://localhost:8080/',
       changeOrigin: true,
     },
+    '/products': {
+      target: 'http://localhost:8080/',
+      changeOrigin: true,
+    },
   },
   /**
    * @name 详细的代理配置

@@ -3,6 +3,7 @@ import component from './en-US/component';
 import cabinet from './en-US/device/cabinet';
 import host from './en-US/device/host';
 import peripheral from './en-US/device/peripheral';
+import product from './en-US/device/product';
 import serialport from './en-US/device/serialport';
 import globalHeader from './en-US/globalHeader';
 import menu from './en-US/menu';
@@ -17,6 +18,7 @@ export default {
   ...cabinet,
   ...common,
   ...serialport,
+  ...product,
   'navBar.lang': 'Languages',
   'layout.user.link.help': 'Help',
   'layout.user.link.privacy': 'Privacy',

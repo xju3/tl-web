@@ -1,0 +1,17 @@
+export default {
+  'menu.device.products': '产品管理',
+  'device.product.list.title': '产品列表',
+  'device.product.code': '产品编码',
+  'device.product.name': '产品名称',
+  'device.product.m_date': '生产日期',
+  'device.product.add': '新增产品',
+  'device.product.delete.confirm': '确定要删除此产品吗？',
+  'device.product.basic-info.title': '产品基本信息',
+  'device.product.item.list.title': '关联设备列表',
+  'device.product.item.add': '新增关联设备',
+  'device.product.item.delete.confirm': '确定要删除此关联设备吗？',
+  'device.product.item.deviceCode': '设备编码',
+  'device.product.item.deviceName': '设备名称',
+  'device.product.item.select-device': '选择设备',
+  'device.product.item.selected-device': '所选设备',
+};

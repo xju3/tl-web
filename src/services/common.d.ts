@@ -5,3 +5,9 @@ export interface ErrorBody {
   i18n?: string;
   extra?: any;
 }
+
+export type PageParams = {
+  currPage?: number;
+  pageSize?: number;
+  sorter?: Record<string, 'ascend' | 'descend'>;
+};
