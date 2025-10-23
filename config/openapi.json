@@ -1,0 +1,2527 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "My API From application.yml",
+    "description": "This API documentation is generated dynamically from YAML.",
+    "contact": { "name": "Xiangjun Ju", "email": "tony.ju@me.com" },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "v1.0.0"
+  },
+  "servers": [{ "url": "/" }],
+  "security": [{ "TokenAuth": [] }],
+  "tags": [{ "name": "字典管理", "description": "系统所用到参数字典管理" }],
+  "paths": {
+    "/serial-ports": {
+      "put": {
+        "tags": ["串口"],
+        "summary": "Update a serial protocol",
+        "operationId": "updateSerialPort",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSerialPortCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["串口"],
+        "summary": "Add a new serial protocol",
+        "operationId": "addSerialPort",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSerialPortCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/serial-ports/{currPage}/{pageSize}": {
+      "put": {
+        "tags": ["串口"],
+        "summary": "获取全部串口",
+        "operationId": "getSerialPorts",
+        "parameters": [
+          {
+            "name": "currPage",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SerialPortFilter" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/IPageSerialPortVo" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "put": {
+        "tags": ["Product Management"],
+        "summary": "Update a product",
+        "operationId": "updateProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateProductCommand" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Product Management"],
+        "summary": "Create a new product",
+        "operationId": "createProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateProductCommand" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}/items/{itemId}": {
+      "get": {
+        "tags": ["Product Management"],
+        "summary": "Get an item of a product",
+        "operationId": "getProductItemVo",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ProductItemVo" }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Product Management"],
+        "summary": "Update an item of a product",
+        "operationId": "updateProductItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProductItemCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Product Management"],
+        "summary": "Remove an item from a product",
+        "operationId": "deleteProductItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/products/{currPage}/{pageSize}": {
+      "put": {
+        "tags": ["Product Management"],
+        "summary": "List all products",
+        "operationId": "listProducts",
+        "parameters": [
+          {
+            "name": "currPage",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ProductFilter" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/IPageProductVo" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/peripherals": {
+      "put": {
+        "tags": ["Peripheral Management"],
+        "summary": "Update a peripheral",
+        "operationId": "updatePeripheral",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePeripheralCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Peripheral Management"],
+        "summary": "Create a new peripheral",
+        "operationId": "createPeripheral",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePeripheralCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/peripherals/{peripheralId}/instructions/{id}": {
+      "get": {
+        "tags": ["Peripheral Management"],
+        "summary": "Update an instruction of a peripheral",
+        "operationId": "getPeripheralInstruction",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "peripheralId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PeripheralInstructionVo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Peripheral Management"],
+        "summary": "Update an instruction of a peripheral",
+        "operationId": "updateInstructionOfPeripheral",
+        "parameters": [
+          {
+            "name": "peripheralId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInstructionOfPeripheralCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Peripheral Management"],
+        "summary": "Remove an instruction from a peripheral",
+        "operationId": "removeInstructionFromPeripheral",
+        "parameters": [
+          {
+            "name": "peripheralId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/peripherals/{currPage}/{pageSize}": {
+      "put": {
+        "tags": ["Peripheral Management"],
+        "summary": "List all peripherals",
+        "operationId": "listPeripherals",
+        "parameters": [
+          {
+            "name": "currPage",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/PeripheralFilter" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/IPagePeripheralVo" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/partners/products": {
+      "put": {
+        "tags": ["Partner Management"],
+        "summary": "Update an existing partner product",
+        "operationId": "updatePartnerProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePartnerProductCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "tags": ["Partner Management"],
+        "summary": "Create a new partner product",
+        "operationId": "createPartnerProduct",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePartnerProductCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/partners/products/{currPage}/{pageSize}": {
+      "put": {
+        "tags": ["Partner Management"],
+        "summary": "Query partner products with pagination",
+        "operationId": "queryPartnerProducts",
+        "parameters": [
+          {
+            "name": "currPage",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/PartnerProductFilter" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IPagePartnerProductVo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/partners/": {
+      "put": {
+        "tags": ["Partner Management"],
+        "summary": "Update an existing partner",
+        "operationId": "updatePartner",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdatePartnerCommand" }
+            }
+          },
+          "required": true
+        },
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/hosts": {
+      "put": {
+        "tags": ["Host Management"],
+        "summary": "Update a host",
+        "operationId": "updateHost",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateHostCommand" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Host Management"],
+        "summary": "Create a new host",
+        "operationId": "createHost",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateHostCommand" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/hosts/{hostId}/ports/{id}/{serialPortId}": {
+      "put": {
+        "tags": ["Host Management"],
+        "summary": "向主机添加串口",
+        "operationId": "updatePortToHost",
+        "parameters": [
+          {
+            "name": "hostId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "serialPortId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/hosts/{currPage}/{pageSize}": {
+      "put": {
+        "tags": ["Host Management"],
+        "summary": "Get all hosts",
+        "operationId": "getAllHosts",
+        "parameters": [
+          {
+            "name": "currPage",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/HostFilter" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/IPageHostVo" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cabinets": {
+      "put": {
+        "tags": ["Cabinet Management"],
+        "summary": "Update a cabinet's code and name",
+        "operationId": "updateCabinetCodeName",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCabinetCodeNameCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "tags": ["Cabinet Management"],
+        "summary": "Create a new cabinet",
+        "operationId": "createCabinet",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateCabinetCommand" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/cabinets/{currPage}/{pageSize}": {
+      "put": {
+        "tags": ["Cabinet Management"],
+        "summary": "List all cabinets",
+        "operationId": "listCabinets",
+        "parameters": [
+          {
+            "name": "currPage",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CabinetFilter" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/IPageCabinetVo" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cabinets/usages": {
+      "put": {
+        "tags": ["Cabinet Management"],
+        "summary": "Update a peripheral dosage for a cabinet",
+        "operationId": "updateCabinetPeripheralUsage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCabinetPeripheralUsageCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "tags": ["Cabinet Management"],
+        "summary": "Create a new peripheral dosage for a cabinet",
+        "operationId": "createCabinetPeripheralUsage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCabinetPeripheralUsageCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/cabinets/peripherals": {
+      "put": {
+        "tags": ["Cabinet Management"],
+        "summary": "Update a peripheral for a cabinet",
+        "operationId": "updateCabinetPeripheral",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCabinetPeripheralCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "tags": ["Cabinet Management"],
+        "summary": "Create a new peripheral for a cabinet",
+        "operationId": "createCabinetPeripheral",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCabinetPeripheralCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/cabinets/parent": {
+      "put": {
+        "tags": ["Cabinet Management"],
+        "summary": "Update a cabinet's parent",
+        "operationId": "updateCabinetParent",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCabinetParentCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/cabinets/cables": {
+      "put": {
+        "tags": ["Cabinet Management"],
+        "summary": "Update a cable for a cabinet",
+        "operationId": "updateCabinetCable",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCabinetCableCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "tags": ["Cabinet Management"],
+        "summary": "Create a new cable for a cabinet",
+        "operationId": "createCabinetCable",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCabinetCableCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/attributes/parent-id": {
+      "put": {
+        "tags": ["字典管理"],
+        "operationId": "updateAttributeParentId",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAttributeParentIdCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/attributes/code-name": {
+      "put": {
+        "tags": ["字典管理"],
+        "operationId": "updateAttributeCodeAndName",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAttributeCodeAndNameCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/attributes/": {
+      "put": {
+        "tags": ["字典管理"],
+        "operationId": "getAll",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/PageFilter" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/IPageAttributeVo" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["字典管理"],
+        "operationId": "createAttribute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAttributeCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}/items": {
+      "get": {
+        "tags": ["Product Management"],
+        "summary": "List all items of a product",
+        "operationId": "getProductItems",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ProductItemVo" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Product Management"],
+        "summary": "Add an item to a product",
+        "operationId": "addProductItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProductItemCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/peripherals/{peripheralId}/instructions": {
+      "get": {
+        "tags": ["Peripheral Management"],
+        "summary": "Query a peripheral instructions",
+        "operationId": "getPeripheralInstructions",
+        "parameters": [
+          {
+            "name": "peripheralId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PeripheralInstructionVo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Peripheral Management"],
+        "summary": "Add an instruction to a peripheral",
+        "operationId": "addInstructionToPeripheral",
+        "parameters": [
+          {
+            "name": "peripheralId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddInstructionToPeripheralCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/partners": {
+      "get": {
+        "tags": ["Partner Management"],
+        "summary": "Query partners with pagination",
+        "operationId": "queryPartners",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/QueryPartners" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/IPagePartnerVo" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Partner Management"],
+        "summary": "Create a new partner",
+        "operationId": "createPartner",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreatePartnerCommand" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/hosts/{hostId}/ports/{serialPortId}": {
+      "post": {
+        "tags": ["Host Management"],
+        "summary": "向主机添加串口",
+        "operationId": "addPortToHost",
+        "parameters": [
+          {
+            "name": "hostId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "serialPortId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/serial-ports/{id}": {
+      "get": {
+        "tags": ["串口"],
+        "summary": "fetch a serial protocol by id",
+        "operationId": "getSerialPort",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/SerialPortVo" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["串口"],
+        "summary": "Delete a serial protocol",
+        "operationId": "deleteSerialPort",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "tags": ["Product Management"],
+        "summary": "Get a product by its ID",
+        "operationId": "getProductById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/ProductVo" } }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Product Management"],
+        "summary": "Delete a product",
+        "operationId": "deleteProduct",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/peripherals/{id}": {
+      "get": {
+        "tags": ["Peripheral Management"],
+        "summary": "Get a peripheral by its ID",
+        "operationId": "getPeripheralById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PeripheralVo" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Peripheral Management"],
+        "summary": "Delete a peripheral",
+        "operationId": "deletePeripheral",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/partners/{id}": {
+      "get": {
+        "tags": ["Partner Management"],
+        "summary": "Get a partner by ID",
+        "operationId": "getPartnerById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/PartnerVo" } }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Partner Management"],
+        "summary": "Delete a partner",
+        "operationId": "deletePartner",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/partners/products/{id}": {
+      "get": {
+        "tags": ["Partner Management"],
+        "summary": "Get a partner product by ID",
+        "operationId": "getPartnerProductById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/PartnerProductVo" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hosts/{id}": {
+      "get": {
+        "tags": ["Host Management"],
+        "summary": "Get a host by its id",
+        "operationId": "getHostById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/HostVo" } }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Host Management"],
+        "summary": "Delete a host",
+        "operationId": "deleteHost",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/hosts/{hostId}/ports/{currPage}/{pageSize}": {
+      "get": {
+        "tags": ["Host Management"],
+        "summary": "Get serial ports by host ID",
+        "operationId": "getSerialPortsByHostId",
+        "parameters": [
+          {
+            "name": "hostId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "currPage",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IPageHostSerialPortVo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cabinets/{id}": {
+      "get": {
+        "tags": ["Cabinet Management"],
+        "summary": "Get a cabinet by its ID",
+        "operationId": "getCabinetById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/CabinetVo" } }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Cabinet Management"],
+        "operationId": "removeCabinet",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/cabinets/{cabinetId}/usages": {
+      "get": {
+        "tags": ["Cabinet Management"],
+        "operationId": "getCabinetPeripheralUsages",
+        "parameters": [
+          {
+            "name": "cabinetId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CabinetPeripheralUsageVo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cabinets/{cabinetId}/peripherals/{currPage}/{pageSize}": {
+      "get": {
+        "tags": ["Cabinet Management"],
+        "summary": "get a cabinet peripherals",
+        "operationId": "getHostPeripherals",
+        "parameters": [
+          {
+            "name": "cabinetId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "currPage",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IPageCabinetPeripheralVo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cabinets/{cabinetId}/cables": {
+      "get": {
+        "tags": ["Cabinet Management"],
+        "summary": "Get cabinet cables",
+        "operationId": "getCabinetCables",
+        "parameters": [
+          {
+            "name": "cabinetId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/CabinetCableVo" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cabinets/usages/{id}": {
+      "get": {
+        "tags": ["Cabinet Management"],
+        "operationId": "on",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CabinetPeripheralUsageVo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cabinets/peripherals/{id}": {
+      "get": {
+        "tags": ["Cabinet Management"],
+        "summary": "get cabinet peripheral by id",
+        "operationId": "getCabinetPeripheralById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/CabinetPeripheralVo" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cabinets/cables/{cabinetCableId}": {
+      "get": {
+        "tags": ["Cabinet Management"],
+        "summary": "Get cabinet cable by id",
+        "operationId": "getCabinetCableById",
+        "parameters": [
+          {
+            "name": "cabinetCableId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/CabinetCableVo" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/attributes/{id}": {
+      "get": {
+        "tags": ["字典管理"],
+        "operationId": "getAttributeById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/AttributeVo" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["字典管理"],
+        "operationId": "deleteAttributeById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/": {
+      "get": {
+        "tags": ["main-controller"],
+        "operationId": "index",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/partners/{partnerId}/products/{id}": {
+      "delete": {
+        "tags": ["Partner Management"],
+        "summary": "Delete a partner product",
+        "operationId": "deletePartnerProduct",
+        "parameters": [
+          {
+            "name": "partnerId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/hosts/{hostId}/ports/{id}": {
+      "delete": {
+        "tags": ["Host Management"],
+        "summary": "Remove a protocol from a host",
+        "operationId": "removePortFromHost",
+        "parameters": [
+          {
+            "name": "hostId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/cabinets/{cabinetId}/usages/{id}": {
+      "delete": {
+        "tags": ["Cabinet Management"],
+        "operationId": "deleteCabinetPeripheralUsage",
+        "parameters": [
+          {
+            "name": "cabinetId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/cabinets/peripherals/{cabinetId}/{id}": {
+      "delete": {
+        "tags": ["Cabinet Management"],
+        "summary": "Remove a peripheral from a cabinet",
+        "operationId": "removeCabinetPeripheral",
+        "parameters": [
+          {
+            "name": "cabinetId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/cabinets/cables/{cabinetId}/{id}": {
+      "delete": {
+        "tags": ["Cabinet Management"],
+        "summary": "Remove a cable from a cabinet",
+        "operationId": "removeCabinetCable",
+        "parameters": [
+          {
+            "name": "cabinetId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UpdateSerialPortCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "protocol": { "type": "string" },
+          "baudRate": { "type": "integer", "format": "int32" },
+          "dataBits": { "type": "integer", "format": "int32" },
+          "stopBits": { "type": "integer", "format": "int32" },
+          "parity": { "type": "integer", "format": "int32" },
+          "description": { "type": "string" }
+        }
+      },
+      "QuerySorter": {
+        "type": "object",
+        "properties": {
+          "fieldName": { "type": "string" },
+          "direction": { "type": "integer", "format": "int32" },
+          "asc": { "type": "boolean" }
+        }
+      },
+      "SerialPortFilter": {
+        "type": "object",
+        "properties": {
+          "sorters": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/QuerySorter" }
+          },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "protocol": { "type": "string" },
+          "baudRate": { "type": "integer", "format": "int32" },
+          "dataBits": { "type": "integer", "format": "int32" },
+          "stopBits": { "type": "integer", "format": "int32" },
+          "parity": { "type": "integer", "format": "int32" }
+        }
+      },
+      "IPageSerialPortVo": {
+        "type": "object",
+        "properties": {
+          "pages": { "type": "integer", "format": "int64", "deprecated": true },
+          "records": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/SerialPortVo" }
+          },
+          "current": { "type": "integer", "format": "int64" },
+          "total": { "type": "integer", "format": "int64" },
+          "size": { "type": "integer", "format": "int64" }
+        }
+      },
+      "SerialPortVo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "protocol": { "type": "string" },
+          "baudRate": { "type": "integer", "format": "int32" },
+          "dataBits": { "type": "integer", "format": "int32" },
+          "stopBits": { "type": "integer", "format": "int32" },
+          "parity": { "type": "integer", "format": "int32" },
+          "description": { "type": "string" }
+        }
+      },
+      "UpdateProductCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "mdate": { "type": "string", "format": "date-time" }
+        }
+      },
+      "UpdateProductItemCommand": {
+        "type": "object",
+        "properties": {
+          "productId": { "type": "string", "format": "uuid" },
+          "itemId": { "type": "string", "format": "uuid" },
+          "deviceId": { "type": "string", "format": "uuid" }
+        }
+      },
+      "ProductFilter": {
+        "type": "object",
+        "properties": {
+          "sorters": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/QuerySorter" }
+          },
+          "code": { "type": "string" },
+          "name": { "type": "string" }
+        }
+      },
+      "IPageProductVo": {
+        "type": "object",
+        "properties": {
+          "pages": { "type": "integer", "format": "int64", "deprecated": true },
+          "records": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProductVo" }
+          },
+          "current": { "type": "integer", "format": "int64" },
+          "total": { "type": "integer", "format": "int64" },
+          "size": { "type": "integer", "format": "int64" }
+        }
+      },
+      "ProductVo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "m_date": { "type": "string", "format": "date-time" }
+        }
+      },
+      "UpdatePeripheralCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" }
+        }
+      },
+      "UpdateInstructionOfPeripheralCommand": {
+        "type": "object",
+        "properties": {
+          "peripheralId": { "type": "string", "format": "uuid" },
+          "id": { "type": "string", "format": "uuid" },
+          "instruction": { "type": "string" },
+          "acknowledge": { "type": "string" },
+          "comment": { "type": "string" }
+        }
+      },
+      "PeripheralFilter": {
+        "type": "object",
+        "properties": {
+          "sorters": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/QuerySorter" }
+          },
+          "code": { "type": "string" },
+          "name": { "type": "string" }
+        }
+      },
+      "IPagePeripheralVo": {
+        "type": "object",
+        "properties": {
+          "pages": { "type": "integer", "format": "int64", "deprecated": true },
+          "records": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/PeripheralVo" }
+          },
+          "current": { "type": "integer", "format": "int64" },
+          "total": { "type": "integer", "format": "int64" },
+          "size": { "type": "integer", "format": "int64" }
+        }
+      },
+      "PeripheralInstructionVo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "peripheralId": { "type": "string", "format": "uuid" },
+          "instruction": { "type": "string" },
+          "acknowledge": { "type": "string" },
+          "comment": { "type": "string" }
+        }
+      },
+      "PeripheralVo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "instructions": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/PeripheralInstructionVo" }
+          }
+        }
+      },
+      "UpdatePartnerProductCommand": {
+        "type": "object",
+        "properties": {
+          "partnerId": { "type": "string", "format": "uuid" },
+          "id": { "type": "string", "format": "uuid" },
+          "productId": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "startTime": { "type": "string", "format": "date-time" },
+          "endTime": { "type": "string", "format": "date-time" },
+          "locationId": { "type": "string", "format": "uuid" },
+          "ddate": { "type": "string", "format": "date-time" }
+        }
+      },
+      "PartnerProductFilter": {
+        "type": "object",
+        "properties": {
+          "sorters": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/QuerySorter" }
+          },
+          "partnerId": { "type": "string", "format": "uuid" },
+          "productId": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "startTime": { "type": "string", "format": "date-time" },
+          "endTime": { "type": "string", "format": "date-time" },
+          "locationId": { "type": "string", "format": "uuid" },
+          "ddate": { "type": "string", "format": "date-time" }
+        }
+      },
+      "IPagePartnerProductVo": {
+        "type": "object",
+        "properties": {
+          "pages": { "type": "integer", "format": "int64", "deprecated": true },
+          "records": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/PartnerProductVo" }
+          },
+          "current": { "type": "integer", "format": "int64" },
+          "total": { "type": "integer", "format": "int64" },
+          "size": { "type": "integer", "format": "int64" }
+        }
+      },
+      "PartnerProductVo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "partnerId": { "type": "string", "format": "uuid" },
+          "productId": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "startTime": { "type": "string", "format": "date-time" },
+          "endTime": { "type": "string", "format": "date-time" },
+          "locationId": { "type": "string", "format": "uuid" },
+          "ddate": { "type": "string", "format": "date-time" }
+        }
+      },
+      "JsonNode": {},
+      "UpdatePartnerCommand": {
+        "type": "object",
+        "description": "更新合作伙伴命令",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "address": { "type": "string" },
+          "attributes": { "$ref": "#/components/schemas/JsonNode" },
+          "owner": { "type": "string", "format": "uuid" },
+          "role": { "type": "integer", "format": "int32" },
+          "parentId": { "type": "string", "format": "uuid" },
+          "tenant": { "type": "boolean" }
+        }
+      },
+      "UpdateHostCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string", "maxLength": 12, "minLength": 6 },
+          "name": { "type": "string", "maxLength": 32, "minLength": 6 },
+          "ip": { "type": "string" },
+          "attributes": { "type": "object", "additionalProperties": {} }
+        },
+        "required": ["code", "name"]
+      },
+      "HostFilter": {
+        "type": "object",
+        "properties": {
+          "sorters": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/QuerySorter" }
+          },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "ip": { "type": "string" }
+        }
+      },
+      "HostVo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "ip": { "type": "string" },
+          "attributes": { "type": "object", "additionalProperties": {} },
+          "ports": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/SerialPortVo" }
+          }
+        }
+      },
+      "IPageHostVo": {
+        "type": "object",
+        "properties": {
+          "pages": { "type": "integer", "format": "int64", "deprecated": true },
+          "records": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/HostVo" }
+          },
+          "current": { "type": "integer", "format": "int64" },
+          "total": { "type": "integer", "format": "int64" },
+          "size": { "type": "integer", "format": "int64" }
+        }
+      },
+      "UpdateCabinetCodeNameCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" }
+        }
+      },
+      "CabinetFilter": {
+        "type": "object",
+        "properties": {
+          "sorters": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/QuerySorter" }
+          },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "modelId": { "type": "string", "format": "uuid" },
+          "nullParentId": { "type": "boolean" }
+        }
+      },
+      "CabinetPeripheralVo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "cabinetId": { "type": "string", "format": "uuid" },
+          "peripheralId": { "type": "string", "format": "uuid" },
+          "cableId": { "type": "string", "format": "uuid" },
+          "cableCode": { "type": "string" },
+          "cableName": { "type": "string" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "descriptions": { "type": "string" },
+          "quantity": { "type": "integer", "format": "int32" }
+        }
+      },
+      "CabinetVo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "parentId": { "type": "string", "format": "uuid" },
+          "peripherals": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/CabinetPeripheralVo" }
+          }
+        }
+      },
+      "IPageCabinetVo": {
+        "type": "object",
+        "properties": {
+          "pages": { "type": "integer", "format": "int64", "deprecated": true },
+          "records": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/CabinetVo" }
+          },
+          "current": { "type": "integer", "format": "int64" },
+          "total": { "type": "integer", "format": "int64" },
+          "size": { "type": "integer", "format": "int64" }
+        }
+      },
+      "UpdateCabinetPeripheralUsageCommand": {
+        "type": "object",
+        "properties": {
+          "cabinetId": { "type": "string", "format": "uuid" },
+          "id": { "type": "string", "format": "uuid" },
+          "cabinetPeripheralId": { "type": "string", "format": "uuid" },
+          "index": { "type": "integer", "format": "int32" }
+        }
+      },
+      "UpdateCabinetPeripheralCommand": {
+        "type": "object",
+        "properties": {
+          "cabinetId": { "type": "string", "format": "uuid" },
+          "id": { "type": "string", "format": "uuid" },
+          "peripheralId": { "type": "string", "format": "uuid" },
+          "cableId": { "type": "string", "format": "uuid" },
+          "quantity": { "type": "integer", "format": "int32" }
+        }
+      },
+      "UpdateCabinetParentCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "parentId": { "type": "string", "format": "uuid" }
+        }
+      },
+      "UpdateCabinetCableCommand": {
+        "type": "object",
+        "properties": {
+          "cabinetId": { "type": "string", "format": "uuid" },
+          "id": { "type": "string", "format": "uuid" },
+          "hostId": { "type": "string", "format": "uuid" },
+          "hostPortId": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      },
+      "UpdateAttributeParentIdCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "parentId": { "type": "string", "format": "uuid" }
+        },
+        "required": ["id", "parentId"]
+      },
+      "UpdateAttributeCodeAndNameCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" }
+        }
+      },
+      "PageFilter": {
+        "type": "object",
+        "properties": {
+          "currPage": {
+            "type": "integer",
+            "format": "int32",
+            "default": 1,
+            "description": "当前页码"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "default": 10,
+            "description": "每页显示条数"
+          }
+        }
+      },
+      "AttributeVo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" }
+        }
+      },
+      "IPageAttributeVo": {
+        "type": "object",
+        "properties": {
+          "pages": { "type": "integer", "format": "int64", "deprecated": true },
+          "records": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AttributeVo" }
+          },
+          "current": { "type": "integer", "format": "int64" },
+          "total": { "type": "integer", "format": "int64" },
+          "size": { "type": "integer", "format": "int64" }
+        }
+      },
+      "CreateSerialPortCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "protocol": { "type": "string" },
+          "baudRate": { "type": "integer", "format": "int32" },
+          "dataBits": { "type": "integer", "format": "int32" },
+          "stopBits": { "type": "integer", "format": "int32" },
+          "parity": { "type": "integer", "format": "int32" },
+          "description": { "type": "string" }
+        }
+      },
+      "CreateProductCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "mdate": { "type": "string", "format": "date-time" }
+        }
+      },
+      "CreateProductItemCommand": {
+        "type": "object",
+        "properties": {
+          "productId": { "type": "string", "format": "uuid" },
+          "itemId": { "type": "string", "format": "uuid" },
+          "deviceId": { "type": "string", "format": "uuid" }
+        }
+      },
+      "CreatePeripheralCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" }
+        }
+      },
+      "AddInstructionToPeripheralCommand": {
+        "type": "object",
+        "properties": {
+          "peripheralId": { "type": "string", "format": "uuid" },
+          "id": { "type": "string", "format": "uuid" },
+          "instruction": { "type": "string" },
+          "acknowledge": { "type": "string" },
+          "comment": { "type": "string" }
+        }
+      },
+      "CreatePartnerCommand": {
+        "type": "object",
+        "description": "创建合作伙伴命令",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "address": { "type": "string" },
+          "attributes": { "$ref": "#/components/schemas/JsonNode" },
+          "owner": { "type": "string", "format": "uuid" },
+          "role": { "type": "integer", "format": "int32" },
+          "parentId": { "type": "string", "format": "uuid" },
+          "tenant": { "type": "boolean" }
+        }
+      },
+      "CreatePartnerProductCommand": {
+        "type": "object",
+        "properties": {
+          "partnerId": { "type": "string", "format": "uuid" },
+          "id": { "type": "string", "format": "uuid" },
+          "productId": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "startTime": { "type": "string", "format": "date-time" },
+          "endTime": { "type": "string", "format": "date-time" },
+          "locationId": { "type": "string", "format": "uuid" },
+          "ddate": { "type": "string", "format": "date-time" }
+        }
+      },
+      "CreateHostCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "ip": { "type": "string" },
+          "attributes": { "type": "object", "additionalProperties": {} }
+        }
+      },
+      "CreateCabinetCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "parentId": { "type": "string", "format": "uuid" }
+        }
+      },
+      "CreateCabinetPeripheralUsageCommand": {
+        "type": "object",
+        "properties": {
+          "cabinetId": { "type": "string", "format": "uuid" },
+          "id": { "type": "string", "format": "uuid" },
+          "cabinetPeripheralId": { "type": "string", "format": "uuid" },
+          "index": { "type": "integer", "format": "int32" }
+        }
+      },
+      "CreateCabinetPeripheralCommand": {
+        "type": "object",
+        "properties": {
+          "cabinetId": { "type": "string", "format": "uuid" },
+          "id": { "type": "string", "format": "uuid" },
+          "peripheralId": { "type": "string", "format": "uuid" },
+          "cableId": { "type": "string", "format": "uuid" },
+          "quantity": { "type": "integer", "format": "int32" }
+        }
+      },
+      "CreateCabinetCableCommand": {
+        "type": "object",
+        "properties": {
+          "cabinetId": { "type": "string", "format": "uuid" },
+          "id": { "type": "string", "format": "uuid" },
+          "hostId": { "type": "string", "format": "uuid" },
+          "hostPortId": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      },
+      "CreateAttributeCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string", "maxLength": 50, "minLength": 2 },
+          "name": { "type": "string", "maxLength": 100, "minLength": 1 },
+          "parentId": { "type": "string", "format": "uuid" }
+        },
+        "required": ["code", "id", "name"]
+      },
+      "ProductItemVo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "productId": { "type": "string", "format": "uuid" },
+          "deviceId": { "type": "string", "format": "uuid" },
+          "deviceCode": { "type": "string" },
+          "deviceName": { "type": "string" }
+        }
+      },
+      "PartnerFilter": {
+        "type": "object",
+        "properties": {
+          "sorters": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/QuerySorter" }
+          },
+          "code": { "type": "string" },
+          "isTenant": { "type": "boolean" },
+          "address": { "type": "string" }
+        }
+      },
+      "QueryPartners": {
+        "type": "object",
+        "description": "分页查询合作伙伴",
+        "properties": {
+          "filter": { "$ref": "#/components/schemas/PartnerFilter" },
+          "page": { "$ref": "#/components/schemas/PageFilter" }
+        }
+      },
+      "IPagePartnerVo": {
+        "type": "object",
+        "properties": {
+          "pages": { "type": "integer", "format": "int64", "deprecated": true },
+          "records": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/PartnerVo" }
+          },
+          "current": { "type": "integer", "format": "int64" },
+          "total": { "type": "integer", "format": "int64" },
+          "size": { "type": "integer", "format": "int64" }
+        }
+      },
+      "PartnerVo": {
+        "type": "object",
+        "description": "合作伙伴视图对象",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "address": { "type": "string" },
+          "attributes": { "$ref": "#/components/schemas/JsonNode" },
+          "owner": { "type": "string", "format": "uuid" },
+          "role": { "type": "integer", "format": "int32" },
+          "parentId": { "type": "string", "format": "uuid" },
+          "tenant": { "type": "boolean" }
+        }
+      },
+      "HostSerialPortVo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "protocol": { "type": "string" },
+          "baudRate": { "type": "integer", "format": "int32" },
+          "dataBits": { "type": "integer", "format": "int32" },
+          "stopBits": { "type": "integer", "format": "int32" },
+          "parity": { "type": "integer", "format": "int32" },
+          "description": { "type": "string" },
+          "hostSerialPortId": { "type": "string", "format": "uuid" },
+          "hostId": { "type": "string", "format": "uuid" }
+        }
+      },
+      "IPageHostSerialPortVo": {
+        "type": "object",
+        "properties": {
+          "pages": { "type": "integer", "format": "int64", "deprecated": true },
+          "records": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/HostSerialPortVo" }
+          },
+          "current": { "type": "integer", "format": "int64" },
+          "total": { "type": "integer", "format": "int64" },
+          "size": { "type": "integer", "format": "int64" }
+        }
+      },
+      "CabinetPeripheralUsageVo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "cabinetId": { "type": "string", "format": "uuid" },
+          "cabinetPeripheralId": { "type": "string", "format": "uuid" },
+          "peripheralId": { "type": "string", "format": "uuid" },
+          "peripheralCode": { "type": "string" },
+          "peripheralName": { "type": "string" },
+          "sequence": { "type": "integer", "format": "int32" }
+        }
+      },
+      "IPageCabinetPeripheralVo": {
+        "type": "object",
+        "properties": {
+          "pages": { "type": "integer", "format": "int64", "deprecated": true },
+          "records": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/CabinetPeripheralVo" }
+          },
+          "current": { "type": "integer", "format": "int64" },
+          "total": { "type": "integer", "format": "int64" },
+          "size": { "type": "integer", "format": "int64" }
+        }
+      },
+      "CabinetCableVo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "cabinetId": { "type": "string", "format": "uuid" },
+          "hostId": { "type": "string", "format": "uuid" },
+          "hostPortId": { "type": "string", "format": "uuid" },
+          "hostCode": { "type": "string" },
+          "hostName": { "type": "string" },
+          "hostPortCode": { "type": "string" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "securitySchemes": {
+      "TokenAuth": { "type": "apiKey", "name": "Authorization", "in": "header" }
+    }
+  },
+  "x-openapi": {
+    "x-setting": {
+      "customCode": 200,
+      "language": "zh-CN",
+      "enableSwaggerModels": true,
+      "swaggerModelName": "Swagger Models",
+      "enableReloadCacheParameter": false,
+      "enableAfterScript": true,
+      "enableDocumentManage": true,
+      "enableVersion": false,
+      "enableRequestCache": true,
+      "enableFilterMultipartApis": false,
+      "enableFilterMultipartApiMethodType": "POST",
+      "enableHost": false,
+      "enableHostText": "",
+      "enableDynamicParameter": false,
+      "enableDebug": true,
+      "enableFooter": true,
+      "enableFooterCustom": false,
+      "enableSearch": true,
+      "enableOpenApi": true,
+      "enableHomeCustom": false,
+      "enableGroup": true,
+      "enableResponseCode": true
+    },
+    "x-markdownFiles": []
+  }
+}

@@ -1,0 +1,15 @@
+export default {
+  'tenant.partner.id': 'ID',
+  'tenant.partner.code': 'Code',
+  'tenant.partner.name': 'Name',
+  'tenant.partner.address': 'Address',
+  'tenant.partner.attributes': 'Attributes',
+  'tenant.partner.owner': 'Owner',
+  'tenant.partner.role': 'Role',
+  'tenant.partner.parentId': 'Parent',
+  'tenant.partner.tenant': 'Tenant',
+  'tenant.partner.filter.code': 'Code',
+  'tenant.partner.filter.isTenant': 'Is Tenant',
+  'tenant.partner.filter.address': 'Address',
+  'tenant.partner.list.title': 'Partner List',
+};

@@ -11,3 +11,26 @@ export type PageParams = {
   pageSize?: number;
   sorter?: Record<string, 'ascend' | 'descend'>;
 };
+
+declare global {
+  namespace API {
+    type ResponseEntity<T> = {
+      body: T;
+      statusCode: 'OK' | 'FAILED';
+      statusCodeValue: number;
+    };
+
+    type Result<T> = {
+      code: number;
+      msg: string;
+      data: T;
+    };
+
+    type IPage<T> = {
+      records: T[];
+      total: number;
+      size: number;
+      current: number;
+    };
+  }
+}
