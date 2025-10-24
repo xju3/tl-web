@@ -1,5 +1,4 @@
 import { request } from '@umijs/max';
-import type { SerialPort } from '../SerialPort/data';
 import type { Host, HostPageParams, HostSerialPort } from './data';
 
 // 通用API响应结构 (成功时)

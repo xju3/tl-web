@@ -3,7 +3,6 @@ import {
   type ActionType,
   PageContainer,
   type ProColumns,
-  ProDescriptions,
   ProTable,
 } from '@ant-design/pro-components';
 import { history, useIntl, useParams } from '@umijs/max';
@@ -20,16 +19,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import type {
   PartnerProductVo,
   PartnerVo,
-} from '../../../../services/Tenant/Partner/data';
-
-const searchParams = new URLSearchParams(location.search);
-
+} from '@/services/Tenant/Partner/data';
 import {
   deletePartner,
   deletePartnerProduct,
   getPartner,
   queryPartnerProducts,
-} from '../../../../services/Tenant/Partner/service';
+} from '@/services/Tenant/Partner/service';
+
+const searchParams = new URLSearchParams(location.search);
 
 const PartnerView: React.FC = () => {
   const intl = useIntl();

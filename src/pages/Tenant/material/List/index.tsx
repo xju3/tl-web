@@ -4,14 +4,8 @@ import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { FormattedMessage, history, useIntl } from '@umijs/max';
 import { Button, message, Popconfirm, Space } from 'antd';
 import React, { useRef } from 'react';
-import type {
-  MaterialFilter,
-  MaterialVo,
-} from '../../../../services/Tenant/data';
-import {
-  deleteMaterial,
-  queryMaterials,
-} from '../../../../services/Tenant/service';
+import type { MaterialFilter, MaterialVo } from '@/services/Tenant/data';
+import { deleteMaterial, queryMaterials } from '@/services/Tenant/service';
 
 const MaterialList: React.FC = () => {
   const actionRef = useRef<ActionType | undefined>(undefined);

@@ -12,7 +12,7 @@ import type {
   Cabinet,
   CabinetPeripheralUsage,
   Cable,
-} from '../../../../services/Device/Cabinet/data';
+} from '@/services/Device/Cabinet/data';
 import {
   deleteCabinet,
   deleteCabinetCable,
@@ -22,8 +22,8 @@ import {
   getCabinetCables,
   getCabinetPeripheralUsages,
   getPeripheralsByCabinetId,
-} from '../../../../services/Device/Cabinet/service';
-import type { Peripheral } from '../../../../services/Device/Peripheral/data';
+} from '@/services/Device/Cabinet/service';
+import type { Peripheral } from '@/services/Device/Peripheral/data';
 
 const CabinetViewPage = () => {
   const { id } = useParams<{ id: string }>();

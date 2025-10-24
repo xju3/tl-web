@@ -9,12 +9,12 @@ import { Button, Form } from 'antd';
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ProductSelector from '@/components/Selectors/ProductSelector';
-import type { PartnerProductVo } from '../../../../services/Tenant/Partner/data';
+import type { PartnerProductVo } from '@/services/Tenant/Partner/data';
 import {
   createPartnerProduct,
   getPartnerProductById,
   updatePartnerProduct,
-} from '../../../../services/Tenant/Partner/service';
+} from '@/services/Tenant/Partner/service';
 
 const PartnerProductEditPage = () => {
   const { partnerId, id } = useParams<{ partnerId: string; id: string }>();

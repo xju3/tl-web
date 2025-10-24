@@ -1,12 +1,12 @@
 import { PageContainer } from '@ant-design/pro-components';
 import { history, useIntl, useParams } from '@umijs/max';
-import { Button, Card, Descriptions, Popconfirm, Space, Tabs } from 'antd';
+import { Button, Descriptions, Popconfirm, Space } from 'antd';
 import { useEffect, useState } from 'react';
-import type { SerialPort } from '../../../../services/Device/SerialPort/data';
+import type { SerialPort } from '@/services/Device/SerialPort/data';
 import {
   deleteSerialPort,
   getSerialPortById,
-} from '../../../../services/Device/SerialPort/service';
+} from '@/services/Device/SerialPort/service';
 
 const SerialPortViewPage = () => {
   const { id } = useParams<{ id: string }>();

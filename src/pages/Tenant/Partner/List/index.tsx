@@ -4,14 +4,11 @@ import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { FormattedMessage, history, useIntl } from '@umijs/max';
 import { Button, message, Popconfirm, Space } from 'antd';
 import React, { useRef } from 'react';
-import type {
-  PartnerFilter,
-  PartnerVo,
-} from '../../../../services/Tenant/Partner/data';
+import type { PartnerFilter, PartnerVo } from '@/services/Tenant/Partner/data';
 import {
   deletePartner,
   queryPartners,
-} from '../../../../services/Tenant/Partner/service';
+} from '@/services/Tenant/Partner/service';
 
 const PartnerList: React.FC = () => {
   const actionRef = useRef<ActionType | undefined>(undefined);
