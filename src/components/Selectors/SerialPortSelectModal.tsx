@@ -2,8 +2,8 @@ import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Modal } from 'antd';
 import { useRef } from 'react';
-import type { SerialPort } from '../../services/Device/SerialPort/data';
-import { getSerialPorts } from '../../services/Device/SerialPort/service';
+import type { SerialPort } from '@/services/Device/SerialPort/data';
+import { getSerialPorts } from '@/services/Device/SerialPort/service';
 
 export type SerialPortSelectModalProps = {
   open: boolean;

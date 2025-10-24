@@ -2,8 +2,8 @@ import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Modal } from 'antd';
 import { useRef } from 'react';
-import { getPeripheralsByCabinetId } from '../../services/Device/Cabinet/service';
-import type { Peripheral } from '../../services/Device/Peripheral/data';
+import { getPeripheralsByCabinetId } from '@/services/Device/Cabinet/service';
+import type { Peripheral } from '@/services/Device/Peripheral/data';
 
 export type CabinetPeripheralSelectorProps = {
   open: boolean;

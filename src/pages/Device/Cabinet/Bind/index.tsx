@@ -9,16 +9,15 @@ import { history, useIntl, useParams } from '@umijs/max';
 import { Card, Form } from 'antd';
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import CabinetCableSelector from '../../../../components/Selectors/CabinetCableSelector';
-import PeripheralSelectModal from '../../../../components/Selectors/PeripheralSelectModal';
-import type { Cable } from '../../../../services/Device/Cabinet/data';
+import CabinetCableSelector from '@/components/Selectors/CabinetCableSelector';
+import PeripheralSelectModal from '@/components/Selectors/PeripheralSelectModal';
+import type { Cable } from '@/services/Device/Cabinet/data';
 import {
   addCabinetPeripheral,
-  getCabinetById,
   getCabinetPeripheralById,
   updateCabinetPeripheral,
-} from '../../../../services/Device/Cabinet/service';
-import type { Peripheral } from '../../../../services/Device/Peripheral/data';
+} from '@/services/Device/Cabinet/service';
+import type { Peripheral } from '@/services/Device/Peripheral/data';
 
 const CabinetPeripheralBindPage = () => {
   const intl = useIntl();

@@ -4,11 +4,11 @@ import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { history, useIntl } from '@umijs/max';
 import { Button, Popconfirm } from 'antd';
 import { useRef } from 'react';
-import type { SerialPort } from '../../../../services/Device/SerialPort/data';
+import type { SerialPort } from '@/services/Device/SerialPort/data';
 import {
   deleteSerialPort,
   getSerialPorts,
-} from '../../../../services/Device/SerialPort/service';
+} from '@/services/Device/SerialPort/service';
 
 const SerialPortListPage = () => {
   const actionRef = useRef<ActionType>(null);

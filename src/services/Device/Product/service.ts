@@ -1,7 +1,6 @@
 import { request } from '@umijs/max';
 import type { PageParams } from '@/services/common';
 import type { Product, ProductItem } from './data';
-import type {PartnerVo} from "@/services/Tenant/Partner/data";
 
 // 1. 获取产品列表 (分页)
 export async function getProducts(params: PageParams & Partial<Product>) {

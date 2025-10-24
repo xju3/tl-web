@@ -4,18 +4,15 @@ import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { history, useIntl, useLocation, useParams } from '@umijs/max';
 import { Button, Card, Descriptions, Popconfirm, Space, Tabs } from 'antd';
 import { useEffect, useRef, useState } from 'react';
-import SerialPortSelectModal from '../../../../components/Selectors/SerialPortSelectModal';
-import type {
-  Host,
-  HostSerialPort,
-} from '../../../../services/Device/Host/data';
+import SerialPortSelectModal from '@/components/Selectors/SerialPortSelectModal';
+import type { Host, HostSerialPort } from '@/services/Device/Host/data';
 import {
   addHostPort,
   deleteHost,
   deleteHostPort,
   getHostById,
   getHostPorts,
-} from '../../../../services/Device/Host/service';
+} from '@/services/Device/Host/service';
 
 const HostViewPage = () => {
   const { id } = useParams<{ id: string }>();
