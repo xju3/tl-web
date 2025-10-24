@@ -1,5 +1,5 @@
 import { request } from '@umijs/max';
-import type { Instruction, Peripheral, PeripheralPageParams } from './data.d';
+import type { Instruction, Peripheral, PeripheralPageParams } from './data';
 
 // 通用API响应结构 (成功时)
 type ApiResponse<T> = {

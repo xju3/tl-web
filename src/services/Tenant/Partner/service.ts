@@ -8,7 +8,7 @@ import type {
   PartnerVo,
   UpdatePartnerCommand,
   UpdatePartnerProductCommand,
-} from './data.d';
+} from './data';
 
 export async function queryPartners(
   filter: PartnerFilter,
@@ -16,7 +16,7 @@ export async function queryPartners(
 ) {
   const { currPage = 1, pageSize = 10 } = options || {};
   return request<API.ResponseEntity<API.IPage<PartnerVo>>>(
-    `/partners/${currPage - 1}/${pageSize}`,
+    `/partners/${currPage}/${pageSize}`,
     {
       method: 'PUT',
       data: filter,

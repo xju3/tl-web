@@ -1,4 +1,4 @@
-import type { SerialPort } from '../SerialPort/data.d';
+import type { SerialPort } from '../SerialPort/data';
 
 // 主机-串口关联数据类型
 export type HostSerialPort = SerialPort & {

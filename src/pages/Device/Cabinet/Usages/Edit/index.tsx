@@ -9,13 +9,16 @@ import { Button, Card, Form } from 'antd';
 import { useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import CabinetPeripheralSelector from '../../../../../components/Selectors/CabinetPeripheralSelector';
-import type { Cabinet, CabinetPeripheralUsage } from '../../data.d';
+import type {
+  Cabinet,
+  CabinetPeripheralUsage,
+} from '../../../../../services/Device/Cabinet/data';
 import {
   addCabinetPeripheralUsage,
   getCabinetById,
   getCabinetPeripheralUsageById,
   updateCabinetPeripheralUsage,
-} from '../../service';
+} from '../../../../../services/Device/Cabinet/service';
 
 const CabinetPeripheralUsageEditPage = () => {
   const { cabinetId, id } = useParams<{ cabinetId: string; id: string }>();

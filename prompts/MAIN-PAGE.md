@@ -1,6 +1,6 @@
 # 1. 目标
 
-- 构建全模块页面, 含列表页(`List.tsx`), 编辑页(`Edit.tsx`), 视图页(`View.tsx`)
+- 构建全模块页面, 含列表页(`edit.tsx`), 编辑页(`edit.tsx`), 视图页(`edit.tsx`)
 
 # 2. 参数
 
@@ -79,38 +79,289 @@
 
 ## 4.1 列表页
 
-- 文件: `src/pages/{module_name}/{page_name}/List.tsx`
-- 布局: 分为两部分, 上面为查询面板, 下面为数据列表
-- 查询面板:
-  - 根据 OpenAPI Schema `#/components/schemas/{page_name}Filter` 提供的属性构建查询面板
-- 列表页:
-  - 表头提供"新增"功能
-  - 表格每一行都有: 编辑, 视图, 删除三个按钮
-  - 删除前需要用户确认
-  - 新增与编辑共用一个页面
-  - 点击视图转到视图页
-  - 获取列表的URL中 `{curr_page}` 和 `{page_size}` 需要替换为当前页索引与每页记录数
-  - 排序
-    - 点击表格的表头可实现由服务器端重新排序
-    - 支持多字段排序, 也是就`Sorters`为列表
-  - Actions这一栏的长度为`180px`
+- 文件: `src/pages/{module_name}/{page_name}/Edit/index.tsx`
+- 约定:
+  - {page_title}, 指页标题, 需要国际化
+  - {edit_page}, 编辑页面
+  - {api_get_page_data}, 查询数据
+  - {router_edit}, 编辑路由
+  - {router_view}, 查看路由
+  - {api_delete}, 查询数据
+  - {field_name}, 字段名
+- 表格Columns, columns最后需要一个Actions列, 用于编辑,查看,删除操作 
+```ts
+const columns: ProColumns<SerialPort>[] = [
+{
+  title: intl.formatMessage({ id: '{module_name}.{page_name}.{field_name}' }),
+  dataIndex: {field_name},
+  sorter: true,
+},
+  {
+    title: intl.formatMessage({ id: 'common.actions' }),
+    dataIndex: 'option',
+    valueType: 'option',
+    width: '180px',
+    render: (_, record) => [
+      <a
+        key="edit"
+      onClick={() =>
+saveStateAndNavigate(`{router_edit}`)
+}
+>
+{intl.formatMessage({ id: 'common.actions.edit' })}
+</a>,
+<a
+key="view"
+onClick={() =>
+saveStateAndNavigate(`{router_view}`)
+}
+>
+{intl.formatMessage({ id: 'common.actions.view' })}
+</a>,
+<Popconfirm
+key="delete"
+title={intl.formatMessage({ id: 'common.delete.confirm' })}
+onConfirm={async () => {
+  await {api_delete} 
+  actionRef.current?.reload();
+}}
+>
+<a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
+</Popconfirm>,
+],
+},
+]
+```
+- 页面代码
+```ts
+  return (
+    <PageContainer>
+      <ProTable<PartnerVo, PartnerFilter>
+        headerTitle={intl.formatMessage({id: {page_title} })}
+        actionRef={actionRef}
+        rowKey="id"
+        search={{
+          labelWidth: 40,
+        }}
+        toolbar={{
+          title: <Space> <Button
+            type="primary"
+            key="primary"
+            onClick={() => {
+              history.push('{edit_page}');
+            }}
+          >
+            <PlusOutlined/> <FormattedMessage id="common.actions.add"/>
+          </Button>,
+          </Space>
+        }}
+        request={async (params, sort) => {
+          const {current, pageSize, ...filter} = params;
+          const sorters = Object.entries(sort).map(([key, value]) => ({
+            fieldName: key,
+            direction: value === 'ascend' ? 1 : 0,
+          }));
+          const msg = await {api_get_page_data}(
+            {...filter, sorters},
+            {
+              currPage: current,
+              pageSize,
+            },
+          );
+          return {
+            data: msg.body.records,
+            success: msg.statusCode === 'OK',
+            total: msg.body.total,
+          };
+        }}
+        columns={columns}
+      />
+    </PageContainer>
+  );
+};
+```
 
 ## 4.2 编辑页
 
-- 文件: `src/pages/{module_name}/{page_name}/Edit.tsx`
-- 根据 OpenAPI Schema `#/components/schemas/{page_name}Vo` 构建录入页面
-- 提供保存与取消两个按钮
-- 保存后返回调用者页面, 可能是视图页,也可能是列表页
-- 提供返回按钮, 若返回列表页, 需要保持列表页在进入编辑页的查询状态
-- 编辑页面在新增时, 需要自动生成业务实例的ID, UUID
+- 文件: `src/pages/{module_name}/{page_name}/edit.tsx`
+- 页面示例代码
+```ts
 
+const PartnerEdit: React.FC = () => {
+  const intl = useIntl();
+  const [form] = ProForm.useForm<PartnerVo>();
+  const { id } = useParams<{ id: string }>();
+
+  useEffect(() => {
+    if (id) {
+      getPartner(id).then((response) => {
+        form.setFieldsValue(response);
+      });
+    } else {
+      form.setFieldsValue({ id: uuidv4() });
+    }
+  }, [id, form]);
+
+  const onFinish = async (
+    values: CreatePartnerCommand | UpdatePartnerCommand,
+  ) => {
+    const hide = message.loading(
+      intl.formatMessage({ id: 'common.actions.saving' }),
+    );
+    try {
+      if (id) {
+        await updatePartner({ ...values, id });
+      } else {
+        await createPartner(values as CreatePartnerCommand);
+      }
+      hide();
+      message.success(
+        intl.formatMessage({ id: 'common.actions.save.success' }),
+      );
+      history.back();
+    } catch (error) {
+      hide();
+      message.error(intl.formatMessage({ id: 'pages.searchTable.save.fail' }));
+    }
+  };
+
+  return (
+    <PageContainer onBack={() => history.back()}>
+  <ProForm form={form} onFinish={onFinish}>
+  <ProFormText name="id" hidden />
+  <ProFormText
+    name="code"
+  label={intl.formatMessage({ id: 'tenant.partner.code' })}
+  rules={[{ required: true }]}
+  />
+  <ProFormText
+  name="name"
+  label={intl.formatMessage({ id: 'tenant.partner.name' })}
+  rules={[{ required: true }]}
+  />
+  <ProFormText
+  name="address"
+  label={intl.formatMessage({ id: 'tenant.partner.address' })}
+  />
+  <ProFormSwitch
+  name="tenant"
+  label={intl.formatMessage({ id: 'tenant.partner.tenant' })}
+  />
+  </ProForm>
+  </PageContainer>
+);
+};
+```
 ## 4.3 视图页:
 
-- 文件: `src/pages/{module_name}/{page_name}/View.tsx`
-- 调用单业务对象查询获取数据
-- 展示返回值
-- 在视图页可以编辑与删除当前业务对象
-- 提供返回按钮, 返回后需保持列表页在进入视图页的查询状态
+- 文件: `src/pages/{module_name}/{page_name}/edit.tsx`
+- 页面示例代码
+```ts
+
+return (
+  <PageContainer onBack={() => history.back()}>
+{data && (
+  <Space direction="vertical" size="middle" style={{display: 'flex'}}>
+  <Card
+    >
+    <Descriptions
+      bordered
+  title={intl.formatMessage({id: 'tenant.partner'})}
+  extra={
+  <>
+  <Space>
+    <Button
+      type="primary"
+  onClick={() => {
+  history.push(`/tenant/partner/edit/${id}`);
+}}
+>
+  {intl.formatMessage({id: 'common.actions.edit'})}
+  </Button>
+  <Popconfirm
+  title={intl.formatMessage({id: 'common.delete.confirm'})}
+  onConfirm={handleRemove}
+    >
+    <Button danger>
+    {intl.formatMessage({id: 'common.actions.delete'})}
+    </Button>
+    </Popconfirm>
+    </Space>
+    </>
+}
+>
+  <Descriptions.Item
+    label={intl.formatMessage({id: 'tenant.partner.code'})}
+    >
+    {data.code}
+    </Descriptions.Item>
+    <Descriptions.Item
+  label={intl.formatMessage({id: 'tenant.partner.name'})}
+    >
+    {data.name}
+    </Descriptions.Item>
+    <Descriptions.Item
+  label={intl.formatMessage({id: 'tenant.partner.address'})}
+    >
+    {data.address}
+    </Descriptions.Item>
+    <Descriptions.Item
+  label={intl.formatMessage({id: 'tenant.partner.tenant'})}
+  >
+  {data.tenant ? 'Yes' : 'No'}
+  </Descriptions.Item>
+  </Descriptions>
+  </Card>
+  <Card>
+  <Tabs
+    activeKey={searchParams.get('tab') || 'peripherals'}
+  onChange={(key) => {
+  history.push({
+    pathname: location.pathname,
+    search: `?tab=${key}`,
+  });
+}}
+>
+  <Tabs.TabPane
+    tab={intl.formatMessage({id: 'tenant.partner.product.list.title'})}
+  key="peripherals"
+  >
+  <ProTable<PartnerProductVo>
+    actionRef={actionRef}
+  rowKey="id"
+  search={false}
+  options={{
+  density: true,
+    fullScreen: true,
+    reload: true,
+    setting: true,
+}}
+  toolbar={{
+  title: <Button
+    type="primary"
+  key="primary"
+  onClick={() =>
+  history.push(`/tenant/partner/${id}/product/add`)
+}
+>
+  <PlusOutlined/>
+  {intl.formatMessage({id: 'common.actions.add'})}
+  </Button>,
+}}
+  request={(params) =>
+  queryPartnerProducts({...params, partnerId: id})
+}
+  columns={productColumns}
+  />
+  </Tabs.TabPane>
+  </Tabs>
+  </Card>
+  </Space>
+)}
+</PageContainer>
+);
+};
+```
 
 # 5. 国际化
 

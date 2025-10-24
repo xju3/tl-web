@@ -1,3 +1,4 @@
+import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import {
   PageContainer,
@@ -5,10 +6,13 @@ import {
   ProTable,
 } from '@ant-design/pro-components';
 import { history, useIntl, useLocation, useParams } from '@umijs/max';
-import { Button, Card, Popconfirm, Tabs } from 'antd';
+import { Button, Card, Popconfirm, Space, Tabs } from 'antd';
 import { useEffect, useRef, useState } from 'react';
-import type { Peripheral } from '../../Peripherals/data';
-import type { Cabinet, CabinetPeripheralUsage, Cable } from '../data.d';
+import type {
+  Cabinet,
+  CabinetPeripheralUsage,
+  Cable,
+} from '../../../../services/Device/Cabinet/data';
 import {
   deleteCabinet,
   deleteCabinetCable,
@@ -18,7 +22,8 @@ import {
   getCabinetCables,
   getCabinetPeripheralUsages,
   getPeripheralsByCabinetId,
-} from '../service';
+} from '../../../../services/Device/Cabinet/service';
+import type { Peripheral } from '../../../../services/Device/Peripheral/data';
 
 const CabinetViewPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -200,7 +205,7 @@ const CabinetViewPage = () => {
       <Card>
         <ProDescriptions
           column={2}
-          title={cabinet?.name}
+          title={intl.formatMessage({ id: 'device.host.basic-info.title' })}
           dataSource={cabinet}
           extra={
             <>
@@ -262,19 +267,22 @@ const CabinetViewPage = () => {
               actionRef={peripheralsActionRef}
               rowKey="id"
               search={false}
-              toolBarRender={() => [
-                <Button
-                  key="bind"
-                  type="primary"
-                  onClick={() => {
-                    history.push(`/device/cabinets/${id}/bind`);
-                  }}
-                >
-                  {intl.formatMessage({
-                    id: 'device.cabinet.view.bindPeripheral',
-                  })}
-                </Button>,
-              ]}
+              toolbar={{
+                title: (
+                  <Button
+                    key="bind"
+                    type="primary"
+                    onClick={() => {
+                      history.push(`/device/cabinets/${id}/bind`);
+                    }}
+                  >
+                    <PlusOutlined />
+                    {intl.formatMessage({
+                      id: 'device.cabinet.bind.peripheral',
+                    })}
+                  </Button>
+                ),
+              }}
               request={(params) =>
                 getPeripheralsByCabinetId(id!, {
                   currPage: params.current!,
@@ -302,17 +310,28 @@ const CabinetViewPage = () => {
                 actionRef={cablesActionRef}
                 rowKey="id"
                 search={false}
-                toolBarRender={() => [
-                  <Button
-                    key="add"
-                    type="primary"
-                    onClick={() => {
-                      history.push(`/device/cabinets/${id}/cables/add/edit`);
-                    }}
-                  >
-                    {intl.formatMessage({ id: 'common.actions.add' })}
-                  </Button>,
-                ]}
+                toolbar={{
+                  title: (
+                    <Space>
+                      {' '}
+                      <Button
+                        key="add"
+                        type="primary"
+                        onClick={() => {
+                          history.push(
+                            `/device/cabinets/${id}/cables/add/edit`,
+                          );
+                        }}
+                      >
+                        <PlusOutlined />
+                        {intl.formatMessage({
+                          id: 'device.cabinet.create.cable',
+                        })}
+                      </Button>
+                      ,
+                    </Space>
+                  ),
+                }}
                 request={() => getCabinetCables(id!)}
                 columns={cableColumns}
                 pagination={{

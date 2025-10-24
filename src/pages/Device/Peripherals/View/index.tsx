@@ -1,9 +1,12 @@
 import { PageContainer } from '@ant-design/pro-components';
 import { history, useIntl, useLocation, useParams } from '@umijs/max';
-import { Button, Card, Descriptions, message, Popconfirm } from 'antd';
+import { Button, Card, Descriptions, message, Popconfirm, Space } from 'antd';
 import { useEffect, useState } from 'react';
-import type { Peripheral } from '../data.d';
-import { deletePeripheral, getPeripheralById } from '../service';
+import type { Peripheral } from '../../../../services/Device/Peripheral/data';
+import {
+  deletePeripheral,
+  getPeripheralById,
+} from '../../../../services/Device/Peripheral/service';
 import Instructions from './Instructions';
 
 const PeripheralViewPage = () => {
@@ -38,35 +41,43 @@ const PeripheralViewPage = () => {
   };
 
   return (
-    <PageContainer
-      onBack={() => history.back()}
-      extra={[
-        <Button
-          key="edit"
-          type="primary"
-          onClick={() =>
-            history.push(`/device/peripherals/edit/${id}`, location.state)
-          }
-        >
-          {intl.formatMessage({ id: 'common.actions.edit' })}
-        </Button>,
-        <Popconfirm
-          key="delete"
-          title={intl.formatMessage({
-            id: 'device.peripheral.delete.confirm',
-          })}
-          onConfirm={handleDelete}
-        >
-          <Button danger>
-            {intl.formatMessage({ id: 'common.actions.delete' })}
-          </Button>
-        </Popconfirm>,
-      ]}
-    >
+    <PageContainer onBack={() => history.back()}>
       {peripheral && (
         <>
           <Card>
-            <Descriptions bordered>
+            <Descriptions
+              bordered
+              column={2}
+              title={intl.formatMessage({ id: 'device.host.basic-info.title' })}
+              extra={
+                <Space size={1}>
+                  <Button
+                    key="edit"
+                    type="primary"
+                    onClick={() =>
+                      history.push(
+                        `/device/peripherals/edit/${id}`,
+                        location.state,
+                      )
+                    }
+                  >
+                    {intl.formatMessage({ id: 'common.actions.edit' })}
+                  </Button>
+                  ,
+                  <Popconfirm
+                    key="delete"
+                    title={intl.formatMessage({
+                      id: 'device.peripheral.delete.confirm',
+                    })}
+                    onConfirm={handleDelete}
+                  >
+                    <Button danger>
+                      {intl.formatMessage({ id: 'common.actions.delete' })}
+                    </Button>
+                  </Popconfirm>
+                </Space>
+              }
+            >
               <Descriptions.Item
                 label={intl.formatMessage({ id: 'device.peripheral.code' })}
               >

@@ -2,8 +2,8 @@ import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Modal } from 'antd';
 import { useRef } from 'react';
-import type { Host } from '../../pages/Device/Host/data.d';
-import { getHosts } from '../../pages/Device/Host/service';
+import type { Host } from '../../services/Device/Host/data';
+import { getHosts } from '../../services/Device/Host/service';
 
 export type HostSelectModalProps = {
   open: boolean;

@@ -1,5 +1,5 @@
 import { request } from '@umijs/max';
-import type { SerialPort, SerialPortPageParams } from './data.d';
+import type { SerialPort, SerialPortPageParams } from './data';
 
 // 通用API响应结构 (成功时)
 type ApiResponse<T> = {
@@ -12,7 +12,6 @@ type ApiResponse<T> = {
 // 1. 获取串口列表 (分页)
 export async function getSerialPorts(params: SerialPortPageParams) {
   const { currPage = 0, pageSize = 10, sorters, ...filter } = params;
-  console.log('getSerialPorts', params);
   const payload = {
     ...filter,
     sorters,

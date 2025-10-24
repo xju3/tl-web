@@ -7,15 +7,29 @@ import {
   ProTable,
 } from '@ant-design/pro-components';
 import { history, useIntl, useParams } from '@umijs/max';
-import { Button, Card, Descriptions, message, Popconfirm, Space } from 'antd';
+import {
+  Button,
+  Card,
+  Descriptions,
+  message,
+  Popconfirm,
+  Space,
+  Tabs,
+} from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
-import type { PartnerProductVo, PartnerVo } from './data.d';
+import type {
+  PartnerProductVo,
+  PartnerVo,
+} from '../../../../services/Tenant/Partner/data';
+
+const searchParams = new URLSearchParams(location.search);
+
 import {
   deletePartner,
   deletePartnerProduct,
   getPartner,
   queryPartnerProducts,
-} from './service';
+} from '../../../../services/Tenant/Partner/service';
 
 const PartnerView: React.FC = () => {
   const intl = useIntl();
@@ -102,28 +116,35 @@ const PartnerView: React.FC = () => {
     <PageContainer onBack={() => history.back()}>
       {data && (
         <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-          <Card
-            extra={
-              <>
-                <Button
-                  onClick={() => {
-                    history.push(`/tenant/partner/edit/${id}`);
-                  }}
-                >
-                  {intl.formatMessage({ id: 'common.actions.edit' })}
-                </Button>
-                <Popconfirm
-                  title={intl.formatMessage({ id: 'common.delete.confirm' })}
-                  onConfirm={handleRemove}
-                >
-                  <Button danger>
-                    {intl.formatMessage({ id: 'common.actions.delete' })}
-                  </Button>
-                </Popconfirm>
-              </>
-            }
-          >
-            <Descriptions title={data.name} bordered>
+          <Card>
+            <Descriptions
+              bordered
+              title={intl.formatMessage({ id: 'tenant.partner' })}
+              extra={
+                <>
+                  <Space>
+                    <Button
+                      type="primary"
+                      onClick={() => {
+                        history.push(`/tenant/partner/edit/${id}`);
+                      }}
+                    >
+                      {intl.formatMessage({ id: 'common.actions.edit' })}
+                    </Button>
+                    <Popconfirm
+                      title={intl.formatMessage({
+                        id: 'common.delete.confirm',
+                      })}
+                      onConfirm={handleRemove}
+                    >
+                      <Button danger>
+                        {intl.formatMessage({ id: 'common.actions.delete' })}
+                      </Button>
+                    </Popconfirm>
+                  </Space>
+                </>
+              }
+            >
               <Descriptions.Item
                 label={intl.formatMessage({ id: 'tenant.partner.code' })}
               >
@@ -147,30 +168,52 @@ const PartnerView: React.FC = () => {
             </Descriptions>
           </Card>
           <Card>
-            <ProTable<PartnerProductVo>
-              headerTitle={intl.formatMessage({
-                id: 'tenant.partner.product.list.title',
-              })}
-              actionRef={actionRef}
-              rowKey="id"
-              search={false}
-              toolBarRender={() => [
-                <Button
-                  type="primary"
-                  key="primary"
-                  onClick={() =>
-                    history.push(`/tenant/partner/${id}/product/add`)
+            <Tabs
+              activeKey={searchParams.get('tab') || 'peripherals'}
+              onChange={(key) => {
+                history.push({
+                  pathname: location.pathname,
+                  search: `?tab=${key}`,
+                });
+              }}
+            >
+              <Tabs.TabPane
+                tab={intl.formatMessage({
+                  id: 'tenant.partner.product.list.title',
+                })}
+                key="peripherals"
+              >
+                <ProTable<PartnerProductVo>
+                  actionRef={actionRef}
+                  rowKey="id"
+                  search={false}
+                  options={{
+                    density: true,
+                    fullScreen: true,
+                    reload: true,
+                    setting: true,
+                  }}
+                  toolbar={{
+                    title: (
+                      <Button
+                        type="primary"
+                        key="primary"
+                        onClick={() =>
+                          history.push(`/tenant/partner/${id}/product/add`)
+                        }
+                      >
+                        <PlusOutlined />
+                        {intl.formatMessage({ id: 'common.actions.add' })}
+                      </Button>
+                    ),
+                  }}
+                  request={(params) =>
+                    queryPartnerProducts({ ...params, partnerId: id })
                   }
-                >
-                  <PlusOutlined />{' '}
-                  {intl.formatMessage({ id: 'tenant.partner.product.add' })}
-                </Button>,
-              ]}
-              request={(params) =>
-                queryPartnerProducts({ ...params, partnerId: id })
-              }
-              columns={productColumns}
-            />
+                  columns={productColumns}
+                />
+              </Tabs.TabPane>
+            </Tabs>
           </Card>
         </Space>
       )}

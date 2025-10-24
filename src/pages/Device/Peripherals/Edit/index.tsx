@@ -7,8 +7,12 @@ import { history, useIntl, useParams } from '@umijs/max';
 import { Form } from 'antd';
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import type { Peripheral } from '../data.d';
-import { addPeripheral, getPeripheralById, updatePeripheral } from '../service';
+import type { Peripheral } from '../../../../services/Device/Peripheral/data';
+import {
+  addPeripheral,
+  getPeripheralById,
+  updatePeripheral,
+} from '../../../../services/Device/Peripheral/service';
 
 const PeripheralEditPage = () => {
   const { id } = useParams<{ id: string }>();

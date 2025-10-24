@@ -1,6 +1,7 @@
 import { request } from '@umijs/max';
-import type { PageParams } from '@/services/common.d';
-import type { Product, ProductItem } from './data.d';
+import type { PageParams } from '@/services/common';
+import type { Product, ProductItem } from './data';
+import type {PartnerVo} from "@/services/Tenant/Partner/data";
 
 // 1. 获取产品列表 (分页)
 export async function getProducts(params: PageParams & Partial<Product>) {
@@ -14,7 +15,7 @@ export async function getProducts(params: PageParams & Partial<Product>) {
     }));
   }
 
-  const res = await request(`/products/${currPage}/${pageSize}`, {
+  const res = await request<API.ResponseEntity<API.IPage<Product>>>(`/products/${currPage}/${pageSize}`, {
     method: 'PUT',
     data: payload,
   });
@@ -28,9 +29,10 @@ export async function getProducts(params: PageParams & Partial<Product>) {
 
 // 2. 获取单个产品详情
 export async function getProductById(id: string) {
-  return request(`/products/${id}`, {
+  var response = await request(`/products/${id}`, {
     method: 'GET',
   });
+  return response.body;
 }
 
 // 3. 新增产品

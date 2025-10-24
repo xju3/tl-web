@@ -8,12 +8,12 @@ import { history, useIntl, useParams } from '@umijs/max';
 import { Button, Card, message } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import type { Instruction } from '../data';
+import type { Instruction } from '../../../../services/Device/Peripheral/data';
 import {
   addInstruction,
   getInstructionById,
   updateInstruction,
-} from '../service';
+} from '../../../../services/Device/Peripheral/service';
 
 const InstructionEditPage = () => {
   const intl = useIntl();

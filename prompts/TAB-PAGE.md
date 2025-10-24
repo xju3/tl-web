@@ -75,7 +75,7 @@
 # 4. Tab内容约定
 
 ## 4.0. 视图页
-- 文件: `src/pages/{module_name}/{main_page_name}/View.tsx`
+- 文件: `src/pages/{module_name}/{main_page_name}/edit.tsx`
 
 ## 4.1 关联数据列表
   - 表头提供"新增"功能
@@ -92,7 +92,7 @@
 ## 4.2 编辑页
 
 - 编辑页不使用模态框, 而是单页面
-- 文件: `src/pages/{module_name}/{main_page_name}/{tab_name}/Edit.tsx`
+- 文件: `src/pages/{module_name}/{main_page_name}/{tab_name}/edit.tsx`
 - 根据 OpenAPI Schema `#/components/schemas/{tab_name}Vo` 构建录入页面
 - 提供保存与取消两个按钮
 - 保存后返回调用者页面, 可能是视图页,也可能是列表页
@@ -152,7 +152,7 @@
   - 定位当前业务对象哪个字段将用到此选择器
 
 ### 6.4.2 编辑页构建要求
-- 文件: `src/pages/{module_name}/{main_page_name}/{tab_name}/Edit.tsx`
+- 文件: `src/pages/{module_name}/{main_page_name}/{tab_name}/edit.tsx`
 - 根据 OpenAPI Schema `#/components/schemas/{tab_name}Vo` 构建录入页面
 - 提供保存与取消两个按钮
 - 保存后返回调用者页面, 可能是视图页,也可能是列表页

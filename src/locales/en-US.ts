@@ -11,6 +11,7 @@ import pages from './en-US/pages';
 import pwa from './en-US/pwa';
 import settingDrawer from './en-US/settingDrawer';
 import settings from './en-US/settings';
+import material from './en-US/tenant/material';
 import partner from './en-US/tenant/partner';
 import partnerProduct from './en-US/tenant/product';
 
@@ -23,6 +24,7 @@ export default {
   ...product,
   ...partner,
   ...partnerProduct,
+  ...material,
   'navBar.lang': 'Languages',
   'layout.user.link.help': 'Help',
   'layout.user.link.privacy': 'Privacy',

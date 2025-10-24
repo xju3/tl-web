@@ -3,7 +3,7 @@ export default {
   'common.actions.edit': 'Edit',
   'common.actions.view': 'View',
   'common.actions.delete': 'Delete',
-  'common.actions.add': 'Add',
+  'common.actions.add': 'Create',
   'common.actions.select': 'Select',
   'common.actions.add.success': 'Added successfully',
   'common.actions.edit.success': 'Edited successfully',

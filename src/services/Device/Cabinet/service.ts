@@ -1,12 +1,12 @@
 import { request } from '@umijs/max';
-import type { Peripheral } from '../Peripherals/data.d';
+import type { Peripheral } from '../Peripheral/data';
 import type {
   Cabinet,
   CabinetPageParams,
   CabinetPeripheral,
   CabinetPeripheralUsage,
   Cable,
-} from './data.d';
+} from './data';
 
 // 通用API响应结构 (成功时)
 type ApiResponse<T> = {

@@ -4,8 +4,11 @@ import { ProTable } from '@ant-design/pro-components';
 import { history, useIntl } from '@umijs/max';
 import { Button, message, Popconfirm } from 'antd';
 import { useRef } from 'react';
-import type { Instruction } from '../data';
-import { deleteInstruction, getInstructions } from '../service';
+import type { Instruction } from '../../../../services/Device/Peripheral/data';
+import {
+  deleteInstruction,
+  getInstructions,
+} from '../../../../services/Device/Peripheral/service';
 
 type InstructionsProps = {
   peripheralId: string;

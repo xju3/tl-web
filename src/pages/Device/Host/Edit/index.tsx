@@ -7,8 +7,12 @@ import { history, useIntl, useLocation, useParams } from '@umijs/max';
 import { Form } from 'antd';
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import type { Host } from '../data.d';
-import { addHost, getHostById, updateHost } from '../service';
+import type { Host } from '../../../../services/Device/Host/data';
+import {
+  addHost,
+  getHostById,
+  updateHost,
+} from '../../../../services/Device/Host/service';
 
 const HostEditPage = () => {
   const { id } = useParams<{ id: string }>();

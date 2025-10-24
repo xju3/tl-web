@@ -12,8 +12,12 @@ import type {
   CreatePartnerCommand,
   PartnerVo,
   UpdatePartnerCommand,
-} from './data.d';
-import { createPartner, getPartner, updatePartner } from './service';
+} from '../../../../services/Tenant/Partner/data';
+import {
+  createPartner,
+  getPartner,
+  updatePartner,
+} from '../../../../services/Tenant/Partner/service';
 
 const PartnerEdit: React.FC = () => {
   const intl = useIntl();

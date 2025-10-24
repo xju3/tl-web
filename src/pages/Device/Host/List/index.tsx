@@ -10,8 +10,8 @@ import { history, useIntl } from '@umijs/max';
 import { Button, Popconfirm } from 'antd';
 import type { SortOrder } from 'antd/es/table/interface';
 import { useCallback, useMemo, useRef } from 'react';
-import type { Host } from '../data.d';
-import { deleteHost, getHosts } from '../service';
+import type { Host } from '../../../../services/Device/Host/data';
+import { deleteHost, getHosts } from '../../../../services/Device/Host/service';
 
 const SESSION_KEY = 'hostListState';
 
@@ -68,40 +68,6 @@ const HostListPage = () => {
         key: 'ip',
         sorter: true,
       },
-      {
-        title: intl.formatMessage({ id: 'common.actions' }),
-        dataIndex: 'option',
-        valueType: 'option',
-        width: '180px',
-        render: (_, record) => [
-          <a
-            key="edit"
-            onClick={() =>
-              saveStateAndNavigate(`/device/hosts/edit/${record.id}`)
-            }
-          >
-            {intl.formatMessage({ id: 'common.actions.edit' })}
-          </a>,
-          <a
-            key="view"
-            onClick={() =>
-              saveStateAndNavigate(`/device/hosts/view/${record.id}`)
-            }
-          >
-            {intl.formatMessage({ id: 'common.actions.view' })}
-          </a>,
-          <Popconfirm
-            key="delete"
-            title={intl.formatMessage({ id: 'device.host.delete.confirm' })}
-            onConfirm={async () => {
-              await deleteHost(record.id);
-              actionRef.current?.reload();
-            }}
-          >
-            <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
-          </Popconfirm>,
-        ],
-      },
     ],
     [intl, saveStateAndNavigate],
   );
@@ -116,9 +82,7 @@ const HostListPage = () => {
           title: intl.formatMessage({ id: 'common.sorter.tooltip' }),
         }}
         rowKey="id"
-        search={{
-          labelWidth: 120,
-        }}
+        search={{}}
         form={{
           initialValues: initialValues,
         }}
@@ -130,7 +94,7 @@ const HostListPage = () => {
               history.push('/device/hosts/add');
             }}
           >
-            <PlusOutlined /> {intl.formatMessage({ id: 'device.host.add' })}
+            <PlusOutlined /> {intl.formatMessage({ id: 'common.actions.add' })}
           </Button>,
         ]}
         request={useCallback(

@@ -12,4 +12,5 @@ export default {
   'tenant.partner.filter.isTenant': '是租户',
   'tenant.partner.filter.address': '地址',
   'tenant.partner.list.title': '合作伙伴列表',
+  'tenant.partner': '合作伙伴',
 };

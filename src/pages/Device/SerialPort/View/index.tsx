@@ -1,9 +1,12 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { useIntl, useParams } from '@umijs/max';
-import { Descriptions } from 'antd';
+import { history, useIntl, useParams } from '@umijs/max';
+import { Button, Card, Descriptions, Popconfirm, Space, Tabs } from 'antd';
 import { useEffect, useState } from 'react';
-import type { SerialPort } from '../data.d';
-import { getSerialPortById } from '../service';
+import type { SerialPort } from '../../../../services/Device/SerialPort/data';
+import {
+  deleteSerialPort,
+  getSerialPortById,
+} from '../../../../services/Device/SerialPort/service';
 
 const SerialPortViewPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -24,7 +27,38 @@ const SerialPortViewPage = () => {
       title={intl.formatMessage({ id: 'device.serialport.view' })}
     >
       {serialPort && (
-        <Descriptions bordered>
+        <Descriptions
+          bordered
+          column={2}
+          title={intl.formatMessage({ id: 'device.host.basic-info.title' })}
+          extra={
+            <Space>
+              <Button
+                type="primary"
+                onClick={() => {
+                  history.push(`/device/serial-port/edit/${id}`);
+                }}
+              >
+                {intl.formatMessage({ id: 'common.actions.edit' })}
+              </Button>
+              <Popconfirm
+                title={intl.formatMessage({
+                  id: 'device.cabinet.delete.confirm',
+                })}
+                onConfirm={async () => {
+                  if (id) {
+                    await deleteSerialPort(id);
+                    history.push('/device/cabinets');
+                  }
+                }}
+              >
+                <Button type="primary" danger>
+                  {intl.formatMessage({ id: 'common.actions.delete' })}
+                </Button>
+              </Popconfirm>
+            </Space>
+          }
+        >
           <Descriptions.Item
             label={intl.formatMessage({ id: 'device.serialport.name' })}
           >

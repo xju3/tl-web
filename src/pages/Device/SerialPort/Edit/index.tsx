@@ -8,8 +8,12 @@ import { history, useIntl, useParams } from '@umijs/max';
 import { Form } from 'antd';
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import type { SerialPort } from '../data.d';
-import { addSerialPort, getSerialPortById, updateSerialPort } from '../service';
+import type { SerialPort } from '../../../../services/Device/SerialPort/data';
+import {
+  addSerialPort,
+  getSerialPortById,
+  updateSerialPort,
+} from '../../../../services/Device/SerialPort/service';
 
 const SerialPortEditPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -19,6 +23,7 @@ const SerialPortEditPage = () => {
   useEffect(() => {
     if (id) {
       getSerialPortById(id).then((res) => {
+        console.log(res);
         form.setFieldsValue(res);
       });
     }

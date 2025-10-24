@@ -3,7 +3,7 @@ import { history, useParams } from '@umijs/max';
 import { Button } from 'antd';
 import { useState } from 'react';
 import SerialPortSelectModal from '../../../../components/Selectors/SerialPortSelectModal';
-import { updateHostPort } from '../service';
+import { updateHostPort } from '../../../../services/Device/Host/service';
 
 const HostPortEditPage = () => {
   const { hostId, portId } = useParams<{ hostId: string; portId: string }>();

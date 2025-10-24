@@ -7,11 +7,14 @@ import type {
 } from '@ant-design/pro-components';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { history, useIntl } from '@umijs/max';
-import { Button, Popconfirm } from 'antd';
+import { Button, Popconfirm, Space } from 'antd';
 import type { SortOrder } from 'antd/es/table/interface';
 import { useCallback, useMemo, useRef } from 'react';
-import type { Cabinet } from '../data.d';
-import { deleteCabinet, getCabinets } from '../service';
+import type { Cabinet } from '../../../../services/Device/Cabinet/data';
+import {
+  deleteCabinet,
+  getCabinets,
+} from '../../../../services/Device/Cabinet/service';
 
 const SESSION_KEY = 'cabinetListState';
 
@@ -104,7 +107,7 @@ const CabinetListPage = () => {
           </a>,
           <Popconfirm
             key="delete"
-            title={intl.formatMessage({ id: 'device.cabinet.delete.confirm' })}
+            title={intl.formatMessage({ id: 'common.delete.confirm' })}
             onConfirm={async () => {
               await deleteCabinet(record.id);
               actionRef.current?.reload();
@@ -123,30 +126,32 @@ const CabinetListPage = () => {
   return (
     <PageContainer>
       <ProTable<Cabinet>
-        headerTitle={intl.formatMessage({ id: 'device.cabinet.list.title' })}
         actionRef={actionRef}
         formRef={formRef}
         showSorterTooltip={{
           title: intl.formatMessage({ id: 'common.sorter.tooltip' }),
         }}
         rowKey="id"
-        search={{
-          labelWidth: 120,
-        }}
+        search={{}}
         form={{
           initialValues: initialValues,
         }}
-        toolBarRender={() => [
-          <Button
-            type="primary"
-            key="primary"
-            onClick={() => {
-              history.push('/device/cabinets/add');
-            }}
-          >
-            <PlusOutlined /> {intl.formatMessage({ id: 'device.cabinet.add' })}
-          </Button>,
-        ]}
+        toolbar={{
+          title: (
+            <Space>
+              <Button
+                type="primary"
+                key="primary"
+                onClick={() => {
+                  history.push('/device/cabinets/add');
+                }}
+              >
+                <PlusOutlined />{' '}
+                {intl.formatMessage({ id: 'common.actions.add' })}
+              </Button>
+            </Space>
+          ),
+        }}
         request={useCallback(
           async (params: ParamsType, sort: Record<string, SortOrder>) => {
             const { current, pageSize, ...rest } = params;

@@ -11,6 +11,7 @@ import pages from './zh-CN/pages';
 import pwa from './zh-CN/pwa';
 import settingDrawer from './zh-CN/settingDrawer';
 import settings from './zh-CN/settings';
+import material from './zh-CN/tenant/material';
 import partner from './zh-CN/tenant/partner';
 import partnerProduct from './zh-CN/tenant/product';
 
@@ -23,6 +24,7 @@ export default {
   ...product,
   ...partner,
   ...partnerProduct,
+  ...material,
   'navBar.lang': '语言',
   'layout.user.link.help': '帮助',
   'layout.user.link.privacy': '隐私',

@@ -2,10 +2,16 @@ import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { FormattedMessage, history, useIntl } from '@umijs/max';
-import { Button, message, Popconfirm } from 'antd';
+import { Button, message, Popconfirm, Space } from 'antd';
 import React, { useRef } from 'react';
-import type { PartnerFilter, PartnerVo } from './data';
-import { deletePartner, queryPartners } from './service';
+import type {
+  PartnerFilter,
+  PartnerVo,
+} from '../../../../services/Tenant/Partner/data';
+import {
+  deletePartner,
+  queryPartners,
+} from '../../../../services/Tenant/Partner/service';
 
 const PartnerList: React.FC = () => {
   const actionRef = useRef<ActionType | undefined>(undefined);
@@ -92,20 +98,24 @@ const PartnerList: React.FC = () => {
         headerTitle={intl.formatMessage({ id: 'tenant.partner.list.title' })}
         actionRef={actionRef}
         rowKey="id"
-        search={{
-          labelWidth: 120,
+        search={{}}
+        toolbar={{
+          title: (
+            <Space>
+              {' '}
+              <Button
+                type="primary"
+                key="primary"
+                onClick={() => {
+                  history.push('/tenant/partner/edit');
+                }}
+              >
+                <PlusOutlined /> <FormattedMessage id="common.actions.add" />
+              </Button>
+              ,
+            </Space>
+          ),
         }}
-        toolBarRender={() => [
-          <Button
-            type="primary"
-            key="primary"
-            onClick={() => {
-              history.push('/tenant/partner/edit');
-            }}
-          >
-            <PlusOutlined /> <FormattedMessage id="common.actions.add" />
-          </Button>,
-        ]}
         request={async (params, sort) => {
           const { current, pageSize, ...filter } = params;
           const sorters = Object.entries(sort).map(([key, value]) => ({

@@ -7,8 +7,11 @@ import { history, useIntl, useParams } from '@umijs/max';
 import { Button, Card, Descriptions, Form, Space } from 'antd';
 import { useEffect, useState } from 'react';
 import CabinetSelectModal from '@/components/Selectors/CabinetSelectModal';
-import type { ProductItem } from '../data.d';
-import { addProductItem, updateProductItem } from '../service';
+import type { ProductItem } from '../../../../services/Device/Product/data';
+import {
+  addProductItem,
+  updateProductItem,
+} from '../../../../services/Device/Product/service';
 
 const ProductItemEditPage = () => {
   const { productId, itemId } = useParams<{

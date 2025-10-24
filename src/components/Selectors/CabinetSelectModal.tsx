@@ -3,8 +3,8 @@ import { ProTable } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import { Modal } from 'antd';
 import { useRef } from 'react';
-import type { ProductItem } from '../../pages/Device/Product/data.d';
-import { getCabinets } from '../../pages/Device/Product/service';
+import type { ProductItem } from '../../services/Device/Product/data';
+import { getCabinets } from '../../services/Device/Product/service';
 
 export type CabinetSelectModalProps = {
   open: boolean;

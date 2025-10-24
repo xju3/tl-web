@@ -2,8 +2,8 @@ import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Modal } from 'antd';
 import { useRef } from 'react';
-import type { Peripheral } from '../../pages/Device/Peripherals/data';
-import { getPeripherals } from '../../pages/Device/Peripherals/service';
+import type { Peripheral } from '../../services/Device/Peripheral/data';
+import { getPeripherals } from '../../services/Device/Peripheral/service';
 
 export type PeripheralSelectModalProps = {
   open: boolean;

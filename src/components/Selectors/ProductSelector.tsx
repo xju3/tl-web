@@ -2,8 +2,8 @@ import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import { Modal } from 'antd';
-import type { Product } from '@/pages/Device/Product/data.d';
-import { getProducts } from '@/pages/Device/Product/service';
+import type { Product } from '@/services/Device/Product/data';
+import { getProducts } from '@/services/Device/Product/service';
 
 export type ProductSelectorProps = {
   open: boolean;

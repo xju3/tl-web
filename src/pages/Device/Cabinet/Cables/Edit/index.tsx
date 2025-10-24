@@ -11,14 +11,20 @@ import { Button, Card, message } from 'antd';
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import HostSelectModal from '../../../../../components/Selectors/HostSelectModal';
-import type { Host, HostSerialPort } from '../../../Host/data.d';
-import { getHostPorts, getHosts } from '../../../Host/service';
-import type { Cable } from '../../data.d';
+import type { Cable } from '../../../../../services/Device/Cabinet/data';
 import {
   addCabinetCables,
   getCabinetCableById,
   updateCabinetCables,
-} from '../../service';
+} from '../../../../../services/Device/Cabinet/service';
+import type {
+  Host,
+  HostSerialPort,
+} from '../../../../../services/Device/Host/data';
+import {
+  getHostPorts,
+  getHosts,
+} from '../../../../../services/Device/Host/service';
 
 const CableEditPage: React.FC = () => {
   const intl = useIntl();

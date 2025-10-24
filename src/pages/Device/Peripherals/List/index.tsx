@@ -4,8 +4,11 @@ import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { history, useIntl } from '@umijs/max';
 import { Button, Popconfirm } from 'antd';
 import { useRef } from 'react';
-import type { Peripheral } from '../data.d';
-import { deletePeripheral, getPeripherals } from '../service';
+import type { Peripheral } from '../../../../services/Device/Peripheral/data';
+import {
+  deletePeripheral,
+  getPeripherals,
+} from '../../../../services/Device/Peripheral/service';
 
 const PeripheralListPage = () => {
   const actionRef = useRef<ActionType>(undefined);
@@ -67,9 +70,7 @@ const PeripheralListPage = () => {
         headerTitle={intl.formatMessage({ id: 'device.peripheral.list.title' })}
         actionRef={actionRef}
         rowKey="id"
-        search={{
-          labelWidth: 120,
-        }}
+        search={{}}
         toolBarRender={() => [
           <Button
             type="primary"
@@ -78,8 +79,7 @@ const PeripheralListPage = () => {
               history.push('/device/peripherals/add');
             }}
           >
-            <PlusOutlined />{' '}
-            {intl.formatMessage({ id: 'device.peripheral.add' })}
+            <PlusOutlined /> {intl.formatMessage({ id: 'common.actions.add' })}
           </Button>,
         ]}
         request={async (params) => {

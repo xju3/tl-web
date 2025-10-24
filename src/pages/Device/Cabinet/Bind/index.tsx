@@ -11,14 +11,14 @@ import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import CabinetCableSelector from '../../../../components/Selectors/CabinetCableSelector';
 import PeripheralSelectModal from '../../../../components/Selectors/PeripheralSelectModal';
-import type { Peripheral } from '../../Peripherals/data';
-import type { Cable } from '../data';
+import type { Cable } from '../../../../services/Device/Cabinet/data';
 import {
   addCabinetPeripheral,
   getCabinetById,
   getCabinetPeripheralById,
   updateCabinetPeripheral,
-} from '../service';
+} from '../../../../services/Device/Cabinet/service';
+import type { Peripheral } from '../../../../services/Device/Peripheral/data';
 
 const CabinetPeripheralBindPage = () => {
   const intl = useIntl();

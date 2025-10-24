@@ -1,5 +1,5 @@
 export default {
-  'device.cabinet.list.title': 'Cabinet List',
+  'device.cabinet.list.title': 'Cabinets',
   'device.cabinet.add': 'Add Cabinet',
   'device.cabinet.edit': 'Edit Cabinet',
   'device.cabinet.view': 'View Cabinet',
@@ -9,8 +9,9 @@ export default {
   'device.cabinet.view.title': 'Cabinet Details',
   'device.cabinet.delete.confirm':
     'Are you sure you want to delete this cabinet?',
-  'device.cabinet.view.bindPeripheral': 'Bind Peripheral',
-  'device.cabinet.cable.list.title': 'Cable List',
+  'device.cabinet.bind.peripheral': 'Bind a peripheral',
+  'device.cabinet.cable.list.title': 'Cables',
+  'device.cabinet.create.cable': 'Create a cable',
   'device.cabinet.cable.add.title': 'Add Cable',
   'device.cabinet.cable.edit.title': 'Edit Cable',
   'device.cabinet.cable.code': 'Cable Code',

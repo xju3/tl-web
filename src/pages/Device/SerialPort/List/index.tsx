@@ -4,8 +4,11 @@ import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { history, useIntl } from '@umijs/max';
 import { Button, Popconfirm } from 'antd';
 import { useRef } from 'react';
-import type { SerialPort } from '../data.d';
-import { deleteSerialPort, getSerialPorts } from '../service';
+import type { SerialPort } from '../../../../services/Device/SerialPort/data';
+import {
+  deleteSerialPort,
+  getSerialPorts,
+} from '../../../../services/Device/SerialPort/service';
 
 const SerialPortListPage = () => {
   const actionRef = useRef<ActionType>(null);
@@ -115,7 +118,7 @@ const SerialPortListPage = () => {
         actionRef={actionRef}
         rowKey="id"
         search={{
-          labelWidth: 120,
+          labelWidth: 40,
         }}
         toolBarRender={() => [
           <Button

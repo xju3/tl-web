@@ -11,5 +11,6 @@ export default {
   'tenant.partner.filter.code': 'Code',
   'tenant.partner.filter.isTenant': 'Is Tenant',
   'tenant.partner.filter.address': 'Address',
-  'tenant.partner.list.title': 'Partner List',
+  'tenant.partner.list': 'Partners',
+  'tenant.partner': 'Partner',
 };

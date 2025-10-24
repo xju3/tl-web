@@ -7,8 +7,12 @@ import { history, useIntl, useParams } from '@umijs/max';
 import { Button, Form } from 'antd';
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import type { Cabinet } from '../data.d';
-import { addCabinet, getCabinetById, updateCabinet } from '../service';
+import type { Cabinet } from '../../../../services/Device/Cabinet/data';
+import {
+  addCabinet,
+  getCabinetById,
+  updateCabinet,
+} from '../../../../services/Device/Cabinet/service';
 
 const CabinetEditPage = () => {
   const { id, parentId } = useParams<{ id: string; parentId: string }>();

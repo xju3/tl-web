@@ -2,8 +2,8 @@ import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Modal } from 'antd';
 import { useRef } from 'react';
-import type { Cable } from '../../pages/Device/Cabinet/data';
-import { getCabinetCables } from '../../pages/Device/Cabinet/service';
+import type { Cable } from '../../services/Device/Cabinet/data';
+import { getCabinetCables } from '../../services/Device/Cabinet/service';
 
 export type CabinetCableSelectorProps = {
   open: boolean;

@@ -5,14 +5,17 @@ import { history, useIntl, useLocation, useParams } from '@umijs/max';
 import { Button, Card, Descriptions, Popconfirm, Space, Tabs } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import SerialPortSelectModal from '../../../../components/Selectors/SerialPortSelectModal';
-import type { Host, HostSerialPort } from '../data.d';
+import type {
+  Host,
+  HostSerialPort,
+} from '../../../../services/Device/Host/data';
 import {
   addHostPort,
   deleteHost,
   deleteHostPort,
   getHostById,
   getHostPorts,
-} from '../service';
+} from '../../../../services/Device/Host/service';
 
 const HostViewPage = () => {
   const { id } = useParams<{ id: string }>();
