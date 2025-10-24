@@ -49,6 +49,7 @@ export default {
   'menu.device.serial-port-add': '新增串口',
   'menu.device.serial-port-edit': '编辑串口',
   'menu.device.serial-port-view': '查看串口',
+
   'menu.device.serial-ports': '串口',
   'menu.device.view': '查看设备',
   'menu.device.view-host': '查看主机',
@@ -88,6 +89,8 @@ export default {
   'menu.list.table-list': '查询表格',
   'menu.login': '登录',
   'menu.more-blocks': '更多区块',
+  'menu.tenant.partner-product-create': '创建合作伙伴产品',
+  'menu.tenant.partner-product-edit': '编辑合作伙伴产品',
   'menu.profile': '详情页',
   'menu.profile.advanced': '高级详情页',
   'menu.profile.basic': '基础详情页',

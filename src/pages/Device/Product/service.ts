@@ -20,9 +20,9 @@ export async function getProducts(params: PageParams & Partial<Product>) {
   });
 
   return {
-    data: res.records || [],
+    data: res.body.records || [],
     success: true,
-    total: res.total || 0,
+    total: res.body.total || 0,
   };
 }
 

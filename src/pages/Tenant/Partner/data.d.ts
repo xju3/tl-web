@@ -10,6 +10,53 @@ export type PartnerVo = {
   tenant: boolean;
 };
 
+export type PartnerProductVo = {
+  id: string;
+  partnerId: string;
+  productId: string;
+  code: string;
+  startTime: string;
+  endTime: string;
+  locationId: string;
+  ddate: string;
+};
+
+export type PartnerProductFilter = {
+  sorters?: {
+    fieldName?: string;
+    direction?: number;
+  }[];
+  partnerId?: string;
+  productId?: string;
+  code?: string;
+  startTime?: string;
+  endTime?: string;
+  locationId?: string;
+  ddate?: string;
+};
+
+export type CreatePartnerProductCommand = {
+  id: string;
+  partnerId: string;
+  productId: string;
+  code: string;
+  startTime: string;
+  endTime: string;
+  locationId: string;
+  ddate: string;
+};
+
+export type UpdatePartnerProductCommand = {
+  id: string;
+  partnerId: string;
+  productId: string;
+  code: string;
+  startTime: string;
+  endTime: string;
+  locationId: string;
+  ddate: string;
+};
+
 export type PartnerFilter = {
   sorters?: {
     fieldName?: string;

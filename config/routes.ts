@@ -45,6 +45,7 @@ export default [
     name: 'admin',
     icon: 'crown',
     access: 'canAdmin',
+    hideInMenu: true,
     routes: [
       {
         path: '/admin',
@@ -68,6 +69,7 @@ export default [
     icon: 'table',
     path: '/list',
     component: './table-list',
+    hideInMenu: true,
   },
   {
     path: '/device',
@@ -223,24 +225,6 @@ export default [
         hideInMenu: true,
       },
       {
-        name: 'products',
-        icon: 'shopping',
-        path: '/device/product',
-        component: './Device/Product',
-      },
-      {
-        name: 'product.add',
-        path: '/device/product/add',
-        component: './Device/Product/Edit',
-        hideInMenu: true,
-      },
-      {
-        name: 'product.edit',
-        path: '/device/product/edit/:id',
-        component: './Device/Product/Edit',
-        hideInMenu: true,
-      },
-      {
         path: '/device/serial-port',
         name: 'serial-port',
         icon: 'smile',
@@ -258,6 +242,24 @@ export default [
         name: 'serial-port-view',
         icon: 'smile',
         component: './Device/SerialPort/View',
+        hideInMenu: true,
+      },
+      {
+        name: 'products',
+        icon: 'shopping',
+        path: '/device/product',
+        component: './Device/Product',
+      },
+      {
+        name: 'product.add',
+        path: '/device/product/add',
+        component: './Device/Product/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'product.edit',
+        path: '/device/product/edit/:id',
+        component: './Device/Product/Edit',
         hideInMenu: true,
       },
     ],
@@ -293,6 +295,18 @@ export default [
         path: '/tenant/partner/view/:id',
         name: 'partner-view',
         component: './Tenant/Partner/View',
+        hideInMenu: true,
+      },
+      {
+        path: '/tenant/partner/:partnerId/product/add',
+        name: 'partner-product-create',
+        component: './Tenant/Partner/Product/Edit',
+        hideInMenu: true,
+      },
+      {
+        path: '/tenant/partner/:partnerId/product/edit/:id',
+        name: 'partner-product-edit',
+        component: './Tenant/Partner/Product/Edit',
         hideInMenu: true,
       },
     ],
