@@ -318,6 +318,35 @@ export default [
     ],
   },
   {
+    path: '/org',
+    name: 'org',
+    icon: 'appstore',
+    routes: [
+      {
+        path: '/org',
+        redirect: '/org/company',
+      },
+      {
+        name: 'company',
+        path: '/org/company',
+        component: './Org/Company/List',
+      },
+      {
+        name: 'company.edit',
+        path: '/org/company/edit/:id',
+        component: './Org/Company/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'company.view',
+        path: '/org/company/view/:id',
+        component: './Org/Company/View',
+        hideInMenu: true,
+      },
+    ],
+  },
+
+  {
     path: '/',
     redirect: '/welcome',
   },

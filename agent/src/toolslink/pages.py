@@ -174,7 +174,6 @@ class FullModuleGenerator:
 import {{ request }} from '@umijs/max';
 import type {{ {page_name_cap}Vo, {page_name_cap}Filter, Create{page_name_cap}Command, Update{page_name_cap}Command }} from './data.d';
 
-const port = '';
 const url = `{page_name_lower}s`;
 
 export async function get{page_name_cap}s(
@@ -182,7 +181,7 @@ export async function get{page_name_cap}s(
   body: {page_name_cap}Filter,
   options?: {{ [key: string]: any }},
 ) {{
-  return request<API.ResponseEntity<API.IPage<{page_name_cap}Vo>>>(`${{url}}/${{params.current}}/${{params.pageSize}}`, {{
+  return request<API.ResponseEntity<API.IPage<{page_name_cap}Vo>>>(`/${{url}}/${{params.current}}/${{params.pageSize}}`, {{
     method: 'PUT',
     headers: {{
       'Content-Type': 'application/json',
@@ -193,14 +192,14 @@ export async function get{page_name_cap}s(
 }}
 
 export async function get{page_name_cap}ById(id: string, options?: {{ [key: string]: any }}) {{
-  return request<API.ResponseEntity<{page_name_cap}Vo>>(`${{url}}/${{id}}`, {{
+  return request<API.ResponseEntity<{page_name_cap}Vo>>(`/${{url}}/${{id}}`, {{
     method: 'GET',
     ...(options || {{}}),
   }});
 }}
 
 export async function add{page_name_cap}(body: Create{page_name_cap}Command, options?: {{ [key: string]: any }}) {{
-  return request<API.ResponseEntity<string>>(`${{url}}`, {{
+  return request<API.ResponseEntity<string>>(`/${{url}}`, {{
     method: 'POST',
     headers: {{
       'Content-Type': 'application/json',
@@ -211,7 +210,7 @@ export async function add{page_name_cap}(body: Create{page_name_cap}Command, opt
 }}
 
 export async function update{page_name_cap}(body: Update{page_name_cap}Command, options?: {{ [key: string]: any }}) {{
-  return request<API.ResponseEntity<null>>(`${{url}}`, {{
+  return request<API.ResponseEntity<null>>(`/${{url}}`, {{
     method: 'PUT',
     headers: {{
       'Content-Type': 'application/json',
@@ -222,7 +221,7 @@ export async function update{page_name_cap}(body: Update{page_name_cap}Command, 
 }}
 
 export async function delete{page_name_cap}(id: string, options?: {{ [key: string]: any }}) {{
-  return request<API.ResponseEntity<null>>(`${{url}}/${{id}}`, {{
+  return request<API.ResponseEntity<null>>(`/${{url}}/${{id}}`, {{
     method: 'DELETE',
     ...(options || {{}}),
   }});
@@ -231,11 +230,11 @@ export async function delete{page_name_cap}(id: string, options?: {{ [key: strin
 
     return [
       {
-        "path": f"src/services/{module_name}/data.d.ts",
+        "path": f"src/services/{module_name.capitalize()}/{page_name.capitalize()}/data.d.ts",
         "content": data_ts_content
       },
       {
-        "path": f"src/services/{module_name}/service.ts",
+        "path": f"src/services/{module_name.capitalize()}/{page_name.capitalize()}/service.ts",
         "content": service_ts_content
       }
     ]
@@ -422,8 +421,8 @@ export async function delete{page_name_cap}(id: string, options?: {{ [key: strin
     import {{{{ FormattedMessage, history, useIntl }}}} from '@umijs/max';
     import {{{{ Button, message, Modal }}}} from 'antd';
     import React, {{{{ useRef }}}} from 'react';
-    import type {{{{ {page_name_cap}Vo, {page_name_cap}Filter }}}} from '@/services/{module_name_cap}/data.d';
-    import {{{{ get{page_name_cap}s, delete{page_name_cap} }}}} from '@/services/{module_name_cap}/service';
+    import type {{{{ {page_name_cap}Vo, {page_name_cap}Filter }}}} from '@/services/{module_name_cap}/{page_name_cap}/data.d';
+    import {{{{ get{page_name_cap}s, delete{page_name_cap} }}}} from '@/services/{module_name_cap}/{page_name_cap}/service';
 
     const {page_name_cap}List: React.FC = () => {{{{
       const actionRef = useRef<ActionType>(undefined);
@@ -431,12 +430,12 @@ export async function delete{page_name_cap}(id: string, options?: {{ [key: strin
 
       const handleDelete = async (id: string) => {{{{
         Modal.confirm({{{{
-          title: intl.formatMessage({{{{ id: 'common.delete.confirm.title' }}}}),
-          content: intl.formatMessage({{{{ id: 'common.delete.confirm.content' }}}}),
+          title: intl.formatMessage({{{{ id: 'common.actions.delete' }}}}),
+          content: intl.formatMessage({{{{ id: 'common.delete.confirm' }}}}),
           onOk: async () => {{{{
             const res = await delete{page_name_cap}(id);
             if (res.statusCode === 'OK') {{{{
-              message.success(intl.formatMessage({{{{ id: 'common.delete.success' }}}}));
+              message.success(intl.formatMessage({{{{ id: 'common.actions.delete.success' }}}}));
               actionRef.current?.reload();
             }}}} else {{{{
               message.error(res.body.message);
@@ -448,18 +447,18 @@ export async function delete{page_name_cap}(id: string, options?: {{ [key: strin
       const columns: ProColumns<{page_name_cap}Vo>[] = [
     {columns_str}
         {{{{
-          title: <FormattedMessage id="common.columns.action" />,
+          title: <FormattedMessage id="common.actions" />,
           dataIndex: 'option',
           valueType: 'option',
           render: (_, record) => [
             <a key="edit" onClick={{{{() => history.push(`/{module_name_lower}/{page_name_lower}/edit/${{{{record.id}}}}`)}}}}>
-              <FormattedMessage id="common.edit" />
+              <FormattedMessage id="common.actions.edit" />
             </a>,
             <a key="view" onClick={{{{() => history.push(`/{module_name_lower}/{page_name_lower}/view/${{{{record.id}}}}`)}}}}>
-              <FormattedMessage id="common.view" />
+              <FormattedMessage id="common.actions.view" />
             </a>,
             <a key="delete" onClick={{{{() => handleDelete(record.id!)}}}}>
-              <FormattedMessage id="common.delete" />
+              <FormattedMessage id="common.actions.delete" />
             </a>,
           ],
         }}}},
@@ -475,7 +474,7 @@ export async function delete{page_name_cap}(id: string, options?: {{ [key: strin
             search={{{{{{{{ labelWidth: 120 }}}}}}}}
             toolBarRender={{{{() => [
               <Button type="primary" key="primary" onClick={{{{() => history.push('/{module_name_lower}/{page_name_lower}/edit')}}}}>
-                <PlusOutlined /> <FormattedMessage id="common.add" />
+                <PlusOutlined /> <FormattedMessage id="common.actions.add" />
               </Button>,
             ]}}}}
             request={{{{async (params, sorter, filter) => {{{{
@@ -525,8 +524,8 @@ export async function delete{page_name_cap}(id: string, options?: {{ [key: strin
     import {{{{ history, useIntl, useParams }}}} from '@umijs/max';
     import {{{{ Form, message }}}} from 'antd';
     import React, {{{{ useEffect }}}} from 'react';
-    import type {{{{ Create{page_name_cap}Command, Update{page_name_cap}Command }}}} from '@/services/{module_name_cap}/data.d';
-    import {{{{ add{page_name_cap}, get{page_name_cap}ById, update{page_name_cap} }}}} from '@/services/{module_name_cap}/service';
+    import type {{{{ Create{page_name_cap}Command, Update{page_name_cap}Command }}}} from '@/services/{module_name_cap}/{page_name_cap}/data.d';
+    import {{{{ add{page_name_cap}, get{page_name_cap}ById, update{page_name_cap} }}}} from '@/services/{module_name_cap}/{page_name_cap}/service';
 
     const {page_name_cap}Edit: React.FC = () => {{{{
       const {{{{ id }}}} = useParams<{{{{ id: string }}}}>();
@@ -547,10 +546,10 @@ export async function delete{page_name_cap}(id: string, options?: {{ [key: strin
         try {{{{
           if (id) {{{{
             await update{page_name_cap}({{{{ ...values, id }}}} as Update{page_name_cap}Command);
-            message.success(intl.formatMessage({{{{ id: 'common.update.success' }}}}));
+            message.success(intl.formatMessage({{{{ id: 'common.actions.edit.success' }}}}));
           }}}} else {{{{
             await add{page_name_cap}(values as Create{page_name_cap}Command);
-            message.success(intl.formatMessage({{{{ id: 'common.add.success' }}}}));
+            message.success(intl.formatMessage({{{{ id: 'common.actions.save.success' }}}}));
           }}}}
           history.push("/{module_name_cap}/{page_name_cap}");
         }}}} catch (error) {{{{
@@ -593,8 +592,8 @@ export async function delete{page_name_cap}(id: string, options?: {{ [key: strin
     import {{{{ history, useIntl, useParams }}}} from '@umijs/max';
     import {{{{ Button, Descriptions, message, Modal, Space }}}} from 'antd';
     import React, {{{{ useEffect, useState }}}} from 'react';
-    import type {{{{ {page_name_cap}Vo }}}} from '@/services/{module_name_cap}/data.d';
-    import {{{{ get{page_name_cap}ById, delete{page_name_cap} }}}} from '@/services/{module_name_cap}/service';
+    import type {{{{ {page_name_cap}Vo }}}} from '@/services/{module_name_cap}/{page_name_cap}/data.d';
+    import {{{{ get{page_name_cap}ById, delete{page_name_cap} }}}} from '@/services/{module_name_cap}/{page_name_cap}/service';
 
     const {page_name_cap}View: React.FC = () => {{{{
       const {{{{ id }}}} = useParams<{{{{ id: string }}}}>();
