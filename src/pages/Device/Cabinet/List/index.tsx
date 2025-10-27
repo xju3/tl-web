@@ -10,11 +10,8 @@ import { history, useIntl } from '@umijs/max';
 import { Button, Popconfirm, Space } from 'antd';
 import type { SortOrder } from 'antd/es/table/interface';
 import { useCallback, useMemo, useRef } from 'react';
-import type { Cabinet } from '../../../../services/Device/Cabinet/data';
-import {
-  deleteCabinet,
-  getCabinets,
-} from '../../../../services/Device/Cabinet/service';
+import type { Cabinet } from '@/services/Device/Cabinet/data';
+import { deleteCabinet, getCabinets } from '@/services/Device/Cabinet/service';
 
 const SESSION_KEY = 'cabinetListState';
 

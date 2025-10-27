@@ -85,7 +85,7 @@ const HostViewPage = () => {
   ];
 
   return (
-    <PageContainer onBack={() => history.back()}>
+    <PageContainer onBack={() => history.push(`/device/hosts`)}>
       {host && (
         <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
           <Card>

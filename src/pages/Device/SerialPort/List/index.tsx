@@ -35,47 +35,24 @@ const SerialPortListPage = () => {
       dataIndex: 'baudRate',
       width: '120px',
       sorter: true,
-      valueEnum: {
-        9600: { text: '9600' },
-        19200: { text: '19200' },
-        38400: { text: '38400' },
-        57600: { text: '57600' },
-        115200: { text: '115200' },
-      },
     },
     {
       title: intl.formatMessage({ id: 'device.serialport.dataBits' }),
       dataIndex: 'dataBits',
       width: '120px',
       sorter: true,
-      valueEnum: {
-        5: { text: '5' },
-        6: { text: '6' },
-        7: { text: '7' },
-        8: { text: '8' },
-      },
     },
     {
       title: intl.formatMessage({ id: 'device.serialport.stopBits' }),
       dataIndex: 'stopBits',
       width: '120px',
       sorter: true,
-      valueEnum: {
-        1: { text: '1' },
-        1.5: { text: '1.5' },
-        2: { text: '2' },
-      },
     },
     {
       title: intl.formatMessage({ id: 'device.serialport.parity' }),
       dataIndex: 'parity',
       width: '120px',
       sorter: true,
-      valueEnum: {
-        0: { text: 'None' },
-        1: { text: 'Odd' },
-        2: { text: 'Even' },
-      },
     },
     {
       title: intl.formatMessage({ id: 'common.actions' }),

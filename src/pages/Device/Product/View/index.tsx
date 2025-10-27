@@ -4,16 +4,13 @@ import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { history, useIntl, useParams } from '@umijs/max';
 import { Button, Card, Descriptions, message, Popconfirm, Space } from 'antd';
 import { useEffect, useRef, useState } from 'react';
-import type {
-  Product,
-  ProductItem,
-} from '../../../../services/Device/Product/data';
+import type { Product, ProductItem } from '@/services/Device/Product/data';
 import {
   deleteProduct,
   deleteProductItem,
   getProductById,
   getProductItems,
-} from '../../../../services/Device/Product/service';
+} from '@/services/Device/Product/service';
 
 const ProductViewPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -70,7 +67,7 @@ const ProductViewPage = () => {
   ];
 
   return (
-    <PageContainer onBack={() => history.back()}>
+    <PageContainer onBack={() => history.push(`/device/product`)}>
       {product && (
         <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
           <Card>

@@ -38,3 +38,6 @@ screenshot
 .firebase
 
 build
+*.iml
+/__pycache__/
+*.pyc

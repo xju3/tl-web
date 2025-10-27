@@ -12,7 +12,10 @@
   },
   "servers": [{ "url": "/" }],
   "security": [{ "TokenAuth": [] }],
-  "tags": [{ "name": "字典管理", "description": "系统所用到参数字典管理" }],
+  "tags": [
+    { "name": "字典管理", "description": "系统所用到参数字典管理" },
+    { "name": "Material", "description": "Material Management" }
+  ],
   "paths": {
     "/serial-ports": {
       "put": {
@@ -449,6 +452,82 @@
         }
       }
     },
+    "/partners": {
+      "put": {
+        "tags": ["Partner Management"],
+        "summary": "Update an existing partner",
+        "operationId": "updatePartner",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdatePartnerCommand" }
+            }
+          },
+          "required": true
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "tags": ["Partner Management"],
+        "summary": "Create a new partner",
+        "operationId": "createPartner",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreatePartnerCommand" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
+      }
+    },
+    "/partners/{currPage}/{pageSize}": {
+      "put": {
+        "tags": ["Partner Management"],
+        "summary": "Query partners with pagination",
+        "operationId": "queryPartners",
+        "parameters": [
+          {
+            "name": "currPage",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/PartnerFilter" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/IPagePartnerVo" }
+              }
+            }
+          }
+        }
+      }
+    },
     "/partners/products": {
       "put": {
         "tags": ["Partner Management"],
@@ -531,20 +610,64 @@
         }
       }
     },
-    "/partners/": {
+    "/materials": {
+      "get": {
+        "tags": ["Material"],
+        "summary": "Get Materials",
+        "operationId": "getMaterials",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/QueryMaterials" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/IPageMaterialVo" }
+              }
+            }
+          }
+        }
+      },
       "put": {
-        "tags": ["Partner Management"],
-        "summary": "Update an existing partner",
-        "operationId": "updatePartner",
+        "tags": ["Material"],
+        "summary": "Update Material",
+        "operationId": "updateMaterial",
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/UpdatePartnerCommand" }
+              "schema": { "$ref": "#/components/schemas/UpdateMaterialCommand" }
             }
           },
           "required": true
         },
         "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "tags": ["Material"],
+        "summary": "Create Material",
+        "operationId": "createMaterial",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateMaterialCommand" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string", "format": "uuid" } }
+            }
+          }
+        }
       }
     },
     "/hosts": {
@@ -1077,52 +1200,6 @@
         }
       }
     },
-    "/partners": {
-      "get": {
-        "tags": ["Partner Management"],
-        "summary": "Query partners with pagination",
-        "operationId": "queryPartners",
-        "parameters": [
-          {
-            "name": "query",
-            "in": "query",
-            "required": true,
-            "schema": { "$ref": "#/components/schemas/QueryPartners" }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": { "$ref": "#/components/schemas/IPagePartnerVo" }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": ["Partner Management"],
-        "summary": "Create a new partner",
-        "operationId": "createPartner",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/CreatePartnerCommand" }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": { "schema": { "type": "string", "format": "uuid" } }
-            }
-          }
-        }
-      }
-    },
     "/hosts/{hostId}/ports/{serialPortId}": {
       "post": {
         "tags": ["Host Management"],
@@ -1327,6 +1404,43 @@
             }
           }
         }
+      }
+    },
+    "/materials/{id}": {
+      "get": {
+        "tags": ["Material"],
+        "summary": "Get Material By Id",
+        "operationId": "getMaterialById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/MaterialVo" } }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Material"],
+        "summary": "Delete Material",
+        "operationId": "deleteMaterial",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/hosts/{id}": {
@@ -1953,6 +2067,62 @@
           }
         }
       },
+      "JsonNode": {},
+      "UpdatePartnerCommand": {
+        "type": "object",
+        "description": "更新合作伙伴命令",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "address": { "type": "string" },
+          "attributes": { "$ref": "#/components/schemas/JsonNode" },
+          "owner": { "type": "string", "format": "uuid" },
+          "role": { "type": "integer", "format": "int32" },
+          "parentId": { "type": "string", "format": "uuid" },
+          "tenant": { "type": "boolean" }
+        }
+      },
+      "PartnerFilter": {
+        "type": "object",
+        "properties": {
+          "sorters": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/QuerySorter" }
+          },
+          "code": { "type": "string" },
+          "isTenant": { "type": "boolean" },
+          "address": { "type": "string" }
+        }
+      },
+      "IPagePartnerVo": {
+        "type": "object",
+        "properties": {
+          "pages": { "type": "integer", "format": "int64", "deprecated": true },
+          "records": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/PartnerVo" }
+          },
+          "current": { "type": "integer", "format": "int64" },
+          "total": { "type": "integer", "format": "int64" },
+          "size": { "type": "integer", "format": "int64" }
+        }
+      },
+      "PartnerVo": {
+        "type": "object",
+        "description": "合作伙伴视图对象",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "address": { "type": "string" },
+          "attributes": { "$ref": "#/components/schemas/JsonNode" },
+          "owner": { "type": "string", "format": "uuid" },
+          "role": { "type": "integer", "format": "int32" },
+          "parentId": { "type": "string", "format": "uuid" },
+          "tenant": { "type": "boolean" }
+        }
+      },
       "UpdatePartnerProductCommand": {
         "type": "object",
         "properties": {
@@ -2008,20 +2178,15 @@
           "ddate": { "type": "string", "format": "date-time" }
         }
       },
-      "JsonNode": {},
-      "UpdatePartnerCommand": {
+      "UpdateMaterialCommand": {
         "type": "object",
-        "description": "更新合作伙伴命令",
         "properties": {
           "id": { "type": "string", "format": "uuid" },
           "code": { "type": "string" },
           "name": { "type": "string" },
-          "address": { "type": "string" },
-          "attributes": { "$ref": "#/components/schemas/JsonNode" },
-          "owner": { "type": "string", "format": "uuid" },
-          "role": { "type": "integer", "format": "int32" },
-          "parentId": { "type": "string", "format": "uuid" },
-          "tenant": { "type": "boolean" }
+          "attributes": {},
+          "weight": { "type": "integer", "format": "int32" },
+          "partnerId": { "type": "string", "format": "uuid" }
         }
       },
       "UpdateHostCommand": {
@@ -2305,6 +2470,17 @@
           "ddate": { "type": "string", "format": "date-time" }
         }
       },
+      "CreateMaterialCommand": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "attributes": {},
+          "weight": { "type": "integer", "format": "int32" },
+          "partnerId": { "type": "string", "format": "uuid" }
+        }
+      },
       "CreateHostCommand": {
         "type": "object",
         "properties": {
@@ -2375,7 +2551,7 @@
           "deviceName": { "type": "string" }
         }
       },
-      "PartnerFilter": {
+      "MaterialFilter": {
         "type": "object",
         "properties": {
           "sorters": {
@@ -2383,44 +2559,39 @@
             "items": { "$ref": "#/components/schemas/QuerySorter" }
           },
           "code": { "type": "string" },
-          "isTenant": { "type": "boolean" },
-          "address": { "type": "string" }
+          "name": { "type": "string" },
+          "partnerId": { "type": "string", "format": "uuid" }
         }
       },
-      "QueryPartners": {
+      "QueryMaterials": {
         "type": "object",
-        "description": "分页查询合作伙伴",
         "properties": {
-          "filter": { "$ref": "#/components/schemas/PartnerFilter" },
-          "page": { "$ref": "#/components/schemas/PageFilter" }
+          "queryFilter": { "$ref": "#/components/schemas/MaterialFilter" },
+          "pageFilter": { "$ref": "#/components/schemas/PageFilter" }
         }
       },
-      "IPagePartnerVo": {
+      "IPageMaterialVo": {
         "type": "object",
         "properties": {
           "pages": { "type": "integer", "format": "int64", "deprecated": true },
           "records": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/PartnerVo" }
+            "items": { "$ref": "#/components/schemas/MaterialVo" }
           },
           "current": { "type": "integer", "format": "int64" },
           "total": { "type": "integer", "format": "int64" },
           "size": { "type": "integer", "format": "int64" }
         }
       },
-      "PartnerVo": {
+      "MaterialVo": {
         "type": "object",
-        "description": "合作伙伴视图对象",
         "properties": {
           "id": { "type": "string", "format": "uuid" },
           "code": { "type": "string" },
           "name": { "type": "string" },
-          "address": { "type": "string" },
-          "attributes": { "$ref": "#/components/schemas/JsonNode" },
-          "owner": { "type": "string", "format": "uuid" },
-          "role": { "type": "integer", "format": "int32" },
-          "parentId": { "type": "string", "format": "uuid" },
-          "tenant": { "type": "boolean" }
+          "attributes": {},
+          "weight": { "type": "integer", "format": "int32" },
+          "partnerId": { "type": "string", "format": "uuid" }
         }
       },
       "HostSerialPortVo": {

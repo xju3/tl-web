@@ -23,8 +23,8 @@ const SerialPortViewPage = () => {
 
   return (
     <PageContainer
-      onBack={() => history.back()}
-      title={intl.formatMessage({ id: 'device.serialport.view' })}
+      onBack={() => history.push(`/device/serial-ports`)}
+      title={intl.formatMessage({ id: 'device.serial-port.view' })}
     >
       {serialPort && (
         <Descriptions
