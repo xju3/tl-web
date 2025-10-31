@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import React from 'react';
-import { getCabinetCableColumns } from '@/components/Columns/Assoiciations/CabinetCableColumns';
 import AssociationList from '@/components/Common/Association/List';
+import { getCabinetCableColumns } from '@/components/TableColumns/Assoiciations/CabinetCableColumns';
 import type { CabinetCable } from '@/services/Device/Cabinet/data';
 import {
   deleteCabinetCable,

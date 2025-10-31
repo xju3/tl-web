@@ -1,6 +1,6 @@
 import React from 'react';
-import { columns } from '@/components/Columns/Pages/RoleColumns';
 import ListPage from '@/components/Common/Pages/List';
+import { columns } from '@/components/TableColumns/Pages/RoleColumns';
 import type { Role } from '@/services/Sys/Role/data';
 import { deleteRole, getRoles } from '@/services/Sys/Role/service';
 

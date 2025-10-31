@@ -1,6 +1,6 @@
 import { useIntl } from '@umijs/max';
-import { columns } from '@/components/Columns/Pages/PeripheralColumns';
 import SelectModal from '@/components/Common/SelectModal';
+import { columns } from '@/components/TableColumns/Pages/PeripheralColumns';
 import type { Peripheral } from '@/services/Device/Peripheral/data';
 import { getPeripherals } from '@/services/Device/Peripheral/service';
 

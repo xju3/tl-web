@@ -1,6 +1,6 @@
 import React from 'react';
-import { columns } from '@/components/Columns/Pages/UserColumns';
 import ListPage from '@/components/Common/Pages/List';
+import { columns } from '@/components/TableColumns/Pages/UserColumns';
 import type { User } from '@/services/Sys/User/data';
 import { deleteUser, getUsers } from '@/services/Sys/User/service';
 

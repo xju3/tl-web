@@ -1,32 +1,15 @@
-import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import CustomProFormText from '@/components/Customization/Form/CustomProFormText';
+import EmployeeFormFields from '@/components/FormFields/EmployeeFormFields';
 import type { Employee } from '@/services/Org/Employee/data';
 import {
   addEmployee,
   getEmployeeById,
   updateEmployee,
 } from '@/services/Org/Employee/service';
-import { validationRules } from '@/utils/validation';
 
 const EmployeeForm: React.FC = () => {
-  const intl = useIntl();
-  const rules = validationRules(intl);
-
-  return (
-    <>
-      <CustomProFormText
-        name="personId"
-        label={intl.formatMessage({ id: 'page.org.employee.personId' })}
-      />
-      <CustomProFormText
-        name="employeeNumber"
-        rules={[rules.required('page.org.employee.employeeNumber')]}
-        label={intl.formatMessage({ id: 'page.org.employee.employeeNumber' })}
-      />
-    </>
-  );
+  return <EmployeeFormFields />;
 };
 
 const EmployeeEditPage = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { columns } from '@/components/Columns/Pages/EmployeeColumns';
 import ListPage from '@/components/Common/Pages/List';
+import { columns } from '@/components/TableColumns/Pages/EmployeeColumns';
 import type { Employee } from '@/services/Org/Employee/data';
 import { deleteEmployee, getEmployees } from '@/services/Org/Employee/service';
 

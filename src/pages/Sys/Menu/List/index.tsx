@@ -1,6 +1,6 @@
 import React from 'react';
-import { columns } from '@/components/Columns/Pages/MenuColumns';
 import ListPage from '@/components/Common/Pages/List';
+import { columns } from '@/components/TableColumns/Pages/MenuColumns';
 import type { Menu } from '@/services/Sys/Menu/data';
 import { deleteMenu, getMenus } from '@/services/Sys/Menu/service';
 

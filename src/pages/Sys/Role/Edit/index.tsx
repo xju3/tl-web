@@ -1,12 +1,9 @@
-import {
-  PageContainer,
-  ProForm,
-  ProFormText,
-} from '@ant-design/pro-components';
+import { PageContainer, ProForm } from '@ant-design/pro-components';
 import { history, useIntl, useParams } from '@umijs/max';
 import { Form, message } from 'antd';
 import React, { useEffect } from 'react';
 import { v4 as uuid_v4 } from 'uuid';
+import RoleFormFields from '@/components/FormFields/RoleFormFields';
 import type {
   CreateRoleCommand,
   UpdateRoleCommand,
@@ -21,9 +18,7 @@ const RoleEdit: React.FC = () => {
   useEffect(() => {
     if (id) {
       getRoleById(id).then((res) => {
-        if (res.statusCode === 'OK') {
-          form.setFieldsValue(res.body);
-        }
+        form.setFieldsValue(res);
       });
     }
   }, [id, form]);
@@ -50,14 +45,7 @@ const RoleEdit: React.FC = () => {
   return (
     <PageContainer onBack={() => history.push('/sys/role')}>
       <ProForm form={form} onFinish={onFinish}>
-        <ProFormText
-          name="name"
-          label={intl.formatMessage({ id: 'page.sys.role.name' })}
-        />
-        <ProFormText
-          name="code"
-          label={intl.formatMessage({ id: 'page.sys.role.code' })}
-        />
+        <RoleFormFields />
       </ProForm>
     </PageContainer>
   );

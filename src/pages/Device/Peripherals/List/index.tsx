@@ -1,5 +1,5 @@
-import { columns } from '@/components/Columns/Pages/PeripheralColumns';
 import ListPage from '@/components/Common/Pages/List';
+import { columns } from '@/components/TableColumns/Pages/PeripheralColumns';
 import type { Peripheral } from '@/services/Device/Peripheral/data';
 import {
   deletePeripheral,

@@ -1,5 +1,5 @@
-import { columns } from '@/components/Columns/Pages/TenantColumns';
 import ListPage from '@/components/Common/Pages/List';
+import { columns } from '@/components/TableColumns/Pages/TenantColumns';
 import type { Tenant } from '@/services/Org/Tenant/data';
 import { deleteTenant, getTenants } from '@/services/Org/Tenant/service';
 

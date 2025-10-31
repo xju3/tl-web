@@ -1,5 +1,5 @@
-import { columns } from '@/components/Columns/Pages/ProductColumns';
 import ListPage from '@/components/Common/Pages/List';
+import { columns } from '@/components/TableColumns/Pages/ProductColumns';
 import type { Product } from '@/services/Device/Product/data';
 import { deleteProduct, getProducts } from '@/services/Device/Product/service';
 

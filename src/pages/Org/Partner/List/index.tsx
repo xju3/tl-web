@@ -1,6 +1,6 @@
 import React from 'react';
-import { columns } from '@/components/Columns/Pages/PartnerColumns';
 import ListPage from '@/components/Common/Pages/List';
+import { columns } from '@/components/TableColumns/Pages/PartnerColumns';
 import type { Partner } from '@/services/Org/Partner/data';
 import { deletePartner, getPartners } from '@/services/Org/Partner/service';
 

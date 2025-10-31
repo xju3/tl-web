@@ -1,6 +1,6 @@
 import { useIntl } from '@@/exports';
-import { columns } from '@/components/Columns/Pages/CabinetPeripheralColunms';
 import SelectModal from '@/components/Common/SelectModal';
+import { columns } from '@/components/TableColumns/Pages/CabinetPeripheralColunms';
 import type { CabinetPeripheral } from '@/services/Device/Cabinet/data';
 import { getPeripheralsByCabinetId } from '@/services/Device/Cabinet/service';
 

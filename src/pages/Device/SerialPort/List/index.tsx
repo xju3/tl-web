@@ -1,5 +1,5 @@
-import { columns } from '@/components/Columns/Pages/SerialPortColumns';
 import ListPage from '@/components/Common/Pages/List';
+import { columns } from '@/components/TableColumns/Pages/SerialPortColumns';
 import type { SerialPort } from '@/services/Device/SerialPort/data';
 import {
   deleteSerialPort,

@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import React from 'react';
-import { getProductItemColumns } from '@/components/Columns/Assoiciations/ProductItemColumns';
 import AssociationList from '@/components/Common/Association/List';
+import { getProductItemColumns } from '@/components/TableColumns/Assoiciations/ProductItemColumns';
 import type { ProductItem } from '@/services/Device/Product/data';
 import {
   deleteProductItem,

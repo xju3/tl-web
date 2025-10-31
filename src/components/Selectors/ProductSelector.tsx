@@ -1,6 +1,6 @@
 import { useIntl } from '@umijs/max';
-import { columns as productColumns } from '@/components/Columns/Pages/ProductColumns';
 import SelectModal from '@/components/Common/SelectModal';
+import { columns as productColumns } from '@/components/TableColumns/Pages/ProductColumns';
 import type { Product } from '@/services/Device/Product/data';
 import { getProducts } from '@/services/Device/Product/service';
 

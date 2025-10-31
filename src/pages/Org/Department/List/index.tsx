@@ -1,5 +1,5 @@
-import { columns } from '@/components/Columns/Pages/DepartmentColumns';
 import ListPage from '@/components/Common/Pages/List';
+import { columns } from '@/components/TableColumns/Pages/DepartmentColumns';
 import type { Department } from '@/services/Org/Department/data';
 import {
   deleteDepartment,

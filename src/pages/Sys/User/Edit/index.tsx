@@ -1,12 +1,9 @@
-import {
-  PageContainer,
-  ProForm,
-  ProFormText,
-} from '@ant-design/pro-components';
+import { PageContainer, ProForm } from '@ant-design/pro-components';
 import { history, useIntl, useParams } from '@umijs/max';
 import { Form, message } from 'antd';
 import React, { useEffect } from 'react';
 import { v4 as uuid_v4 } from 'uuid';
+import UserFormFields from '@/components/FormFields/UserFormFields';
 import type {
   CreateUserCommand,
   UpdateUserCommand,
@@ -21,9 +18,7 @@ const UserEdit: React.FC = () => {
   useEffect(() => {
     if (id) {
       getUserById(id).then((res) => {
-        if (res.statusCode === 'OK') {
-          form.setFieldsValue(res.body);
-        }
+        form.setFieldsValue(res);
       });
     }
   }, [id, form]);
@@ -50,18 +45,7 @@ const UserEdit: React.FC = () => {
   return (
     <PageContainer onBack={() => history.push('/sys/user')}>
       <ProForm form={form} onFinish={onFinish}>
-        <ProFormText
-          name="username"
-          label={intl.formatMessage({ id: 'page.sys.user.username' })}
-        />
-        <ProFormText.Password
-          name="password"
-          label={intl.formatMessage({ id: 'page.sys.user.password' })}
-        />
-        <ProFormText
-          name="employeeId"
-          label={intl.formatMessage({ id: 'page.sys.user.employeeId' })}
-        />
+        <UserFormFields />
       </ProForm>
     </PageContainer>
   );

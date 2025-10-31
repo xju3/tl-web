@@ -2,9 +2,9 @@ import { PlusOutlined } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 import { Button } from 'antd';
 import React, { useState } from 'react';
-import { getHostPortColumns } from '@/components/Columns/Assoiciations/HostPortColumns';
 import AssociationList from '@/components/Common/Association/List';
 import SerialPortSelectModal from '@/components/Selectors/SerialPortSelectModal';
+import { getHostPortColumns } from '@/components/TableColumns/Assoiciations/HostPortColumns';
 import type { HostSerialPort } from '@/services/Device/Host/data';
 import {
   addHostPort,

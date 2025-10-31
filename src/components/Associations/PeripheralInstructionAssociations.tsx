@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import React from 'react';
-import { getPeripheralInstructionColumns } from '@/components/Columns/Assoiciations/PeripheralInstructionColumns';
 import AssociationList from '@/components/Common/Association/List';
+import { getPeripheralInstructionColumns } from '@/components/TableColumns/Assoiciations/PeripheralInstructionColumns';
 import type { Instruction } from '@/services/Device/Peripheral/data';
 import { getInstructions } from '@/services/Device/Peripheral/service';
 

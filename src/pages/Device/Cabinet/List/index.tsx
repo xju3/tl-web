@@ -1,5 +1,5 @@
-import { columns } from '@/components/Columns/Pages/CabinetColumns';
 import ListPage from '@/components/Common/Pages/List';
+import { columns } from '@/components/TableColumns/Pages/CabinetColumns';
 import type { Cabinet } from '@/services/Device/Cabinet/data';
 import { deleteCabinet, getCabinets } from '@/services/Device/Cabinet/service';
 

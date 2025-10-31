@@ -1,6 +1,6 @@
 import { useIntl } from '@umijs/max';
-import { columns as hostColumns } from '@/components/Columns/Pages/HostColumns';
 import SelectModal from '@/components/Common/SelectModal';
+import { columns as hostColumns } from '@/components/TableColumns/Pages/HostColumns';
 import type { Host } from '@/services/Device/Host/data';
 import { getHosts } from '@/services/Device/Host/service';
 

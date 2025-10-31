@@ -1,14 +1,9 @@
-import {
-  PageContainer,
-  ProForm,
-  ProFormDatePicker,
-  ProFormText,
-} from '@ant-design/pro-components';
-import { history, useIntl, useParams } from '@umijs/max';
-import { Button, Form } from 'antd';
-import { useEffect, useState } from 'react';
+import { PageContainer, ProForm } from '@ant-design/pro-components';
+import { history, useParams } from '@umijs/max';
+import { Form } from 'antd';
+import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import ProductSelector from '@/components/Selectors/ProductSelector';
+import PartnerProductFormFields from '@/components/FormFields/PartnerProductFormFields';
 import type { PartnerProductVo } from '@/services/Org/Partner/data';
 import {
   createPartnerProduct,
@@ -19,8 +14,6 @@ import {
 const PartnerProductEditPage = () => {
   const { partnerId, id } = useParams<{ partnerId: string; id: string }>();
   const [form] = Form.useForm<PartnerProductVo>();
-  const intl = useIntl();
-  const [productSelectorVisible, setProductSelectorVisible] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -45,45 +38,8 @@ const PartnerProductEditPage = () => {
   return (
     <PageContainer onBack={() => history.back()}>
       <ProForm form={form} onFinish={onFinish}>
-        <ProFormText name="id" hidden />
-        <ProFormText name="partnerId" hidden />
-        <ProForm.Item
-          name="productId"
-          label={intl.formatMessage({
-            id: 'tenant.partner.product.productId',
-          })}
-        >
-          <Button onClick={() => setProductSelectorVisible(true)}>
-            {intl.formatMessage({ id: 'common.actions.select' })}
-          </Button>
-        </ProForm.Item>
-        <ProFormText
-          name="code"
-          label={intl.formatMessage({ id: 'tenant.partner.product.code' })}
-        />
-        <ProFormDatePicker
-          name="startTime"
-          label={intl.formatMessage({
-            id: 'tenant.partner.product.startTime',
-          })}
-        />
-        <ProFormDatePicker
-          name="endTime"
-          label={intl.formatMessage({ id: 'tenant.partner.product.endTime' })}
-        />
-        <ProFormDatePicker
-          name="ddate"
-          label={intl.formatMessage({ id: 'tenant.partner.product.ddate' })}
-        />
+        <PartnerProductFormFields form={form} />
       </ProForm>
-      <ProductSelector
-        open={productSelectorVisible}
-        onCancel={() => setProductSelectorVisible(false)}
-        onOk={(product) => {
-          form.setFieldsValue({ productId: product.id });
-          setProductSelectorVisible(false);
-        }}
-      />
     </PageContainer>
   );
 };

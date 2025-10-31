@@ -1,6 +1,6 @@
 import { useIntl } from '@umijs/max';
-import { columns as cabinetColumns } from '@/components/Columns/Pages/CabinetColumns';
 import SelectModal from '@/components/Common/SelectModal';
+import { columns as cabinetColumns } from '@/components/TableColumns/Pages/CabinetColumns';
 import type { Cabinet } from '@/services/Device/Cabinet/data';
 import { getCabinets } from '@/services/Device/Cabinet/service';
 

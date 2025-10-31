@@ -1,5 +1,5 @@
-import { columns } from '@/components/Columns/Pages/HostColumns';
 import ListPage from '@/components/Common/Pages/List';
+import { columns } from '@/components/TableColumns/Pages/HostColumns';
 import type { Host } from '@/services/Device/Host/data';
 import { deleteHost, getHosts } from '@/services/Device/Host/service';
 

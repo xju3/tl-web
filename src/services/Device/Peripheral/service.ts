@@ -31,8 +31,8 @@ export async function deletePeripheral(id: string) {
 }
 
 // 6. 获取单个指令
-export async function getInstructionById(id: string) {
-  const url = `${peripheral_base_url}/instructions`;
+export async function getInstructionById(peripheralId: string, id: string) {
+  const url = `${peripheral_base_url}/instructions/${peripheralId}`;
   return apiGetById<Instruction>(url, id);
 }
 
@@ -44,22 +44,23 @@ export async function getInstructions(peripheralId: string, params: ParamsType) 
 
 // 8. 新增指令
 export async function addInstruction(
+  peripheralId: string,
   data: Instruction,
 ) {
-  const url = `${peripheral_base_url}/instructions`;
+  const url = `${peripheral_base_url}/${peripheralId}/instructions`;
   return apiCreate<Instruction>(url, data);
 }
 
 // 9. 更新指令
-export async function updateInstruction(
+export async function updateInstruction(peripheralId: string,
   data: Instruction,
 ) {
-  const url = `${peripheral_base_url}/instructions`;
+  const url = `${peripheral_base_url}/${peripheralId}instructions`;
   return apiUpdate<Instruction>(url, data);
 }
 
 // 10. 删除指令
 export async function deleteInstruction(peripheralId: string, id: string) {
-  const url = `${peripheral_base_url}/instructions/${peripheralId}`;
+  const url = `${peripheral_base_url}/${peripheralId}/instructions/`;
   return apiDelete(url, id);
 }

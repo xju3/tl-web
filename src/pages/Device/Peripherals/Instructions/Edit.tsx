@@ -1,13 +1,9 @@
-import {
-  PageContainer,
-  ProForm,
-  ProFormText,
-  ProFormTextArea,
-} from '@ant-design/pro-components';
+import { PageContainer, ProForm } from '@ant-design/pro-components';
 import { history, useIntl, useParams } from '@umijs/max';
 import { Button, Card, message } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import PeripheralInstructionFormFields from '@/components/FormFields/PeripheralInstructionFormFields';
 import type { Instruction } from '../../../../services/Device/Peripheral/data';
 import {
   addInstruction,
@@ -53,7 +49,7 @@ const InstructionEditPage = () => {
     );
     try {
       if (instructionId && peripheralId) {
-        await updateInstruction(peripheralId, instructionId, values);
+        await updateInstruction(peripheralId, values);
       } else if (peripheralId) {
         await addInstruction(peripheralId, values);
       }
@@ -77,34 +73,7 @@ const InstructionEditPage = () => {
             render: (_, dom) => dom,
           }}
         >
-          <ProFormText name="id" hidden />
-          <ProFormText name="peripheralId" hidden />
-          <ProFormText
-            name="instruction"
-            label={intl.formatMessage({
-              id: 'device.peripheral.instruction.instruction',
-            })}
-            rules={[
-              {
-                required: true,
-                message: intl.formatMessage({
-                  id: 'device.peripheral.instruction.instruction.required',
-                }),
-              },
-            ]}
-          />
-          <ProFormText
-            name="acknowledge"
-            label={intl.formatMessage({
-              id: 'device.peripheral.instruction.acknowledge',
-            })}
-          />
-          <ProFormTextArea
-            name="comment"
-            label={intl.formatMessage({
-              id: 'device.peripheral.instruction.comment',
-            })}
-          />
+          <PeripheralInstructionFormFields />
           <Button type="primary" onClick={() => formRef.current?.submit()}>
             {intl.formatMessage({ id: 'common.actions.save' })}
           </Button>
