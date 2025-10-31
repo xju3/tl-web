@@ -6,7 +6,7 @@ export const columns = (
   intl: any,
 ): CustomProColumns<Department>[] => [
   {
-    title: intl.formatMessage({ id: 'page.org.department.code' }),
+    title: intl.formatMessage({ id: 'org.department.code' }),
     dataIndex: 'code',
     valueType: 'text',
     sorter: {
@@ -15,7 +15,7 @@ export const columns = (
     selector: true,
   },
   {
-    title: intl.formatMessage({ id: 'page.org.department.name' }),
+    title: intl.formatMessage({ id: 'org.department.name' }),
     dataIndex: 'name',
     valueType: 'text',
     sorter: {

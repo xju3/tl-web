@@ -6,7 +6,7 @@ export const columns = (
   intl: any,
 ): CustomProColumns<Tenant>[] => [
   {
-    title: intl.formatMessage({ id: 'page.org.tenant.name' }),
+    title: intl.formatMessage({ id: 'org.tenant.name' }),
     dataIndex: 'name',
     valueType: 'text',
     sorter: {
@@ -15,7 +15,7 @@ export const columns = (
     selector: true,
   },
   {
-    title: intl.formatMessage({ id: 'page.org.tenant.code' }),
+    title: intl.formatMessage({ id: 'org.tenant.code' }),
     dataIndex: 'code',
     valueType: 'text',
     sorter: {

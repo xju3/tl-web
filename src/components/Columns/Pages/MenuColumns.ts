@@ -6,7 +6,7 @@ export const columns = (
   intl: any,
 ): CustomProColumns<Menu>[] => [
   {
-    title: intl.formatMessage({ id: 'page.sys.menu.code' }),
+    title: intl.formatMessage({ id: 'sys.menu.code' }),
     dataIndex: 'code',
     valueType: 'text',
     sorter: {
@@ -15,7 +15,7 @@ export const columns = (
     selector: true,
   },
   {
-    title: intl.formatMessage({ id: 'page.sys.menu.name' }),
+    title: intl.formatMessage({ id: 'sys.menu.name' }),
     dataIndex: 'name',
     valueType: 'text',
     sorter: {
@@ -24,7 +24,7 @@ export const columns = (
     selector: true,
   },
   {
-    title: intl.formatMessage({ id: 'page.sys.menu.path' }),
+    title: intl.formatMessage({ id: 'sys.menu.path' }),
     dataIndex: 'path',
     valueType: 'text',
     sorter: {
@@ -32,7 +32,7 @@ export const columns = (
     },
   },
   {
-    title: intl.formatMessage({ id: 'page.sys.menu.component' }),
+    title: intl.formatMessage({ id: 'sys.menu.component' }),
     dataIndex: 'component',
     valueType: 'text',
     sorter: {
@@ -40,7 +40,7 @@ export const columns = (
     },
   },
   {
-    title: intl.formatMessage({ id: 'page.sys.menu.icon' }),
+    title: intl.formatMessage({ id: 'sys.menu.icon' }),
     dataIndex: 'icon',
     valueType: 'text',
     sorter: {
@@ -48,7 +48,7 @@ export const columns = (
     },
   },
   {
-    title: intl.formatMessage({ id: 'page.sys.menu.type' }),
+    title: intl.formatMessage({ id: 'sys.menu.type' }),
     dataIndex: 'type',
     valueType: 'text',
     sorter: {
@@ -56,7 +56,7 @@ export const columns = (
     },
   },
   {
-    title: intl.formatMessage({ id: 'page.sys.menu.visible' }),
+    title: intl.formatMessage({ id: 'sys.menu.visible' }),
     dataIndex: 'visible',
     valueType: 'text',
     sorter: {
@@ -64,7 +64,7 @@ export const columns = (
     },
   },
   {
-    title: intl.formatMessage({ id: 'page.sys.menu.permission' }),
+    title: intl.formatMessage({ id: 'sys.menu.permission' }),
     dataIndex: 'permission',
     valueType: 'text',
     sorter: {

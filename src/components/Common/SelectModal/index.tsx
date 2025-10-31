@@ -7,6 +7,8 @@ import { ProTable } from '@ant-design/pro-components';
 import { Modal } from 'antd';
 import { useRef } from 'react';
 import type { IntlShape } from 'react-intl';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
+import CustomProTable from '@/components/Customization/Table/CustomProTable';
 
 export type SelectModalProps<T extends Record<string, any>> = {
   open: boolean;
@@ -14,7 +16,7 @@ export type SelectModalProps<T extends Record<string, any>> = {
   onCancel: () => void;
   onSelect: (record: T) => void;
   request: ProTableProps<T, any>['request'];
-  columns: ProColumns<T>[];
+  columns: CustomProColumns<T>[];
   intl?: IntlShape;
   search?: ProTableProps<T, any>['search'];
   pagination?: ProTableProps<T, any>['pagination'];
@@ -29,7 +31,7 @@ const SelectModal = <T extends Record<string, any>>({
   onSelect,
   request,
   columns,
-  search = { labelWidth: 120 },
+  search = {},
   pagination = { pageSize: 5 },
   headerTitle,
   rowKey = 'id',
@@ -41,6 +43,7 @@ const SelectModal = <T extends Record<string, any>>({
     title: intl ? intl.formatMessage({ id: 'common.actions' }) : '操作',
     dataIndex: 'option',
     valueType: 'option',
+    width: 80,
     render: (_, record) => [
       <a
         key="select"
@@ -64,12 +67,13 @@ const SelectModal = <T extends Record<string, any>>({
       footer={null}
       maskClosable={false}
     >
-      <ProTable<T>
+      <CustomProTable<T>
         headerTitle={headerTitle}
         actionRef={actionRef}
         rowKey={rowKey}
-        search={search}
+        search={{ labelWidth: 'auto', ...search }}
         request={request}
+        showIndexColumn={true}
         columns={tableColumns}
         pagination={pagination}
         tableAlertRender={false}

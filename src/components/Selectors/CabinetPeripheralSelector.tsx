@@ -1,13 +1,14 @@
-import type { ProColumns } from '@ant-design/pro-components';
+import { useIntl } from '@@/exports';
+import { columns } from '@/components/Columns/Pages/CabinetPeripheralColunms';
 import SelectModal from '@/components/Common/SelectModal';
+import type { CabinetPeripheral } from '@/services/Device/Cabinet/data';
 import { getPeripheralsByCabinetId } from '@/services/Device/Cabinet/service';
-import type { Peripheral } from '@/services/Device/Peripheral/data';
 
 export type CabinetPeripheralSelectorProps = {
   open: boolean;
   cabinetId: string;
   onCancel: () => void;
-  onSelect: (peripheral: Peripheral) => void;
+  onSelect: (peripheral: CabinetPeripheral) => void;
 };
 
 const CabinetPeripheralSelector = ({
@@ -16,28 +17,19 @@ const CabinetPeripheralSelector = ({
   onCancel,
   onSelect,
 }: CabinetPeripheralSelectorProps) => {
-  const columns: ProColumns<Peripheral>[] = [
-    {
-      title: '编码',
-      dataIndex: 'code',
-      sorter: true,
-    },
-    {
-      title: '名称',
-      dataIndex: 'name',
-      sorter: true,
-    },
-  ];
+  const intl = useIntl();
+
+  const selectorColumns = columns(() => {}, intl).filter((c) => c.selector);
 
   return (
-    <SelectModal<Peripheral>
+    <SelectModal<CabinetPeripheral>
       title="选择机柜外设"
       headerTitle="机柜外设列表"
       open={open}
       onCancel={onCancel}
       onSelect={onSelect}
       request={(params) => getPeripheralsByCabinetId(cabinetId, params)}
-      columns={columns}
+      columns={selectorColumns}
     />
   );
 };

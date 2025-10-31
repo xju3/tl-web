@@ -1,4 +1,5 @@
-import type { ProColumns } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
+import { columns as cabinetCableColumns } from '@/components/Columns/Pages/CabinetCableColunms';
 import SelectModal from '@/components/Common/SelectModal';
 import type { CabinetCable } from '@/services/Device/Cabinet/data';
 import { getCabinetCables } from '@/services/Device/Cabinet/service';
@@ -16,18 +17,10 @@ const CabinetCableSelector = ({
   onCancel,
   onSelect,
 }: CabinetCableSelectorProps) => {
-  const columns: ProColumns<CabinetCable>[] = [
-    {
-      title: '编码',
-      dataIndex: 'code',
-      sorter: true,
-    },
-    {
-      title: '名称',
-      dataIndex: 'name',
-      sorter: true,
-    },
-  ];
+  const intl = useIntl();
+  const selectorColumns = cabinetCableColumns(() => {}, intl).filter(
+    (c) => c.selector,
+  );
 
   return (
     <SelectModal<CabinetCable>
@@ -37,7 +30,7 @@ const CabinetCableSelector = ({
       onCancel={onCancel}
       onSelect={onSelect}
       request={(params) => getCabinetCables(cabinetId, params)}
-      columns={columns}
+      columns={selectorColumns}
     />
   );
 };

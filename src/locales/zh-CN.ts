@@ -1,43 +1,20 @@
 import common from './zh-CN/common';
 import component from './zh-CN/component';
-import cabinet from './zh-CN/device/cabinet';
-import host from './zh-CN/device/host';
-import peripheral from './zh-CN/device/peripheral';
-import product from './zh-CN/device/product';
-import serial_port from './zh-CN/device/serialport';
+import device from './zh-CN/device';
 import globalHeader from './zh-CN/globalHeader';
 import menu from './zh-CN/menu';
-import department from './zh-CN/org/department';
-import employee from './zh-CN/org/employee';
-import partner from './zh-CN/org/partner';
-import tenant from './zh-CN/org/tenant';
+import org from './zh-CN/org';
 import pages from './zh-CN/pages';
 import pwa from './zh-CN/pwa';
 import settingDrawer from './zh-CN/settingDrawer';
 import settings from './zh-CN/settings';
-import sys_menu from './zh-CN/sys/menu';
-import sys_role from './zh-CN/sys/role';
-import sys_user from './zh-CN/sys/user';
-import material from './zh-CN/tenant/material';
-import partnerProduct from './zh-CN/tenant/product';
+import sys from './zh-CN/sys';
 
 export default {
-  ...host,
-  ...peripheral,
-  ...cabinet,
+  ...sys,
+  ...device,
+  ...org,
   ...common,
-  ...serial_port,
-  ...product,
-  ...tenant,
-  ...department,
-  ...employee,
-  ...sys_menu,
-  ...sys_user,
-  ...sys_role,
-  ...partner,
-  ...partnerProduct,
-  ...material,
-
   'navBar.lang': '语言',
   'layout.user.link.help': '帮助',
   'layout.user.link.privacy': '隐私',

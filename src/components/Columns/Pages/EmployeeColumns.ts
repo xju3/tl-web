@@ -6,7 +6,7 @@ export const columns = (
   intl: any,
 ): CustomProColumns<Employee>[] => [
   {
-    title: intl.formatMessage({ id: 'page.org.employee.code' }),
+    title: intl.formatMessage({ id: 'org.employee.code' }),
     dataIndex: 'code',
     valueType: 'text',
     sorter: {
@@ -15,7 +15,7 @@ export const columns = (
     selector: true,
   },
   {
-    title: intl.formatMessage({ id: 'page.org.employee.name' }),
+    title: intl.formatMessage({ id: 'org.employee.name' }),
     dataIndex: 'name',
     valueType: 'text',
     sorter: {
@@ -25,7 +25,7 @@ export const columns = (
   },
 
   {
-    title: intl.formatMessage({ id: 'page.org.employee.gender' }),
+    title: intl.formatMessage({ id: 'org.employee.gender' }),
     dataIndex: 'gender',
     valueType: 'text',
     sorter: {
@@ -33,7 +33,7 @@ export const columns = (
     },
   },
   {
-    title: intl.formatMessage({ id: 'page.org.employee.email' }),
+    title: intl.formatMessage({ id: 'org.employee.email' }),
     dataIndex: 'email',
     valueType: 'text',
     sorter: {
@@ -41,7 +41,7 @@ export const columns = (
     },
   },
   {
-    title: intl.formatMessage({ id: 'page.org.employee.mobile' }),
+    title: intl.formatMessage({ id: 'org.employee.mobile' }),
     dataIndex: 'mobile',
     valueType: 'text',
     sorter: {

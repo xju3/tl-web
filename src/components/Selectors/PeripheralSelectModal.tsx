@@ -1,5 +1,5 @@
 import { useIntl } from '@umijs/max';
-import { columns as peripheralColumns } from '@/components/Columns/Pages/PeripheralColumns';
+import { columns } from '@/components/Columns/Pages/PeripheralColumns';
 import SelectModal from '@/components/Common/SelectModal';
 import type { Peripheral } from '@/services/Device/Peripheral/data';
 import { getPeripherals } from '@/services/Device/Peripheral/service';
@@ -16,9 +16,8 @@ const PeripheralSelectModal = ({
   onSelect,
 }: PeripheralSelectModalProps) => {
   const intl = useIntl();
-  const selectorColumns = peripheralColumns(() => {}, intl).filter(
-    (c) => c.selector,
-  );
+
+  const selectorColumns = columns(() => {}, intl).filter((c) => c.selector);
 
   return (
     <SelectModal<Peripheral>
