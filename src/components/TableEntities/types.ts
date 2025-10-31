@@ -5,7 +5,6 @@ import type {
 } from '@ant-design/pro-components';
 import type { ProColumnType } from '@ant-design/pro-table';
 import React from 'react';
-import type { IntlShape } from 'react-intl';
 
 export interface ValidationRule {
   type: 'required' | 'length' | 'ip';

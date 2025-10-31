@@ -3,11 +3,9 @@ import {
   type ProFormInstance,
   ProFormSelect,
   ProFormText,
-  ProFormTextArea,
 } from '@ant-design/pro-components';
 import { Button } from 'antd';
 import React, { useState } from 'react';
-import type { IntlShape } from 'react-intl';
 import { useIntl } from 'react-intl';
 import HostSelectModal from '@/components/Selectors/HostSelectModal';
 import type { CabinetCable } from '@/services/Device/Cabinet/data';
