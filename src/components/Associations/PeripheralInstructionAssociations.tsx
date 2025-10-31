@@ -1,6 +1,6 @@
-import type { ProColumns } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import React from 'react';
+import { getPeripheralInstructionColumns } from '@/components/Columns/Assoiciations/PeripheralInstructionColumns';
 import AssociationList from '@/components/Common/Association/List';
 import type { Instruction } from '@/services/Device/Peripheral/data';
 import { getInstructions } from '@/services/Device/Peripheral/service';
@@ -14,34 +14,13 @@ const PeripheralInstructionAssociations: React.FC<InstructionsProps> = ({
 }) => {
   const intl = useIntl();
 
-  const columns: ProColumns<Instruction>[] = [
-    {
-      title: intl.formatMessage({
-        id: 'device.peripheral.instruction.instruction',
-      }),
-      dataIndex: 'instruction',
-    },
-    {
-      title: intl.formatMessage({
-        id: 'device.peripheral.instruction.acknowledge',
-      }),
-      dataIndex: 'acknowledge',
-    },
-    {
-      title: intl.formatMessage({
-        id: 'device.peripheral.instruction.comment',
-      }),
-      dataIndex: 'comment',
-    },
-  ];
-
   return (
     <AssociationList<Instruction>
       parentId={peripheralId}
       services={{
         getPage: getInstructions,
       }}
-      columns={columns}
+      columns={getPeripheralInstructionColumns(intl)}
       addRoute={`/device/peripherals/${peripheralId}/instructions/edit`}
       editRoutePattern={`/device/peripherals/:parentId/instructions/edit/:id`}
       headerTitle={intl.formatMessage({

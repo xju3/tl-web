@@ -4,6 +4,7 @@ import React from 'react';
 
 export type CustomProColumns<T> = ProColumns<T> & {
   showColumnFilter?: boolean;
+  selector?: boolean;
 };
 
 export interface ListPageProps<T extends { id: string }> {

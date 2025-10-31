@@ -1,5 +1,5 @@
-import type { ProColumns } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
+import { columns as cabinetColumns } from '@/components/Columns/Pages/CabinetColumns';
 import SelectModal from '@/components/Common/SelectModal';
 import type { Cabinet } from '@/services/Device/Cabinet/data';
 import { getCabinets } from '@/services/Device/Cabinet/service';
@@ -16,19 +16,9 @@ const CabinetSelectModal = ({
   onSelect,
 }: CabinetSelectModalProps) => {
   const intl = useIntl();
-
-  const columns: ProColumns<Cabinet>[] = [
-    {
-      title: intl.formatMessage({ id: 'device.product.item.deviceCode' }),
-      dataIndex: 'code',
-      sorter: true,
-    },
-    {
-      title: intl.formatMessage({ id: 'device.product.item.deviceName' }),
-      dataIndex: 'name',
-      sorter: true,
-    },
-  ];
+  const selectorColumns = cabinetColumns(() => {}, intl).filter(
+    (c) => c.selector,
+  );
 
   return (
     <SelectModal<Cabinet>
@@ -38,7 +28,7 @@ const CabinetSelectModal = ({
       onCancel={onCancel}
       onSelect={onSelect}
       request={getCabinets}
-      columns={columns}
+      columns={selectorColumns}
       intl={intl}
     />
   );

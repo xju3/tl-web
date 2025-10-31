@@ -1,5 +1,5 @@
-import type { ProColumns } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
+import { columns as productColumns } from '@/components/Columns/Pages/ProductColumns';
 import SelectModal from '@/components/Common/SelectModal';
 import type { Product } from '@/services/Device/Product/data';
 import { getProducts } from '@/services/Device/Product/service';
@@ -12,17 +12,9 @@ export type ProductSelectorProps = {
 
 const ProductSelector = ({ open, onCancel, onOk }: ProductSelectorProps) => {
   const intl = useIntl();
-
-  const columns: ProColumns<Product>[] = [
-    {
-      title: intl.formatMessage({ id: 'device.product.code' }),
-      dataIndex: 'code',
-    },
-    {
-      title: intl.formatMessage({ id: 'device.product.name' }),
-      dataIndex: 'name',
-    },
-  ];
+  const selectorColumns = productColumns(() => {}, intl).filter(
+    (c) => c.selector,
+  );
 
   return (
     <SelectModal<Product>
@@ -31,7 +23,7 @@ const ProductSelector = ({ open, onCancel, onOk }: ProductSelectorProps) => {
       onCancel={onCancel}
       onSelect={onOk}
       request={getProducts}
-      columns={columns}
+      columns={selectorColumns}
       intl={intl}
     />
   );

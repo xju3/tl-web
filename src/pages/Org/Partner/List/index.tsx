@@ -1,42 +1,12 @@
-import { FormattedMessage } from '@@/exports';
 import React from 'react';
+import { columns } from '@/components/Columns/Pages/PartnerColumns';
 import ListPage from '@/components/Common/Pages/List';
-import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import type { Partner } from '@/services/Org/Partner/data';
 import { deletePartner, getPartners } from '@/services/Org/Partner/service';
 
 const SESSION_KEY = 'partnerListState';
 
 const PartnerListPage = () => {
-  const columns = (
-    saveStateAndNavigate: (path: string, id?: string) => void,
-    intl: any,
-  ): CustomProColumns<Partner>[] => [
-    {
-      title: <FormattedMessage id="org.partner.code" />,
-      dataIndex: 'code',
-      sorter: true,
-    },
-    {
-      title: <FormattedMessage id="org.partner.name" />,
-      dataIndex: 'name',
-      sorter: true,
-    },
-    {
-      title: <FormattedMessage id="org.partner.address" />,
-      dataIndex: 'address',
-    },
-    {
-      title: <FormattedMessage id="org.partner.org" />,
-      dataIndex: 'orgId',
-      valueType: 'select',
-      valueEnum: {
-        true: { text: 'Yes' },
-        false: { text: 'No' },
-      },
-    },
-  ];
-
   const services = {
     getList: getPartners,
     deleteItem: deletePartner,

@@ -1,4 +1,5 @@
-import type { ProColumns } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
+import { columns as hostColumns } from '@/components/Columns/Pages/HostColumns';
 import SelectModal from '@/components/Common/SelectModal';
 import type { Host } from '@/services/Device/Host/data';
 import { getHosts } from '@/services/Device/Host/service';
@@ -14,23 +15,8 @@ const HostSelectModal = ({
   onCancel,
   onSelect,
 }: HostSelectModalProps) => {
-  const columns: ProColumns<Host>[] = [
-    {
-      title: '编码',
-      dataIndex: 'code',
-      sorter: true,
-    },
-    {
-      title: '名称',
-      dataIndex: 'name',
-      sorter: true,
-    },
-    {
-      title: 'IP地址',
-      dataIndex: 'ip',
-      sorter: true,
-    },
-  ];
+  const intl = useIntl();
+  const selectorColumns = hostColumns(() => {}, intl).filter((c) => c.selector);
 
   return (
     <SelectModal<Host>
@@ -40,7 +26,7 @@ const HostSelectModal = ({
       onCancel={onCancel}
       onSelect={onSelect}
       request={getHosts}
-      columns={columns}
+      columns={selectorColumns}
     />
   );
 };

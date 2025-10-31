@@ -1,8 +1,8 @@
 import { PlusOutlined } from '@ant-design/icons';
-import type { ProColumns } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import { Button } from 'antd';
 import React, { useState } from 'react';
+import { getHostPortColumns } from '@/components/Columns/Assoiciations/HostPortColumns';
 import AssociationList from '@/components/Common/Association/List';
 import SerialPortSelectModal from '@/components/Selectors/SerialPortSelectModal';
 import type { HostSerialPort } from '@/services/Device/Host/data';
@@ -26,21 +26,6 @@ const HostPortAssociations: React.FC<PortsProps> = ({ hostId }) => {
     // The list will be reloaded automatically by the Association component
   };
 
-  const columns: ProColumns<HostSerialPort>[] = [
-    {
-      title: intl.formatMessage({ id: 'device.serialport.name' }),
-      dataIndex: 'name',
-    },
-    {
-      title: intl.formatMessage({ id: 'device.serialport.code' }),
-      dataIndex: 'port',
-    },
-    {
-      title: intl.formatMessage({ id: 'device.serialport.baudRate' }),
-      dataIndex: 'baudRate',
-    },
-  ];
-
   return (
     <>
       <AssociationList<HostSerialPort>
@@ -49,7 +34,7 @@ const HostPortAssociations: React.FC<PortsProps> = ({ hostId }) => {
           getPage: getHostPorts,
           deleteItem: deleteHostPort,
         }}
-        columns={columns}
+        columns={getHostPortColumns(intl)}
         editRoutePattern={`/device/hosts/:parentId/ports/:id/edit`}
         headerTitle={intl.formatMessage({
           id: 'device.host.serial-ports.title',

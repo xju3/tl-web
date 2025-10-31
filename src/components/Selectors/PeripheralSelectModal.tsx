@@ -1,4 +1,5 @@
-import type { ProColumns } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
+import { columns as peripheralColumns } from '@/components/Columns/Pages/PeripheralColumns';
 import SelectModal from '@/components/Common/SelectModal';
 import type { Peripheral } from '@/services/Device/Peripheral/data';
 import { getPeripherals } from '@/services/Device/Peripheral/service';
@@ -14,18 +15,10 @@ const PeripheralSelectModal = ({
   onCancel,
   onSelect,
 }: PeripheralSelectModalProps) => {
-  const columns: ProColumns<Peripheral>[] = [
-    {
-      title: '编码',
-      dataIndex: 'code',
-      sorter: true,
-    },
-    {
-      title: '名称',
-      dataIndex: 'name',
-      sorter: true,
-    },
-  ];
+  const intl = useIntl();
+  const selectorColumns = peripheralColumns(() => {}, intl).filter(
+    (c) => c.selector,
+  );
 
   return (
     <SelectModal<Peripheral>
@@ -35,7 +28,7 @@ const PeripheralSelectModal = ({
       onCancel={onCancel}
       onSelect={onSelect}
       request={getPeripherals}
-      columns={columns}
+      columns={selectorColumns}
     />
   );
 };
