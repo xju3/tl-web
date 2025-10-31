@@ -4,9 +4,9 @@ import type {
   ProTableProps,
 } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import type { IntlShape } from '@umijs/max';
 import { Modal } from 'antd';
 import { useRef } from 'react';
+import type { IntlShape } from 'react-intl';
 
 export type SelectModalProps<T extends Record<string, any>> = {
   open: boolean;
