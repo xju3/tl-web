@@ -1,6 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { PeripheralDescriptions } from '@/components/Descriptions/PeripheralDescriptions';
+import { buildDescriptions } from '@/components/TableEntities/Builder';
+import { PeripheralEntity } from '@/components/TableEntities/PeripheralEntity';
 import type { Peripheral } from '@/services/Device/Peripheral/data';
 import {
   deletePeripheral,
@@ -19,7 +20,7 @@ const PeripheralViewPage = () => {
       deleteById={deletePeripheral}
       editUrl="/device/peripherals/edit"
       listUrl="/device/peripherals"
-      columns={PeripheralDescriptions(intl)}
+      columns={buildDescriptions(PeripheralEntity, intl)}
       detailsComponent={(peripheral) => (
         <PeripheralViewTabs peripheral={peripheral} />
       )}

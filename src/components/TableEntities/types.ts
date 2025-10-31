@@ -9,4 +9,5 @@ export type EntityField<T> = ProColumnType<T> &
     inDescription?: boolean;
     inSelector?: boolean;
     showColumnFilter?: boolean;
+    enable?: boolean;
   };

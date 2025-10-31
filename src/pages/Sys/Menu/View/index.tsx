@@ -1,6 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { MenuDescriptions } from '@/components/Descriptions/MenuDescriptions';
+import { buildDescriptions } from '@/components/TableEntities/Builder';
+import { MenuEntity } from '@/components/TableEntities/MenuEntity';
 import type { Menu } from '@/services/Sys/Menu/data';
 import { deleteMenu, getMenuById } from '@/services/Sys/Menu/service';
 
@@ -15,7 +16,7 @@ const MenuViewPage = () => {
       deleteById={deleteMenu}
       editUrl="/sys/menu/edit"
       listUrl="/sys/menu"
-      columns={MenuDescriptions(intl)}
+      columns={buildDescriptions(MenuEntity, intl)}
     />
   );
 };

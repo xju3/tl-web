@@ -1,6 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { UserDescriptions } from '@/components/Descriptions/UserDescriptions';
+import { buildDescriptions } from '@/components/TableEntities/Builder';
+import { UserEntity } from '@/components/TableEntities/UserEntity';
 import type { User } from '@/services/Sys/User/data';
 import { deleteUser, getUserById } from '@/services/Sys/User/service';
 
@@ -15,7 +16,7 @@ const UserViewPage = () => {
       deleteById={deleteUser}
       editUrl="/sys/user/edit"
       listUrl="/sys/user"
-      columns={UserDescriptions(intl)}
+      columns={buildDescriptions(UserEntity, intl)}
     />
   );
 };

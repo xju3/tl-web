@@ -1,6 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { SerialPortDescriptions } from '@/components/Descriptions/SerialPortDescriptions';
+import { buildDescriptions } from '@/components/TableEntities/Builder';
+import { SerialPortEntity } from '@/components/TableEntities/SerialPortEntity';
 import type { SerialPort } from '@/services/Device/SerialPort/data';
 import {
   deleteSerialPort,
@@ -18,7 +19,7 @@ const SerialPortViewPage = () => {
       deleteById={deleteSerialPort}
       editUrl="/device/serial-port/edit"
       listUrl="/device/serial-ports"
-      columns={SerialPortDescriptions(intl)}
+      columns={buildDescriptions(SerialPortEntity, intl)}
       gutter={3}
     />
   );

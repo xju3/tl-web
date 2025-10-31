@@ -1,6 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { DepartmentDescriptions } from '@/components/Descriptions/DepartmentDescriptions';
+import { buildDescriptions } from '@/components/TableEntities/Builder';
+import { DepartmentEntity } from '@/components/TableEntities/DepartmentEntity';
 import type { Department } from '@/services/Org/Department/data';
 import {
   deleteDepartment,
@@ -20,7 +21,7 @@ const DepartmentViewPage = () => {
       deleteById={deleteDepartment}
       editUrl="/org/department/edit"
       listUrl="/org/department"
-      columns={DepartmentDescriptions(intl)}
+      columns={buildDescriptions(DepartmentEntity, intl)}
     />
   );
 };

@@ -1,6 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { CabinetDescriptions } from '@/components/Descriptions/CabinetDescriptions';
+import { buildDescriptions } from '@/components/TableEntities/Builder';
+import { CabinetEntity } from '@/components/TableEntities/CabinetEntity';
 import type { Cabinet } from '@/services/Device/Cabinet/data';
 import {
   deleteCabinet,
@@ -19,7 +20,7 @@ const CabinetViewPage = () => {
       deleteById={deleteCabinet}
       editUrl="/device/cabinets/edit"
       listUrl="/device/cabinets"
-      columns={CabinetDescriptions(intl)}
+      columns={buildDescriptions(CabinetEntity, intl)}
       detailsComponent={(cabinet) => <CabinetViewTabs cabinet={cabinet} />}
     />
   );

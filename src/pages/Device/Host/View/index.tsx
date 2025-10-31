@@ -1,6 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { HostDescriptions } from '@/components/Descriptions/HostDescriptions';
+import { buildDescriptions } from '@/components/TableEntities/Builder';
+import { HostEntity } from '@/components/TableEntities/HostEntity';
 import type { Host } from '@/services/Device/Host/data';
 import { deleteHost, getHostById } from '@/services/Device/Host/service';
 import HostViewTabs from '../../../../components/ViewTabs/HostViewTabs';
@@ -16,7 +17,7 @@ const HostViewPage = () => {
       deleteById={deleteHost}
       editUrl="/device/hosts/edit"
       listUrl="/device/hosts"
-      columns={HostDescriptions(intl)}
+      columns={buildDescriptions(HostEntity, intl)}
       detailsComponent={(host) => <HostViewTabs host={host} />}
     />
   );

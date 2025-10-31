@@ -1,6 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { RoleDescriptions } from '@/components/Descriptions/RoleDescriptions';
+import { buildDescriptions } from '@/components/TableEntities/Builder';
+import { RoleEntity } from '@/components/TableEntities/RoleEntity';
 import type { Role } from '@/services/Sys/Role/data';
 import { deleteRole, getRoleById } from '@/services/Sys/Role/service';
 
@@ -15,7 +16,7 @@ const RoleViewPage = () => {
       deleteById={deleteRole}
       editUrl="/sys/role/edit"
       listUrl="/sys/role"
-      columns={RoleDescriptions(intl)}
+      columns={buildDescriptions(RoleEntity, intl)}
     />
   );
 };
