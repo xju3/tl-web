@@ -31,11 +31,11 @@ const InstructionEditPage = () => {
             setInstruction(res);
             formRef.current?.setFieldsValue(res);
           } else {
-            message.error('Instruction not found!');
+            void message.error('Instruction not found!');
           }
         })
         .catch(() => {
-          message.error('Failed to load instruction data.');
+          void message.error('Failed to load instruction data.');
         });
     } else if (peripheralId) {
       // Creating new instruction: ensure peripheralId is in the form values
