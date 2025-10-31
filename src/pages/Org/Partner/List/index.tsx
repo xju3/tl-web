@@ -1,7 +1,7 @@
 import { FormattedMessage } from '@@/exports';
 import React from 'react';
-import ListPage from '@/components/CommonPages/List';
-import type { CustomProColumns } from '@/components/CommonPages/List/typing';
+import ListPage from '@/components/Common/Pages/List';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import type { Partner } from '@/services/Org/Partner/data';
 import { deletePartner, getPartners } from '@/services/Org/Partner/service';
 

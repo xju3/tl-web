@@ -1,9 +1,7 @@
-import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { ProTable } from '@ant-design/pro-components';
-import { history, useIntl } from '@umijs/max';
-import { Button, Popconfirm, Space } from 'antd';
-import React, { useRef } from 'react';
+import type { ProColumns } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
+import React from 'react';
+import AssociationList from '@/components/Common/Association/List';
 import type { CabinetCable } from '@/services/Device/Cabinet/data';
 import {
   deleteCabinetCable,
@@ -15,7 +13,6 @@ type CablesProps = {
 };
 
 const CabinetCableAssociations: React.FC<CablesProps> = ({ cabinetId }) => {
-  const actionRef = useRef<ActionType>(null);
   const intl = useIntl();
 
   const columns: ProColumns<CabinetCable>[] = [
@@ -43,69 +40,21 @@ const CabinetCableAssociations: React.FC<CablesProps> = ({ cabinetId }) => {
       title: intl.formatMessage({ id: 'device.cabinet.cable.description' }),
       dataIndex: 'description',
     },
-    {
-      title: intl.formatMessage({ id: 'common.actions' }),
-      key: 'action',
-      valueType: 'option',
-      width: '150px',
-      render: (_, record) => [
-        <a
-          key="edit"
-          onClick={() => {
-            history.push(
-              `/device/cabinets/${cabinetId}/cables/${record.id}/edit`,
-            );
-          }}
-        >
-          {intl.formatMessage({ id: 'common.actions.edit' })}
-        </a>,
-        <Popconfirm
-          key="delete"
-          title={intl.formatMessage({ id: 'common.delete.confirm' })}
-          onConfirm={async () => {
-            await deleteCabinetCable(cabinetId, record.id);
-            actionRef.current?.reload();
-          }}
-        >
-          <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
-        </Popconfirm>,
-      ],
-    },
   ];
 
   return (
-    <ProTable<CabinetCable>
+    <AssociationList<CabinetCable>
+      parentId={cabinetId}
+      services={{
+        getPage: getCabinetCables,
+        deleteItem: deleteCabinetCable,
+      }}
+      columns={columns}
+      addRoute={`/device/cabinets/${cabinetId}/cables/add/edit`}
+      editRoutePattern={`/device/cabinets/:parentId/cables/:id/edit`}
       headerTitle={intl.formatMessage({
         id: 'device.cabinet.cable.list.title',
       })}
-      actionRef={actionRef}
-      rowKey="id"
-      search={false}
-      toolbar={{
-        title: (
-          <Space>
-            {' '}
-            <Button
-              key="add"
-              type="primary"
-              onClick={() => {
-                history.push(`/device/cabinets/${cabinetId}/cables/add/edit`);
-              }}
-            >
-              <PlusOutlined />
-              {intl.formatMessage({
-                id: 'device.cabinet.create.cable',
-              })}
-            </Button>
-            ,
-          </Space>
-        ),
-      }}
-      request={(params) => getCabinetCables(cabinetId, params)}
-      columns={columns}
-      pagination={{
-        pageSize: 10,
-      }}
     />
   );
 };

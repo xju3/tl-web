@@ -1,7 +1,5 @@
-import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { ProTable } from '@ant-design/pro-components';
-import { Modal } from 'antd';
-import { useRef } from 'react';
+import type { ProColumns } from '@ant-design/pro-components';
+import SelectModal from '@/components/Common/SelectModal';
 import type { Host } from '@/services/Device/Host/data';
 import { getHosts } from '@/services/Device/Host/service';
 
@@ -16,8 +14,6 @@ const HostSelectModal = ({
   onCancel,
   onSelect,
 }: HostSelectModalProps) => {
-  const actionRef = useRef<ActionType>(null);
-
   const columns: ProColumns<Host>[] = [
     {
       title: '编码',
@@ -34,56 +30,18 @@ const HostSelectModal = ({
       dataIndex: 'ip',
       sorter: true,
     },
-    {
-      title: '操作',
-      dataIndex: 'option',
-      valueType: 'option',
-      render: (_, record) => [
-        <a
-          key="select"
-          onClick={() => {
-            onSelect(record);
-          }}
-        >
-          选择
-        </a>,
-      ],
-    },
   ];
 
   return (
-    <Modal
+    <SelectModal<Host>
       title="选择主机"
-      width={800}
+      headerTitle="主机列表"
       open={open}
       onCancel={onCancel}
-      footer={null}
-      destroyOnClose={true}
-      maskClosable={false}
-    >
-      <ProTable<Host>
-        headerTitle="主机列表"
-        actionRef={actionRef}
-        rowKey="id"
-        search={{
-          labelWidth: 120,
-        }}
-        request={async (params) => {
-          const { current, pageSize, ...rest } = params;
-          const adjustedParams = {
-            ...rest,
-            currPage: current,
-            pageSize: pageSize,
-          };
-          return getHosts(adjustedParams);
-        }}
-        columns={columns}
-        pagination={{
-          pageSize: 5,
-        }}
-        tableAlertRender={false}
-      />
-    </Modal>
+      onSelect={onSelect}
+      request={getHosts}
+      columns={columns}
+    />
   );
 };
 

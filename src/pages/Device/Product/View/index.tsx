@@ -1,5 +1,5 @@
 import { useIntl } from '@umijs/max';
-import ViewPage from '@/components/CommonPages/View';
+import ViewPage from '@/components/Common/Pages/View';
 import type { Product } from '@/services/Device/Product/data';
 import {
   deleteProduct,

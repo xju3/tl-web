@@ -1,11 +1,11 @@
 import type {Product, ProductFilter, ProductItem} from './data';
 import {ParamsType} from "@ant-design/pro-components";
 import {SortOrder} from "antd/es/table/interface";
-import {apiCreate, apiDelete, apiGetById, apiGetList, apiPutPage, apiUpdate} from "@/services/common";
+import {apiCreate, apiDelete, apiGetById, apiGetList, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
 
 const product_base_url = "device/products"
 // 1. 获取产品列表 (分页)
-export async function getProducts(params: ParamsType, sorters : Record<string, SortOrder>, filter: ProductFilter) {
+export async function getProducts(params: ParamsType, sorters: Record<string, SortOrder>, filter: ProductFilter) {
   return apiPutPage<Product>(product_base_url, params, filter, sorters);
 }
 
@@ -30,9 +30,11 @@ export async function deleteProduct(id: string) {
 }
 
 // 6. 获取产品关联项列表
-export async function getProductItems(productId: string) {
+export async function getProductItems(productId: string, params: ParamsType) {
+  console.log(params);
+  console.log(productId);
   const url = `${product_base_url}/${productId}/items`;
-  return apiGetList<ProductItem>(url);
+  return apiGetPage<ProductItem>(url, params);
 }
 
 // 7. 新增产品关联项

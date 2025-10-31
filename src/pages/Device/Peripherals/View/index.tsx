@@ -1,5 +1,5 @@
 import { useIntl } from '@umijs/max';
-import ViewPage from '@/components/CommonPages/View';
+import ViewPage from '@/components/Common/Pages/View';
 import type { Peripheral } from '@/services/Device/Peripheral/data';
 import {
   deletePeripheral,

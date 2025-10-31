@@ -1,6 +1,6 @@
 import type { ProDescriptionsItemProps } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import ViewPage from '@/components/CommonPages/View';
+import ViewPage from '@/components/Common/Pages/View';
 import type { User } from '@/services/Sys/User/data';
 import { deleteUser, getUserById } from '@/services/Sys/User/service';
 

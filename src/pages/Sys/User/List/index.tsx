@@ -1,6 +1,6 @@
 import React from 'react';
-import ListPage from '@/components/CommonPages/List';
-import type { CustomProColumns } from '@/components/CommonPages/List/typing';
+import ListPage from '@/components/Common/Pages/List';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import type { User } from '@/services/Sys/User/data';
 import { deleteUser, getUsers } from '@/services/Sys/User/service';
 

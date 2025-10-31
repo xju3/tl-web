@@ -1,6 +1,6 @@
 import { type ProColumns, ProTable } from '@ant-design/pro-components';
 import React, { useMemo } from 'react';
-import type { CustomProTableProps } from '@/components/CommonPages/List/typing'; // 导入你的 Props
+import type { CustomProTableProps } from '@/components/Common/Pages/List/typing'; // 导入你的 Props
 
 // 序号列的定义
 const indexColumn: ProColumns<any> = {

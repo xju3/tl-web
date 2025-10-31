@@ -1,6 +1,6 @@
 import type { ProDescriptionsItemProps } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import ViewPage from '@/components/CommonPages/View';
+import ViewPage from '@/components/Common/Pages/View';
 import type { SerialPort } from '@/services/Device/SerialPort/data';
 import {
   deleteSerialPort,

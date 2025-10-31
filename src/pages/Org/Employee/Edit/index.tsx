@@ -1,6 +1,6 @@
 import { useIntl } from '@umijs/max';
 import React from 'react';
-import EditPage from '@/components/CommonPages/Edit';
+import EditPage from '@/components/Common/Pages/Edit';
 import CustomProFormText from '@/components/Customization/Form/CustomProFormText';
 import type { Employee } from '@/services/Org/Employee/data';
 import {

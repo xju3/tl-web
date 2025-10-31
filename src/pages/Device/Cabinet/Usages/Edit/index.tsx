@@ -6,7 +6,7 @@ import {
 import { useIntl, useParams } from '@umijs/max';
 import { Button } from 'antd';
 import React, { useEffect, useState } from 'react';
-import EditPage from '@/components/CommonPages/Edit';
+import EditPage from '@/components/Common/Pages/Edit';
 import CabinetPeripheralSelector from '@/components/Selectors/CabinetPeripheralSelector';
 import type {
   Cabinet,

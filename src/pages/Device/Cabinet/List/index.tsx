@@ -1,5 +1,5 @@
-import ListPage from '@/components/CommonPages/List';
-import type { CustomProColumns } from '@/components/CommonPages/List/typing';
+import ListPage from '@/components/Common/Pages/List';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import type { Cabinet } from '@/services/Device/Cabinet/data';
 import { deleteCabinet, getCabinets } from '@/services/Device/Cabinet/service';
 

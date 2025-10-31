@@ -6,9 +6,9 @@ export type Product = API.BaseModel & {
 
 
 export type ProductFilter = API.BaseFilter & {
-  code: string;
-  name: string;
-  m_date: string;
+  code?: string;
+  name?: string;
+  mDate?: string;
 }
 export type ProductItem = {
   id: string;

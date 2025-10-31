@@ -1,5 +1,5 @@
-import ListPage from '@/components/CommonPages/List';
-import type { CustomProColumns } from '@/components/CommonPages/List/typing';
+import ListPage from '@/components/Common/Pages/List';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import type { Tenant } from '@/services/Org/Tenant/data';
 import { deleteTenant, getTenants } from '@/services/Org/Tenant/service';
 

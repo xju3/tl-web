@@ -1,9 +1,9 @@
 import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { ProTable } from '@ant-design/pro-components';
-import { history, useIntl } from '@umijs/max';
-import { Button, Popconfirm } from 'antd';
-import React, { useRef, useState } from 'react';
+import type { ProColumns } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
+import { Button } from 'antd';
+import React, { useState } from 'react';
+import AssociationList from '@/components/Common/Association/List';
 import SerialPortSelectModal from '@/components/Selectors/SerialPortSelectModal';
 import type { HostSerialPort } from '@/services/Device/Host/data';
 import {
@@ -18,13 +18,12 @@ type PortsProps = {
 
 const HostPortAssociations: React.FC<PortsProps> = ({ hostId }) => {
   const [selectModalOpen, setSelectModalOpen] = useState(false);
-  const actionRef = useRef<ActionType>(null);
   const intl = useIntl();
 
   const handleAddPort = async (serialPortId: string) => {
     await addHostPort(hostId, serialPortId);
-    actionRef.current?.reload();
     setSelectModalOpen(false);
+    // The list will be reloaded automatically by the Association component
   };
 
   const columns: ProColumns<HostSerialPort>[] = [
@@ -40,46 +39,22 @@ const HostPortAssociations: React.FC<PortsProps> = ({ hostId }) => {
       title: intl.formatMessage({ id: 'device.serialport.baudRate' }),
       dataIndex: 'baudRate',
     },
-    {
-      title: intl.formatMessage({ id: 'common.actions' }),
-      dataIndex: 'option',
-      valueType: 'option',
-      render: (_, record) => [
-        <a
-          key="edit"
-          onClick={() =>
-            history.push(
-              `/device/hosts/${hostId}/ports/${record.hostSerialPortId}/edit`,
-            )
-          }
-        >
-          {intl.formatMessage({ id: 'common.actions.edit' })}
-        </a>,
-        <Popconfirm
-          key="delete"
-          title={intl.formatMessage({
-            id: 'device.host.serial-ports.delete.confirm',
-          })}
-          onConfirm={async () => {
-            await deleteHostPort(hostId, record.hostSerialPortId);
-            actionRef.current?.reload();
-          }}
-        >
-          <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
-        </Popconfirm>,
-      ],
-    },
   ];
 
   return (
     <>
-      <ProTable<HostSerialPort>
+      <AssociationList<HostSerialPort>
+        parentId={hostId}
+        services={{
+          getPage: getHostPorts,
+          deleteItem: deleteHostPort,
+        }}
+        columns={columns}
+        editRoutePattern={`/device/hosts/:parentId/ports/:id/edit`}
         headerTitle={intl.formatMessage({
           id: 'device.host.serial-ports.title',
         })}
-        actionRef={actionRef}
         rowKey="hostSerialPortId"
-        search={false}
         toolBarRender={() => [
           <Button
             type="primary"
@@ -92,11 +67,6 @@ const HostPortAssociations: React.FC<PortsProps> = ({ hostId }) => {
             })}
           </Button>,
         ]}
-        request={(params) => getHostPorts(hostId, params)}
-        columns={columns}
-        pagination={{
-          pageSize: 10,
-        }}
       />
       <SerialPortSelectModal
         open={selectModalOpen}

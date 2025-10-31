@@ -1,7 +1,5 @@
-import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { ProTable } from '@ant-design/pro-components';
-import { Modal } from 'antd';
-import { useRef } from 'react';
+import type { ProColumns } from '@ant-design/pro-components';
+import SelectModal from '@/components/Common/SelectModal';
 import type { SerialPort } from '@/services/Device/SerialPort/data';
 import { getSerialPorts } from '@/services/Device/SerialPort/service';
 
@@ -16,8 +14,6 @@ const SerialPortSelectModal = ({
   onCancel,
   onSelect,
 }: SerialPortSelectModalProps) => {
-  const actionRef = useRef<ActionType>(null);
-
   const columns: ProColumns<SerialPort>[] = [
     {
       title: '名称',
@@ -29,55 +25,18 @@ const SerialPortSelectModal = ({
       dataIndex: 'port',
       sorter: true,
     },
-    {
-      title: '操作',
-      dataIndex: 'option',
-      valueType: 'option',
-      render: (_, record) => [
-        <a
-          key="select"
-          onClick={() => {
-            onSelect(record.id);
-          }}
-        >
-          选择
-        </a>,
-      ],
-    },
   ];
 
   return (
-    <Modal
+    <SelectModal<SerialPort>
       title="选择串口"
-      width={800}
+      headerTitle="串口列表"
       open={open}
       onCancel={onCancel}
-      footer={null}
-      destroyOnClose
-    >
-      <ProTable<SerialPort>
-        headerTitle="串口列表"
-        actionRef={actionRef}
-        rowKey="id"
-        search={{
-          labelWidth: 120,
-        }}
-        request={async (params) => {
-          const { current, pageSize, ...rest } = params;
-          const adjustedParams = {
-            ...rest,
-            currPage: 1,
-            pageSize: 10,
-          };
-          return getSerialPorts(adjustedParams);
-        }}
-        columns={columns}
-        pagination={{
-          pageSize: 5,
-        }}
-        tableAlertRender={false}
-      />
-    </Modal>
+      onSelect={(record) => onSelect(record.id)}
+      request={getSerialPorts}
+      columns={columns}
+    />
   );
 };
 

@@ -106,9 +106,9 @@ export async function deleteCabinetCable(cabinetId: string, recordId: string) {
 }
 
 // 15. Get cabinet peripheral usages
-export async function getCabinetPeripheralUsages(cabinetId: string) {
+export async function getCabinetPeripheralUsages(cabinetId: string, params: ParamsType) {
   const url = `${cabinet_base_url}/${cabinetId}/usages`;
-  return apiGetList<CabinetPeripheralUsage>(url)
+  return apiGetPage<CabinetPeripheralUsage>(url, params)
 }
 
 // 16. Get single cabinet peripheral usage by id

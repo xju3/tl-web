@@ -8,7 +8,7 @@ import {
 import { useIntl } from '@umijs/max';
 import { Button } from 'antd';
 import React, { useState } from 'react';
-import EditPage from '@/components/CommonPages/Edit';
+import EditPage from '@/components/Common/Pages/Edit';
 import CustomProFormText from '@/components/Customization/Form/CustomProFormText';
 import HostSelectModal from '@/components/Selectors/HostSelectModal';
 import type { CabinetCable } from '@/services/Device/Cabinet/data';

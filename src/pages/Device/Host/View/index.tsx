@@ -1,5 +1,5 @@
 import { useIntl } from '@umijs/max';
-import ViewPage from '@/components/CommonPages/View';
+import ViewPage from '@/components/Common/Pages/View';
 import type { Host } from '@/services/Device/Host/data';
 import { deleteHost, getHostById } from '@/services/Device/Host/service';
 import HostViewTabs from '../../../../components/ViewTabs/HostViewTabs';
