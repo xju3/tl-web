@@ -1,0 +1,62 @@
+import type { Employee } from '@/services/Org/Employee/data';
+import type { EntityField } from './types';
+
+export const EmployeeEntity: EntityField<Employee>[] = [
+  {
+    intlId: 'org.employee.personId',
+    dataIndex: 'personId',
+    inDescription: true,
+  },
+  {
+    intlId: 'org.employee.employeeNumber',
+    dataIndex: 'employeeNumber',
+    inDescription: true,
+  },
+  {
+    intlId: 'org.employee.code',
+    dataIndex: 'code',
+    valueType: 'text',
+    sorter: {
+      multiple: 2,
+    },
+    inTable: true,
+    inSelector: true,
+  },
+  {
+    intlId: 'org.employee.name',
+    dataIndex: 'name',
+    valueType: 'text',
+    sorter: {
+      multiple: 1,
+    },
+    inTable: true,
+    inSelector: true,
+  },
+  {
+    intlId: 'org.employee.gender',
+    dataIndex: 'gender',
+    valueType: 'text',
+    sorter: {
+      multiple: 1,
+    },
+    inTable: true,
+  },
+  {
+    intlId: 'org.employee.email',
+    dataIndex: 'email',
+    valueType: 'text',
+    sorter: {
+      multiple: 1,
+    },
+    inTable: true,
+  },
+  {
+    intlId: 'org.employee.mobile',
+    dataIndex: 'mobile',
+    valueType: 'text',
+    sorter: {
+      multiple: 1,
+    },
+    inTable: true,
+  },
+];

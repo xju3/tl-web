@@ -1,20 +1,10 @@
 import type { ProDescriptionsItemProps } from '@ant-design/pro-components';
 import type { IntlShape } from 'react-intl';
+import { buildDescriptions } from '@/components/TableEntities/Builder';
+import { ProductEntity } from '@/components/TableEntities/ProductEntity';
 import type { Product } from '@/services/Device/Product/data';
 
 export const ProductDescriptions = (
   intl: IntlShape,
-): ProDescriptionsItemProps<Product>[] => [
-  {
-    dataIndex: 'code',
-    title: intl.formatMessage({ id: 'device.product.code' }),
-  },
-  {
-    dataIndex: 'name',
-    title: intl.formatMessage({ id: 'device.product.name' }),
-  },
-  {
-    dataIndex: 'm_date',
-    title: intl.formatMessage({ id: 'device.product.m_date' }),
-  },
-];
+): ProDescriptionsItemProps<Product>[] =>
+  buildDescriptions(ProductEntity, intl);

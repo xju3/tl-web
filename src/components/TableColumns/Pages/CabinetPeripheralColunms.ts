@@ -1,31 +1,10 @@
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
+import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { CabinetPeripheralEntity } from '@/components/TableEntities/CabinetPeripheralEntity';
 import type { CabinetPeripheral } from '@/services/Device/Cabinet/data';
 
 export const columns = (
   saveStateAndNavigate: (path: string, id?: string) => void,
   intl: any,
-): CustomProColumns<CabinetPeripheral>[] => [
-  {
-    title: intl.formatMessage({ id: 'device.cabinet.code' }),
-    dataIndex: 'code',
-    key: 'code',
-    sorter: {
-      multiple: 1,
-    },
-    selector: true,
-  },
-  {
-    title: intl.formatMessage({ id: 'device.cabinet.name' }),
-    dataIndex: 'name',
-    key: 'name',
-    sorter: {
-      multiple: 2,
-    },
-    selector: true,
-  },
-  {
-    title: intl.formatMessage({ id: 'device.cabinet.description' }),
-    dataIndex: 'description',
-    key: 'description',
-  },
-];
+): CustomProColumns<CabinetPeripheral>[] =>
+  buildTableColumns(CabinetPeripheralEntity, intl);
