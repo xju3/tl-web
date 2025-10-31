@@ -102,13 +102,13 @@ export default [
       {
         name: 'bind.peripheral',
         path: '/device/cabinets/:cabinetId/bind',
-        component: './Device/Cabinet/Bind',
+        component: './Device/Cabinet/Peripherals/Edit',
         hideInMenu: true,
       },
       {
         name: 'bind.peripheral.edit',
         path: '/device/cabinets/bindings/:bindingId/edit',
-        component: './Device/Cabinet/Bind',
+        component: './Device/Cabinet/Peripherals/Edit',
         hideInMenu: true,
       },
       {
@@ -292,7 +292,7 @@ export default [
       },
       {
         path: '/org/partner/add',
-        name: 'edit.partner',
+        name: 'create.partner',
         component: './Org/Partner/Edit',
         hideInMenu: true,
       },

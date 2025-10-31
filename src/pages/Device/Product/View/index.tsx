@@ -2,12 +2,12 @@ import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
 import { buildDescriptions } from '@/components/TableEntities/Builder';
 import { ProductEntity } from '@/components/TableEntities/ProductEntity';
+import ProductViewTabs from '@/components/ViewTabs/ProductViewTabs';
 import type { Product } from '@/services/Device/Product/data';
 import {
   deleteProduct,
   getProductById,
 } from '@/services/Device/Product/service';
-import ProductViewTabs from '../../../../components/ViewTabs/ProductViewTabs';
 
 const ProductViewPage = () => {
   const intl = useIntl();
@@ -18,8 +18,8 @@ const ProductViewPage = () => {
       description={(product) => product.name}
       getById={getProductById}
       deleteById={deleteProduct}
-      editUrl="/device/product/edit"
-      listUrl="/device/product"
+      editUrl="/device/products/:id/edit"
+      listUrl="/device/products"
       columns={buildDescriptions(ProductEntity, intl)}
       detailsComponent={(product) => <ProductViewTabs product={product} />}
     />

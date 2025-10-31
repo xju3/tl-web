@@ -27,4 +27,7 @@ export default {
   'common.err.length.range':
     'The length of {field} must be between {min} and {max} characters',
   'common.sorter.tooltip': 'Hold down the Shift key to sort multiple fields',
+  'common.createTime': 'Create Time',
+  'common.err.required': 'This field is required',
+  'common.err.pattern': 'Invalid format',
 };

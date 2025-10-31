@@ -74,9 +74,6 @@ const InstructionEditPage = () => {
           }}
         >
           <PeripheralInstructionFormFields />
-          <Button type="primary" onClick={() => formRef.current?.submit()}>
-            {intl.formatMessage({ id: 'common.actions.save' })}
-          </Button>
         </ProForm>
       </Card>
     </PageContainer>

@@ -34,7 +34,7 @@ const PeripheralInstructionAssociations: React.FC<InstructionsProps> = ({
       headerTitle={intl.formatMessage({
         id: 'device.peripheral.instruction.list.title',
       })}
-      pagination={false}
+      pagination={true}
     />
   );
 };
