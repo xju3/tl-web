@@ -1,22 +1,11 @@
-import type { ProDescriptionsItemProps } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
+import { UserDescriptions } from '@/components/Descriptions/UserDescriptions';
 import type { User } from '@/services/Sys/User/data';
 import { deleteUser, getUserById } from '@/services/Sys/User/service';
 
 const UserViewPage = () => {
   const intl = useIntl();
-
-  const columns: ProDescriptionsItemProps<User>[] = [
-    {
-      title: intl.formatMessage({ id: 'sys.user.username' }),
-      dataIndex: 'username',
-    },
-    {
-      title: intl.formatMessage({ id: 'sys.user.employeeId' }),
-      dataIndex: 'employeeId',
-    },
-  ];
 
   return (
     <ViewPage<User>
@@ -26,7 +15,7 @@ const UserViewPage = () => {
       deleteById={deleteUser}
       editUrl="/sys/user/edit"
       listUrl="/sys/user"
-      columns={columns}
+      columns={UserDescriptions(intl)}
     />
   );
 };

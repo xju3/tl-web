@@ -1,6 +1,6 @@
-import type { ProDescriptionsItemProps } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
+import { DepartmentDescriptions } from '@/components/Descriptions/DepartmentDescriptions';
 import type { Department } from '@/services/Org/Department/data';
 import {
   deleteDepartment,
@@ -9,25 +9,6 @@ import {
 
 const DepartmentViewPage = () => {
   const intl = useIntl();
-
-  const columns: ProDescriptionsItemProps<Department>[] = [
-    {
-      title: intl.formatMessage({ id: 'org.department.parentId' }),
-      dataIndex: 'parentId',
-    },
-    {
-      title: intl.formatMessage({ id: 'org.department.companyId' }),
-      dataIndex: 'companyId',
-    },
-    {
-      title: intl.formatMessage({ id: 'org.department.name' }),
-      dataIndex: 'name',
-    },
-    {
-      title: intl.formatMessage({ id: 'org.department.code' }),
-      dataIndex: 'code',
-    },
-  ];
 
   return (
     <ViewPage<Department>
@@ -39,7 +20,7 @@ const DepartmentViewPage = () => {
       deleteById={deleteDepartment}
       editUrl="/org/department/edit"
       listUrl="/org/department"
-      columns={columns}
+      columns={DepartmentDescriptions(intl)}
     />
   );
 };

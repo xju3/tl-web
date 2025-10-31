@@ -4,8 +4,9 @@ import {
   ProFormText,
 } from '@ant-design/pro-components';
 import { history, useIntl, useParams } from '@umijs/max';
-import { Button, Card, Descriptions, Form, Space } from 'antd';
+import { Button, Card, Form, Space } from 'antd';
 import { useEffect, useState } from 'react';
+import ProductItemDescriptions from '@/components/Descriptions/ProductItemDescriptions';
 import CabinetSelectModal from '@/components/Selectors/CabinetSelectModal';
 import type { ProductItem } from '@/services/Device/Product/data';
 import {
@@ -56,27 +57,10 @@ const ProductItemEditPage = () => {
           <ProFormText name="id" hidden />
           <ProFormText name="productId" initialValue={productId} hidden />
 
-          <Descriptions
-            title={intl.formatMessage({
-              id: 'device.product.item.selected-device',
-            })}
-            bordered
-          >
-            <Descriptions.Item
-              label={intl.formatMessage({
-                id: 'device.product.item.deviceCode',
-              })}
-            >
-              {selectedDevice?.code || 'N/A'}
-            </Descriptions.Item>
-            <Descriptions.Item
-              label={intl.formatMessage({
-                id: 'device.product.item.deviceName',
-              })}
-            >
-              {selectedDevice?.name || 'N/A'}
-            </Descriptions.Item>
-          </Descriptions>
+          <ProductItemDescriptions
+            selectedDevice={selectedDevice}
+            intl={intl}
+          />
 
           <Space style={{ marginTop: 16 }}>
             <Button type="primary" onClick={() => setModalVisible(true)}>
