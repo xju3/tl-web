@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SelectModal from '@/components/Common/SelectModal';
-import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { buildSelectors } from '@/components/TableEntities/Builder';
 import { CabinetEntity } from '@/components/TableEntities/CabinetEntity';
 import type { Cabinet } from '@/services/Device/Cabinet/data';
 import { getCabinets } from '@/services/Device/Cabinet/service';
@@ -12,10 +12,8 @@ export type CabinetSelectModalProps = {
   onSelect: (cabinet: any) => void;
 };
 
-const columns = (
-  saveStateAndNavigate: (path: string, id?: string) => void,
-  intl: any,
-): CustomProColumns<Cabinet>[] => buildTableColumns(CabinetEntity, intl);
+const columns = (intl: any): CustomProColumns<Cabinet>[] =>
+  buildSelectors(CabinetEntity, intl);
 
 const CabinetSelectModal = ({
   open,
@@ -23,7 +21,7 @@ const CabinetSelectModal = ({
   onSelect,
 }: CabinetSelectModalProps) => {
   const intl = useIntl();
-  const selectorColumns = columns(() => {}, intl).filter((c) => c.selector);
+  const selectorColumns = columns(intl);
 
   return (
     <SelectModal<Cabinet>

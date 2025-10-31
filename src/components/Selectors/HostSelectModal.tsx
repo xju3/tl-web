@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SelectModal from '@/components/Common/SelectModal';
-import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { buildSelectors } from '@/components/TableEntities/Builder';
 import { HostEntity } from '@/components/TableEntities/HostEntity';
 import type { Host } from '@/services/Device/Host/data';
 import { getHosts } from '@/services/Device/Host/service';
@@ -12,10 +12,8 @@ export type HostSelectModalProps = {
   onSelect: (host: Host) => void;
 };
 
-const columns = (
-  saveStateAndNavigate: (path: string, id?: string) => void,
-  intl: any,
-): CustomProColumns<Host>[] => buildTableColumns(HostEntity, intl);
+const columns = (intl: any): CustomProColumns<Host>[] =>
+  buildSelectors(HostEntity, intl);
 
 const HostSelectModal = ({
   open,
@@ -23,7 +21,7 @@ const HostSelectModal = ({
   onSelect,
 }: HostSelectModalProps) => {
   const intl = useIntl();
-  const selectorColumns = columns(() => {}, intl).filter((c) => c.selector);
+  const selectorColumns = columns(intl);
 
   return (
     <SelectModal<Host>

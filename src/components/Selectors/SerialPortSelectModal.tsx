@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SelectModal from '@/components/Common/SelectModal';
-import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { buildSelectors } from '@/components/TableEntities/Builder';
 import { SerialPortEntity } from '@/components/TableEntities/SerialPortEntity';
 import type { SerialPort } from '@/services/Device/SerialPort/data';
 import { getSerialPorts } from '@/services/Device/SerialPort/service';
@@ -12,10 +12,8 @@ export type SerialPortSelectModalProps = {
   onSelect: (id: string) => void;
 };
 
-const columns = (
-  saveStateAndNavigate: (path: string, id?: string) => void,
-  intl: any,
-): CustomProColumns<SerialPort>[] => buildTableColumns(SerialPortEntity, intl);
+const columns = (intl: any): CustomProColumns<SerialPort>[] =>
+  buildSelectors(SerialPortEntity, intl);
 
 const SerialPortSelectModal = ({
   open,
@@ -23,7 +21,7 @@ const SerialPortSelectModal = ({
   onSelect,
 }: SerialPortSelectModalProps) => {
   const intl = useIntl();
-  const selectorColumns = columns(() => {}, intl).filter((c) => c.selector);
+  const selectorColumns = columns(intl);
 
   return (
     <SelectModal<SerialPort>

@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SelectModal from '@/components/Common/SelectModal';
-import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { buildSelectors } from '@/components/TableEntities/Builder';
 import { PeripheralEntity } from '@/components/TableEntities/PeripheralEntity';
 import type { Peripheral } from '@/services/Device/Peripheral/data';
 import { getPeripherals } from '@/services/Device/Peripheral/service';
@@ -12,10 +12,8 @@ export type PeripheralSelectModalProps = {
   onSelect: (peripheral: Peripheral) => void;
 };
 
-const columns = (
-  saveStateAndNavigate: (path: string, id?: string) => void,
-  intl: any,
-): CustomProColumns<Peripheral>[] => buildTableColumns(PeripheralEntity, intl);
+const columns = (intl: any): CustomProColumns<Peripheral>[] =>
+  buildSelectors(PeripheralEntity, intl);
 
 const PeripheralSelectModal = ({
   open,
@@ -24,7 +22,7 @@ const PeripheralSelectModal = ({
 }: PeripheralSelectModalProps) => {
   const intl = useIntl();
 
-  const selectorColumns = columns(() => {}, intl).filter((c) => c.selector);
+  const selectorColumns = columns(intl);
 
   return (
     <SelectModal<Peripheral>
