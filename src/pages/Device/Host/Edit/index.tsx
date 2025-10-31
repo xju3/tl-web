@@ -1,6 +1,8 @@
+import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import HostFormFields from '@/components/FormFields/HostFormFields';
+import { buildFormFields } from '@/components/TableEntities/Builder';
+import { HostEntity } from '@/components/TableEntities/HostEntity';
 import type { Host } from '@/services/Device/Host/data';
 import {
   addHost,
@@ -9,7 +11,8 @@ import {
 } from '@/services/Device/Host/service';
 
 const HostForm: React.FC = () => {
-  return <HostFormFields />;
+  const intl = useIntl();
+  return <>{buildFormFields<Host>(HostEntity, intl)}</>;
 };
 
 const HostEditPage = () => {

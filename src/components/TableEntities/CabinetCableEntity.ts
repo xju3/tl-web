@@ -1,35 +1,41 @@
 import type { CabinetCable } from '@/services/Device/Cabinet/data';
 import type { EntityField } from './types';
 
-export const CabinetCableEntity: EntityField<CabinetCable>[] = [
+export const cabinetCableEntity: EntityField<CabinetCable>[] = [
   {
-    intlId: 'device.cabinet.cable.code',
+    dataIndex: 'id',
+    intlId: 'device.cabinet.cable.id',
+    inTable: false,
+    inDescription: true,
+    inSelector: false,
+  },
+  {
     dataIndex: 'code',
+    intlId: 'device.cabinet.cable.code',
     inTable: true,
+    inDescription: true,
+    inSelector: true,
   },
   {
-    intlId: 'device.cabinet.cable.name',
     dataIndex: 'name',
+    intlId: 'device.cabinet.cable.name',
     inTable: true,
+    inDescription: true,
+    inSelector: true,
   },
   {
-    intlId: 'device.host.code',
-    dataIndex: 'hostCode',
-    inTable: true,
-  },
-  {
-    intlId: 'device.host.name',
-    dataIndex: 'hostName',
-    inTable: true,
-  },
-  {
-    intlId: 'device.host.port.code',
-    dataIndex: 'hostPortCode',
-    inTable: true,
-  },
-  {
-    intlId: 'device.cabinet.cable.description',
     dataIndex: 'description',
+    intlId: 'device.cabinet.cable.description',
+    inTable: false,
+    inDescription: true,
+    inSelector: false,
+  },
+  {
+    dataIndex: 'createTime',
+    intlId: 'common.createTime',
+    valueType: 'dateTime',
     inTable: true,
+    inDescription: true,
+    inSelector: false,
   },
 ];

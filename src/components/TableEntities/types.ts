@@ -1,5 +1,16 @@
-import type { ProDescriptionsItemProps } from '@ant-design/pro-components';
+import type {
+  ProDescriptionsItemProps,
+  ProFormInstance,
+  ProFormItemProps,
+} from '@ant-design/pro-components';
 import type { ProColumnType } from '@ant-design/pro-table';
+import type { IntlShape } from 'react-intl';
+
+export interface ValidationRule {
+  type: 'required' | 'length' | 'ip';
+  args?: any[];
+  messageId?: string;
+}
 
 // A type that includes properties from column, description, and selector types
 export type EntityField<T> = ProColumnType<T> &
@@ -10,4 +21,19 @@ export type EntityField<T> = ProColumnType<T> &
     inSelector?: boolean;
     showColumnFilter?: boolean;
     enable?: boolean;
+    inForm?: boolean;
+    fieldType?:
+      | 'text'
+      | 'textarea'
+      | 'digit'
+      | 'password'
+      | 'switch'
+      | 'dependency'
+      | 'custom';
+    formItemProps?: ProFormItemProps;
+    rules?: ValidationRule[];
+    renderFormItem?: (
+      formRef: React.RefObject<ProFormInstance<T>>,
+      intl: IntlShape,
+    ) => React.ReactNode;
   };
