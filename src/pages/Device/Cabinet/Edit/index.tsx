@@ -1,106 +1,59 @@
-import {
-  PageContainer,
-  ProForm,
-  ProFormText,
-} from '@ant-design/pro-components';
-import { history, useIntl, useParams } from '@umijs/max';
-import { Button, Form } from 'antd';
-import { useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useIntl } from '@umijs/max';
+import React from 'react';
+import EditPage from '@/components/CommonPages/Edit';
+import CustomProFormText from '@/components/Customization/Form/CustomProFormText';
 import type { Cabinet } from '@/services/Device/Cabinet/data';
 import {
   addCabinet,
   getCabinetById,
   updateCabinet,
 } from '@/services/Device/Cabinet/service';
+import { validationRules } from '@/utils/validation';
 
-const CabinetEditPage = () => {
-  const { id, parentId } = useParams<{ id: string; parentId: string }>();
-  const [form] = Form.useForm<Cabinet>();
+const CabinetForm: React.FC = () => {
   const intl = useIntl();
-
-  useEffect(() => {
-    if (id) {
-      // Edit mode
-      getCabinetById(id).then((res) => {
-        const { children, ...formData } = res;
-        form.setFieldsValue(formData);
-      });
-    } else if (parentId) {
-      // Add child mode
-      form.setFieldsValue({ parentId });
-    }
-  }, [id, parentId, form]);
-
-  const onFinish = async (values: Partial<Cabinet>) => {
-    if (id) {
-      await updateCabinet({ ...values, id });
-      history.back();
-    } else {
-      const { parentId, ...rest } = values;
-      await addCabinet({ ...rest, id: uuidv4(), parentId });
-      history.push('/device/cabinets');
-    }
-  };
-
-  const isEdit = !!id;
+  const rules = validationRules(intl);
 
   return (
-    <PageContainer onBack={() => history.back()} extra={[]}>
-      <ProForm form={form} onFinish={onFinish}>
-        <ProFormText
-          rules={[
-            {
-              required: true,
-              message: intl.formatMessage({ id: 'common.err.code.required' }),
-            },
-            {
-              min: 2,
-              max: 16,
-              message: intl.formatMessage(
-                { id: 'common.err.length.range' },
-                {
-                  field: intl.formatMessage({ id: 'device.cabinet.code' }),
-                  min: 2,
-                  max: 16,
-                },
-              ),
-            },
-          ]}
-          bordered={true}
-          width={'lg'}
-          placeholder={'input code here, max length less than 8'}
-          name="code"
-          label={intl.formatMessage({ id: 'device.cabinet.code' })}
-        />
-        <ProFormText
-          name="name"
-          rules={[
-            {
-              required: true,
-              min: 2,
-              max: 32,
-              message: intl.formatMessage({ id: 'common.err.name.required' }),
-            },
-            {
-              min: 2,
-              max: 32,
-              message: intl.formatMessage(
-                { id: 'common.err.length.range' },
-                {
-                  field: intl.formatMessage({ id: 'device.cabinet.name' }),
-                  min: 2,
-                  max: 32,
-                },
-              ),
-            },
-          ]}
-          width={'lg'}
-          label={intl.formatMessage({ id: 'device.cabinet.name' })}
-        />
-        <ProFormText width={'lg'} name="parentId" hidden={true} />
-      </ProForm>
-    </PageContainer>
+    <>
+      <CustomProFormText
+        rules={[
+          rules.required('device.cabinet.code'),
+          rules.length(2, 16, 'device.cabinet.code'),
+        ]}
+        bordered={true}
+        width={'lg'}
+        placeholder={'input code here, max length less than 8'}
+        name="code"
+        label={intl.formatMessage({ id: 'device.cabinet.code' })}
+      />
+      <CustomProFormText
+        name="name"
+        rules={[
+          rules.required('device.cabinet.name'),
+          rules.length(2, 32, 'device.cabinet.name'),
+        ]}
+        width={'lg'}
+        label={intl.formatMessage({ id: 'device.cabinet.name' })}
+      />
+      <CustomProFormText width={'lg'} name="parentId" hidden={true} />
+    </>
+  );
+};
+
+const CabinetEditPage = () => {
+  const services = {
+    addItem: addCabinet,
+    updateItem: updateCabinet,
+    getItemById: getCabinetById,
+  };
+
+  const backRoute = '/device/cabinets';
+
+  return (
+    <EditPage<Cabinet> services={services} backRoute={backRoute}>
+      <CabinetForm />
+    </EditPage>
   );
 };
 

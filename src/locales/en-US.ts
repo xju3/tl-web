@@ -4,13 +4,20 @@ import cabinet from './en-US/device/cabinet';
 import host from './en-US/device/host';
 import peripheral from './en-US/device/peripheral';
 import product from './en-US/device/product';
-import serialport from './en-US/device/serialport';
+import serial_port from './en-US/device/serialport';
 import globalHeader from './en-US/globalHeader';
 import menu from './en-US/menu';
+import department from './en-US/org/department';
+import employee from './en-US/org/employee';
+import company from './en-US/org/tenant';
+import tenant from './en-US/org/tenant';
 import pages from './en-US/pages';
 import pwa from './en-US/pwa';
 import settingDrawer from './en-US/settingDrawer';
 import settings from './en-US/settings';
+import sys_menu from './en-US/sys/menu';
+import sys_role from './en-US/sys/role';
+import sys_user from './en-US/sys/user';
 import material from './en-US/tenant/material';
 import partner from './en-US/tenant/partner';
 import partnerProduct from './en-US/tenant/product';
@@ -20,8 +27,15 @@ export default {
   ...peripheral,
   ...cabinet,
   ...common,
-  ...serialport,
+  ...serial_port,
   ...product,
+  ...company,
+  ...tenant,
+  ...department,
+  ...employee,
+  ...sys_menu,
+  ...sys_user,
+  ...sys_role,
   ...partner,
   ...partnerProduct,
   ...material,

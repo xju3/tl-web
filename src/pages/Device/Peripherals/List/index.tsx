@@ -1,103 +1,59 @@
-import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { PageContainer, ProTable } from '@ant-design/pro-components';
-import { history, useIntl } from '@umijs/max';
-import { Button, Popconfirm } from 'antd';
-import { useRef } from 'react';
-import type { Peripheral } from '../../../../services/Device/Peripheral/data';
+import ListPage from '@/components/CommonPages/List';
+import type { CustomProColumns } from '@/components/CommonPages/List/typing';
+import type { Peripheral } from '@/services/Device/Peripheral/data';
 import {
   deletePeripheral,
   getPeripherals,
-} from '../../../../services/Device/Peripheral/service';
+} from '@/services/Device/Peripheral/service';
+
+const SESSION_KEY = 'peripheralListState';
 
 const PeripheralListPage = () => {
-  const actionRef = useRef<ActionType>(undefined);
-  const intl = useIntl();
-
-  const columns: ProColumns<Peripheral>[] = [
+  const columns = (
+    saveStateAndNavigate: (path: string, id?: string) => void,
+    intl: any,
+  ): CustomProColumns<Peripheral>[] => [
     {
       title: intl.formatMessage({ id: 'device.peripheral.code' }),
       dataIndex: 'code',
-      sorter: true,
+      sorter: {
+        multiple: 1,
+      },
     },
     {
       title: intl.formatMessage({ id: 'device.peripheral.name' }),
       dataIndex: 'name',
-      sorter: true,
+      sorter: {
+        multiple: 2,
+      },
     },
     {
       title: intl.formatMessage({ id: 'device.peripheral.type' }),
       dataIndex: 'type',
-      sorter: true,
-    },
-    {
-      title: intl.formatMessage({ id: 'common.actions' }),
-      dataIndex: 'option',
-      valueType: 'option',
-      width: '150px',
-      render: (_, record) => [
-        <a
-          key="edit"
-          onClick={() => history.push(`/device/peripherals/edit/${record.id}`)}
-        >
-          {intl.formatMessage({ id: 'common.actions.edit' })}
-        </a>,
-        <a
-          key="view"
-          onClick={() => history.push(`/device/peripherals/view/${record.id}`)}
-        >
-          {intl.formatMessage({ id: 'common.actions.view' })}
-        </a>,
-        <Popconfirm
-          key="delete"
-          title={intl.formatMessage({
-            id: 'device.peripheral.delete.confirm',
-          })}
-          onConfirm={async () => {
-            await deletePeripheral(record.id);
-            actionRef.current?.reload();
-          }}
-        >
-          <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
-        </Popconfirm>,
-      ],
+      sorter: {
+        multiple: 3,
+      },
     },
   ];
 
+  const services = {
+    getList: getPeripherals,
+    deleteItem: deletePeripheral,
+  };
+
+  const routes = {
+    add: '/device/peripherals/add',
+    edit: '/device/peripherals/edit',
+    view: '/device/peripherals/view',
+  };
+
   return (
-    <PageContainer>
-      <ProTable<Peripheral>
-        headerTitle={intl.formatMessage({ id: 'device.peripheral.list.title' })}
-        actionRef={actionRef}
-        rowKey="id"
-        search={{}}
-        toolBarRender={() => [
-          <Button
-            type="primary"
-            key="primary"
-            onClick={() => {
-              history.push('/device/peripherals/add');
-            }}
-          >
-            <PlusOutlined /> {intl.formatMessage({ id: 'common.actions.add' })}
-          </Button>,
-        ]}
-        request={async (params) => {
-          const { current, pageSize, ...rest } = params;
-          // The backend uses 0-based indexing for pages, so we subtract 1.
-          const adjustedParams = {
-            ...rest,
-            currPage: current,
-            pageSize,
-          };
-          return getPeripherals(adjustedParams);
-        }}
-        columns={columns}
-        pagination={{
-          pageSize: 10,
-        }}
-      />
-    </PageContainer>
+    <ListPage<Peripheral>
+      services={services}
+      columns={columns}
+      routes={routes}
+      sessionKey={SESSION_KEY}
+    />
   );
 };
 

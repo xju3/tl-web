@@ -1,4 +1,51 @@
 declare namespace API {
+
+  export interface ErrorBody {
+    code: string;
+    message?: string;
+    i18n?: string;
+    extra?: any;
+  }
+
+  export  interface  QuerySorter {
+    fieldName: string;
+    direction: number;
+  }
+
+  export type PageParams = {
+    currPage?: number;
+    pageSize?: number;
+    sorter?: Record<string, 'ascend' | 'descend'>;
+  };
+
+  export type BaseFilter = {
+    // sorters?: QuerySorter[];
+    sorters?: QuerySorter[]
+  }
+
+  export type BaseModel = {
+   id: string;
+  }
+
+  type ResponseEntity<T> = {
+    body: T;
+    statusCode: 'OK' | 'FAILED';
+    statusCodeValue: number;
+  };
+
+  type Result<T> = {
+    code: number;
+    msg: string;
+    data: T;
+  };
+
+  type IPage<T> = {
+    records: T[];
+    total: number;
+    size: number;
+    current: number;
+  };
+
   type ApiResponse = {
     code?: number;
     type?: string;

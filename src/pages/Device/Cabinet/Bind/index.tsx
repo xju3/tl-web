@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import CabinetCableSelector from '@/components/Selectors/CabinetCableSelector';
 import PeripheralSelectModal from '@/components/Selectors/PeripheralSelectModal';
-import type { Cable } from '@/services/Device/Cabinet/data';
+import type { CabinetCable } from '@/services/Device/Cabinet/data';
 import {
   addCabinetPeripheral,
   getCabinetPeripheralById,
@@ -58,7 +58,7 @@ const CabinetPeripheralBindPage = () => {
     setIsPeripheralModalVisible(false);
   };
 
-  const handleSelectCable = (cable: Cable) => {
+  const handleSelectCable = (cable: CabinetCable) => {
     form.setFieldsValue({
       cableId: cable.id,
       cableCode: cable.code,
@@ -152,7 +152,6 @@ const CabinetPeripheralBindPage = () => {
               ),
             }}
           />
-
           <ProFormDigit
             width="lg"
             name="quantity"

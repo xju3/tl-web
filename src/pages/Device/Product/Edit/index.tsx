@@ -1,64 +1,59 @@
-import {
-  PageContainer,
-  ProForm,
-  ProFormDatePicker,
-  ProFormText,
-} from '@ant-design/pro-components';
-import { history, useIntl, useParams } from '@umijs/max';
-import { Form } from 'antd';
-import { useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import type { Product } from '../../../../services/Device/Product/data';
+import { ProFormDatePicker } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
+import React from 'react';
+import EditPage from '@/components/CommonPages/Edit';
+import CustomProFormText from '@/components/Customization/Form/CustomProFormText';
+import type { Product } from '@/services/Device/Product/data';
 import {
   addProduct,
   getProductById,
   updateProduct,
-} from '../../../../services/Device/Product/service';
+} from '@/services/Device/Product/service';
+import { validationRules } from '@/utils/validation';
 
-const ProductEditPage = () => {
-  const { id } = useParams<{ id: string }>();
-  const [form] = Form.useForm<Product>();
+const ProductForm: React.FC = () => {
   const intl = useIntl();
-
-  useEffect(() => {
-    if (id) {
-      getProductById(id).then((res) => {
-        console.log(res);
-        form.setFieldsValue(res);
-      });
-    } else {
-      form.setFieldsValue({ id: uuidv4() });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
-
-  const onFinish = async (values: Product) => {
-    if (id) {
-      await updateProduct({ ...values, id });
-    } else {
-      await addProduct(values);
-    }
-    history.push('/device/product');
-  };
+  const rules = validationRules(intl);
 
   return (
-    <PageContainer onBack={() => history.back()}>
-      <ProForm form={form} onFinish={onFinish}>
-        <ProFormText name="id" hidden />
-        <ProFormText
-          name="code"
-          label={intl.formatMessage({ id: 'device.product.code' })}
-        />
-        <ProFormText
-          name="name"
-          label={intl.formatMessage({ id: 'device.product.name' })}
-        />
-        <ProFormDatePicker
-          name="m_date"
-          label={intl.formatMessage({ id: 'device.product.m_date' })}
-        />
-      </ProForm>
-    </PageContainer>
+    <>
+      <CustomProFormText
+        name="code"
+        label={intl.formatMessage({ id: 'device.product.code' })}
+        rules={[
+          rules.required('device.product.code'),
+          rules.length(2, 16, 'device.product.code'),
+        ]}
+      />
+      <CustomProFormText
+        name="name"
+        label={intl.formatMessage({ id: 'device.product.name' })}
+        rules={[
+          rules.required('device.product.name'),
+          rules.length(2, 32, 'device.product.name'),
+        ]}
+      />
+      <ProFormDatePicker
+        name="m_date"
+        label={intl.formatMessage({ id: 'device.product.m_date' })}
+      />
+    </>
+  );
+};
+
+const ProductEditPage = () => {
+  const services = {
+    addItem: addProduct,
+    updateItem: updateProduct,
+    getItemById: getProductById,
+  };
+
+  const backRoute = '/device/product';
+
+  return (
+    <EditPage<Product> services={services} backRoute={backRoute}>
+      <ProductForm />
+    </EditPage>
   );
 };
 

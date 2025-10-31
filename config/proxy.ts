@@ -14,47 +14,13 @@ export default {
   dev: {
     // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
     '/api/': {
-      // 要代理的地址
-      target: 'https://preview.pro.ant.design',
-      // 配置了这个可以从 http 代理到 https
-      // 依赖 origin 的功能可能需要这个，比如 cookie
-      changeOrigin: true,
-    },
-    '/cabinets': {
+      // 已有的规则
       target: 'http://localhost:8080/',
       changeOrigin: true,
-    },
-    '/hosts': {
-      target: 'http://localhost:8080/',
-      changeOrigin: true,
-    },
-    '/peripherals': {
-      target: 'http://localhost:8080/',
-      changeOrigin: true,
-    },
-    '/serial-ports': {
-      target: 'http://localhost:8080/',
-      changeOrigin: true,
-    },
-    '/products': {
-      target: 'http://localhost:8080/',
-      changeOrigin: true,
-    },
-    '/partners': {
-      target: 'http://localhost:8080/',
-      changeOrigin: true,
-    },
-    '/materials': {
-      target: 'http://localhost:8080/',
-      changeOrigin: true,
-    },
-    '/companies': {
-      target: 'http://localhost:8080/',
-      changeOrigin: true,
+      pathRewrite: { '^/api': '' },
     },
   },
   /**
-   * @name 详细的代理配置
    * @doc https://github.com/chimurai/http-proxy-middleware
    */
   test: {
@@ -62,14 +28,12 @@ export default {
     '/api/': {
       target: 'https://proapi.azurewebsites.net',
       changeOrigin: true,
-      pathRewrite: { '^': '' },
     },
   },
   pre: {
     '/api/': {
       target: 'your pre url',
       changeOrigin: true,
-      pathRewrite: { '^': '' },
     },
   },
 };

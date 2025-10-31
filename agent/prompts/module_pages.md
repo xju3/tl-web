@@ -108,7 +108,7 @@
 
 - 只需要提供中文与英文两个版本的国际内容
 - 对应的目录在: `src/locales/`目录下
-- `src/locales/{LANGUAGE}/common.ts`已经定义了一些共用的国际化key, 优先使用
+- `src/locales/{LANGUAGE}/common.d.ts`已经定义了一些共用的国际化key, 优先使用
 - 不同的`{page_name}`需要创建相应的国际化文件,
 
 # 6. 执行

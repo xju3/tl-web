@@ -127,17 +127,24 @@ class FullModuleGenerator:
       return 'Record<string, any>'
     return 'any'
 
-  def _schema_to_ts_interface(self, schema_name: str, schema_def: dict) -> str:
+  def _schema_to_ts_interface(self, schema_name: str, schema_def: dict, base_type: str = "") -> str:
     """将 OpenAPI Schema 转换为 TypeScript 接口字符串"""
     if not schema_def or 'properties' not in schema_def:
+      if base_type:
+        return f"export type {schema_name} = {base_type};"
       return f"export type {schema_name} = Record<string, any>;"
 
     fields = []
-    for prop_name, prop_def in schema_def['properties'].items():
+    properties = schema_def.get('properties', {})
+    for prop_name, prop_def in properties.items():
       ts_type = self._get_ts_type(prop_def)
       fields.append(f"  {prop_name}?: {ts_type};")
 
-    return f"export type {schema_name} = {{\n" + "\n".join(fields) + "\n}};"
+    body = "{{\n" + "\n".join(fields) + "\n}};"
+    if base_type:
+      return f"export type {schema_name} = {base_type} & {body}"
+    else:
+      return f"export type {schema_name} = {body}"
 
   def _generate_api_files(self, module_name: str, page_name: str) -> List[Dict[str, str]]:
     """生成 service.ts 和 data.d.ts 文件"""
@@ -145,96 +152,68 @@ class FullModuleGenerator:
 
     page_name_lower = page_name.lower()
     page_name_cap = page_name.capitalize()
+    module_name_cap = module_name.capitalize()
 
     # 1. 生成 data.d.ts 内容
     data_ts_content = ""
-    schema_names_to_generate = [
-      f"{page_name_cap}Vo",
-      f"{page_name_cap}Filter",
-      f"Create{page_name_cap}Command",
-      f"Update{page_name_cap}Command",
-      f"IPage{page_name_cap}Vo"
-    ]
 
-    # 找到 IPage{page_name}Vo 依赖的 Vo
-    ipage_schema = schemas.get(f"IPage{page_name_cap}Vo")
-    if ipage_schema and 'properties' in ipage_schema:
-      records = ipage_schema['properties'].get('records', {})
-      if 'items' in records and '$ref' in records['items']:
-        vo_schema_name = records['items']['$ref'].split('/')[-1]
-        if vo_schema_name not in schema_names_to_generate:
-          schema_names_to_generate.append(vo_schema_name)
+    # Main entity
+    schema_def = schemas.get(page_name_cap, {})
+    data_ts_content += self._schema_to_ts_interface(page_name_cap, schema_def, "API.BaseModel") + "\n\n"
 
-    for schema_name in schema_names_to_generate:
-      if schema_name in schemas:
-        data_ts_content += self._schema_to_ts_interface(schema_name, schemas[schema_name]) + "\n"
+    # Filter entity
+    schema_def = schemas.get(f"{page_name_cap}Filter", {})
+    data_ts_content += self._schema_to_ts_interface(f"{page_name_cap}Filter", schema_def,
+                                                    "API.BaseFilter") + "\n\n"
+
+    # Create Command
+    schema_def = schemas.get(f"Create{page_name_cap}Command", {})
+    data_ts_content += self._schema_to_ts_interface(f"Create{page_name_cap}Command", schema_def) + "\n"
+
+    # Update Command
+    schema_def = schemas.get(f"Update{page_name_cap}Command", {})
+    data_ts_content += self._schema_to_ts_interface(f"Update{page_name_cap}Command", schema_def) + "\n"
 
     # 2. 生成 service.ts 内容
     service_ts_content = f"""\
-import {{ request }} from '@umijs/max';
-import type {{ {page_name_cap}Vo, {page_name_cap}Filter, Create{page_name_cap}Command, Update{page_name_cap}Command }} from './data.d';
+import type {{ {page_name_cap}Filter, Create{page_name_cap}Command, Update{page_name_cap}Command, {page_name_cap} }} from './data.d';
+import {{ apiCreate, apiDelete, apiGetById, apiGetPage, apiUpdate }} from '@/services/common';
+import type {{ ParamsType }} from "@ant-design/pro-components";
 
-const url = `{page_name_lower}s`;
+const base_url = `{module_name.lower()}/{page_name_lower}s`;
 
 export async function get{page_name_cap}s(
-  params: API.PageParams,
-  body: {page_name_cap}Filter,
-  options?: {{ [key: string]: any }},
+  params: ParamsType,
+  filter: {page_name_cap}Filter,
+  sorter?: Record<string, 'ascend' | 'descend' | null>
 ) {{
-  return request<API.ResponseEntity<API.IPage<{page_name_cap}Vo>>>(`/${{url}}/${{params.current}}/${{params.pageSize}}`, {{
-    method: 'PUT',
-    headers: {{
-      'Content-Type': 'application/json',
-    }},
-    data: body,
-    ...(options || {{}}),
-  }});
+  return apiGetPage<{page_name_cap}>(base_url, params, filter, sorter);
 }}
 
 export async function get{page_name_cap}ById(id: string, options?: {{ [key: string]: any }}) {{
-  return request<API.ResponseEntity<{page_name_cap}Vo>>(`/${{url}}/${{id}}`, {{
-    method: 'GET',
-    ...(options || {{}}),
-  }});
+  return apiGetById(base_url, id, options);
 }}
 
 export async function add{page_name_cap}(body: Create{page_name_cap}Command, options?: {{ [key: string]: any }}) {{
-  return request<API.ResponseEntity<string>>(`/${{url}}`, {{
-    method: 'POST',
-    headers: {{
-      'Content-Type': 'application/json',
-    }},
-    data: body,
-    ...(options || {{}}),
-  }});
+  return apiCreate(base_url, body, options);
 }}
 
 export async function update{page_name_cap}(body: Update{page_name_cap}Command, options?: {{ [key: string]: any }}) {{
-  return request<API.ResponseEntity<null>>(`/${{url}}`, {{
-    method: 'PUT',
-    headers: {{
-      'Content-Type': 'application/json',
-    }},
-    data: body,
-    ...(options || {{}}),
-  }});
+  return apiUpdate(base_url, body, options);
 }}
 
 export async function delete{page_name_cap}(id: string, options?: {{ [key: string]: any }}) {{
-  return request<API.ResponseEntity<null>>(`/${{url}}/${{id}}`, {{
-    method: 'DELETE',
-    ...(options || {{}}),
-  }});
+  return apiDelete(base_url, id, options);
 }}
 """
 
     return [
       {
-        "path": f"src/services/{module_name.capitalize()}/{page_name.capitalize()}/data.d.ts",
+        "path": f"src/services/{module_name_cap}/{page_name_cap}/data.d.ts",
         "content": data_ts_content
       },
       {
-        "path": f"src/services/{module_name.capitalize()}/{page_name.capitalize()}/service.ts",
+        "path": f"src/services/{module_name_cap}/{page_name_cap}/service.ts",
         "content": service_ts_content
       }
     ]
@@ -400,104 +379,78 @@ export async function delete{page_name_cap}(id: string, options?: {{ [key: strin
     page_name_lower = page_name.lower()
 
     schemas = self.openapi_spec.get('components', {}).get('schemas', {})
-    vo_schema = schemas.get(f"{page_name_cap}Vo", {})
-    properties = vo_schema.get('properties', {})
+    # Use the main entity schema, not Vo
+    entity_schema = schemas.get(f"{page_name_cap}", {})
+    properties = entity_schema.get('properties', {})
 
     columns_str = ""
+    sorter_multiple = 1
     for prop_name, prop_def in properties.items():
-      if prop_name in ['id', 'sorters', 'ports', 'instructions', 'attributes']:
+      # A more sensible default skip list
+      if prop_name in ['id', 'sorters', 'tenantId', 'deleted', 'version', 'createTime', 'updateTime']:
         continue
       columns_str += f"""\
-        {{{{
-          title: intl.formatMessage({{{{ id: 'page.{module_name_lower}.{page_name_lower}.{prop_name}' }}}}),
-          dataIndex: '{prop_name}',
-          valueType: 'text',
-        }}}},
-    """
+    {{
+      title: intl.formatMessage({{ id: 'page.{module_name_lower}.{page_name_lower}.{prop_name}' }}),
+      dataIndex: '{prop_name}',
+      valueType: 'text',
+      sorter: {{
+        multiple: {sorter_multiple}
+      }}
+    }},
+"""
+      sorter_multiple += 1
+
+    session_key = f"{page_name_lower}ListState"
+
     return f"""\
-    import {{{{ PlusOutlined }}}} from '@ant-design/icons';
-    import type {{{{ ActionType, ProColumns }}}} from '@ant-design/pro-components';
-    import {{{{ PageContainer, ProTable }}}} from '@ant-design/pro-components';
-    import {{{{ FormattedMessage, history, useIntl }}}} from '@umijs/max';
-    import {{{{ Button, message, Modal }}}} from 'antd';
-    import React, {{{{ useRef }}}} from 'react';
-    import type {{{{ {page_name_cap}Vo, {page_name_cap}Filter }}}} from '@/services/{module_name_cap}/{page_name_cap}/data.d';
-    import {{{{ get{page_name_cap}s, delete{page_name_cap} }}}} from '@/services/{module_name_cap}/{page_name_cap}/service';
+import ListPage from '@/pages/Temp/List';
+import type {{ {page_name_cap} }} from '@/services/{module_name_cap}/{page_name_cap}/data';
+import {{ delete{page_name_cap}, get{page_name_cap}s }} from '@/services/{module_name_cap}/{page_name_cap}/service';
+import type {{ CustomProColumns }} from '@/pages/Temp/List/typing';
+import React from "react";
 
-    const {page_name_cap}List: React.FC = () => {{{{
-      const actionRef = useRef<ActionType>(undefined);
-      const intl = useIntl();
+const SESSION_KEY = '{session_key}';
 
-      const handleDelete = async (id: string) => {{{{
-        Modal.confirm({{{{
-          title: intl.formatMessage({{{{ id: 'common.actions.delete' }}}}),
-          content: intl.formatMessage({{{{ id: 'common.delete.confirm' }}}}),
-          onOk: async () => {{{{
-            const res = await delete{page_name_cap}(id);
-            if (res.statusCode === 'OK') {{{{
-              message.success(intl.formatMessage({{{{ id: 'common.actions.delete.success' }}}}));
-              actionRef.current?.reload();
-            }}}} else {{{{
-              message.error(res.body.message);
-            }}}}
-          }}}},
-        }}}});
-      }}}};
+const {page_name_cap}ListPage: React.FC = () => {{
 
-      const columns: ProColumns<{page_name_cap}Vo>[] = [
-    {columns_str}
-        {{{{
-          title: <FormattedMessage id="common.actions" />,
-          dataIndex: 'option',
-          valueType: 'option',
-          render: (_, record) => [
-            <a key="edit" onClick={{{{() => history.push(`/{module_name_lower}/{page_name_lower}/edit/${{{{record.id}}}}`)}}}}>
-              <FormattedMessage id="common.actions.edit" />
-            </a>,
-            <a key="view" onClick={{{{() => history.push(`/{module_name_lower}/{page_name_lower}/view/${{{{record.id}}}}`)}}}}>
-              <FormattedMessage id="common.actions.view" />
-            </a>,
-            <a key="delete" onClick={{{{() => handleDelete(record.id!)}}}}>
-              <FormattedMessage id="common.actions.delete" />
-            </a>,
-          ],
-        }}}},
-      ];
+  const columns = (
+    saveStateAndNavigate: (path: string, id?: string) => void,
+    intl: any): CustomProColumns<{page_name_cap}>[] => [
+{columns_str}
+  ];
 
-      return (
-        <PageContainer>
-          <ProTable<{page_name_cap}Vo>
-            headerTitle={{{{intl.formatMessage({{{{ id: 'page.{module_name_lower}.{page_name_lower}.title' }}}})}}}}
-            actionRef={{{{actionRef}}}}
-            rowKey="id"
-            columns={{{{columns}}}}
-            search={{{{{{{{ labelWidth: 120 }}}}}}}}
-            toolBarRender={{{{() => [
-              <Button type="primary" key="primary" onClick={{{{() => history.push('/{module_name_lower}/{page_name_lower}/edit')}}}}>
-                <PlusOutlined /> <FormattedMessage id="common.actions.add" />
-              </Button>,
-            ]}}}}
-            request={{{{async (params, sorter, filter) => {{{{
-              const sort = sorter && Object.keys(sorter).length ? [{{{{ fieldName: Object.keys(sorter)[0], direction: Object.values(sorter)[0] === 'ascend' ? 0 : 1 }}}}] : [];
-              const {{{{ data, success, total }}}} = await get{page_name_cap}s({{{{...params}}}}, {{{{ ...filter, sorters: sort }}}}).then(res => ({{{{
-                data: res.body.records,
-                total: res.body.total,
-                success: res.statusCode === 'OK',
-              }}}}));
-              return {{{{ data: data || [], success, total }}}};
-            }}}}}}}}
-          />
-        </PageContainer>
-      );
-    }}}};
+  const services = {{
+    getList: get{page_name_cap}s,
+    deleteItem: delete{page_name_cap},
+  }};
 
-    export default {page_name_cap}List;
-    """
+  const routes = {{
+    add: '/{module_name_lower}/{page_name_lower}/add',
+    edit: '/{module_name_lower}/{page_name_lower}/edit',
+    view: '/{module_name_lower}/{page_name_lower}/view',
+  }};
+
+  return (
+    <ListPage<{page_name_cap}>
+      services={{services}}
+      columns={{columns}}
+      routes={{routes}}
+      showIndexColumn={{true}}
+      sessionKey={{SESSION_KEY}}
+    />
+  );
+}};
+
+export default {page_name_cap}ListPage;
+"""
 
   def _generate_edit_page(self, module_name: str, page_name: str) -> str:
     """根据 Schema 动态生成编辑页面的 TSX 代码"""
     module_name_cap = module_name.capitalize()
+    module_name_lower = module_name.lower()
     page_name_cap = page_name.capitalize()
+    page_name_lower = page_name.lower()
 
     schemas = self.openapi_spec.get('components', {}).get('schemas', {})
     command_schema = schemas.get(f"Create{page_name_cap}Command", {})
@@ -509,65 +462,55 @@ export async function delete{page_name_cap}(id: string, options?: {{ [key: strin
         continue
 
       field_type = prop_def.get('type')
-      component = "ProFormText"
+      # Default to CustomProFormText, can be extended for other types
+      component = "CustomProFormText"
       if field_type == 'integer' or field_type == 'number':
-        component = "ProFormDigit"
+        # Assuming a CustomProFormDigit might exist in the future
+        component = "ProFormDigit" # Fallback for now
 
       form_fields_str += f"""\
-            <{component}
-              name="{prop_name}"
-              label={{{{intl.formatMessage({{{{ id: 'page.{module_name.lower()}.{page_name.lower()}.{prop_name}' }}}})}}}}
-            />
-    """
+      <{component}
+        name="{prop_name}"
+        label={{intl.formatMessage({{ id: 'page.{module_name_lower}.{page_name_lower}.{prop_name}' }})}}
+        width="lg"
+      />
+"""
+
     return f"""\
-    import {{{{ PageContainer, ProForm }}}} from '@ant-design/pro-components';
-    import {{{{ history, useIntl, useParams }}}} from '@umijs/max';
-    import {{{{ Form, message }}}} from 'antd';
-    import React, {{{{ useEffect }}}} from 'react';
-    import type {{{{ Create{page_name_cap}Command, Update{page_name_cap}Command }}}} from '@/services/{module_name_cap}/{page_name_cap}/data.d';
-    import {{{{ add{page_name_cap}, get{page_name_cap}ById, update{page_name_cap} }}}} from '@/services/{module_name_cap}/{page_name_cap}/service';
+import {{ useIntl }} from '@umijs/max';
+import type {{ {page_name_cap} }} from '@/services/{module_name_cap}/{page_name_cap}/data';
+import {{
+  add{page_name_cap},
+  get{page_name_cap}ById,
+  update{page_name_cap},
+}} from '@/services/{module_name_cap}/{page_name_cap}/service';
+import EditPage from '@/pages/Temp/Edit';
+import CustomProFormText from "@/components/CustomForm/CustomProFormText";
+// import ProFormDigit from "@ant-design/pro-components"; // Example for other types
 
-    const {page_name_cap}Edit: React.FC = () => {{{{
-      const {{{{ id }}}} = useParams<{{{{ id: string }}}}>();
-      const [form] = Form.useForm();
-      const intl = useIntl();
+const {page_name_cap}EditPage = () => {{
+  const intl = useIntl();
 
-      useEffect(() => {{{{
-        if (id) {{{{
-          get{page_name_cap}ById(id).then((res) => {{{{
-            if (res.statusCode === 'OK') {{{{
-              form.setFieldsValue(res.body);
-            }}}}
-          }}}});
-        }}}}
-      }}}}, [id, form]);
+  const services = {{
+    addItem: add{page_name_cap},
+    updateItem: update{page_name_cap},
+    getItemById: get{page_name_cap}ById,
+  }};
 
-      const onFinish = async (values: Record<string, any>) => {{{{
-        try {{{{
-          if (id) {{{{
-            await update{page_name_cap}({{{{ ...values, id }}}} as Update{page_name_cap}Command);
-            message.success(intl.formatMessage({{{{ id: 'common.actions.edit.success' }}}}));
-          }}}} else {{{{
-            await add{page_name_cap}(values as Create{page_name_cap}Command);
-            message.success(intl.formatMessage({{{{ id: 'common.actions.save.success' }}}}));
-          }}}}
-          history.push("/{module_name_cap}/{page_name_cap}");
-        }}}} catch (error) {{{{
-          // Error handling is managed by the global request error handler
-        }}}}
-      }}}};
+  const backRoute = '/{module_name_lower}/{page_name_lower}';
 
-      return (
-        <PageContainer onBack={{{{() => history.push("{module_name_cap}/{page_name_cap}"}}}}>
-          <ProForm form={{{{form}}}} onFinish={{{{onFinish}}}} >
-    {form_fields_str}
-          </ProForm>
-        </PageContainer>
-      );
-    }}}};
+  return (
+    <EditPage<{page_name_cap}>
+      services={{services}}
+      backRoute={{backRoute}}
+    >
+{form_fields_str.strip()}
+    </EditPage>
+  );
+}};
 
-    export default {page_name_cap}Edit;
-    """
+export default {page_name_cap}EditPage;
+"""
 
   def _generate_view_page(self, module_name: str, page_name: str) -> str:
     """根据 Schema 动态生成视图页面的 TSX 代码"""
@@ -620,8 +563,6 @@ export async function delete{page_name_cap}(id: string, options?: {{ [key: strin
               if (res.statusCode === 'OK') {{{{
                 message.success(intl.formatMessage({{{{ id: 'common.delete.success' }}}}));
                 history.push("/{module_name_cap}/{page_name_cap}");
-              }}}} else {{{{
-                message.error(res.body.message);
               }}}}
             }}}}
           }}}},

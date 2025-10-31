@@ -1,101 +1,39 @@
-import { PageContainer } from '@ant-design/pro-components';
-import { history, useIntl, useLocation, useParams } from '@umijs/max';
-import { Button, Card, Descriptions, message, Popconfirm, Space } from 'antd';
-import { useEffect, useState } from 'react';
-import type { Peripheral } from '../../../../services/Device/Peripheral/data';
+import { useIntl } from '@umijs/max';
+import ViewPage from '@/components/CommonPages/View';
+import type { Peripheral } from '@/services/Device/Peripheral/data';
 import {
   deletePeripheral,
   getPeripheralById,
-} from '../../../../services/Device/Peripheral/service';
-import Instructions from './Instructions';
+} from '@/services/Device/Peripheral/service';
+import PeripheralViewTabs from '../../../../components/ViewTabs/PeripheralViewTabs';
 
 const PeripheralViewPage = () => {
-  const { id } = useParams<{ id: string }>();
-  const location = useLocation();
-  const [peripheral, setPeripheral] = useState<Peripheral>();
   const intl = useIntl();
 
-  useEffect(() => {
-    if (id) {
-      getPeripheralById(id).then((res) => {
-        setPeripheral(res);
-      });
-    }
-  }, [id]);
-
-  const handleDelete = async () => {
-    if (!id) return;
-    const hide = message.loading(
-      intl.formatMessage({ id: 'common.actions.deleting' }),
-    );
-    try {
-      await deletePeripheral(id);
-      hide();
-      message.success(
-        intl.formatMessage({ id: 'common.actions.delete.success' }),
-      );
-      history.push('/device/peripherals', location.state);
-    } catch (error) {
-      hide();
-    }
-  };
+  const columns = [
+    {
+      dataIndex: 'code',
+      title: intl.formatMessage({ id: 'device.peripheral.code' }),
+    },
+    {
+      dataIndex: 'name',
+      title: intl.formatMessage({ id: 'device.peripheral.name' }),
+    },
+  ];
 
   return (
-    <PageContainer onBack={() => history.back()}>
-      {peripheral && (
-        <>
-          <Card>
-            <Descriptions
-              bordered
-              column={2}
-              title={intl.formatMessage({ id: 'device.host.basic-info.title' })}
-              extra={
-                <Space size={1}>
-                  <Button
-                    key="edit"
-                    type="primary"
-                    onClick={() =>
-                      history.push(
-                        `/device/peripherals/edit/${id}`,
-                        location.state,
-                      )
-                    }
-                  >
-                    {intl.formatMessage({ id: 'common.actions.edit' })}
-                  </Button>
-                  ,
-                  <Popconfirm
-                    key="delete"
-                    title={intl.formatMessage({
-                      id: 'device.peripheral.delete.confirm',
-                    })}
-                    onConfirm={handleDelete}
-                  >
-                    <Button danger>
-                      {intl.formatMessage({ id: 'common.actions.delete' })}
-                    </Button>
-                  </Popconfirm>
-                </Space>
-              }
-            >
-              <Descriptions.Item
-                label={intl.formatMessage({ id: 'device.peripheral.code' })}
-              >
-                {peripheral.code}
-              </Descriptions.Item>
-              <Descriptions.Item
-                label={intl.formatMessage({ id: 'device.peripheral.name' })}
-              >
-                {peripheral.name}
-              </Descriptions.Item>
-            </Descriptions>
-          </Card>
-          <Card style={{ marginTop: 16 }}>
-            <Instructions peripheralId={peripheral.id} />
-          </Card>
-        </>
+    <ViewPage<Peripheral>
+      title={intl.formatMessage({ id: 'device.peripheral.view.title' })}
+      description={(peripheral) => peripheral.name}
+      getById={getPeripheralById}
+      deleteById={deletePeripheral}
+      editUrl="/device/peripherals/edit"
+      listUrl="/device/peripherals"
+      columns={columns}
+      detailsComponent={(peripheral) => (
+        <PeripheralViewTabs peripheral={peripheral} />
       )}
-    </PageContainer>
+    />
   );
 };
 

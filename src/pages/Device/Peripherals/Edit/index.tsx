@@ -1,58 +1,54 @@
-import {
-  PageContainer,
-  ProForm,
-  ProFormText,
-} from '@ant-design/pro-components';
-import { history, useIntl, useParams } from '@umijs/max';
-import { Form } from 'antd';
-import { useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import type { Peripheral } from '../../../../services/Device/Peripheral/data';
+import { useIntl } from '@umijs/max';
+import React from 'react';
+import EditPage from '@/components/CommonPages/Edit';
+import CustomProFormText from '@/components/Customization/Form/CustomProFormText';
+import type { Peripheral } from '@/services/Device/Peripheral/data';
 import {
   addPeripheral,
   getPeripheralById,
   updatePeripheral,
-} from '../../../../services/Device/Peripheral/service';
+} from '@/services/Device/Peripheral/service';
+import { validationRules } from '@/utils/validation';
 
-const PeripheralEditPage = () => {
-  const { id } = useParams<{ id: string }>();
-  const [form] = Form.useForm<Peripheral>();
+const PeripheralForm: React.FC = () => {
   const intl = useIntl();
-
-  useEffect(() => {
-    if (id) {
-      getPeripheralById(id).then((res) => {
-        form.setFieldsValue(res);
-      });
-    } else {
-      form.setFieldsValue({ id: uuidv4() });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
-
-  const onFinish = async (values: Peripheral) => {
-    if (id) {
-      await updatePeripheral({ ...values, id });
-    } else {
-      await addPeripheral(values);
-    }
-    history.push('/device/peripherals');
-  };
+  const rules = validationRules(intl);
 
   return (
-    <PageContainer onBack={() => history.back()}>
-      <ProForm form={form} onFinish={onFinish}>
-        <ProFormText name="id" hidden />
-        <ProFormText
-          name="code"
-          label={intl.formatMessage({ id: 'device.peripheral.code' })}
-        />
-        <ProFormText
-          name="name"
-          label={intl.formatMessage({ id: 'device.peripheral.name' })}
-        />
-      </ProForm>
-    </PageContainer>
+    <>
+      <CustomProFormText
+        name="code"
+        label={intl.formatMessage({ id: 'device.peripheral.code' })}
+        rules={[
+          rules.required('device.peripheral.code'),
+          rules.length(2, 16, 'device.peripheral.code'),
+        ]}
+      />
+      <CustomProFormText
+        name="name"
+        label={intl.formatMessage({ id: 'device.peripheral.name' })}
+        rules={[
+          rules.required('device.peripheral.name'),
+          rules.length(2, 32, 'device.peripheral.name'),
+        ]}
+      />
+    </>
+  );
+};
+
+const PeripheralEditPage = () => {
+  const services = {
+    addItem: addPeripheral,
+    updateItem: updatePeripheral,
+    getItemById: getPeripheralById,
+  };
+
+  const backRoute = '/device/peripherals';
+
+  return (
+    <EditPage<Peripheral> services={services} backRoute={backRoute}>
+      <PeripheralForm />
+    </EditPage>
   );
 };
 

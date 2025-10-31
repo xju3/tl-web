@@ -1,5 +1,5 @@
 export default {
-  'device.cabinet.list.title': '机柜列表',
+  'device.cabinet': '机柜',
   'device.cabinet.add': '新增机柜',
   'device.cabinet.edit': '编辑机柜',
   'device.cabinet.view': '查看机柜',

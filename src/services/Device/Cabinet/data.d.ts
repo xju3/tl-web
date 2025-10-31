@@ -1,5 +1,5 @@
 // 机柜数据类型
-export type Cabinet = {
+export type Cabinet = API.BaseModel & {
   id: string;
   code: string;
   name: string;
@@ -9,8 +9,7 @@ export type Cabinet = {
 };
 
 // 机柜外设绑定关系
-export type CabinetPeripheral = {
-  id: string;
+export type CabinetPeripheral = API.BaseModel & {
   cabinetId: string;
   peripheralId: string;
   code: string;
@@ -22,28 +21,19 @@ export type CabinetPeripheral = {
 };
 
 // 分页查询参数类型
-export type CabinetPageParams = {
-  currPage?: number;
-  pageSize?: number;
+export type CabinetFilter = API.BaseFilter & {
   // 其他查询参数
   code?: string;
   name?: string;
   ip?: string;
   nullParentId?: boolean;
   // ProTable 自动注入的排序参数
-  sorter?: Record<string, 'ascend' | 'descend' | null>;
 };
 
-// API 异常响应体结构
-export type ErrorBody = {
-  code: string;
-  message: string;
-  i18n?: string;
-  extra?: any;
-};
 
-export type Cable = {
-  id: string;
+
+
+export type CabinetCable = API.BaseModel & {
   cabinetId: string;
   code: string;
   name: string;
@@ -55,8 +45,7 @@ export type Cable = {
   hostPortCode?: string;
 };
 
-export type CabinetPeripheralUsage = {
-  id: string;
+export type CabinetPeripheralUsage = API.BaseModel & {
   cabinetId: string;
   cabinetPeripheralId: string;
   peripheralId?: string;

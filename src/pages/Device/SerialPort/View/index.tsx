@@ -1,7 +1,6 @@
-import { PageContainer } from '@ant-design/pro-components';
-import { history, useIntl, useParams } from '@umijs/max';
-import { Button, Descriptions, Popconfirm, Space } from 'antd';
-import { useEffect, useState } from 'react';
+import type { ProDescriptionsItemProps } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
+import ViewPage from '@/components/CommonPages/View';
 import type { SerialPort } from '@/services/Device/SerialPort/data';
 import {
   deleteSerialPort,
@@ -9,94 +8,51 @@ import {
 } from '@/services/Device/SerialPort/service';
 
 const SerialPortViewPage = () => {
-  const { id } = useParams<{ id: string }>();
-  const [serialPort, setSerialPort] = useState<SerialPort>();
   const intl = useIntl();
 
-  useEffect(() => {
-    if (id) {
-      getSerialPortById(id).then((res) => {
-        setSerialPort(res);
-      });
-    }
-  }, [id]);
+  const columns: ProDescriptionsItemProps<SerialPort>[] = [
+    {
+      title: intl.formatMessage({ id: 'device.serial-port.name' }),
+      dataIndex: 'name',
+    },
+    {
+      title: intl.formatMessage({ id: 'device.serial-port.protocol' }),
+      dataIndex: 'protocol',
+    },
+    {
+      title: intl.formatMessage({ id: 'device.serial-port.baudRate' }),
+      dataIndex: 'baudRate',
+    },
+    {
+      title: intl.formatMessage({ id: 'device.serial-port.dataBits' }),
+      dataIndex: 'dataBits',
+    },
+    {
+      title: intl.formatMessage({ id: 'device.serial-port.stopBits' }),
+      dataIndex: 'stopBits',
+    },
+    {
+      title: intl.formatMessage({ id: 'device.serial-port.parity' }),
+      dataIndex: 'parity',
+    },
+    {
+      title: intl.formatMessage({ id: 'common.description' }),
+      dataIndex: 'description',
+      span: 2,
+    },
+  ];
 
   return (
-    <PageContainer
-      onBack={() => history.push(`/device/serial-ports`)}
+    <ViewPage<SerialPort>
       title={intl.formatMessage({ id: 'device.serial-port.view' })}
-    >
-      {serialPort && (
-        <Descriptions
-          bordered
-          column={2}
-          title={intl.formatMessage({ id: 'device.host.basic-info.title' })}
-          extra={
-            <Space>
-              <Button
-                type="primary"
-                onClick={() => {
-                  history.push(`/device/serial-port/edit/${id}`);
-                }}
-              >
-                {intl.formatMessage({ id: 'common.actions.edit' })}
-              </Button>
-              <Popconfirm
-                title={intl.formatMessage({
-                  id: 'device.cabinet.delete.confirm',
-                })}
-                onConfirm={async () => {
-                  if (id) {
-                    await deleteSerialPort(id);
-                    history.push('/device/cabinets');
-                  }
-                }}
-              >
-                <Button type="primary" danger>
-                  {intl.formatMessage({ id: 'common.actions.delete' })}
-                </Button>
-              </Popconfirm>
-            </Space>
-          }
-        >
-          <Descriptions.Item
-            label={intl.formatMessage({ id: 'device.serialport.name' })}
-          >
-            {serialPort.name}
-          </Descriptions.Item>
-          <Descriptions.Item
-            label={intl.formatMessage({ id: 'device.serialport.protocol' })}
-          >
-            {serialPort.protocol}
-          </Descriptions.Item>
-          <Descriptions.Item
-            label={intl.formatMessage({ id: 'device.serialport.baudRate' })}
-          >
-            {serialPort.baudRate}
-          </Descriptions.Item>
-          <Descriptions.Item
-            label={intl.formatMessage({ id: 'device.serialport.dataBits' })}
-          >
-            {serialPort.dataBits}
-          </Descriptions.Item>
-          <Descriptions.Item
-            label={intl.formatMessage({ id: 'device.serialport.stopBits' })}
-          >
-            {serialPort.stopBits}
-          </Descriptions.Item>
-          <Descriptions.Item
-            label={intl.formatMessage({ id: 'device.serialport.parity' })}
-          >
-            {serialPort.parity}
-          </Descriptions.Item>
-          <Descriptions.Item
-            label={intl.formatMessage({ id: 'common.description' })}
-          >
-            {serialPort.description}
-          </Descriptions.Item>
-        </Descriptions>
-      )}
-    </PageContainer>
+      description={intl.formatMessage({ id: 'device.host.basic-info.title' })}
+      getById={getSerialPortById}
+      deleteById={deleteSerialPort}
+      editUrl="/device/serial-port/edit"
+      listUrl="/device/serial-ports"
+      columns={columns}
+      gutter={3}
+    />
   );
 };
 

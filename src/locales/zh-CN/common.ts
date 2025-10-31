@@ -1,4 +1,6 @@
 export default {
+  'common.index': '序号',
+  'common.actions.search': '搜索',
   'common.actions': '操作',
   'common.actions.edit': '编辑',
   'common.actions.view': '查看',
@@ -17,6 +19,7 @@ export default {
   'common.ip': 'IP 地址',
   'common.port': '端口',
   'common.create': '创建',
+  'common.details': '详情',
   'common.delete.confirm': '确定要删除吗？',
   'common.description': '描述',
   'common.err.code.required': '编码为必填项',

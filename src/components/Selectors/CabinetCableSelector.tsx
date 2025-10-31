@@ -2,14 +2,14 @@ import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Modal } from 'antd';
 import { useRef } from 'react';
-import type { Cable } from '../../services/Device/Cabinet/data';
+import type { CabinetCable } from '../../services/Device/Cabinet/data';
 import { getCabinetCables } from '../../services/Device/Cabinet/service';
 
 export type CabinetCableSelectorProps = {
   open: boolean;
   cabinetId: string;
   onCancel: () => void;
-  onSelect: (cable: Cable) => void;
+  onSelect: (cable: CabinetCable) => void;
 };
 
 const CabinetCableSelector = ({
@@ -20,7 +20,7 @@ const CabinetCableSelector = ({
 }: CabinetCableSelectorProps) => {
   const actionRef = useRef<ActionType>(null);
 
-  const columns: ProColumns<Cable>[] = [
+  const columns: ProColumns<CabinetCable>[] = [
     {
       title: '编码',
       dataIndex: 'code',
@@ -58,7 +58,7 @@ const CabinetCableSelector = ({
       destroyOnClose={true}
       maskClosable={false}
     >
-      <ProTable<Cable>
+      <ProTable<CabinetCable>
         headerTitle="线缆列表"
         actionRef={actionRef}
         rowKey="id"

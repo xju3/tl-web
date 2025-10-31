@@ -1,80 +1,79 @@
-import {
-  PageContainer,
-  ProForm,
-  ProFormDigit,
-  ProFormText,
-} from '@ant-design/pro-components';
-import { history, useIntl, useParams } from '@umijs/max';
-import { Form } from 'antd';
-import { useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import type { SerialPort } from '../../../../services/Device/SerialPort/data';
+import { ProFormDigit } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
+import React from 'react';
+import EditPage from '@/components/CommonPages/Edit';
+import CustomProFormText from '@/components/Customization/Form/CustomProFormText';
+import type { SerialPort } from '@/services/Device/SerialPort/data';
 import {
   addSerialPort,
   getSerialPortById,
   updateSerialPort,
-} from '../../../../services/Device/SerialPort/service';
+} from '@/services/Device/SerialPort/service';
+import { validationRules } from '@/utils/validation';
 
-const SerialPortEditPage = () => {
-  const { id } = useParams<{ id: string }>();
-  const [form] = Form.useForm<SerialPort>();
+const SerialPortForm: React.FC = () => {
   const intl = useIntl();
-
-  useEffect(() => {
-    if (id) {
-      getSerialPortById(id).then((res) => {
-        console.log(res);
-        form.setFieldsValue(res);
-      });
-    }
-  }, [id, form]);
-
-  const onFinish = async (values: Partial<SerialPort>) => {
-    if (id) {
-      await updateSerialPort({ ...values, id });
-    } else {
-      await addSerialPort({ ...values, id: uuidv4() });
-    }
-    history.push('/device/serial-ports');
-  };
+  const rules = validationRules(intl);
 
   return (
-    <PageContainer>
-      <ProForm form={form} onFinish={onFinish}>
-        <ProFormText
-          name="code"
-          label={intl.formatMessage({ id: 'device.serialport.code' })}
-        />
-        <ProFormText
-          name="name"
-          label={intl.formatMessage({ id: 'device.serialport.name' })}
-        />
-        <ProFormText
-          name="protocol"
-          label={intl.formatMessage({ id: 'device.serialport.protocol' })}
-        />
-        <ProFormDigit
-          name="baudRate"
-          label={intl.formatMessage({ id: 'device.serialport.baudRate' })}
-        />
-        <ProFormDigit
-          name="dataBits"
-          label={intl.formatMessage({ id: 'device.serialport.dataBits' })}
-        />
-        <ProFormDigit
-          name="stopBits"
-          label={intl.formatMessage({ id: 'device.serialport.stopBits' })}
-        />
-        <ProFormDigit
-          name="parity"
-          label={intl.formatMessage({ id: 'device.serialport.parity' })}
-        />
-        <ProFormText
-          name="description"
-          label={intl.formatMessage({ id: 'common.description' })}
-        />
-      </ProForm>
-    </PageContainer>
+    <>
+      <CustomProFormText
+        name="code"
+        label={intl.formatMessage({ id: 'device.serial-port.code' })}
+        rules={[
+          rules.required('device.serial-port.code'),
+          rules.length(2, 16, 'device.serial-port.code'),
+        ]}
+      />
+      <CustomProFormText
+        name="name"
+        label={intl.formatMessage({ id: 'device.serial-port.name' })}
+        rules={[
+          rules.required('device.serial-port.name'),
+          rules.length(2, 32, 'device.serial-port.name'),
+        ]}
+      />
+      <CustomProFormText
+        name="protocol"
+        label={intl.formatMessage({ id: 'device.serial-port.protocol' })}
+      />
+      <ProFormDigit
+        name="baudRate"
+        label={intl.formatMessage({ id: 'device.serial-port.baudRate' })}
+      />
+      <ProFormDigit
+        name="dataBits"
+        label={intl.formatMessage({ id: 'device.serial-port.dataBits' })}
+      />
+      <ProFormDigit
+        name="stopBits"
+        label={intl.formatMessage({ id: 'device.serial-port.stopBits' })}
+      />
+      <ProFormDigit
+        name="parity"
+        label={intl.formatMessage({ id: 'device.serial-port.parity' })}
+      />
+      <CustomProFormText
+        name="description"
+        label={intl.formatMessage({ id: 'common.description' })}
+      />
+    </>
+  );
+};
+
+const SerialPortEditPage = () => {
+  const services = {
+    addItem: addSerialPort,
+    updateItem: updateSerialPort,
+    getItemById: getSerialPortById,
+  };
+
+  const backRoute = '/device/serial-ports';
+
+  return (
+    <EditPage<SerialPort> services={services} backRoute={backRoute}>
+      <SerialPortForm />
+    </EditPage>
   );
 };
 

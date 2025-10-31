@@ -6,7 +6,7 @@
 
 # 2. 参数
 
-- 任务输入参数: `{module_name}`, `{main_page_name}` `{tab_name}`, `{related_object_name}`, `{related_page_path}`
+- 任务输入参数: `{module_name}`, `{main_page_name}` `{tab_name}`, `{related_object_module}`, `{related_object_name}`, `{related_page_path}`
 - 任务内参数:
   - `{openapi_url}` = `http://localhost:8080/v3/api-docs/default-group`
   - `{curr_page}`, 当前页索引,默认值为0
@@ -18,6 +18,7 @@
 
 ## 3.1 API
 
+### 3.1.1. 关联数项API
 - 列表分页查询:
   - URL: `/{main_page_name}/{tab_name}s/{curr_page}/{page_size}`
   - 类型: `PUT`
@@ -44,6 +45,10 @@
   - Payload: 无
   - 返回值: 无
 
+### 3.1.2. 选择器API
+- 选择器API已经存在, 不需要创建
+- 选择器API文件 `@service/{related_object_module}/{related_object}/servie.ts`
+- API: `get{related_object}s`
 ## 3.2 查询条件
 
 - 来源: OpenAPI Schema `#/components/schemas/{tab_name}Filter`
@@ -103,7 +108,7 @@
 
 - 只需要提供中文与英文两个版本的国际内容
 - 对应的目录在: `src/locales/`目录下
-- `src/locales/{LANGUAGE}/common.ts`已经定义了一些共用的国际化key, 优先使用
+- `src/locales/{LANGUAGE}/common.d.ts`已经定义了一些共用的国际化key, 优先使用
 - 不同的`{tab_name}`需要创建相应的国际化文件,
 
 # 6. 执行

@@ -1,4 +1,5 @@
 export default {
+  'device.cabinet': 'Cabinet',
   'device.cabinet.list.title': 'Cabinets',
   'device.cabinet.add': 'Add Cabinet',
   'device.cabinet.edit': 'Edit Cabinet',

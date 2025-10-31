@@ -1,110 +1,64 @@
-import {
-  PageContainer,
-  ProForm,
-  ProFormText,
-} from '@ant-design/pro-components';
-import { history, useIntl, useLocation, useParams } from '@umijs/max';
-import { Form } from 'antd';
-import { useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import type { Host } from '../../../../services/Device/Host/data';
+import { useIntl } from '@umijs/max';
+import React from 'react';
+import EditPage from '@/components/CommonPages/Edit';
+import CustomProFormText from '@/components/Customization/Form/CustomProFormText';
+import type { Host } from '@/services/Device/Host/data';
 import {
   addHost,
   getHostById,
   updateHost,
-} from '../../../../services/Device/Host/service';
+} from '@/services/Device/Host/service';
+import { validationRules } from '@/utils/validation';
 
-const HostEditPage = () => {
-  const { id } = useParams<{ id: string }>();
-  const location = useLocation();
-  const [form] = Form.useForm<Host>();
+const HostForm: React.FC = () => {
   const intl = useIntl();
-
-  useEffect(() => {
-    if (id) {
-      getHostById(id).then((res) => {
-        form.setFieldsValue(res);
-      });
-    }
-  }, [id, form]);
-
-  const onFinish = async (values: Partial<Host>) => {
-    if (id) {
-      await updateHost({ ...values, id });
-      history.back();
-    } else {
-      await addHost({ ...values, id: uuidv4() });
-      history.push('/device/hosts');
-    }
-  };
+  const rules = validationRules(intl);
 
   return (
-    <PageContainer onBack={() => history.back()}>
-      <ProForm form={form} onFinish={onFinish}>
-        <ProFormText
-          rules={[
-            {
-              required: true,
-              message: intl.formatMessage({ id: 'common.err.code.required' }),
-            },
-            {
-              min: 2,
-              max: 8,
-              message: intl.formatMessage(
-                { id: 'common.err.length.range' },
-                {
-                  field: intl.formatMessage({ id: 'device.host.code' }),
-                  min: 2,
-                  max: 8,
-                },
-              ),
-            },
-          ]}
-          bordered={true}
-          width={'lg'}
-          placeholder={'input code here, max length less than 8'}
-          name="code"
-          label={intl.formatMessage({ id: 'device.host.code' })}
-        />
-        <ProFormText
-          name="name"
-          rules={[
-            {
-              required: true,
-              min: 2,
-              max: 32,
-              message: intl.formatMessage({ id: 'common.err.name.required' }),
-            },
-            {
-              min: 2,
-              max: 32,
-              message: intl.formatMessage(
-                { id: 'common.err.length.range' },
-                {
-                  field: intl.formatMessage({ id: 'device.host.name' }),
-                  min: 2,
-                  max: 32,
-                },
-              ),
-            },
-          ]}
-          width={'lg'}
-          label={intl.formatMessage({ id: 'device.host.name' })}
-        />
-        <ProFormText
-          width={'lg'}
-          name="ip"
-          label={intl.formatMessage({ id: 'common.ip' })}
-          rules={[
-            {
-              pattern:
-                /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
-              message: intl.formatMessage({ id: 'common.err.ip' }),
-            },
-          ]}
-        />
-      </ProForm>
-    </PageContainer>
+    <>
+      <CustomProFormText
+        rules={[
+          rules.required('device.host.code'),
+          rules.length(2, 8, 'device.host.code'),
+        ]}
+        bordered={true}
+        width={'lg'}
+        placeholder={'input code here, max length less than 8'}
+        name="code"
+        label={intl.formatMessage({ id: 'device.host.code' })}
+      />
+      <CustomProFormText
+        name="name"
+        rules={[
+          rules.required('device.host.name'),
+          rules.length(2, 32, 'device.host.name'),
+        ]}
+        width={'lg'}
+        label={intl.formatMessage({ id: 'device.host.name' })}
+      />
+      <CustomProFormText
+        width={'lg'}
+        name="ip"
+        label={intl.formatMessage({ id: 'common.ip' })}
+        rules={[rules.ip('common.ip')]}
+      />
+    </>
+  );
+};
+
+const HostEditPage = () => {
+  const services = {
+    addItem: addHost,
+    updateItem: updateHost,
+    getItemById: getHostById,
+  };
+
+  const backRoute = '/device/hosts';
+
+  return (
+    <EditPage<Host> services={services} backRoute={backRoute}>
+      <HostForm />
+    </EditPage>
   );
 };
 

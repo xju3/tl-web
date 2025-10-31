@@ -1,144 +1,77 @@
-import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { PageContainer, ProTable } from '@ant-design/pro-components';
-import { history, useIntl } from '@umijs/max';
-import { Button, Popconfirm } from 'antd';
-import { useRef } from 'react';
+import ListPage from '@/components/CommonPages/List';
+import type { CustomProColumns } from '@/components/CommonPages/List/typing';
 import type { SerialPort } from '@/services/Device/SerialPort/data';
 import {
   deleteSerialPort,
   getSerialPorts,
 } from '@/services/Device/SerialPort/service';
 
-const SerialPortListPage = () => {
-  const actionRef = useRef<ActionType>(null);
-  const intl = useIntl();
+const SESSION_KEY = 'peripheralListState';
 
-  const columns: ProColumns<SerialPort>[] = [
+const SerialPortListPage = () => {
+  const columns = (
+    saveStateAndNavigate: (path: string, id?: string) => void,
+    intl: any,
+  ): CustomProColumns<SerialPort>[] => [
     {
-      title: intl.formatMessage({ id: 'device.serialport.code' }),
+      title: intl.formatMessage({ id: 'device.serial-port.code' }),
       dataIndex: 'code',
       sorter: true,
     },
     {
-      title: intl.formatMessage({ id: 'device.serialport.name' }),
+      title: intl.formatMessage({ id: 'device.serial-port.name' }),
       dataIndex: 'name',
       sorter: true,
     },
     {
-      title: intl.formatMessage({ id: 'device.serialport.protocol' }),
+      title: intl.formatMessage({ id: 'device.serial-port.protocol' }),
       dataIndex: 'protocol',
       sorter: true,
     },
     {
-      title: intl.formatMessage({ id: 'device.serialport.baudRate' }),
+      title: intl.formatMessage({ id: 'device.serial-port.baudRate' }),
       dataIndex: 'baudRate',
       width: '120px',
       sorter: true,
     },
     {
-      title: intl.formatMessage({ id: 'device.serialport.dataBits' }),
+      title: intl.formatMessage({ id: 'device.serial-port.dataBits' }),
       dataIndex: 'dataBits',
       width: '120px',
       sorter: true,
     },
     {
-      title: intl.formatMessage({ id: 'device.serialport.stopBits' }),
+      title: intl.formatMessage({ id: 'device.serial-port.stopBits' }),
       dataIndex: 'stopBits',
       width: '120px',
       sorter: true,
     },
     {
-      title: intl.formatMessage({ id: 'device.serialport.parity' }),
+      title: intl.formatMessage({ id: 'device.serial-port.parity' }),
       dataIndex: 'parity',
       width: '120px',
       sorter: true,
     },
-    {
-      title: intl.formatMessage({ id: 'common.actions' }),
-      dataIndex: 'option',
-      valueType: 'option',
-      width: '180px',
-      render: (_, record) => [
-        <a
-          key="edit"
-          onClick={() => history.push(`/device/serial-ports/edit/${record.id}`)}
-        >
-          {intl.formatMessage({ id: 'common.actions.edit' })}
-        </a>,
-        <a
-          key="view"
-          onClick={() => history.push(`/device/serial-ports/view/${record.id}`)}
-        >
-          {intl.formatMessage({ id: 'common.actions.view' })}
-        </a>,
-        <Popconfirm
-          key="delete"
-          title={intl.formatMessage({
-            id: 'device.serialport.delete.confirm',
-          })}
-          onConfirm={async () => {
-            await deleteSerialPort(record.id);
-            actionRef.current?.reload();
-          }}
-        >
-          <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
-        </Popconfirm>,
-      ],
-    },
   ];
 
+  const services = {
+    getList: getSerialPorts,
+    deleteItem: deleteSerialPort,
+  };
+
+  const routes = {
+    add: '/device/serial-ports/add',
+    edit: '/device/serial-ports/edit',
+    view: '/device/serial-ports/view',
+  };
+
   return (
-    <PageContainer>
-      <ProTable<SerialPort>
-        headerTitle={intl.formatMessage({ id: 'device.serialport.list.title' })}
-        actionRef={actionRef}
-        rowKey="id"
-        search={{
-          labelWidth: 40,
-        }}
-        toolBarRender={() => [
-          <Button
-            type="primary"
-            key="primary"
-            onClick={() => {
-              history.push('/device/serial-ports/add');
-            }}
-          >
-            <PlusOutlined />{' '}
-            {intl.formatMessage({ id: 'device.serialport.add' })}
-          </Button>,
-        ]}
-        request={async (params, sorter, filter) => {
-          // Correctly handle the arguments provided by ProTable.
-          // `params` contains pagination and form data.
-          // `sorter` is the sorting object.
-          // `filter` contains filter values.
-          console.log('ProTable request:', { params, sorter, filter });
-
-          const sorters = sorter
-            ? Object.entries(sorter).map(([key, value]) => ({
-                fieldName: key,
-                direction: value === 'ascend' ? 0 : 1,
-              }))
-            : undefined;
-
-          const adjustedParams = {
-            currPage: (params.current || 1) - 1,
-            pageSize: params.pageSize || 10,
-            ...params, // Includes form values
-            ...filter, // Includes filter values
-            sorters,
-          };
-
-          return getSerialPorts(adjustedParams);
-        }}
-        columns={columns}
-        pagination={{
-          pageSize: 10,
-        }}
-      />
-    </PageContainer>
+    <ListPage<SerialPort>
+      services={services}
+      columns={columns}
+      routes={routes}
+      sessionKey={SESSION_KEY}
+    />
   );
 };
 

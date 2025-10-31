@@ -1,6 +1,5 @@
 // 串口数据类型
-export type SerialPort = {
-  id: string;
+export type SerialPort =  API.BaseModel & {
   code: string;
   name: string;
   protocol: string;
@@ -12,9 +11,7 @@ export type SerialPort = {
 };
 
 // 分页查询参数类型
-export type SerialPortPageParams = {
-  currPage: number;
-  pageSize?: number;
+export type SerialPortFilter = API.BaseFilter & {
   // 其他查询参数
   code?: string;
   name?: string;
@@ -24,6 +21,4 @@ export type SerialPortPageParams = {
   stopBits?: number;
   parity?: number;
   // ProTable 自动注入的排序参数
-  sorter?: Record<string, 'ascend' | 'descend'>;
-  sorters?: { fieldName: string; direction: number }[];
 };
