@@ -4,6 +4,7 @@ import type {
   ProFormItemProps,
 } from '@ant-design/pro-components';
 import type { ProColumnType } from '@ant-design/pro-table';
+import React from 'react';
 import type { IntlShape } from 'react-intl';
 
 export interface ValidationRule {
@@ -33,7 +34,8 @@ export type EntityField<T> = ProColumnType<T> &
     formItemProps?: ProFormItemProps;
     rules?: ValidationRule[];
     renderFormItem?: (
-      formRef: React.RefObject<ProFormInstance<T>>,
-      intl: IntlShape,
+      item: any,
+      config: any,
+      form: ProFormInstance<T>,
     ) => React.ReactNode;
   };

@@ -1,7 +1,9 @@
 import type { ProFormInstance } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import CabinetCableFormFields from '@/components/FormFields/CabinetCableFormFields';
+import { buildFormFields } from '@/components/TableEntities/Builder';
+import { CabinetCableEntity } from '@/components/TableEntities/CabinetCableEntity';
 import type { CabinetCable } from '@/services/Device/Cabinet/data';
 import {
   addCabinetCables,
@@ -14,7 +16,10 @@ interface CableFormProps {
 }
 
 const CableForm: React.FC<CableFormProps> = ({ formRef }) => {
-  return <CabinetCableFormFields formRef={formRef} />;
+  const intl = useIntl();
+  return (
+    <>{buildFormFields<CabinetCable>(CabinetCableEntity, intl, formRef)}</>
+  );
 };
 
 const CableEditPage: React.FC = () => {
