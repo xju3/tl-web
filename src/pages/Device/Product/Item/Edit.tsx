@@ -32,11 +32,10 @@ const ProductItemEditPage = () => {
   }, [itemId]);
 
   const onFinish = async (values: ProductItem) => {
-    const dataToSave = { ...values, deviceId: selectedDevice.id };
     if (itemId) {
-      await updateProductItem(productId!, itemId, dataToSave);
+      await updateProductItem(productId!, values);
     } else {
-      await addProductItem(productId!, dataToSave);
+      await addProductItem(productId!, values);
     }
     history.back();
   };

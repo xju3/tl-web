@@ -10,19 +10,19 @@ const TenantViewPage = () => {
 
   const columns: ProDescriptionsItemProps<Tenant>[] = [
     {
-      title: intl.formatMessage({ id: 'page.org.company.name' }),
+      title: intl.formatMessage({ id: 'org.company.name' }),
       dataIndex: 'name',
     },
     {
-      title: intl.formatMessage({ id: 'page.org.company.code' }),
+      title: intl.formatMessage({ id: 'org.company.code' }),
       dataIndex: 'code',
     },
   ];
 
   return (
     <ViewPage<Tenant>
-      title={intl.formatMessage({ id: 'page.org.company.view' })}
-      description={intl.formatMessage({ id: 'page.org.company.view' })}
+      title={intl.formatMessage({ id: 'org.company.view' })}
+      description={intl.formatMessage({ id: 'org.company.view' })}
       getById={getTenantById}
       deleteById={deleteTenant}
       editUrl="/org/company/edit"

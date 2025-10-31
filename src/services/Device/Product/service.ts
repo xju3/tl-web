@@ -39,17 +39,18 @@ export async function getProductItems(productId: string, params: ParamsType) {
 
 // 7. 新增产品关联项
 export async function addProductItem(
+  productId: string,
   data: ProductItem,
 ) {
-  const url = `${product_base_url}/items`;
+  const url = `${product_base_url}/${productId}/items`;
   return apiCreate<ProductItem>(url, data);
 }
 
 // 8. 更新产品关联项
-export async function updateProductItem(
+export async function updateProductItem( productId: string,
   data: ProductItem,
 ) {
-  const url = `${product_base_url}/items`;
+  const url = `${product_base_url}${productId}/items`;
   return apiUpdate<ProductItem>(url, data);
 }
 

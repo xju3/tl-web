@@ -9,47 +9,47 @@ const MenuViewPage = () => {
 
   const columns: ProDescriptionsItemProps<Menu>[] = [
     {
-      title: intl.formatMessage({ id: 'page.sys.menu.parentId' }),
+      title: intl.formatMessage({ id: 'sys.menu.parentId' }),
       dataIndex: 'parentId',
     },
     {
-      title: intl.formatMessage({ id: 'page.sys.menu.name' }),
+      title: intl.formatMessage({ id: 'sys.menu.name' }),
       dataIndex: 'name',
     },
     {
-      title: intl.formatMessage({ id: 'page.sys.menu.path' }),
+      title: intl.formatMessage({ id: 'sys.menu.path' }),
       dataIndex: 'path',
     },
     {
-      title: intl.formatMessage({ id: 'page.sys.menu.component' }),
+      title: intl.formatMessage({ id: 'sys.menu.component' }),
       dataIndex: 'component',
     },
     {
-      title: intl.formatMessage({ id: 'page.sys.menu.icon' }),
+      title: intl.formatMessage({ id: 'sys.menu.icon' }),
       dataIndex: 'icon',
     },
     {
-      title: intl.formatMessage({ id: 'page.sys.menu.type' }),
+      title: intl.formatMessage({ id: 'sys.menu.type' }),
       dataIndex: 'type',
     },
     {
-      title: intl.formatMessage({ id: 'page.sys.menu.sortOrder' }),
+      title: intl.formatMessage({ id: 'sys.menu.sortOrder' }),
       dataIndex: 'sortOrder',
     },
     {
-      title: intl.formatMessage({ id: 'page.sys.menu.visible' }),
+      title: intl.formatMessage({ id: 'sys.menu.visible' }),
       dataIndex: 'visible',
     },
     {
-      title: intl.formatMessage({ id: 'page.sys.menu.permission' }),
+      title: intl.formatMessage({ id: 'sys.menu.permission' }),
       dataIndex: 'permission',
     },
   ];
 
   return (
     <ViewPage<Menu>
-      title={intl.formatMessage({ id: 'page.sys.menu.view' })}
-      description={intl.formatMessage({ id: 'page.sys.menu.view' })}
+      title={intl.formatMessage({ id: 'sys.menu.view' })}
+      description={intl.formatMessage({ id: 'sys.menu.view' })}
       getById={getMenuById}
       deleteById={deleteMenu}
       editUrl="/sys/menu/edit"

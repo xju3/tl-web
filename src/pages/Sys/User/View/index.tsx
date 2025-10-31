@@ -9,19 +9,19 @@ const UserViewPage = () => {
 
   const columns: ProDescriptionsItemProps<User>[] = [
     {
-      title: intl.formatMessage({ id: 'page.sys.user.username' }),
+      title: intl.formatMessage({ id: 'sys.user.username' }),
       dataIndex: 'username',
     },
     {
-      title: intl.formatMessage({ id: 'page.sys.user.employeeId' }),
+      title: intl.formatMessage({ id: 'sys.user.employeeId' }),
       dataIndex: 'employeeId',
     },
   ];
 
   return (
     <ViewPage<User>
-      title={intl.formatMessage({ id: 'page.sys.user.view' })}
-      description={intl.formatMessage({ id: 'page.sys.user.view' })}
+      title={intl.formatMessage({ id: 'sys.user.view' })}
+      description={intl.formatMessage({ id: 'sys.user.view' })}
       getById={getUserById}
       deleteById={deleteUser}
       editUrl="/sys/user/edit"

@@ -12,19 +12,19 @@ const DepartmentViewPage = () => {
 
   const columns: ProDescriptionsItemProps<Department>[] = [
     {
-      title: intl.formatMessage({ id: 'page.org.department.parentId' }),
+      title: intl.formatMessage({ id: 'org.department.parentId' }),
       dataIndex: 'parentId',
     },
     {
-      title: intl.formatMessage({ id: 'page.org.department.companyId' }),
+      title: intl.formatMessage({ id: 'org.department.companyId' }),
       dataIndex: 'companyId',
     },
     {
-      title: intl.formatMessage({ id: 'page.org.department.name' }),
+      title: intl.formatMessage({ id: 'org.department.name' }),
       dataIndex: 'name',
     },
     {
-      title: intl.formatMessage({ id: 'page.org.department.code' }),
+      title: intl.formatMessage({ id: 'org.department.code' }),
       dataIndex: 'code',
     },
   ];
@@ -32,9 +32,9 @@ const DepartmentViewPage = () => {
   return (
     <ViewPage<Department>
       description={intl.formatMessage({
-        id: 'page.org.department.description',
+        id: 'org.department.description',
       })}
-      title={intl.formatMessage({ id: 'page.org.department.view' })}
+      title={intl.formatMessage({ id: 'org.department.view' })}
       getById={getDepartmentById}
       deleteById={deleteDepartment}
       editUrl="/org/department/edit"

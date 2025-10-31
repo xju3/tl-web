@@ -12,19 +12,19 @@ const EmployeeViewPage = () => {
 
   const columns: ProDescriptionsItemProps<Employee>[] = [
     {
-      title: intl.formatMessage({ id: 'page.org.employee.personId' }),
+      title: intl.formatMessage({ id: 'org.employee.personId' }),
       dataIndex: 'personId',
     },
     {
-      title: intl.formatMessage({ id: 'page.org.employee.employeeNumber' }),
+      title: intl.formatMessage({ id: 'org.employee.employeeNumber' }),
       dataIndex: 'employeeNumber',
     },
   ];
 
   return (
     <ViewPage<Employee>
-      title={intl.formatMessage({ id: 'page.org.employee.view' })}
-      description={intl.formatMessage({ id: 'page.org.employee.view' })}
+      title={intl.formatMessage({ id: 'org.employee.view' })}
+      description={intl.formatMessage({ id: 'org.employee.view' })}
       getById={getEmployeeById}
       deleteById={deleteEmployee}
       editUrl="/org/employee/edit"
