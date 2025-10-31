@@ -11,13 +11,13 @@ const TenantFormFields: React.FC = () => {
     <>
       <CustomProFormText
         name="name"
-        rules={[rules.required('page.org.tenant.name')]}
-        label={intl.formatMessage({ id: 'page.org.tenant.name' })}
+        rules={[rules.required('org.tenant.name')]}
+        label={intl.formatMessage({ id: 'org.tenant.name' })}
       />
       <CustomProFormText
         name="code"
-        rules={[rules.required('page.org.tenant.code')]}
-        label={intl.formatMessage({ id: 'page.org.tenant.code' })}
+        rules={[rules.required('org.tenant.code')]}
+        label={intl.formatMessage({ id: 'org.tenant.code' })}
       />
     </>
   );

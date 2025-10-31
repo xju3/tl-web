@@ -11,12 +11,12 @@ const EmployeeFormFields: React.FC = () => {
     <>
       <CustomProFormText
         name="personId"
-        label={intl.formatMessage({ id: 'page.org.employee.personId' })}
+        label={intl.formatMessage({ id: 'org.employee.personId' })}
       />
       <CustomProFormText
         name="employeeNumber"
-        rules={[rules.required('page.org.employee.employeeNumber')]}
-        label={intl.formatMessage({ id: 'page.org.employee.employeeNumber' })}
+        rules={[rules.required('org.employee.employeeNumber')]}
+        label={intl.formatMessage({ id: 'org.employee.employeeNumber' })}
       />
     </>
   );

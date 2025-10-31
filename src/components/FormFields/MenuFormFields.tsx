@@ -12,40 +12,40 @@ const MenuFormFields: React.FC = () => {
     <>
       <CustomProFormText
         name="parentId"
-        label={intl.formatMessage({ id: 'page.sys.menu.parentId' })}
+        label={intl.formatMessage({ id: 'sys.menu.parentId' })}
       />
       <CustomProFormText
         name="name"
-        rules={[rules.required('page.sys.menu.name')]}
-        label={intl.formatMessage({ id: 'page.sys.menu.name' })}
+        rules={[rules.required('sys.menu.name')]}
+        label={intl.formatMessage({ id: 'sys.menu.name' })}
       />
       <CustomProFormText
         name="path"
-        label={intl.formatMessage({ id: 'page.sys.menu.path' })}
+        label={intl.formatMessage({ id: 'sys.menu.path' })}
       />
       <CustomProFormText
         name="component"
-        label={intl.formatMessage({ id: 'page.sys.menu.component' })}
+        label={intl.formatMessage({ id: 'sys.menu.component' })}
       />
       <CustomProFormText
         name="icon"
-        label={intl.formatMessage({ id: 'page.sys.menu.icon' })}
+        label={intl.formatMessage({ id: 'sys.menu.icon' })}
       />
       <CustomProFormText
         name="type"
-        label={intl.formatMessage({ id: 'page.sys.menu.type' })}
+        label={intl.formatMessage({ id: 'sys.menu.type' })}
       />
       <ProFormDigit
         name="sortOrder"
-        label={intl.formatMessage({ id: 'page.sys.menu.sortOrder' })}
+        label={intl.formatMessage({ id: 'sys.menu.sortOrder' })}
       />
       <CustomProFormText
         name="visible"
-        label={intl.formatMessage({ id: 'page.sys.menu.visible' })}
+        label={intl.formatMessage({ id: 'sys.menu.visible' })}
       />
       <CustomProFormText
         name="permission"
-        label={intl.formatMessage({ id: 'page.sys.menu.permission' })}
+        label={intl.formatMessage({ id: 'sys.menu.permission' })}
       />
     </>
   );

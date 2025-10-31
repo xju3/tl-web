@@ -267,7 +267,7 @@ export default [
         hideInMenu: true,
       },
       {
-        path: '/org/tenant/edit',
+        path: '/org/tenant/add',
         name: 'create.tenant',
         component: './Org/Tenant/Edit',
         hideInMenu: true,
@@ -291,7 +291,7 @@ export default [
         hideInMenu: true,
       },
       {
-        path: '/org/partner/edit',
+        path: '/org/partner/add',
         name: 'edit.partner',
         component: './Org/Partner/Edit',
         hideInMenu: true,
@@ -321,7 +321,7 @@ export default [
       },
       {
         name: 'create',
-        path: '/org/department/edit',
+        path: '/org/department/add',
         component: './Org/Department/Edit',
         hideInMenu: true,
       },
@@ -344,7 +344,7 @@ export default [
       },
       {
         name: 'create.employee',
-        path: '/org/employee/edit',
+        path: '/org/employee/add',
         component: './Org/Employee/Edit',
         hideInMenu: true,
       },
@@ -374,7 +374,7 @@ export default [
       },
       {
         name: 'create.menu',
-        path: '/sys/menu/edit',
+        path: '/sys/menu/add',
         component: './Sys/Menu/Edit',
         hideInMenu: true,
       },
@@ -397,7 +397,7 @@ export default [
       },
       {
         name: 'create.role',
-        path: '/sys/role/edit',
+        path: '/sys/role/add',
         component: './Sys/Role/Edit',
         hideInMenu: true,
       },
@@ -417,6 +417,12 @@ export default [
         name: 'user',
         path: '/sys/user',
         component: './Sys/User/List',
+      },
+      {
+        name: 'create.user',
+        path: '/sys/user/add',
+        component: './Sys/User/Edit',
+        hideInMenu: true,
       },
       {
         name: 'edit.user',

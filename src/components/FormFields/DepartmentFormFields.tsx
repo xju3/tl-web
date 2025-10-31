@@ -11,21 +11,21 @@ const DepartmentFormFields: React.FC = () => {
     <>
       <CustomProFormText
         name="parentId"
-        label={intl.formatMessage({ id: 'page.org.department.parentId' })}
+        label={intl.formatMessage({ id: 'org.department.parentId' })}
       />
       <CustomProFormText
         name="companyId"
-        label={intl.formatMessage({ id: 'page.org.department.companyId' })}
+        label={intl.formatMessage({ id: 'org.department.companyId' })}
       />
       <CustomProFormText
         name="name"
-        rules={[rules.required('page.org.department.name')]}
-        label={intl.formatMessage({ id: 'page.org.department.name' })}
+        rules={[rules.required('org.department.name')]}
+        label={intl.formatMessage({ id: 'org.department.name' })}
       />
       <CustomProFormText
         name="code"
-        rules={[rules.required('page.org.department.code')]}
-        label={intl.formatMessage({ id: 'page.org.department.code' })}
+        rules={[rules.required('org.department.code')]}
+        label={intl.formatMessage({ id: 'org.department.code' })}
       />
     </>
   );

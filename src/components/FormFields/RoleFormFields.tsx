@@ -9,11 +9,11 @@ const RoleFormFields: React.FC = () => {
     <>
       <ProFormText
         name="name"
-        label={intl.formatMessage({ id: 'page.sys.role.name' })}
+        label={intl.formatMessage({ id: 'sys.role.name' })}
       />
       <ProFormText
         name="code"
-        label={intl.formatMessage({ id: 'page.sys.role.code' })}
+        label={intl.formatMessage({ id: 'sys.role.code' })}
       />
     </>
   );

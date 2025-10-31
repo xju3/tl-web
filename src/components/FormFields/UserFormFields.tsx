@@ -9,15 +9,15 @@ const UserFormFields: React.FC = () => {
     <>
       <ProFormText
         name="username"
-        label={intl.formatMessage({ id: 'page.sys.user.username' })}
+        label={intl.formatMessage({ id: 'sys.user.username' })}
       />
       <ProFormText.Password
         name="password"
-        label={intl.formatMessage({ id: 'page.sys.user.password' })}
+        label={intl.formatMessage({ id: 'sys.user.password' })}
       />
       <ProFormText
         name="employeeId"
-        label={intl.formatMessage({ id: 'page.sys.user.employeeId' })}
+        label={intl.formatMessage({ id: 'sys.user.employeeId' })}
       />
     </>
   );
