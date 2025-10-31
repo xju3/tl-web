@@ -1,8 +1,5 @@
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
-import type {
-  CabinetCable,
-  CabinetPeripheral,
-} from '@/services/Device/Cabinet/data';
+import type { CabinetPeripheral } from '@/services/Device/Cabinet/data';
 
 export const columns = (
   saveStateAndNavigate: (path: string, id?: string) => void,

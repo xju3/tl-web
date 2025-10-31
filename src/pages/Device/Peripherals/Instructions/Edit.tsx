@@ -2,14 +2,14 @@ import { PageContainer, ProForm } from '@ant-design/pro-components';
 import { history, useIntl, useParams } from '@umijs/max';
 import { Button, Card, message } from 'antd';
 import { useEffect, useRef, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid_v4 } from 'uuid';
 import PeripheralInstructionFormFields from '@/components/FormFields/PeripheralInstructionFormFields';
-import type { Instruction } from '../../../../services/Device/Peripheral/data';
+import type { Instruction } from '@/services/Device/Peripheral/data';
 import {
   addInstruction,
   getInstructionById,
   updateInstruction,
-} from '../../../../services/Device/Peripheral/service';
+} from '@/services/Device/Peripheral/service';
 
 const InstructionEditPage = () => {
   const intl = useIntl();
@@ -39,7 +39,7 @@ const InstructionEditPage = () => {
         });
     } else if (peripheralId) {
       // Creating new instruction: ensure peripheralId is in the form values
-      formRef.current?.setFieldsValue({ peripheralId, id: uuidv4() });
+      formRef.current?.setFieldsValue({ peripheralId, id: uuid_v4() });
     }
   }, [peripheralId, instructionId]);
 

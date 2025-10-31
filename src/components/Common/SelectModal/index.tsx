@@ -3,7 +3,6 @@ import type {
   ProColumns,
   ProTableProps,
 } from '@ant-design/pro-components';
-import { ProTable } from '@ant-design/pro-components';
 import { Modal } from 'antd';
 import { useRef } from 'react';
 import type { IntlShape } from 'react-intl';

@@ -1,5 +1,5 @@
-import type { Instruction, Peripheral, PeripheralFilter } from './data';
-import {apiCreate, apiDelete, apiGetById, apiGetList, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
+import type {Instruction, Peripheral, PeripheralFilter} from './data';
+import {apiCreate, apiDelete, apiGetById, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
 import {ParamsType} from "@ant-design/pro-components";
 import {SortOrder} from "antd/es/table/interface";
 
