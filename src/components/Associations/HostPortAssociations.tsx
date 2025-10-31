@@ -2,9 +2,12 @@ import { PlusOutlined } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 import { Button } from 'antd';
 import React, { useState } from 'react';
+import type { IntlShape } from 'react-intl';
 import AssociationList from '@/components/Common/Association/List';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SerialPortSelectModal from '@/components/Selectors/SerialPortSelectModal';
-import { getHostPortColumns } from '@/components/TableColumns/Assoiciations/HostPortColumns';
+import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { HostPortEntity } from '@/components/TableEntities/HostPortEntity';
 import type { HostSerialPort } from '@/services/Device/Host/data';
 import {
   addHostPort,
@@ -15,6 +18,11 @@ import {
 type PortsProps = {
   hostId: string;
 };
+
+const getHostPortColumns = (
+  intl: IntlShape,
+): CustomProColumns<HostSerialPort>[] =>
+  buildTableColumns(HostPortEntity, intl);
 
 const HostPortAssociations: React.FC<PortsProps> = ({ hostId }) => {
   const [selectModalOpen, setSelectModalOpen] = useState(false);

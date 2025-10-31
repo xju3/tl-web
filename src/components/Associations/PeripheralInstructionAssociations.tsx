@@ -1,13 +1,21 @@
 import { useIntl } from '@umijs/max';
 import React from 'react';
+import type { IntlShape } from 'react-intl';
 import AssociationList from '@/components/Common/Association/List';
-import { getPeripheralInstructionColumns } from '@/components/TableColumns/Assoiciations/PeripheralInstructionColumns';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
+import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { PeripheralInstructionEntity } from '@/components/TableEntities/PeripheralInstructionEntity';
 import type { Instruction } from '@/services/Device/Peripheral/data';
 import { getInstructions } from '@/services/Device/Peripheral/service';
 
 type InstructionsProps = {
   peripheralId: string;
 };
+
+const getPeripheralInstructionColumns = (
+  intl: IntlShape,
+): CustomProColumns<Instruction>[] =>
+  buildTableColumns(PeripheralInstructionEntity, intl);
 
 const PeripheralInstructionAssociations: React.FC<InstructionsProps> = ({
   peripheralId,

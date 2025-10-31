@@ -1,6 +1,8 @@
 import React from 'react';
 import ListPage from '@/components/Common/Pages/List';
-import { columns } from '@/components/TableColumns/Pages/RoleColumns';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
+import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { RoleEntity } from '@/components/TableEntities/RoleEntity';
 import type { Role } from '@/services/Sys/Role/data';
 import { deleteRole, getRoles } from '@/services/Sys/Role/service';
 
@@ -17,6 +19,11 @@ const roleListPage = () => {
     edit: '/sys/role/edit',
     view: '/sys/role/view',
   };
+
+  const columns = (
+    saveStateAndNavigate: (path: string, id?: string) => void,
+    intl: any,
+  ): CustomProColumns<Role>[] => buildTableColumns(RoleEntity, intl);
 
   return (
     <ListPage<Role>

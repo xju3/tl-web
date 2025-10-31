@@ -1,5 +1,7 @@
 import ListPage from '@/components/Common/Pages/List';
-import { columns } from '@/components/TableColumns/Pages/TenantColumns';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
+import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { TenantEntity } from '@/components/TableEntities/TenantEntity';
 import type { Tenant } from '@/services/Org/Tenant/data';
 import { deleteTenant, getTenants } from '@/services/Org/Tenant/service';
 
@@ -16,6 +18,11 @@ const TenantListPage = () => {
     edit: '/org/tenant/edit',
     view: '/org/tenant/view',
   };
+
+  const columns = (
+    saveStateAndNavigate: (path: string, id?: string) => void,
+    intl: any,
+  ): CustomProColumns<Tenant>[] => buildTableColumns(TenantEntity, intl);
 
   return (
     <ListPage<Tenant>

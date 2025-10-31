@@ -1,16 +1,24 @@
 import { useIntl } from '@umijs/max';
 import React from 'react';
+import type { IntlShape } from 'react-intl';
 import AssociationList from '@/components/Common/Association/List';
-import { getCabinetPeripheralColumns } from '@/components/TableColumns/Assoiciations/CabinetPeripheralColumns';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
+import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { CabinetPeripheralEntity } from '@/components/TableEntities/CabinetPeripheralEntity';
+import type { CabinetPeripheral } from '@/services/Device/Cabinet/data';
 import {
   deleteCabinetPeripheral,
   getPeripheralsByCabinetId,
 } from '@/services/Device/Cabinet/service';
-import type { Peripheral } from '@/services/Device/Peripheral/data';
 
 type PeripheralsProps = {
   cabinetId: string;
 };
+
+const getCabinetPeripheralColumns = (
+  intl: IntlShape,
+): CustomProColumns<CabinetPeripheral>[] =>
+  buildTableColumns(CabinetPeripheralEntity, intl);
 
 const CabinetPeripheralAssociations: React.FC<PeripheralsProps> = ({
   cabinetId,
@@ -18,7 +26,7 @@ const CabinetPeripheralAssociations: React.FC<PeripheralsProps> = ({
   const intl = useIntl();
 
   return (
-    <AssociationList<Peripheral>
+    <AssociationList<CabinetPeripheral>
       parentId={cabinetId}
       services={{
         getPage: getPeripheralsByCabinetId,

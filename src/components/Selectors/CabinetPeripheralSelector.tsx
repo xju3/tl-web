@@ -1,6 +1,8 @@
 import { useIntl } from '@@/exports';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SelectModal from '@/components/Common/SelectModal';
-import { columns } from '@/components/TableColumns/Pages/CabinetPeripheralColunms';
+import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { CabinetPeripheralEntity } from '@/components/TableEntities/CabinetPeripheralEntity';
 import type { CabinetPeripheral } from '@/services/Device/Cabinet/data';
 import { getPeripheralsByCabinetId } from '@/services/Device/Cabinet/service';
 
@@ -10,6 +12,12 @@ export type CabinetPeripheralSelectorProps = {
   onCancel: () => void;
   onSelect: (peripheral: CabinetPeripheral) => void;
 };
+
+const columns = (
+  saveStateAndNavigate: (path: string, id?: string) => void,
+  intl: any,
+): CustomProColumns<CabinetPeripheral>[] =>
+  buildTableColumns(CabinetPeripheralEntity, intl);
 
 const CabinetPeripheralSelector = ({
   open,

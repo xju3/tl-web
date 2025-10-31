@@ -1,6 +1,8 @@
 import React from 'react';
 import ListPage from '@/components/Common/Pages/List';
-import { columns } from '@/components/TableColumns/Pages/EmployeeColumns';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
+import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { EmployeeEntity } from '@/components/TableEntities/EmployeeEntity';
 import type { Employee } from '@/services/Org/Employee/data';
 import { deleteEmployee, getEmployees } from '@/services/Org/Employee/service';
 
@@ -17,6 +19,11 @@ const EmployeeListPage = () => {
     edit: '/org/employee/edit',
     view: '/org/employee/view',
   };
+
+  const columns = (
+    saveStateAndNavigate: (path: string, id?: string) => void,
+    intl: any,
+  ): CustomProColumns<Employee>[] => buildTableColumns(EmployeeEntity, intl);
 
   return (
     <ListPage<Employee>

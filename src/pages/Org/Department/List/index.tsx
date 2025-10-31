@@ -1,5 +1,7 @@
 import ListPage from '@/components/Common/Pages/List';
-import { columns } from '@/components/TableColumns/Pages/DepartmentColumns';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
+import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { DepartmentEntity } from '@/components/TableEntities/DepartmentEntity';
 import type { Department } from '@/services/Org/Department/data';
 import {
   deleteDepartment,
@@ -19,6 +21,12 @@ const DepartmentListPage = () => {
     edit: '/org/department/edit',
     view: '/org/department/view',
   };
+
+  const columns = (
+    saveStateAndNavigate: (path: string, id?: string) => void,
+    intl: any,
+  ): CustomProColumns<Department>[] =>
+    buildTableColumns(DepartmentEntity, intl);
 
   return (
     <ListPage<Department>

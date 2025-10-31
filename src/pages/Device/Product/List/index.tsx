@@ -1,5 +1,7 @@
 import ListPage from '@/components/Common/Pages/List';
-import { columns } from '@/components/TableColumns/Pages/ProductColumns';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
+import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { ProductEntity } from '@/components/TableEntities/ProductEntity';
 import type { Product } from '@/services/Device/Product/data';
 import { deleteProduct, getProducts } from '@/services/Device/Product/service';
 
@@ -16,6 +18,11 @@ const ProductListPage = () => {
     edit: '/device/products/edit',
     view: '/device/products/view',
   };
+
+  const columns = (
+    saveStateAndNavigate: (path: string, id?: string) => void,
+    intl: any,
+  ): CustomProColumns<Product>[] => buildTableColumns(ProductEntity, intl);
 
   return (
     <ListPage<Product>

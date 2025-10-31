@@ -1,7 +1,10 @@
 import { useIntl } from '@umijs/max';
 import React from 'react';
+import type { IntlShape } from 'react-intl';
 import AssociationList from '@/components/Common/Association/List';
-import { getCabinetUsageColumns } from '@/components/TableColumns/Assoiciations/CabinetUsageColumns';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
+import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { CabinetUsageEntity } from '@/components/TableEntities/CabinetUsageEntity';
 import type { CabinetPeripheralUsage } from '@/services/Device/Cabinet/data';
 import {
   deleteCabinetPeripheralUsage,
@@ -11,6 +14,11 @@ import {
 type UsagesProps = {
   cabinetId: string;
 };
+
+const getCabinetUsageColumns = (
+  intl: IntlShape,
+): CustomProColumns<CabinetPeripheralUsage>[] =>
+  buildTableColumns(CabinetUsageEntity, intl);
 
 const CabinetUsageAssociations: React.FC<UsagesProps> = ({ cabinetId }) => {
   const intl = useIntl();

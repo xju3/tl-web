@@ -1,6 +1,8 @@
 import { useIntl } from '@umijs/max';
+import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SelectModal from '@/components/Common/SelectModal';
-import { columns as productColumns } from '@/components/TableColumns/Pages/ProductColumns';
+import { buildTableColumns } from '@/components/TableEntities/Builder';
+import { ProductEntity } from '@/components/TableEntities/ProductEntity';
 import type { Product } from '@/services/Device/Product/data';
 import { getProducts } from '@/services/Device/Product/service';
 
@@ -10,11 +12,14 @@ export type ProductSelectorProps = {
   onOk: (product: Product) => void;
 };
 
+const columns = (
+  saveStateAndNavigate: (path: string, id?: string) => void,
+  intl: any,
+): CustomProColumns<Product>[] => buildTableColumns(ProductEntity, intl);
+
 const ProductSelector = ({ open, onCancel, onOk }: ProductSelectorProps) => {
   const intl = useIntl();
-  const selectorColumns = productColumns(() => {}, intl).filter(
-    (c) => c.selector,
-  );
+  const selectorColumns = columns(() => {}, intl).filter((c) => c.selector);
 
   return (
     <SelectModal<Product>
