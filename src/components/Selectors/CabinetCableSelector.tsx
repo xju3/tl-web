@@ -1,7 +1,7 @@
 import type { ProColumns } from '@ant-design/pro-components';
 import SelectModal from '@/components/Common/SelectModal';
-import type { CabinetCable } from '../../services/Device/Cabinet/data';
-import { getCabinetCables } from '../../services/Device/Cabinet/service';
+import type { CabinetCable } from '@/services/Device/Cabinet/data';
+import { getCabinetCables } from '@/services/Device/Cabinet/service';
 
 export type CabinetCableSelectorProps = {
   open: boolean;

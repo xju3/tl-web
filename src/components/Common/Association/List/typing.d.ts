@@ -1,8 +1,4 @@
-import type {
-  ParamsType,
-  ProColumns,
-  ProTableProps,
-} from '@ant-design/pro-components';
+import type { ParamsType, ProColumns } from '@ant-design/pro-components';
 import type React from 'react';
 
 export interface AssociationListProps<T extends { id: string }> {

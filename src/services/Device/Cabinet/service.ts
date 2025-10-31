@@ -1,16 +1,8 @@
-import {request} from '@umijs/max';
-import type {Peripheral} from '../Peripheral/data';
-import type {
-  Cabinet,
-  CabinetFilter,
-  CabinetPeripheral,
-  CabinetPeripheralUsage,
-  CabinetCable,
-} from './data';
-import PageParams = API.PageParams;
+import type {Cabinet, CabinetCable, CabinetFilter, CabinetPeripheral, CabinetPeripheralUsage,} from './data';
 import {SortOrder} from "antd/es/table/interface";
-import {apiCreate, apiDelete, apiGetById, apiGetList, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
+import {apiCreate, apiDelete, apiGetById, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
 import {ParamsType} from "@ant-design/pro-components";
+import PageParams = API.PageParams;
 
 const cabinet_base_url = `device/cabinets`;
 // 通用API响应结构 (成功时)

@@ -63,7 +63,6 @@ const SelectModal = <T extends Record<string, any>>({
       onCancel={onCancel}
       footer={null}
       maskClosable={false}
-      destroyOnClose
     >
       <ProTable<T>
         headerTitle={headerTitle}

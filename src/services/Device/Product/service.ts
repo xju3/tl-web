@@ -1,7 +1,7 @@
 import type {Product, ProductFilter, ProductItem} from './data';
 import {ParamsType} from "@ant-design/pro-components";
 import {SortOrder} from "antd/es/table/interface";
-import {apiCreate, apiDelete, apiGetById, apiGetList, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
+import {apiCreate, apiDelete, apiGetById, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
 
 const product_base_url = "device/products"
 // 1. 获取产品列表 (分页)

@@ -1,7 +1,7 @@
 import type { ProColumns } from '@ant-design/pro-components';
 import SelectModal from '@/components/Common/SelectModal';
-import type { Peripheral } from '../../services/Device/Peripheral/data';
-import { getPeripherals } from '../../services/Device/Peripheral/service';
+import type { Peripheral } from '@/services/Device/Peripheral/data';
+import { getPeripherals } from '@/services/Device/Peripheral/service';
 
 export type PeripheralSelectModalProps = {
   open: boolean;
