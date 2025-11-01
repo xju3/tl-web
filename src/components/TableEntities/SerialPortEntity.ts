@@ -8,6 +8,9 @@ export const SerialPortEntity: EntityField<SerialPort>[] = [
     sorter: true,
     inTable: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'device.serial-port.name',
@@ -16,6 +19,9 @@ export const SerialPortEntity: EntityField<SerialPort>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'device.serial-port.protocol',
@@ -23,6 +29,8 @@ export const SerialPortEntity: EntityField<SerialPort>[] = [
     sorter: true,
     inTable: true,
     inDescription: true,
+    inForm: true,
+    fieldType: 'text',
   },
   {
     intlId: 'device.serial-port.baudRate',
@@ -31,6 +39,8 @@ export const SerialPortEntity: EntityField<SerialPort>[] = [
     sorter: true,
     inTable: true,
     inDescription: true,
+    inForm: true,
+    fieldType: 'digit',
   },
   {
     intlId: 'device.serial-port.dataBits',
@@ -39,6 +49,8 @@ export const SerialPortEntity: EntityField<SerialPort>[] = [
     sorter: true,
     inTable: true,
     inDescription: true,
+    inForm: true,
+    fieldType: 'digit',
   },
   {
     intlId: 'device.serial-port.stopBits',
@@ -47,6 +59,8 @@ export const SerialPortEntity: EntityField<SerialPort>[] = [
     sorter: true,
     inTable: true,
     inDescription: true,
+    inForm: true,
+    fieldType: 'digit',
   },
   {
     intlId: 'device.serial-port.parity',
@@ -55,11 +69,15 @@ export const SerialPortEntity: EntityField<SerialPort>[] = [
     sorter: true,
     inTable: true,
     inDescription: true,
+    inForm: true,
+    fieldType: 'text',
   },
   {
     intlId: 'common.description',
     dataIndex: 'description',
     span: 2,
     inDescription: true,
+    inForm: true,
+    fieldType: 'textarea',
   },
 ];

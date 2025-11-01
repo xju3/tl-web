@@ -6,11 +6,15 @@ export const DepartmentEntity: EntityField<Department>[] = [
     intlId: 'org.department.parentId',
     dataIndex: 'parentId',
     inDescription: true,
+    inForm: true,
+    hidden: true,
   },
   {
     intlId: 'org.department.companyId',
     dataIndex: 'companyId',
     inDescription: true,
+    inForm: true,
+    hidden: true,
   },
   {
     intlId: 'org.department.name',
@@ -22,6 +26,9 @@ export const DepartmentEntity: EntityField<Department>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'org.department.code',
@@ -33,5 +40,8 @@ export const DepartmentEntity: EntityField<Department>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
 ];

@@ -12,6 +12,9 @@ export const TenantEntity: EntityField<Tenant>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'org.tenant.code',
@@ -23,5 +26,8 @@ export const TenantEntity: EntityField<Tenant>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
 ];

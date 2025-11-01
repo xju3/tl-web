@@ -1,8 +1,9 @@
 import type { ProFormInstance } from '@ant-design/pro-components';
-import { useParams } from '@umijs/max';
+import { useIntl, useParams } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import CabinetUsageFormFields from '@/components/FormFields/CabinetUsageFormFields';
+import { buildFormFields } from '@/components/TableEntities/Builder';
+import { CabinetUsageEntity } from '@/components/TableEntities/CabinetUsageEntity';
 import type { CabinetPeripheralUsage } from '@/services/Device/Cabinet/data';
 import {
   addCabinetPeripheralUsage,
@@ -12,11 +13,19 @@ import {
 
 interface UsageFormProps {
   formRef?: React.RefObject<ProFormInstance<CabinetPeripheralUsage>>;
-  cabinetId?: string;
 }
 
-const UsageForm: React.FC<UsageFormProps> = ({ formRef, cabinetId }) => {
-  return <CabinetUsageFormFields formRef={formRef} cabinetId={cabinetId} />;
+const UsageForm: React.FC<UsageFormProps> = ({ formRef }) => {
+  const intl = useIntl();
+  return (
+    <>
+      {buildFormFields<CabinetPeripheralUsage>(
+        CabinetUsageEntity,
+        intl,
+        formRef,
+      )}
+    </>
+  );
 };
 
 const CabinetPeripheralUsageEditPage = () => {
@@ -32,7 +41,7 @@ const CabinetPeripheralUsageEditPage = () => {
 
   return (
     <EditPage<CabinetPeripheralUsage> services={services} backRoute={backRoute}>
-      <UsageForm cabinetId={cabinetId} />
+      <UsageForm />
     </EditPage>
   );
 };

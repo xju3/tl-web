@@ -11,6 +11,9 @@ export const PeripheralEntity: EntityField<Peripheral>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'device.peripheral.name',
@@ -21,6 +24,9 @@ export const PeripheralEntity: EntityField<Peripheral>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'device.peripheral.type',
@@ -29,5 +35,7 @@ export const PeripheralEntity: EntityField<Peripheral>[] = [
       multiple: 3,
     },
     inTable: true,
+    inForm: true,
+    fieldType: 'text',
   },
 ];

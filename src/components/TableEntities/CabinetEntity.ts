@@ -12,6 +12,9 @@ export const CabinetEntity: EntityField<Cabinet>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'device.cabinet.name',
@@ -23,11 +26,16 @@ export const CabinetEntity: EntityField<Cabinet>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'device.cabinet.description',
     dataIndex: 'description',
     key: 'description',
     inTable: true,
+    inForm: true,
+    fieldType: 'textarea',
   },
 ];

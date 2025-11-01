@@ -1,6 +1,8 @@
+import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import CabinetFormFields from '@/components/FormFields/CabinetFormFields';
+import { buildFormFields } from '@/components/TableEntities/Builder';
+import { CabinetEntity } from '@/components/TableEntities/CabinetEntity';
 import type { Cabinet } from '@/services/Device/Cabinet/data';
 import {
   addCabinet,
@@ -9,7 +11,8 @@ import {
 } from '@/services/Device/Cabinet/service';
 
 const CabinetForm: React.FC = () => {
-  return <CabinetFormFields />;
+  const intl = useIntl();
+  return <>{buildFormFields<Cabinet>(CabinetEntity, intl)}</>;
 };
 
 const CabinetEditPage = () => {

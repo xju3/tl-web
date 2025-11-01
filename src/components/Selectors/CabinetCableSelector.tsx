@@ -8,9 +8,9 @@ import { getCabinetCables } from '@/services/Device/Cabinet/service';
 
 export type CabinetCableSelectorProps = {
   open: boolean;
-  cabinetId: string;
   onCancel: () => void;
   onSelect: (cable: CabinetCable) => void;
+  cabinetId?: string;
 };
 
 const columns = (intl: any): CustomProColumns<CabinetCable>[] =>
@@ -25,6 +25,7 @@ const CabinetCableSelector = ({
   const intl = useIntl();
   const selectorColumns = columns(intl);
 
+  console.log('', cabinetId);
   return (
     <SelectModal<CabinetCable>
       title={intl.formatMessage({ id: 'device.cabinet.cables.select' })}
@@ -32,7 +33,7 @@ const CabinetCableSelector = ({
       open={open}
       onCancel={onCancel}
       onSelect={onSelect}
-      request={(params) => getCabinetCables(cabinetId, params)}
+      request={(params) => getCabinetCables(cabinetId!, params)}
       columns={selectorColumns}
     />
   );

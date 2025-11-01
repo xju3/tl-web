@@ -1,6 +1,8 @@
+import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import SerialPortFormFields from '@/components/FormFields/SerialPortFormFields';
+import { buildFormFields } from '@/components/TableEntities/Builder';
+import { SerialPortEntity } from '@/components/TableEntities/SerialPortEntity';
 import type { SerialPort } from '@/services/Device/SerialPort/data';
 import {
   addSerialPort,
@@ -9,7 +11,8 @@ import {
 } from '@/services/Device/SerialPort/service';
 
 const SerialPortForm: React.FC = () => {
-  return <SerialPortFormFields />;
+  const intl = useIntl();
+  return <>{buildFormFields<SerialPort>(SerialPortEntity, intl)}</>;
 };
 
 const SerialPortEditPage = () => {

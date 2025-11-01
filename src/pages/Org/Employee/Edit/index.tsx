@@ -1,6 +1,8 @@
+import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import EmployeeFormFields from '@/components/FormFields/EmployeeFormFields';
+import { buildFormFields } from '@/components/TableEntities/Builder';
+import { EmployeeEntity } from '@/components/TableEntities/EmployeeEntity';
 import type { Employee } from '@/services/Org/Employee/data';
 import {
   addEmployee,
@@ -9,7 +11,8 @@ import {
 } from '@/services/Org/Employee/service';
 
 const EmployeeForm: React.FC = () => {
-  return <EmployeeFormFields />;
+  const intl = useIntl();
+  return <>{buildFormFields<Employee>(EmployeeEntity, intl)}</>;
 };
 
 const EmployeeEditPage = () => {

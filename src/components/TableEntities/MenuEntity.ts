@@ -6,6 +6,8 @@ export const MenuEntity: EntityField<Menu>[] = [
     intlId: 'sys.menu.parentId',
     dataIndex: 'parentId',
     inDescription: true,
+    inForm: true,
+    hidden: true,
   },
   {
     intlId: 'sys.menu.name',
@@ -17,6 +19,9 @@ export const MenuEntity: EntityField<Menu>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'sys.menu.code',
@@ -27,6 +32,9 @@ export const MenuEntity: EntityField<Menu>[] = [
     },
     inTable: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'sys.menu.path',
@@ -37,6 +45,8 @@ export const MenuEntity: EntityField<Menu>[] = [
     },
     inTable: true,
     inDescription: true,
+    inForm: true,
+    fieldType: 'text',
   },
   {
     intlId: 'sys.menu.component',
@@ -47,6 +57,8 @@ export const MenuEntity: EntityField<Menu>[] = [
     },
     inTable: true,
     inDescription: true,
+    inForm: true,
+    fieldType: 'text',
   },
   {
     intlId: 'sys.menu.icon',
@@ -57,6 +69,8 @@ export const MenuEntity: EntityField<Menu>[] = [
     },
     inTable: true,
     inDescription: true,
+    inForm: true,
+    fieldType: 'text',
   },
   {
     intlId: 'sys.menu.type',
@@ -67,6 +81,8 @@ export const MenuEntity: EntityField<Menu>[] = [
     },
     inTable: true,
     inDescription: true,
+    inForm: true,
+    fieldType: 'text',
   },
   {
     intlId: 'sys.menu.visible',
@@ -77,6 +93,8 @@ export const MenuEntity: EntityField<Menu>[] = [
     },
     inTable: true,
     inDescription: true,
+    inForm: true,
+    fieldType: 'switch',
   },
   {
     intlId: 'sys.menu.permission',
@@ -87,5 +105,7 @@ export const MenuEntity: EntityField<Menu>[] = [
     },
     inTable: true,
     inDescription: true,
+    inForm: true,
+    fieldType: 'text',
   },
 ];

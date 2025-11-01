@@ -1,6 +1,8 @@
+import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import PartnerFormFields from '@/components/FormFields/PartnerFormFields';
+import { buildFormFields } from '@/components/TableEntities/Builder';
+import { PartnerEntity } from '@/components/TableEntities/PartnerEntity';
 import type { Partner } from '@/services/Org/Partner/data';
 import {
   createPartner,
@@ -9,7 +11,8 @@ import {
 } from '@/services/Org/Partner/service';
 
 const PartnerForm: React.FC = () => {
-  return <PartnerFormFields />;
+  const intl = useIntl();
+  return <>{buildFormFields<Partner>(PartnerEntity, intl)}</>;
 };
 
 const PartnerEditPage = () => {

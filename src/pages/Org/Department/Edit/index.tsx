@@ -1,6 +1,8 @@
+import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import DepartmentFormFields from '@/components/FormFields/DepartmentFormFields';
+import { buildFormFields } from '@/components/TableEntities/Builder';
+import { DepartmentEntity } from '@/components/TableEntities/DepartmentEntity';
 import type { Department } from '@/services/Org/Department/data';
 import {
   addDepartment,
@@ -9,7 +11,8 @@ import {
 } from '@/services/Org/Department/service';
 
 const DepartmentForm: React.FC = () => {
-  return <DepartmentFormFields />;
+  const intl = useIntl();
+  return <>{buildFormFields<Department>(DepartmentEntity, intl)}</>;
 };
 
 const DepartmentEditPage = () => {

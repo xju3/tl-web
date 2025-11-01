@@ -9,6 +9,9 @@ export const PartnerEntity: EntityField<Partner>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'org.partner.name',
@@ -17,12 +20,17 @@ export const PartnerEntity: EntityField<Partner>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'org.partner.address',
     dataIndex: 'address',
     inTable: true,
     inDescription: true,
+    inForm: true,
+    fieldType: 'text',
   },
   {
     intlId: 'org.partner.org',
@@ -34,5 +42,7 @@ export const PartnerEntity: EntityField<Partner>[] = [
     },
     inTable: true,
     inDescription: true,
+    inForm: true,
+    fieldType: 'text',
   },
 ];

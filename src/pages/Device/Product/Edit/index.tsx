@@ -1,6 +1,8 @@
+import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import ProductFormFields from '@/components/FormFields/ProductFormFields';
+import { buildFormFields } from '@/components/TableEntities/Builder';
+import { ProductEntity } from '@/components/TableEntities/ProductEntity';
 import type { Product } from '@/services/Device/Product/data';
 import {
   addProduct,
@@ -9,7 +11,8 @@ import {
 } from '@/services/Device/Product/service';
 
 const ProductForm: React.FC = () => {
-  return <ProductFormFields />;
+  const intl = useIntl();
+  return <>{buildFormFields<Product>(ProductEntity, intl)}</>;
 };
 
 const ProductEditPage = () => {

@@ -6,11 +6,14 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     intlId: 'org.employee.personId',
     dataIndex: 'personId',
     inDescription: true,
+    inForm: true,
+    hidden: true,
   },
   {
     intlId: 'org.employee.employeeNumber',
     dataIndex: 'employeeNumber',
     inDescription: true,
+    inForm: true,
   },
   {
     intlId: 'org.employee.code',
@@ -21,6 +24,9 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     },
     inTable: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'org.employee.name',
@@ -31,6 +37,9 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     },
     inTable: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'org.employee.gender',
@@ -40,6 +49,8 @@ export const EmployeeEntity: EntityField<Employee>[] = [
       multiple: 1,
     },
     inTable: true,
+    inForm: true,
+    fieldType: 'text',
   },
   {
     intlId: 'org.employee.email',
@@ -49,6 +60,8 @@ export const EmployeeEntity: EntityField<Employee>[] = [
       multiple: 1,
     },
     inTable: true,
+    inForm: true,
+    fieldType: 'text',
   },
   {
     intlId: 'org.employee.mobile',
@@ -58,5 +71,7 @@ export const EmployeeEntity: EntityField<Employee>[] = [
       multiple: 1,
     },
     inTable: true,
+    inForm: true,
+    fieldType: 'text',
   },
 ];

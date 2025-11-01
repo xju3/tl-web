@@ -1,11 +1,14 @@
+import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import MenuFormFields from '@/components/FormFields/MenuFormFields';
+import { buildFormFields } from '@/components/TableEntities/Builder';
+import { MenuEntity } from '@/components/TableEntities/MenuEntity';
 import type { Menu } from '@/services/Sys/Menu/data';
 import { addMenu, getMenuById, updateMenu } from '@/services/Sys/Menu/service';
 
 const MenuForm: React.FC = () => {
-  return <MenuFormFields />;
+  const intl = useIntl();
+  return <>{buildFormFields<Menu>(MenuEntity, intl)}</>;
 };
 
 const MenuEditPage = () => {

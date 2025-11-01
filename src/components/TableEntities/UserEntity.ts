@@ -6,11 +6,16 @@ export const UserEntity: EntityField<User>[] = [
     intlId: 'sys.user.username',
     dataIndex: 'username',
     inDescription: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'sys.user.employeeId',
     dataIndex: 'employeeId',
     inDescription: true,
+    inForm: true,
+    hidden: true,
   },
   {
     intlId: 'sys.user.code',
@@ -21,6 +26,8 @@ export const UserEntity: EntityField<User>[] = [
     },
     inTable: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
   },
   {
     intlId: 'sys.user.name',
@@ -31,5 +38,7 @@ export const UserEntity: EntityField<User>[] = [
     },
     inTable: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
   },
 ];

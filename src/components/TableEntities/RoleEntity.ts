@@ -12,6 +12,9 @@ export const RoleEntity: EntityField<Role>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'page.sys.role.name',
@@ -23,5 +26,8 @@ export const RoleEntity: EntityField<Role>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
 ];

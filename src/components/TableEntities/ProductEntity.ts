@@ -12,6 +12,9 @@ export const ProductEntity: EntityField<Product>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'device.product.name',
@@ -22,6 +25,9 @@ export const ProductEntity: EntityField<Product>[] = [
     inTable: true,
     inDescription: true,
     inSelector: true,
+    inForm: true,
+    fieldType: 'text',
+    rules: [{ type: 'required' }],
   },
   {
     intlId: 'device.product.m_date',
@@ -32,5 +38,7 @@ export const ProductEntity: EntityField<Product>[] = [
     },
     inTable: true,
     inDescription: true,
+    inForm: true,
+    fieldType: 'text',
   },
 ];

@@ -1,49 +1,8 @@
-import {
-  ProFormDependency,
-  type ProFormInstance,
-  ProFormText,
-} from '@ant-design/pro-components';
-import { Button } from 'antd';
-import React, { useState } from 'react';
-import { useIntl } from 'react-intl';
+import EntitySelectorFormItem from '@/components/Common/FormItem/EntitySelectorFormItem';
 import HostSelectModal from '@/components/Selectors/HostSelectModal';
 import type { CabinetCable } from '@/services/Device/Cabinet/data';
+import type { Host } from '@/services/Device/Host/data';
 import type { EntityField } from './types';
-
-const HostSelectorFormItem: React.FC<{
-  form: ProFormInstance;
-}> = ({ form }) => {
-  const [hostSelectModalOpen, setHostSelectModalOpen] = useState(false);
-  const intl = useIntl();
-
-  return (
-    <React.Fragment>
-      <ProFormText
-        name="hostName"
-        label={intl.formatMessage({ id: 'device.host.name' })}
-        disabled
-      />
-      <Button onClick={() => setHostSelectModalOpen(true)}>
-        {intl.formatMessage({ id: 'common.actions.select' })}
-      </Button>
-
-      <HostSelectModal
-        open={hostSelectModalOpen}
-        onCancel={() => setHostSelectModalOpen(false)}
-        onSelect={(host) => {
-          if (form) {
-            form.setFieldsValue({
-              hostId: host.id,
-              hostCode: host.code,
-              hostName: host.name,
-            });
-          }
-          setHostSelectModalOpen(false);
-        }}
-      />
-    </React.Fragment>
-  );
-};
 
 export const CabinetCableEntity: EntityField<CabinetCable>[] = [
   {
@@ -99,13 +58,20 @@ export const CabinetCableEntity: EntityField<CabinetCable>[] = [
     intlId: 'device.host.name', // Not directly used, but good for context
     inForm: true,
     fieldType: 'custom',
-    renderFormItem: () => {
-      return (
-        <ProFormDependency name={[]}>
-          {(_, form) => <HostSelectorFormItem form={form} />}
-        </ProFormDependency>
-      );
-    },
+    renderFormItem: () => (
+      <EntitySelectorFormItem<Host>
+        nameFieldName="hostName"
+        labelIntl="device.host.name"
+        SelectorModal={HostSelectModal}
+        onSelect={(entity, formInstance) => {
+          formInstance.setFieldsValue({
+            hostId: entity.id,
+            hostCode: entity.code,
+            hostName: entity.name,
+          });
+        }}
+      />
+    ),
   },
   {
     dataIndex: 'description',
