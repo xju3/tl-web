@@ -28,6 +28,7 @@ const EditPage = <T extends { id?: string }>({
   useEffect(() => {
     if (id) {
       // Edit mode
+
       services.getItemById(id).then((res) => {
         formRef.current?.setFieldsValue(res);
       });

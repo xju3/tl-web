@@ -39,23 +39,29 @@ export async function getProductItems(productId: string, params: ParamsType) {
 
 // 7. 新增产品关联项
 export async function addProductItem(
-  productId: string,
   data: ProductItem,
 ) {
-  const url = `${product_base_url}/${productId}/items`;
+  const url = `${product_base_url}/${data.productId}/items`;
   return apiCreate<ProductItem>(url, data);
 }
 
 // 8. 更新产品关联项
-export async function updateProductItem( productId: string,
+export async function updateProductItem(
   data: ProductItem,
 ) {
-  const url = `${product_base_url}${productId}/items`;
+  const url = `${product_base_url}${data.productId}/items`;
   return apiUpdate<ProductItem>(url, data);
 }
 
 // 9. 删除产品关联项
 export async function deleteProductItem(productId: string, id: string) {
-  const url = `${product_base_url}/items/${productId}`;
+  const url = `${product_base_url}/${productId}/items`;
   return apiDelete(url, id);
+}
+
+export async function getProductItemById(
+  id: string,
+) {
+  const url = `${product_base_url}/items/`;
+  return apiGetById<ProductItem>(url, id);
 }

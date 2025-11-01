@@ -63,7 +63,7 @@ export async function getCabinetPeripheralById(id: string) {
 
 // 10. 删除机柜外设绑定
 export async function deleteCabinetPeripheral(cabinetId: string, recordId: string) {
-  const url = `${cabinet_base_url}/peripherals/${cabinetId}`;
+  const url = `${cabinet_base_url}/${cabinetId}/peripherals`;
   return apiDelete(url, recordId);
 }
 
@@ -93,7 +93,7 @@ export async function updateCabinetCables(data: CabinetCable) {
 
 // 14. 删除机柜线缆
 export async function deleteCabinetCable(cabinetId: string, recordId: string) {
-  const url = `${cabinet_base_url}/cables/${cabinetId}`
+  const url = `${cabinet_base_url}/${cabinetId}/cables`
   return apiDelete(url, recordId);
 }
 
@@ -127,6 +127,6 @@ export async function updateCabinetPeripheralUsage(
 export async function deleteCabinetPeripheralUsage(
   cabinetId: string, recordId: string
 ) {
- const url = `${cabinet_base_url}/usages/${cabinetId}`;
+ const url = `${cabinet_base_url}/${cabinetId}/usages`;
  return apiDelete(url,recordId);
 }
