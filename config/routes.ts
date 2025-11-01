@@ -82,7 +82,6 @@ export default [
         hideInMenu: true,
       },
       {
-        name: 'view.cabinet',
         path: '/device/cabinets/view/:id',
         component: './Device/Cabinet/View',
         hideInMenu: true,
@@ -113,6 +112,12 @@ export default [
       },
       {
         name: 'bind.cable',
+        path: '/device/cabinets/:cabinetId/cables/add',
+        component: './Device/Cabinet/Cables/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'edit.cable',
         path: '/device/cabinets/:cabinetId/cables/:id/edit',
         component: './Device/Cabinet/Cables/Edit',
         hideInMenu: true,

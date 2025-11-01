@@ -31,7 +31,7 @@ const CabinetCableAssociations: React.FC<CablesProps> = ({ cabinetId }) => {
         deleteItem: deleteCabinetCable,
       }}
       columns={getCabinetCableColumns(intl)}
-      addRoute={`/device/cabinets/${cabinetId}/cables/add/edit`}
+      addRoute={`/device/cabinets/${cabinetId}/cables/add`}
       editRoutePattern={`/device/cabinets/:parentId/cables/:id/edit`}
       headerTitle={intl.formatMessage({
         id: 'device.cabinet.cable.list.title',

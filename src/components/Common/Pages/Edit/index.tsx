@@ -21,7 +21,8 @@ const EditPage = <T extends { id?: string }>({
   backRoute,
   children,
 }: EditPageProps<T>) => {
-  const { id, parentId } = useParams<{ id: string; parentId: string }>();
+  const params = useParams<Record<string, string>>();
+  const { id } = params;
   const formRef = useRef<ProFormInstance<T>>(null);
 
   useEffect(() => {
@@ -30,14 +31,22 @@ const EditPage = <T extends { id?: string }>({
       services.getItemById(id).then((res) => {
         formRef.current?.setFieldsValue(res);
       });
-    } else if (parentId) {
+    } else {
       // Add child mode
-      // Use 'as any' to bypass strict type checking for the generic type T,
-      // as T is not guaranteed to have a parentId property.
-      // The form field is expected to exist at runtime.
-      formRef.current?.setFieldsValue({ parentId } as any);
+      const parentIdKey = Object.keys(params).find(
+        (key) => key.endsWith('Id') && key !== 'id',
+      );
+      if (parentIdKey && params[parentIdKey]) {
+        // Use 'as any' to bypass strict type checking for the generic type T,
+        // as T is not guaranteed to have a parentId property.
+        // The form field is expected to exist at runtime.
+        formRef.current?.setFieldsValue({
+          [parentIdKey]: params[parentIdKey],
+        } as any);
+        console.log(formRef.current?.getFieldsValue());
+      }
     }
-  }, [id, parentId, services]);
+  }, [id, params, services]);
 
   const onFinish = async (values: T) => {
     try {

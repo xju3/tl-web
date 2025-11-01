@@ -14,12 +14,13 @@ export interface ValidationRule {
 // A type that includes properties from column, description, and selector types
 export type EntityField<T> = ProColumnType<T> &
   ProDescriptionsItemProps<T> & {
-    intlId: string;
+    intlId?: string;
     inTable?: boolean;
     inDescription?: boolean;
     inSelector?: boolean;
     showColumnFilter?: boolean;
     enable?: boolean;
+    hidden?: boolean;
     inForm?: boolean;
     fieldType?:
       | 'text'

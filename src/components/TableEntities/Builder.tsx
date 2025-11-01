@@ -20,7 +20,7 @@ export function buildTableColumns<T>(
     .filter((def) => def.inTable)
     .map((def) => ({
       ...def,
-      title: intl.formatMessage({ id: def.intlId }),
+      title: def.intlId ? intl.formatMessage({ id: def.intlId }) : '',
     }));
 }
 
@@ -32,7 +32,7 @@ export function buildDescriptions<T>(
     .filter((def) => def.inDescription)
     .map((def) => ({
       ...def,
-      title: intl.formatMessage({ id: def.intlId }),
+      title: def.intlId ? intl.formatMessage({ id: def.intlId }) : '',
     }));
 }
 
@@ -64,7 +64,7 @@ export function buildFormFields<T>(
       if (def.fieldType === 'custom' && def.renderFormItem && formRef) {
         return (
           <React.Fragment key={key}>
-            {def.renderFormItem(formRef, intl)}
+            {def.renderFormItem(undefined, { formRef }, intl)}
           </React.Fragment>
         );
       }
@@ -93,8 +93,9 @@ export function buildFormFields<T>(
 
       const commonProps = {
         name: def.dataIndex,
-        label: intl.formatMessage({ id: def.intlId }),
+        label: def.intlId ? intl.formatMessage({ id: def.intlId }) : '',
         rules: generatedRules,
+        hidden: def.hidden,
         ...def.formItemProps,
       };
 
