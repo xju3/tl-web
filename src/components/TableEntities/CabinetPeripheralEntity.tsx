@@ -9,26 +9,24 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
   {
     dataIndex: 'cabinetId',
     inForm: true,
+    hidden: true,
   },
   {
     intlId: 'device.peripheral.code',
     dataIndex: 'code',
+    inForm: true,
     inTable: true,
+    formItemProps: {
+      width: 'lg', // ✅ 通过 formItemProps 传递
+    },
   },
   {
     intlId: 'device.peripheral.name',
     dataIndex: 'name',
-    inTable: true,
-  },
-  {
-    intlId: 'device.cabinet.cable.code',
-    dataIndex: 'cableCode',
-    inTable: true,
-  },
-  {
-    intlId: 'device.cabinet.cable.name',
-    dataIndex: 'cableName',
-    inTable: true,
+    inForm: true,
+    formItemProps: {
+      width: 'lg', // ✅ 通过 formItemProps 传递
+    },
   },
   {
     intlId: 'device.peripheral',
@@ -39,6 +37,7 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
     renderFormItem: () => (
       <EntitySelectorFormItem<Peripheral>
         nameFieldName="name"
+        width={'lg'}
         labelIntl="device.peripheral.name"
         SelectorModal={PeripheralSelectModal}
         onSelect={(entity, formInstance) => {
@@ -52,6 +51,21 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
     ),
   },
   {
+    intlId: 'device.cabinet.cable.code',
+    dataIndex: 'cableCode',
+    inTable: true,
+  },
+  {
+    intlId: 'device.cabinet.cable.name',
+    dataIndex: 'cableName',
+    inForm: true,
+    inTable: true,
+    formItemProps: {
+      width: 'lg', // ✅ 通过 formItemProps 传递
+    },
+  },
+
+  {
     dataIndex: 'cableId',
     inTable: false,
     inForm: true,
@@ -62,6 +76,7 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
           nameFieldName="cableCode"
           labelIntl="device.cabinet.cable"
           formDependencies={['cabinetId']}
+          width={'lg'}
           selectorProps={(dependencies: Record<string, any>) => ({
             cabinetId: dependencies.cabinetId,
           })}
