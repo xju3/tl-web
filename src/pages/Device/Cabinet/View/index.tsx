@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { buildDescriptions } from '@/components/TableEntities/Builder';
-import { CabinetEntity } from '@/components/TableEntities/CabinetEntity';
+import { buildDescriptions } from '@/components/Entities/Builder';
+import { CabinetEntity } from '@/components/Entities/CabinetEntity';
 import type { Cabinet } from '@/services/Device/Cabinet/data';
 import {
   deleteCabinet,

@@ -1,8 +1,8 @@
 import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import { buildFormFields } from '@/components/TableEntities/Builder';
-import { PartnerEntity } from '@/components/TableEntities/PartnerEntity';
+import { buildFormFields } from '@/components/Entities/Builder';
+import { PartnerEntity } from '@/components/Entities/PartnerEntity';
 import type { Partner } from '@/services/Org/Partner/data';
 import {
   createPartner,

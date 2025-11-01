@@ -1,8 +1,8 @@
 import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import { buildFormFields } from '@/components/TableEntities/Builder';
-import { MenuEntity } from '@/components/TableEntities/MenuEntity';
+import { buildFormFields } from '@/components/Entities/Builder';
+import { MenuEntity } from '@/components/Entities/MenuEntity';
 import type { Menu } from '@/services/Sys/Menu/data';
 import { addMenu, getMenuById, updateMenu } from '@/services/Sys/Menu/service';
 

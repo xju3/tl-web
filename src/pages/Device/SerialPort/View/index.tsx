@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { buildDescriptions } from '@/components/TableEntities/Builder';
-import { SerialPortEntity } from '@/components/TableEntities/SerialPortEntity';
+import { buildDescriptions } from '@/components/Entities/Builder';
+import { SerialPortEntity } from '@/components/Entities/SerialPortEntity';
 import type { SerialPort } from '@/services/Device/SerialPort/data';
 import {
   deleteSerialPort,

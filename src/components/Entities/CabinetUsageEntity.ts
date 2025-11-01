@@ -1,4 +1,3 @@
-import CabinetPeripheralSelector from '@/components/Selectors/CabinetPeripheralSelector';
 import type { CabinetPeripheralUsage } from '@/services/Device/Cabinet/data';
 import type { EntityField } from './types';
 

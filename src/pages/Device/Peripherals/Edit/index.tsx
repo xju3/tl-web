@@ -1,8 +1,8 @@
 import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import { buildFormFields } from '@/components/TableEntities/Builder';
-import { PeripheralEntity } from '@/components/TableEntities/PeripheralEntity';
+import { buildFormFields } from '@/components/Entities/Builder';
+import { PeripheralEntity } from '@/components/Entities/PeripheralEntity';
 import type { Peripheral } from '@/services/Device/Peripheral/data';
 import {
   addPeripheral,

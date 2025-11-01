@@ -3,8 +3,8 @@ import React from 'react';
 import type { IntlShape } from 'react-intl';
 import AssociationList from '@/components/Common/Association/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
-import { buildTableColumns } from '@/components/TableEntities/Builder';
-import { PeripheralInstructionEntity } from '@/components/TableEntities/PeripheralInstructionEntity';
+import { buildTableColumns } from '@/components/Entities/Builder';
+import { PeripheralInstructionEntity } from '@/components/Entities/PeripheralInstructionEntity';
 import type { Instruction } from '@/services/Device/Peripheral/data';
 import { getInstructions } from '@/services/Device/Peripheral/service';
 

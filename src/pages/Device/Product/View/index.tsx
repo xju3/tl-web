@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { buildDescriptions } from '@/components/TableEntities/Builder';
-import { ProductEntity } from '@/components/TableEntities/ProductEntity';
+import { buildDescriptions } from '@/components/Entities/Builder';
+import { ProductEntity } from '@/components/Entities/ProductEntity';
 import ProductViewTabs from '@/components/ViewTabs/ProductViewTabs';
 import type { Product } from '@/services/Device/Product/data';
 import {

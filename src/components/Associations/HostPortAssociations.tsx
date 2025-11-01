@@ -5,9 +5,9 @@ import React, { useState } from 'react';
 import type { IntlShape } from 'react-intl';
 import AssociationList from '@/components/Common/Association/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
+import { buildTableColumns } from '@/components/Entities/Builder';
+import { HostPortEntity } from '@/components/Entities/HostPortEntity';
 import SerialPortSelectModal from '@/components/Selectors/SerialPortSelectModal';
-import { buildTableColumns } from '@/components/TableEntities/Builder';
-import { HostPortEntity } from '@/components/TableEntities/HostPortEntity';
 import type { HostSerialPort } from '@/services/Device/Host/data';
 import {
   addHostPort,

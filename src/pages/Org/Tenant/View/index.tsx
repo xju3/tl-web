@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { buildDescriptions } from '@/components/TableEntities/Builder';
-import { TenantEntity } from '@/components/TableEntities/TenantEntity';
+import { buildDescriptions } from '@/components/Entities/Builder';
+import { TenantEntity } from '@/components/Entities/TenantEntity';
 import TenantProductViewTabs from '@/components/ViewTabs/TenantProductViewTabs';
 import type { Tenant } from '@/services/Org/Tenant/data';
 import { deleteTenant, getTenantById } from '@/services/Org/Tenant/service';

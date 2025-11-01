@@ -1,8 +1,8 @@
 import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import { buildFormFields } from '@/components/TableEntities/Builder';
-import { TenantEntity } from '@/components/TableEntities/TenantEntity';
+import { buildFormFields } from '@/components/Entities/Builder';
+import { TenantEntity } from '@/components/Entities/TenantEntity';
 import type { Tenant } from '@/services/Org/Tenant/data';
 import {
   createTenant,

@@ -1,8 +1,8 @@
 import { useIntl } from '@umijs/max';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SelectModal from '@/components/Common/SelectModal';
-import { buildSelectors } from '@/components/TableEntities/Builder';
-import { ProductEntity } from '@/components/TableEntities/ProductEntity';
+import { buildSelectors } from '@/components/Entities/Builder';
+import { ProductEntity } from '@/components/Entities/ProductEntity';
 import type { Product } from '@/services/Device/Product/data';
 import { getProducts } from '@/services/Device/Product/service';
 

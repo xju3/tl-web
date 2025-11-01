@@ -3,8 +3,8 @@ import React from 'react';
 import type { IntlShape } from 'react-intl';
 import AssociationList from '@/components/Common/Association/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
-import { buildTableColumns } from '@/components/TableEntities/Builder';
-import { CabinetCableEntity } from '@/components/TableEntities/CabinetCableEntity';
+import { buildTableColumns } from '@/components/Entities/Builder';
+import { CabinetCableEntity } from '@/components/Entities/CabinetCableEntity';
 import type { CabinetCable } from '@/services/Device/Cabinet/data';
 import {
   deleteCabinetCable,

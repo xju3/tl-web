@@ -1,7 +1,7 @@
 import ListPage from '@/components/Common/Pages/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
-import { buildTableColumns } from '@/components/TableEntities/Builder';
-import { ProductEntity } from '@/components/TableEntities/ProductEntity';
+import { buildTableColumns } from '@/components/Entities/Builder';
+import { ProductEntity } from '@/components/Entities/ProductEntity';
 import type { Product } from '@/services/Device/Product/data';
 import { deleteProduct, getProducts } from '@/services/Device/Product/service';
 

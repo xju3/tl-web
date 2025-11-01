@@ -1,8 +1,8 @@
 import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import { buildFormFields } from '@/components/TableEntities/Builder';
-import { HostEntity } from '@/components/TableEntities/HostEntity';
+import { buildFormFields } from '@/components/Entities/Builder';
+import { HostEntity } from '@/components/Entities/HostEntity';
 import type { Host } from '@/services/Device/Host/data';
 import {
   addHost,

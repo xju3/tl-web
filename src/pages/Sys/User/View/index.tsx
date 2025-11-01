@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { buildDescriptions } from '@/components/TableEntities/Builder';
-import { UserEntity } from '@/components/TableEntities/UserEntity';
+import { buildDescriptions } from '@/components/Entities/Builder';
+import { UserEntity } from '@/components/Entities/UserEntity';
 import type { User } from '@/services/Sys/User/data';
 import { deleteUser, getUserById } from '@/services/Sys/User/service';
 

@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { buildDescriptions } from '@/components/TableEntities/Builder';
-import { HostEntity } from '@/components/TableEntities/HostEntity';
+import { buildDescriptions } from '@/components/Entities/Builder';
+import { HostEntity } from '@/components/Entities/HostEntity';
 import type { Host } from '@/services/Device/Host/data';
 import { deleteHost, getHostById } from '@/services/Device/Host/service';
 import HostViewTabs from '../../../../components/ViewTabs/HostViewTabs';

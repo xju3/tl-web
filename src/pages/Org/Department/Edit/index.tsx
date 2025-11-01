@@ -1,8 +1,8 @@
 import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import { buildFormFields } from '@/components/TableEntities/Builder';
-import { DepartmentEntity } from '@/components/TableEntities/DepartmentEntity';
+import { buildFormFields } from '@/components/Entities/Builder';
+import { DepartmentEntity } from '@/components/Entities/DepartmentEntity';
 import type { Department } from '@/services/Org/Department/data';
 import {
   addDepartment,

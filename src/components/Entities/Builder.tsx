@@ -106,8 +106,6 @@ export function buildFormFields<T>(
           return <ProFormDigit key={key} {...commonProps} />;
         case 'password':
           return <ProFormText.Password key={key} {...commonProps} />;
-        case 'text':
-          return <CustomProFormText key={key} {...commonProps} />;
         default:
           return <CustomProFormText key={key} {...commonProps} />;
       }

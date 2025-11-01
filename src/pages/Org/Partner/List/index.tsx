@@ -1,8 +1,8 @@
 import React from 'react';
 import ListPage from '@/components/Common/Pages/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
-import { buildTableColumns } from '@/components/TableEntities/Builder';
-import { PartnerEntity } from '@/components/TableEntities/PartnerEntity';
+import { buildTableColumns } from '@/components/Entities/Builder';
+import { PartnerEntity } from '@/components/Entities/PartnerEntity';
 import type { Partner } from '@/services/Org/Partner/data';
 import { deletePartner, getPartners } from '@/services/Org/Partner/service';
 

@@ -1,7 +1,7 @@
 import ListPage from '@/components/Common/Pages/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
-import { buildTableColumns } from '@/components/TableEntities/Builder';
-import { HostEntity } from '@/components/TableEntities/HostEntity';
+import { buildTableColumns } from '@/components/Entities/Builder';
+import { HostEntity } from '@/components/Entities/HostEntity';
 import type { Host } from '@/services/Device/Host/data';
 import { deleteHost, getHosts } from '@/services/Device/Host/service';
 

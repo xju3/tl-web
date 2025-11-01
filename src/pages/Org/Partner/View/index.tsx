@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
-import { buildDescriptions } from '@/components/TableEntities/Builder';
-import { PartnerEntity } from '@/components/TableEntities/PartnerEntity';
+import { buildDescriptions } from '@/components/Entities/Builder';
+import { PartnerEntity } from '@/components/Entities/PartnerEntity';
 import TenantProductViewTabs from '@/components/ViewTabs/TenantProductViewTabs';
 import type { Partner } from '@/services/Org/Partner/data';
 import { deletePartner, getPartner } from '@/services/Org/Partner/service';

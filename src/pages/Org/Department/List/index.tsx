@@ -1,7 +1,7 @@
 import ListPage from '@/components/Common/Pages/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
-import { buildTableColumns } from '@/components/TableEntities/Builder';
-import { DepartmentEntity } from '@/components/TableEntities/DepartmentEntity';
+import { buildTableColumns } from '@/components/Entities/Builder';
+import { DepartmentEntity } from '@/components/Entities/DepartmentEntity';
 import type { Department } from '@/services/Org/Department/data';
 import {
   deleteDepartment,

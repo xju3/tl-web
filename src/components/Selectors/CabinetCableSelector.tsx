@@ -1,8 +1,8 @@
 import { useIntl } from '@umijs/max';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SelectModal from '@/components/Common/SelectModal';
-import { buildSelectors } from '@/components/TableEntities/Builder';
-import { CabinetCableEntity } from '@/components/TableEntities/CabinetCableEntity';
+import { buildSelectors } from '@/components/Entities/Builder';
+import { CabinetCableEntity } from '@/components/Entities/CabinetCableEntity';
 import type { CabinetCable } from '@/services/Device/Cabinet/data';
 import { getCabinetCables } from '@/services/Device/Cabinet/service';
 

@@ -2,8 +2,8 @@ import type { ProFormInstance } from '@ant-design/pro-components';
 import { useIntl, useParams } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
-import { buildFormFields } from '@/components/TableEntities/Builder';
-import { CabinetUsageEntity } from '@/components/TableEntities/CabinetUsageEntity';
+import { buildFormFields } from '@/components/Entities/Builder';
+import { CabinetUsageEntity } from '@/components/Entities/CabinetUsageEntity';
 import type { CabinetPeripheralUsage } from '@/services/Device/Cabinet/data';
 import {
   addCabinetPeripheralUsage,
