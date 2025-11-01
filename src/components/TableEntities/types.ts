@@ -31,5 +31,5 @@ export type EntityField<T> = ProColumnType<T> &
       | 'custom';
     formItemProps?: ProFormItemProps;
     rules?: ValidationRule[];
-    renderFormItem?: (item: any, config: any) => React.ReactNode;
+    renderFormItem?: (item: any, config: any, form: any) => React.ReactNode;
   };

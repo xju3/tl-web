@@ -18,6 +18,7 @@ const HostSelectorFormItem: React.FC<{
 }> = ({ form }) => {
   const [hostSelectModalOpen, setHostSelectModalOpen] = useState(false);
   const intl = useIntl();
+
   return (
     <React.Fragment>
       <ProFormText
@@ -48,7 +49,7 @@ const HostSelectorFormItem: React.FC<{
               }}
               onChange={(value, option: any) => {
                 // 同步更新 hostPortCode
-                form.setFieldValue('hostPortCode', option?.label);
+                form?.setFieldValue('hostPortCode', option?.label);
               }}
             />
           );
@@ -62,13 +63,16 @@ const HostSelectorFormItem: React.FC<{
         open={hostSelectModalOpen}
         onCancel={() => setHostSelectModalOpen(false)}
         onSelect={(host) => {
-          form.setFieldsValue({
-            hostId: host.id,
-            hostCode: host.code,
-            hostName: host.name,
-            hostPortId: undefined,
-            hostPortCode: undefined,
-          });
+          console.log(form);
+          if (form) {
+            form.setFieldsValue({
+              hostId: host.id,
+              hostCode: host.code,
+              hostName: host.name,
+              hostPortId: undefined,
+              hostPortCode: undefined,
+            });
+          }
           setHostSelectModalOpen(false);
         }}
       />
@@ -104,6 +108,26 @@ export const CabinetCableEntity: EntityField<CabinetCable>[] = [
     fieldType: 'text',
     rules: [{ type: 'required' }],
   },
+
+  {
+    dataIndex: 'hostCode', // Virtual field for the form
+    intlId: 'device.host.code', // Not directly used, but good for context
+    inForm: true,
+    fieldType: 'text',
+  },
+  {
+    dataIndex: 'hostName', // Virtual field for the form
+    intlId: 'device.host.name', // Not directly used, but good for context
+    inForm: true,
+    fieldType: 'custom',
+    renderFormItem: () => {
+      return (
+        <ProFormDependency name={[]}>
+          {(_, form) => <HostSelectorFormItem form={form} />}
+        </ProFormDependency>
+      );
+    },
+  },
   {
     dataIndex: 'description',
     intlId: 'device.cabinet.cable.description',
@@ -112,22 +136,5 @@ export const CabinetCableEntity: EntityField<CabinetCable>[] = [
     inSelector: false,
     inForm: true,
     fieldType: 'textarea',
-  },
-  {
-    dataIndex: 'hostSelector', // Virtual field for the form
-    intlId: 'device.host.name', // Not directly used, but good for context
-    inForm: true,
-    fieldType: 'custom',
-    renderFormItem: (item, config, form) => {
-      return <HostSelectorFormItem form={form} />;
-    },
-  },
-  {
-    dataIndex: 'createTime',
-    intlId: 'common.createTime',
-    valueType: 'dateTime',
-    inTable: true,
-    inDescription: true,
-    inSelector: false,
   },
 ];

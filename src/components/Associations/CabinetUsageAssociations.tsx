@@ -36,6 +36,7 @@ const CabinetUsageAssociations: React.FC<UsagesProps> = ({ cabinetId }) => {
       headerTitle={intl.formatMessage({
         id: 'device.cabinet.usage.list.title',
       })}
+      pagination={true}
     />
   );
 };

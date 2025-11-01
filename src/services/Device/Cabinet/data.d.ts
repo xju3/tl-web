@@ -39,9 +39,10 @@ export type CabinetCable = API.BaseModel & {
   name: string;
   description: string;
   hostId?: string;
-  hostPortId?: string;
   hostCode?: string;
   hostName?: string;
+  //host port
+  hostPortId?: string;
   hostPortCode?: string;
 };
 

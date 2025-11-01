@@ -24,7 +24,9 @@ export default {
   'device.cabinet.usage.add.title': 'Add Peripherals Usage',
   'device.cabinet.usage.edit.title': 'Edit Peripherals Usage',
   'device.cabinet.usage.sequence': 'Sequence',
-  'device.host.list.title': 'Host List',
+  'device.host.list': 'Hosts',
+  'device.host.selector': 'Select host',
+
   'device.host.add': 'Add Host',
   'device.host.edit': 'Edit Host',
   'device.host.view': 'View Host',

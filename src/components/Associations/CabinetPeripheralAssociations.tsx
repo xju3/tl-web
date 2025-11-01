@@ -38,6 +38,7 @@ const CabinetPeripheralAssociations: React.FC<PeripheralsProps> = ({
       headerTitle={intl.formatMessage({
         id: 'device.peripheral.list.title',
       })}
+      pagination={true}
     />
   );
 };

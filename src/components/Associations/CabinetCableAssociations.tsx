@@ -36,6 +36,7 @@ const CabinetCableAssociations: React.FC<CablesProps> = ({ cabinetId }) => {
       headerTitle={intl.formatMessage({
         id: 'device.cabinet.cable.list.title',
       })}
+      pagination={true}
     />
   );
 };

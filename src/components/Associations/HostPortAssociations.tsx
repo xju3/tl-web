@@ -60,6 +60,7 @@ const HostPortAssociations: React.FC<PortsProps> = ({ hostId }) => {
             })}
           </Button>,
         ]}
+        pagination={true}
       />
       <SerialPortSelectModal
         open={selectModalOpen}

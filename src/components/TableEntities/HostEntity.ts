@@ -42,21 +42,12 @@ export const HostEntity: EntityField<Host>[] = [
     intlId: 'common.ip',
     inTable: true,
     inDescription: true,
-    inSelector: true,
+    inSelector: false,
     inForm: true,
     fieldType: 'text',
     formItemProps: {
       width: 'lg',
     },
     rules: [{ type: 'ip' }],
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'createTime',
-    intlId: 'common.createTime',
-    valueType: 'dateTime',
-    inTable: true,
-    inDescription: true,
-    inSelector: false,
   },
 ];
