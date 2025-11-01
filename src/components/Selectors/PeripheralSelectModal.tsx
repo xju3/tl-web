@@ -26,8 +26,8 @@ const PeripheralSelectModal = ({
 
   return (
     <SelectModal<Peripheral>
-      title="选择外设"
-      headerTitle="外设列表"
+      title={intl.formatMessage({ id: 'device.peripheral.selector' })}
+      headerTitle={intl.formatMessage({ id: 'device.peripheral.list' })}
       open={open}
       onCancel={onCancel}
       onSelect={onSelect}

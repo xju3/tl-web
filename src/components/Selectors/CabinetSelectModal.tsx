@@ -25,8 +25,8 @@ const CabinetSelectModal = ({
 
   return (
     <SelectModal<Cabinet>
-      title={intl.formatMessage({ id: 'device.product.item.select-device' })}
-      headerTitle={intl.formatMessage({ id: 'device.cabinet.list.title' })}
+      title={intl.formatMessage({ id: 'device.product.item.selector' })}
+      headerTitle={intl.formatMessage({ id: 'device.cabinet.list' })}
       open={open}
       onCancel={onCancel}
       onSelect={onSelect}

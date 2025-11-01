@@ -28,8 +28,8 @@ const CabinetPeripheralSelector = ({
 
   return (
     <SelectModal<CabinetPeripheral>
-      title="选择机柜外设"
-      headerTitle="机柜外设列表"
+      title={intl.formatMessage({ id: 'device.cabinet.peripheral.selector' })}
+      headerTitle={intl.formatMessage({ id: 'device.cabinet.peripheral.list' })}
       open={open}
       onCancel={onCancel}
       onSelect={onSelect}

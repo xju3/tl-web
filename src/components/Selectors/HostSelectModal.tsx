@@ -25,8 +25,8 @@ const HostSelectModal = ({
 
   return (
     <SelectModal<Host>
-      title="选择主机"
-      headerTitle="主机列表"
+      title={intl.formatMessage({ id: 'device.host.selector' })}
+      headerTitle={intl.formatMessage({ id: 'device.host.list' })}
       open={open}
       onCancel={onCancel}
       onSelect={onSelect}

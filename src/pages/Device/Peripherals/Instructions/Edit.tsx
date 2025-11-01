@@ -1,6 +1,6 @@
 import { PageContainer, ProForm } from '@ant-design/pro-components';
 import { history, useIntl, useParams } from '@umijs/max';
-import { Button, Card, message } from 'antd';
+import { Card, message } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import { v4 as uuid_v4 } from 'uuid';
 import PeripheralInstructionFormFields from '@/components/FormFields/PeripheralInstructionFormFields';

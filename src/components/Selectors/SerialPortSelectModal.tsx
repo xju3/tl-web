@@ -25,8 +25,8 @@ const SerialPortSelectModal = ({
 
   return (
     <SelectModal<SerialPort>
-      title="选择串口"
-      headerTitle="串口列表"
+      title={intl.formatMessage({ id: 'device.serial-port.selector' })}
+      headerTitle={intl.formatMessage({ id: 'device.serial-port.list' })}
       open={open}
       onCancel={onCancel}
       onSelect={(record) => onSelect(record.id)}

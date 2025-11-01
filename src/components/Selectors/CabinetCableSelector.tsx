@@ -27,8 +27,8 @@ const CabinetCableSelector = ({
 
   return (
     <SelectModal<CabinetCable>
-      title="选择线缆"
-      headerTitle="线缆列表"
+      title={intl.formatMessage({ id: 'device.cabinet.cables.select' })}
+      headerTitle={intl.formatMessage({ id: 'device.cabinet.cables' })}
       open={open}
       onCancel={onCancel}
       onSelect={onSelect}

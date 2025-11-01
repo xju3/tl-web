@@ -1,6 +1,5 @@
 import type {
   ProDescriptionsItemProps,
-  ProFormInstance,
   ProFormItemProps,
 } from '@ant-design/pro-components';
 import type { ProColumnType } from '@ant-design/pro-table';
