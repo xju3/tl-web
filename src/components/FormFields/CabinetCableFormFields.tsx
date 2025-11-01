@@ -9,7 +9,7 @@ import { useIntl } from '@umijs/max';
 import { Button } from 'antd';
 import React, { useState } from 'react';
 import CustomProFormText from '@/components/Customization/Form/CustomProFormText';
-import HostSelectModal from '@/components/Selectors/HostSelectModal';
+import HostSelector from '@/components/Selectors/HostSelector';
 import type { CabinetCable } from '@/services/Device/Cabinet/data';
 import type { HostSerialPort } from '@/services/Device/Host/data';
 import { getHostPorts } from '@/services/Device/Host/service';
@@ -84,7 +84,7 @@ const CabinetCableFormFields: React.FC<CabinetCableFormFieldsProps> = ({
       <ProFormText name="hostCode" hidden />
       <ProFormText name="hostPortCode" hidden />
 
-      <HostSelectModal
+      <HostSelector
         open={hostSelectModalOpen}
         onCancel={() => setHostSelectModalOpen(false)}
         onSelect={(host) => {

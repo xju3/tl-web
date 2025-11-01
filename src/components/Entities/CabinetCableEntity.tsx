@@ -1,5 +1,5 @@
 import EntitySelectorFormItem from '@/components/Common/FormItem/EntitySelectorFormItem';
-import HostSelectModal from '@/components/Selectors/HostSelectModal';
+import HostSelector from '@/components/Selectors/HostSelector';
 import type { CabinetCable } from '@/services/Device/Cabinet/data';
 import type { Host } from '@/services/Device/Host/data';
 import type { EntityField } from './types';
@@ -62,7 +62,7 @@ export const CabinetCableEntity: EntityField<CabinetCable>[] = [
       <EntitySelectorFormItem<Host>
         nameFieldName="hostName"
         labelIntl="device.host.name"
-        SelectorModal={HostSelectModal}
+        SelectorModal={HostSelector}
         onSelect={(entity, formInstance) => {
           formInstance.setFieldsValue({
             hostId: entity.id,

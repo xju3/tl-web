@@ -9,13 +9,13 @@ import { getCabinets } from '@/services/Device/Cabinet/service';
 export type CabinetSelectModalProps = {
   open: boolean;
   onCancel: () => void;
-  onSelect: (cabinet: any) => void;
+  onSelect: (cabinet: Cabinet) => void;
 };
 
 const columns = (intl: any): CustomProColumns<Cabinet>[] =>
   buildSelectors(CabinetEntity, intl);
 
-const CabinetSelectModal = ({
+const CabinetSelector = ({
   open,
   onCancel,
   onSelect,
@@ -37,4 +37,4 @@ const CabinetSelectModal = ({
   );
 };
 
-export default CabinetSelectModal;
+export default CabinetSelector;

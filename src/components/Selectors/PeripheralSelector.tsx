@@ -15,7 +15,7 @@ export type PeripheralSelectModalProps = {
 const columns = (intl: any): CustomProColumns<Peripheral>[] =>
   buildSelectors(PeripheralEntity, intl);
 
-const PeripheralSelectModal = ({
+const PeripheralSelector = ({
   open,
   onCancel,
   onSelect,
@@ -37,4 +37,4 @@ const PeripheralSelectModal = ({
   );
 };
 
-export default PeripheralSelectModal;
+export default PeripheralSelector;

@@ -15,11 +15,7 @@ export type HostSelectModalProps = {
 const columns = (intl: any): CustomProColumns<Host>[] =>
   buildSelectors(HostEntity, intl);
 
-const HostSelectModal = ({
-  open,
-  onCancel,
-  onSelect,
-}: HostSelectModalProps) => {
+const HostSelector = ({ open, onCancel, onSelect }: HostSelectModalProps) => {
   const intl = useIntl();
   const selectorColumns = columns(intl);
 
@@ -36,4 +32,4 @@ const HostSelectModal = ({
   );
 };
 
-export default HostSelectModal;
+export default HostSelector;

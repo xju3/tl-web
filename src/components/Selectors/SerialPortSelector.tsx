@@ -9,13 +9,13 @@ import { getSerialPorts } from '@/services/Device/SerialPort/service';
 export type SerialPortSelectModalProps = {
   open: boolean;
   onCancel: () => void;
-  onSelect: (id: string) => void;
+  onSelect: (serialPort: SerialPort) => void;
 };
 
 const columns = (intl: any): CustomProColumns<SerialPort>[] =>
   buildSelectors(SerialPortEntity, intl);
 
-const SerialPortSelectModal = ({
+const SerialPortSelector = ({
   open,
   onCancel,
   onSelect,
@@ -29,11 +29,11 @@ const SerialPortSelectModal = ({
       headerTitle={intl.formatMessage({ id: 'device.serial-port.list' })}
       open={open}
       onCancel={onCancel}
-      onSelect={(record) => onSelect(record.id)}
+      onSelect={(record) => onSelect(record)}
       request={getSerialPorts}
       columns={selectorColumns}
     />
   );
 };
 
-export default SerialPortSelectModal;
+export default SerialPortSelector;

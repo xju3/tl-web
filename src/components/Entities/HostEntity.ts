@@ -3,12 +3,7 @@ import type { EntityField } from './types';
 
 export const HostEntity: EntityField<Host>[] = [
   {
-    title: 'ID',
     dataIndex: 'id',
-    intlId: 'device.host.id',
-    inTable: false,
-    inDescription: true,
-    inSelector: false,
   },
   {
     dataIndex: 'code',

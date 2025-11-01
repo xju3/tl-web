@@ -7,7 +7,7 @@ import { history, useIntl, useParams } from '@umijs/max';
 import { Button, Card, Form, Space } from 'antd';
 import { useEffect, useState } from 'react';
 import ProductItemDescriptions from '@/components/Descriptions/ProductItemDescriptions';
-import CabinetSelectModal from '@/components/Selectors/CabinetSelectModal';
+import CabinetSelector from '@/components/Selectors/CabinetSelector';
 import type { ProductItem } from '@/services/Device/Product/data';
 import {
   addProductItem,
@@ -75,7 +75,7 @@ const ProductItemEditPage = () => {
           </Space>
         </ProForm>
       </Card>
-      <CabinetSelectModal
+      <CabinetSelector
         open={modalVisible}
         onCancel={() => setModalVisible(false)}
         onSelect={handleDeviceSelect}

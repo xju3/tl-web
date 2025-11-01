@@ -1,6 +1,6 @@
 import EntitySelectorFormItem from '@/components/Common/FormItem/EntitySelectorFormItem';
 import CabinetCableSelector from '@/components/Selectors/CabinetCableSelector';
-import PeripheralSelectModal from '@/components/Selectors/PeripheralSelectModal';
+import PeripheralSelector from '@/components/Selectors/PeripheralSelector';
 import type { CabinetPeripheral } from '@/services/Device/Cabinet/data';
 import type { Peripheral } from '@/services/Device/Peripheral/data';
 import type { EntityField } from './types';
@@ -39,7 +39,7 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
         nameFieldName="name"
         width={'lg'}
         labelIntl="device.peripheral.name"
-        SelectorModal={PeripheralSelectModal}
+        SelectorModal={PeripheralSelector}
         onSelect={(entity, formInstance) => {
           formInstance.setFieldsValue({
             peripheralId: entity.id,

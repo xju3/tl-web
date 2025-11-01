@@ -160,10 +160,17 @@ export default [
       },
       {
         name: 'create.port',
-        path: '/device/hosts/:hostId/ports/:portId/edit',
+        path: '/device/hosts/:hostId/ports/add',
         component: './Device/Host/Ports/Edit',
         hideInMenu: true,
       },
+      {
+        name: 'edit.port',
+        path: '/device/hosts/:hostId/ports/:id/edit',
+        component: './Device/Host/Ports/Edit',
+        hideInMenu: true,
+      },
+
       {
         name: 'peripherals',
         icon: 'appstore',

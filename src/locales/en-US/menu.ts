@@ -33,6 +33,7 @@ export default {
   'menu.department': 'Department',
   'menu.device': 'Device',
   'menu.device.add.host': 'Add Host',
+  'menu.device.edit.port': 'Add Host',
   'menu.device.add.peripheral': 'Add Peripherals',
   'menu.device.add.product': 'Add Product',
   'menu.device.add.serial-port': 'Add Serial Port',
