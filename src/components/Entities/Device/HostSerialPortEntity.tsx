@@ -15,7 +15,7 @@ export const HostSerialPortEntity: EntityField<HostSerialPort>[] = [
     },
   },
   {
-    dataIndex: 'hostSerialPortId',
+    dataIndex: 'serialPortId',
     visibility: {
       inForm: true,
     },
@@ -32,10 +32,20 @@ export const HostSerialPortEntity: EntityField<HostSerialPort>[] = [
       hidden: true,
     },
   },
-
+  {
+    intlId: 'device.host.serial-port.code',
+    dataIndex: 'portCode',
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+    },
+  },
   {
     intlId: 'device.serial-port.code',
-    dataIndex: 'code',
+    dataIndex: 'serialPortCode',
     visibility: {
       inTable: true,
       inForm: true,
@@ -44,15 +54,15 @@ export const HostSerialPortEntity: EntityField<HostSerialPort>[] = [
       fieldType: 'custom',
       renderFormItem: () => (
         <EntitySelectorFormItem<SerialPort>
-          nameFieldName="code"
+          nameFieldName="serialPortCode"
           width={'lg'}
           labelIntl="device.serial-port.code"
           SelectorModal={SerialPortSelector}
           onSelect={(entity, formInstance) => {
             formInstance.setFieldsValue({
               serialPortId: entity.id,
-              code: entity.code,
-              name: entity.name,
+              serialPortCode: entity.code,
+              serialPortName: entity.name,
               baudRate: entity.baudRate,
             });
           }}
@@ -62,7 +72,7 @@ export const HostSerialPortEntity: EntityField<HostSerialPort>[] = [
   },
   {
     intlId: 'device.serial-port.name',
-    dataIndex: 'name',
+    dataIndex: 'serialPortName',
     visibility: {
       inTable: true,
       inForm: true,

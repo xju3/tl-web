@@ -29,10 +29,8 @@ const CableEditPage: React.FC = () => {
     getItemById: getCabinetCableById,
   };
 
-  const backRoute = '/device/cabinets';
-
   return (
-    <EditPage<CabinetCable> services={services} backRoute={backRoute}>
+    <EditPage<CabinetCable> services={services}>
       <CableForm />
     </EditPage>
   );

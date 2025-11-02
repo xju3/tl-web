@@ -14,10 +14,10 @@ export type CabinetPeripheral = API.BaseModel & {
   peripheralId: string;
   code: string;
   name: string;
-  quantity: number;
   cableId?: string;
   cableCode?: string;
   cableName?: string;
+  quantity: number;
 };
 
 // 分页查询参数类型

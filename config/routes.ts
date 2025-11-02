@@ -123,13 +123,13 @@ export default [
         hideInMenu: true,
       },
       {
-        name: 'create.port',
+        name: 'add.serial-port',
         path: '/device/hosts/:hostId/ports/add',
         component: './Device/Host/Ports/Edit',
         hideInMenu: true,
       },
       {
-        name: 'edit.port',
+        name: 'edit.serial-port',
         path: '/device/hosts/:hostId/ports/:id/edit',
         component: './Device/Host/Ports/Edit',
         hideInMenu: true,

@@ -31,6 +31,8 @@ export default {
   'device.host.list': 'Hosts',
   'device.host.selector': 'Select host',
   'device.host.add': 'Add Host',
+  'device.host.add.serial-port': 'Add Host Port',
+  'device.host.edit.serial-port': 'Edit Host Port',
   'device.host.edit': 'Edit Host',
   'device.host.view': 'View Host',
   'device.host.code': 'Host Code',
@@ -40,6 +42,7 @@ export default {
   'device.host.basic-info.title': 'Basic Information',
   'device.host.serial-ports.title': 'Serial Port List',
   'device.host.serial-ports.add': 'Add Serial Port',
+  'device.host.serial-port.code': 'Host Serial Port Code',
   'device.host.serial-ports.delete.confirm':
     'Are you sure you want to delete this port?',
   'device.host.port.code': 'Serial Port Code',

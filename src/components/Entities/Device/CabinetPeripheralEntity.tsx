@@ -18,6 +18,7 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
   {
     intlId: 'device.peripheral.code',
     dataIndex: 'code',
+    width: 180,
     visibility: {
       inForm: true,
       inTable: true,
@@ -48,7 +49,7 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
     intlId: 'device.peripheral.name',
     dataIndex: 'name',
     visibility: {
-      inTable: false,
+      inTable: true,
       inForm: true,
     },
     form: {
@@ -57,6 +58,19 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
         disabled: true,
       },
     },
+  },
+  {
+    intlId: 'common.quantity',
+    dataIndex: 'quantity',
+    visibility: {
+      inForm: true,
+      inTable: true,
+    },
+    form: {
+      fieldType: 'digit',
+    },
+    width: 80,
+    column: {},
   },
   {
     dataIndex: 'cableCode',
@@ -102,16 +116,7 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
       },
     },
   },
-  {
-    intlId: 'common.quantity',
-    dataIndex: 'quantity',
-    visibility: {
-      inForm: true,
-    },
-    form: {
-      fieldType: 'digit',
-    },
-  },
+
   {
     dataIndex: 'peripheralId',
     visibility: {

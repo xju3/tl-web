@@ -1,9 +1,13 @@
 import type { SerialPort } from '../SerialPort/data';
 
 // 主机-串口关联数据类型
-export type HostSerialPort = SerialPort & {
-  hostSerialPortId: string;
+export type HostSerialPort = API.BaseModel & {
+  portCode: string;
+  serialPortId: string;
   hostId: string;
+  serialPortCode: string;
+  serialPortName: string;
+  baudRate: number;
 };
 
 // 主机数据类型

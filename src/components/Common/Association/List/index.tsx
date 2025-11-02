@@ -29,6 +29,7 @@ const AssociationList = <T extends { id: string }>({
     render: (_, record) => {
       const actions = [];
       if (editRoutePattern) {
+        console.log(record);
         actions.push(
           <a
             key="edit"

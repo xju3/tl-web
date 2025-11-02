@@ -6,6 +6,11 @@ import { buildFormFields } from '@/components/Entities/Builder';
 import { HostSerialPortEntity } from '@/components/Entities/Device/HostSerialPortEntity';
 import type { HostSerialPort } from '@/services/Device/Host/data';
 import {
+  addHostPort,
+  getHostPortById,
+  updateHostPort,
+} from '@/services/Device/Host/service';
+import {
   addSerialPort,
   getSerialPortById,
   updateSerialPort,
@@ -24,15 +29,13 @@ const HostSerialPortForm: React.FC<FormProps> = ({ formRef }) => {
 
 const HostSerialPortEditPage = () => {
   const services = {
-    addItem: addSerialPort,
-    updateItem: updateSerialPort,
-    getItemById: getSerialPortById,
+    addItem: addHostPort,
+    updateItem: updateHostPort,
+    getItemById: getHostPortById,
   };
 
-  const backRoute = '/device/hosts';
-
   return (
-    <EditPage<HostSerialPort> services={services} backRoute={backRoute}>
+    <EditPage<HostSerialPort> services={services}>
       <HostSerialPortForm />
     </EditPage>
   );

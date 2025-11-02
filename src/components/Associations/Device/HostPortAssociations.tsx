@@ -5,6 +5,7 @@ import AssociationList from '@/components/Common/Association/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
 import { HostPortEntity } from '@/components/Entities/Device/HostPortEntity';
+import { HostSerialPortEntity } from '@/components/Entities/Device/HostSerialPortEntity';
 import type { HostSerialPort } from '@/services/Device/Host/data';
 import { deleteHostPort, getHostPorts } from '@/services/Device/Host/service';
 
@@ -15,7 +16,7 @@ type PortsProps = {
 const getHostPortColumns = (
   intl: IntlShape,
 ): CustomProColumns<HostSerialPort>[] =>
-  buildTableColumns(HostPortEntity, intl);
+  buildTableColumns(HostSerialPortEntity, intl);
 
 const HostPortAssociations: React.FC<PortsProps> = ({ hostId }) => {
   const intl = useIntl();

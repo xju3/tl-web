@@ -41,9 +41,10 @@ export async function getHostPorts(
 
 
 // 7. Add a serial port to a host
-export async function addHostPort(hostId: string, serialPortId: string) {
-  const url = `${host_base_url}/${hostId}/ports/${serialPortId}`;
-  return apiCreate(url, null);
+export async function addHostPort(data: HostSerialPort) {
+  console.log(data)
+  const url = `${host_base_url}/${data.hostId}/ports`;
+  return apiCreate(url, data);
 }
 
 // 8. Delete a serial port from a host
@@ -55,10 +56,15 @@ export async function deleteHostPort(hostId: string, portId: string) {
 
 // 9. Update a host's serial port association
 export async function updateHostPort(
-  hostId: string,
-  portId: string,
-  serialPortId: string,
+  data: HostSerialPort,
 ) {
-  const url = `${host_base_url}/${hostId}/ports/${portId}/${serialPortId}`;
-  return apiUpdate(url, null);
+  console.log(data)
+  const url = `${host_base_url}/${data.hostId}/ports`;
+  return apiUpdate(url, data);
+}
+
+export async function getHostPortById( id: string) {
+  console.log(id);
+  const url = `${host_base_url}/ports`;
+  return apiGetById<HostSerialPort>(url, id);
 }
