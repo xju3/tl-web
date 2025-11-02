@@ -7,7 +7,7 @@ import { Modal } from 'antd';
 import { useRef } from 'react';
 import type { IntlShape } from 'react-intl';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
-import CustomProTable from '@/components/Customization/Table/CustomProTable';
+import CustomProTable from '@/components/Common/Table/CustomProTable';
 
 export type SelectModalProps<T extends Record<string, any>> = {
   open: boolean;
@@ -21,6 +21,7 @@ export type SelectModalProps<T extends Record<string, any>> = {
   pagination?: ProTableProps<T, any>['pagination'];
   headerTitle?: string;
   rowKey?: string;
+  showIndex?: boolean;
 };
 
 const SelectModal = <T extends Record<string, any>>({
@@ -35,6 +36,7 @@ const SelectModal = <T extends Record<string, any>>({
   headerTitle,
   rowKey = 'id',
   intl,
+  showIndex = true,
 }: SelectModalProps<T>) => {
   const actionRef = useRef<ActionType>(null);
 
@@ -72,7 +74,7 @@ const SelectModal = <T extends Record<string, any>>({
         rowKey={rowKey}
         search={{ labelWidth: 'auto', ...search }}
         request={request}
-        showIndexColumn={true}
+        showIndexColumn={showIndex}
         columns={tableColumns}
         pagination={pagination}
         tableAlertRender={false}

@@ -1,54 +1,31 @@
-import { PageContainer, ProForm } from '@ant-design/pro-components';
-import { history, useIntl, useParams } from '@umijs/max';
-import { Form, message } from 'antd';
-import React, { useEffect } from 'react';
-import { v4 as uuid_v4 } from 'uuid';
-import UserFormFields from '@/components/FormFields/UserFormFields';
-import type {
-  CreateUserCommand,
-  UpdateUserCommand,
-} from '@/services/Sys/User/data.d';
-import { addUser, getUserById, updateUser } from '@/services/Sys/User/service';
+import { useIntl } from '@umijs/max';
+import React from 'react';
+import EditPage from '@/components/Common/Pages/Edit';
+import { buildFormFields } from '@/components/Entities/Builder';
+import { UserEntity } from '@/components/Entities/Sys/UserEntity';
+import { updateMenu } from '@/services/Sys/Menu/service';
+import type { User } from '@/services/Sys/User/data';
+import { addUser, getUserById } from '@/services/Sys/User/service';
 
-const UserEdit: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const [form] = Form.useForm();
+const UserForm: React.FC = () => {
   const intl = useIntl();
+  return <>{buildFormFields<User>(UserEntity, intl)}</>;
+};
 
-  useEffect(() => {
-    if (id) {
-      getUserById(id).then((res) => {
-        form.setFieldsValue(res);
-      });
-    }
-  }, [id, form]);
-
-  const onFinish = async (values: Record<string, any>) => {
-    try {
-      if (id) {
-        await updateUser({ ...values, id } as UpdateUserCommand);
-        message.success(
-          intl.formatMessage({ id: 'common.actions.edit.success' }),
-        );
-      } else {
-        await addUser({ ...values, id: uuid_v4() } as CreateUserCommand);
-        message.success(
-          intl.formatMessage({ id: 'common.actions.save.success' }),
-        );
-      }
-      history.push('/sys/user');
-    } catch (error) {
-      // Error handling is managed by the global request error handler
-    }
+const UserEditPage = () => {
+  const services = {
+    addItem: addUser,
+    updateItem: updateMenu,
+    getItemById: getUserById,
   };
 
+  const backRoute = '/sys/user';
+
   return (
-    <PageContainer onBack={() => history.push('/sys/user')}>
-      <ProForm form={form} onFinish={onFinish}>
-        <UserFormFields />
-      </ProForm>
-    </PageContainer>
+    <EditPage<User> services={services} backRoute={backRoute}>
+      <UserForm />
+    </EditPage>
   );
 };
 
-export default UserEdit;
+export default UserEditPage;

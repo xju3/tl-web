@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
 import { buildDescriptions } from '@/components/Entities/Builder';
-import { PeripheralEntity } from '@/components/Entities/PeripheralEntity';
+import { PeripheralEntity } from '@/components/Entities/Device/PeripheralEntity';
 import type { Peripheral } from '@/services/Device/Peripheral/data';
 import {
   deletePeripheral,

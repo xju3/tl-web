@@ -1,12 +1,7 @@
 import type {
-  CreatePartnerCommand,
-  CreatePartnerProductCommand,
   Partner,
   PartnerFilter,
-  PartnerProductFilter,
-  PartnerProductVo,
-  UpdatePartnerCommand,
-  UpdatePartnerProductCommand,
+  PartnerProduct,
 } from './data';
 import {ParamsType} from "@ant-design/pro-components";
 import {SortOrder} from "antd/es/table/interface";
@@ -28,13 +23,13 @@ export async function getPartner(id: string) {
 }
 
 export async function createPartner(
-  command: CreatePartnerCommand,
+  command: Partner,
 ) {
   return apiCreate(partner_base_url, command);
 }
 
 export async function updatePartner(
-  command: UpdatePartnerCommand,
+  command: Partner,
 ) {
   return apiUpdate(partner_base_url, command);
 }
@@ -45,26 +40,28 @@ export async function deletePartner(
   return apiDelete(partner_base_url, id);
 }
 
-export async function getTenantProducts(
+export async function getPartnerProducts(
+  partnerId: string,
   params: ParamsType,
 ) {
-  return apiGetPage<PartnerProductVo>(product_base_url, params);
+  const url = `${partner_base_url}/${partnerId}/products`;
+  return apiGetPage<PartnerProduct>(url, params);
 }
 
 export async function getPartnerProductById(
   id: string,
 ) {
-  return apiGetById<PartnerProductVo>(product_base_url, id);
+  return apiGetById<PartnerProduct>(product_base_url, id);
 }
 
 export async function createPartnerProduct(
-  command: CreatePartnerProductCommand,
+  command:PartnerProduct,
 ) {
   return apiCreate(product_base_url, command);
 }
 
 export async function updatePartnerProduct(
-  command: UpdatePartnerProductCommand,
+  command:PartnerProduct,
 ) {
   return apiUpdate(product_base_url, command);
 }

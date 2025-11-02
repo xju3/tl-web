@@ -2,7 +2,7 @@ import { useIntl } from '@@/exports';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SelectModal from '@/components/Common/SelectModal';
 import { buildSelectors } from '@/components/Entities/Builder';
-import { CabinetPeripheralEntity } from '@/components/Entities/CabinetPeripheralEntity';
+import { CabinetPeripheralEntity } from '@/components/Entities/Device/CabinetPeripheralEntity';
 import type { CabinetPeripheral } from '@/services/Device/Cabinet/data';
 import { getPeripheralsByCabinetId } from '@/services/Device/Cabinet/service';
 

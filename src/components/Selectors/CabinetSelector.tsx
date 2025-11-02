@@ -2,7 +2,7 @@ import { useIntl } from '@umijs/max';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SelectModal from '@/components/Common/SelectModal';
 import { buildSelectors } from '@/components/Entities/Builder';
-import { CabinetEntity } from '@/components/Entities/CabinetEntity';
+import { CabinetEntity } from '@/components/Entities/Device/CabinetEntity';
 import type { Cabinet } from '@/services/Device/Cabinet/data';
 import { getCabinets } from '@/services/Device/Cabinet/service';
 
@@ -33,6 +33,7 @@ const CabinetSelector = ({
       request={getCabinets}
       columns={selectorColumns}
       intl={intl}
+      showIndex={false}
     />
   );
 };

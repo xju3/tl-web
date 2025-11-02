@@ -2,7 +2,7 @@ import React from 'react';
 import ListPage from '@/components/Common/Pages/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
-import { MenuEntity } from '@/components/Entities/MenuEntity';
+import { MenuEntity } from '@/components/Entities/Sys/MenuEntity';
 import type { Menu } from '@/services/Sys/Menu/data';
 import { deleteMenu, getMenus } from '@/services/Sys/Menu/service';
 

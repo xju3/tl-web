@@ -9,8 +9,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { v4 as uuid_v4 } from 'uuid';
 import EditPage from '@/components/Common/Pages/Edit';
 import { buildFormFields } from '@/components/Entities/Builder';
-import { HostSerialPortEntity } from '@/components/Entities/HostSerialPortEntity';
-import { PeripheralInstructionEntity } from '@/components/Entities/PeripheralInstructionEntity';
+import { HostSerialPortEntity } from '@/components/Entities/Device/HostSerialPortEntity';
+import { PeripheralInstructionEntity } from '@/components/Entities/Device/PeripheralInstructionEntity';
 import PeripheralInstructionFormFields from '@/components/FormFields/PeripheralInstructionFormFields';
 import type { HostSerialPort } from '@/services/Device/Host/data';
 import type {

@@ -2,7 +2,7 @@ import React from 'react';
 import ListPage from '@/components/Common/Pages/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
-import { RoleEntity } from '@/components/Entities/RoleEntity';
+import { RoleEntity } from '@/components/Entities/Sys/RoleEntity';
 import type { Role } from '@/services/Sys/Role/data';
 import { deleteRole, getRoles } from '@/services/Sys/Role/service';
 

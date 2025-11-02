@@ -1,9 +1,9 @@
 import { history, useIntl, useLocation } from '@umijs/max';
 import { Card, Tabs } from 'antd';
 import React from 'react';
-import CabinetCableAssociations from '@/components/Associations/CabinetCableAssociations';
-import CabinetPeripheralAssociations from '@/components/Associations/CabinetPeripheralAssociations';
-import CabinetUsageAssociations from '@/components/Associations/CabinetUsageAssociations';
+import CabinetCableAssociations from '@/components/Associations/Device/CabinetCableAssociations';
+import CabinetPeripheralAssociations from '@/components/Associations/Device/CabinetPeripheralAssociations';
+import CabinetUsageAssociations from '@/components/Associations/Device/CabinetUsageAssociations';
 import type { Cabinet } from '@/services/Device/Cabinet/data';
 
 type CabinetViewTabsProps = {

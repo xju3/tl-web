@@ -1,8 +1,8 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
 import { buildDescriptions } from '@/components/Entities/Builder';
-import { TenantEntity } from '@/components/Entities/TenantEntity';
-import TenantProductViewTabs from '@/components/ViewTabs/TenantProductViewTabs';
+import { TenantEntity } from '@/components/Entities/Org/TenantEntity';
+import PartnerProductViewTabs from '@/components/ViewTabs/PartnerProductViewTabs';
 import type { Tenant } from '@/services/Org/Tenant/data';
 import { deleteTenant, getTenantById } from '@/services/Org/Tenant/service';
 
@@ -18,7 +18,7 @@ const TenantViewPage = () => {
       editUrl="/org/company/edit"
       listUrl="/org/company"
       columns={buildDescriptions(TenantEntity, intl)}
-      detailsComponent={(data) => <TenantProductViewTabs tenant={data} />}
+      detailsComponent={(data) => <PartnerProductViewTabs tenant={data} />}
     />
   );
 };

@@ -2,7 +2,7 @@ import { useIntl } from '@umijs/max';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SelectModal from '@/components/Common/SelectModal';
 import { buildSelectors } from '@/components/Entities/Builder';
-import { HostEntity } from '@/components/Entities/HostEntity';
+import { HostEntity } from '@/components/Entities/Device/HostEntity';
 import type { Host } from '@/services/Device/Host/data';
 import { getHosts } from '@/services/Device/Host/service';
 

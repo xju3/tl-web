@@ -1,7 +1,7 @@
 import ListPage from '@/components/Common/Pages/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
-import { SerialPortEntity } from '@/components/Entities/SerialPortEntity';
+import { SerialPortEntity } from '@/components/Entities/Device/SerialPortEntity';
 import type { SerialPort } from '@/services/Device/SerialPort/data';
 import {
   deleteSerialPort,

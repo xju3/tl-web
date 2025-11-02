@@ -1,7 +1,7 @@
 import { history, useIntl, useLocation } from '@umijs/max';
 import { Card, Tabs } from 'antd';
 import React from 'react';
-import HostPortAssociations from '@/components/Associations/HostPortAssociations';
+import HostPortAssociations from '@/components/Associations/Device/HostPortAssociations';
 import type { Host } from '@/services/Device/Host/data';
 
 type HostViewTabsProps = {

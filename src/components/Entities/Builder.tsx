@@ -7,8 +7,8 @@ import {
 } from '@ant-design/pro-components';
 import React from 'react';
 import type { IntlShape } from 'react-intl';
+import CustomProFormText from '@/components/Common/Form/CustomProFormText';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
-import CustomProFormText from '@/components/Customization/Form/CustomProFormText';
 import { validationRules } from '@/utils/validation';
 import type { EntityField } from './types';
 
@@ -101,13 +101,13 @@ export function buildFormFields<T>(
 
       switch (def.fieldType) {
         case 'textarea':
-          return <ProFormTextArea key={key} {...commonProps} />;
+          return <ProFormTextArea key={key} width="lg" {...commonProps} />;
         case 'digit':
-          return <ProFormDigit key={key} {...commonProps} />;
+          return <ProFormDigit key={key} width="lg" {...commonProps} />;
         case 'password':
-          return <ProFormText.Password key={key} {...commonProps} />;
+          return <ProFormText.Password key={key} width="lg" {...commonProps} />;
         default:
-          return <CustomProFormText key={key} {...commonProps} />;
+          return <CustomProFormText key={key} width="lg" {...commonProps} />;
       }
     });
 }

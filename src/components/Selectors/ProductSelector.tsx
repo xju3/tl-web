@@ -2,7 +2,7 @@ import { useIntl } from '@umijs/max';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SelectModal from '@/components/Common/SelectModal';
 import { buildSelectors } from '@/components/Entities/Builder';
-import { ProductEntity } from '@/components/Entities/ProductEntity';
+import { ProductEntity } from '@/components/Entities/Device/ProductEntity';
 import type { Product } from '@/services/Device/Product/data';
 import { getProducts } from '@/services/Device/Product/service';
 

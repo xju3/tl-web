@@ -2,7 +2,7 @@ import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
 import { buildFormFields } from '@/components/Entities/Builder';
-import { ProductEntity } from '@/components/Entities/ProductEntity';
+import { ProductEntity } from '@/components/Entities/Device/ProductEntity';
 import type { Product } from '@/services/Device/Product/data';
 import {
   addProduct,

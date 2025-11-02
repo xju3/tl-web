@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
 import { buildDescriptions } from '@/components/Entities/Builder';
-import { DepartmentEntity } from '@/components/Entities/DepartmentEntity';
+import { DepartmentEntity } from '@/components/Entities/Org/DepartmentEntity';
 import type { Department } from '@/services/Org/Department/data';
 import {
   deleteDepartment,

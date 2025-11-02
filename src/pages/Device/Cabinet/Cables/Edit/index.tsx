@@ -3,7 +3,7 @@ import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
 import { buildFormFields } from '@/components/Entities/Builder';
-import { CabinetCableEntity } from '@/components/Entities/CabinetCableEntity';
+import { CabinetCableEntity } from '@/components/Entities/Device/CabinetCableEntity';
 import type { CabinetCable } from '@/services/Device/Cabinet/data';
 import {
   addCabinetCables,

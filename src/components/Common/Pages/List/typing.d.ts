@@ -34,6 +34,7 @@ export interface ListPageProps<T extends { id: string }> {
   showIndexColumn?: boolean;
   headerTitle?: string;
   toolBarRender?: boolean | (() => React.ReactNode[]);
+  view?: boolean;
 }
 
 // 2. 扩展 ProTableProps
@@ -43,5 +44,6 @@ export interface CustomProTableProps<T extends Record<string, any>>
    * 是否显示序号列
    * @default false
    */
+  view?: boolean;
   showIndexColumn?: boolean;
 }

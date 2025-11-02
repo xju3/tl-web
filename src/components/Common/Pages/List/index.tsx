@@ -11,7 +11,7 @@ import { Button, Input, type InputRef, Popconfirm, Space } from 'antd';
 import type { FilterDropdownProps, SortOrder } from 'antd/es/table/interface';
 import type React from 'react';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
-import CustomProTable from '@/components/Customization/Table/CustomProTable';
+import CustomProTable from '@/components/Common/Table/CustomProTable';
 import type { CustomProColumns, ListPageProps } from './typing';
 
 const CustomFilterDropdown = ({
@@ -30,15 +30,12 @@ const CustomFilterDropdown = ({
   const inputRef = useRef<InputRef>(null);
 
   useEffect(() => {
-    console.log(visible);
     if (visible) {
       // 恢复保存的值
-
       const valueInRef = filterRef.current[dataIndex]?.[0];
       if (valueInRef !== undefined && selectedKeys?.[0] !== valueInRef) {
         setSelectedKeys([valueInRef]);
       }
-
       // 聚焦输入框
       setTimeout(() => {
         inputRef.current?.focus();
@@ -106,6 +103,7 @@ const ListPage = <T extends { id: string }>({
   sessionKey,
   showIndexColumn = true,
   extraActions,
+  view = true,
 }: ListPageProps<T>) => {
   const actionRef = useRef<ActionType>(undefined);
   const formRef = useRef<ProFormInstance>(undefined);
@@ -181,7 +179,7 @@ const ListPage = <T extends { id: string }>({
     title: intl.formatMessage({ id: 'common.actions' }),
     dataIndex: 'option',
     valueType: 'option',
-    width: '180px',
+    width: '140px',
     align: 'center',
     render: (_, record) => {
       const defaultActions = [
@@ -191,12 +189,14 @@ const ListPage = <T extends { id: string }>({
         >
           {intl.formatMessage({ id: 'common.actions.edit' })}
         </a>,
-        <a
-          key="view"
-          onClick={() => saveStateAndNavigate(`${routes.view}/${record.id}`)}
-        >
-          {intl.formatMessage({ id: 'common.actions.view' })}
-        </a>,
+        view && (
+          <a
+            key="view"
+            onClick={() => saveStateAndNavigate(`${routes.view}/${record.id}`)}
+          >
+            {intl.formatMessage({ id: 'common.actions.view' })}
+          </a>
+        ),
         <Popconfirm
           key="delete"
           title={intl.formatMessage({ id: 'common.delete.confirm' })}
@@ -273,7 +273,9 @@ const ListPage = <T extends { id: string }>({
           title: intl.formatMessage({ id: 'common.sorter.tooltip' }),
         }}
         rowKey="id"
-        search={{}}
+        search={{
+          labelWidth: 'auto',
+        }}
         form={{
           initialValues: initialValues,
         }}

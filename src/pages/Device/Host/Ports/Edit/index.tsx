@@ -3,7 +3,7 @@ import type { ProFormInstance } from '@ant-design/pro-components';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
 import { buildFormFields } from '@/components/Entities/Builder';
-import { HostSerialPortEntity } from '@/components/Entities/HostSerialPortEntity';
+import { HostSerialPortEntity } from '@/components/Entities/Device/HostSerialPortEntity';
 import type { HostSerialPort } from '@/services/Device/Host/data';
 import {
   addSerialPort,

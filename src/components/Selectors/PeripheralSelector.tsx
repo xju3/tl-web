@@ -2,7 +2,7 @@ import { useIntl } from '@umijs/max';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SelectModal from '@/components/Common/SelectModal';
 import { buildSelectors } from '@/components/Entities/Builder';
-import { PeripheralEntity } from '@/components/Entities/PeripheralEntity';
+import { PeripheralEntity } from '@/components/Entities/Device/PeripheralEntity';
 import type { Peripheral } from '@/services/Device/Peripheral/data';
 import { getPeripherals } from '@/services/Device/Peripheral/service';
 

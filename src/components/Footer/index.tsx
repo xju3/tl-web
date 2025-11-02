@@ -8,23 +8,23 @@ const Footer: React.FC = () => {
       style={{
         background: 'none',
       }}
-      copyright="Powered by Ant Desgin"
+      copyright="Powered Aeons Cloud Inc."
       links={[
+        // {
+        //   key: 'Tools Link Platform (Sass)',
+        //   title: 'Ant Design Pro',
+        //   href: 'https://pro.ant.design',
+        //   blankTarget: true,
+        // },
+        // {
+        //   key: 'github',
+        //   title: <GithubOutlined />,
+        //   href: 'https://github.com/ant-design/ant-design-pro',
+        //   blankTarget: true,
+        // },
         {
-          key: 'Ant Design Pro',
-          title: 'Ant Design Pro(abc)',
-          href: 'https://pro.ant.design',
-          blankTarget: true,
-        },
-        {
-          key: 'github',
-          title: <GithubOutlined />,
-          href: 'https://github.com/ant-design/ant-design-pro',
-          blankTarget: true,
-        },
-        {
-          key: 'Ant Design',
-          title: 'Ant Design',
+          key: 'Tools Link Platform',
+          title: 'Tools Link Platform',
           href: 'https://ant.design',
           blankTarget: true,
         },

@@ -1,7 +1,7 @@
 import ListPage from '@/components/Common/Pages/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
-import { TenantEntity } from '@/components/Entities/TenantEntity';
+import { TenantEntity } from '@/components/Entities/Org/TenantEntity';
 import type { Tenant } from '@/services/Org/Tenant/data';
 import { deleteTenant, getTenants } from '@/services/Org/Tenant/service';
 

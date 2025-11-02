@@ -2,7 +2,7 @@ import { useIntl } from '@umijs/max';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import SelectModal from '@/components/Common/SelectModal';
 import { buildSelectors } from '@/components/Entities/Builder';
-import { SerialPortEntity } from '@/components/Entities/SerialPortEntity';
+import { SerialPortEntity } from '@/components/Entities/Device/SerialPortEntity';
 import type { SerialPort } from '@/services/Device/SerialPort/data';
 import { getSerialPorts } from '@/services/Device/SerialPort/service';
 

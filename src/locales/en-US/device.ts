@@ -1,6 +1,6 @@
 export default {
   'device.cabinet': 'Cabinet',
-  'device.cabinet.list.title': 'Cabinets',
+  'device.cabinet.list': 'Cabinets',
   'device.cabinet.add': 'Add Cabinet',
   'device.cabinet.edit': 'Edit Cabinet',
   'device.cabinet.view': 'View Cabinet',
@@ -30,7 +30,6 @@ export default {
   'device.cabinet.usage.sequence': 'Sequence',
   'device.host.list': 'Hosts',
   'device.host.selector': 'Select host',
-
   'device.host.add': 'Add Host',
   'device.host.edit': 'Edit Host',
   'device.host.view': 'View Host',
@@ -64,7 +63,7 @@ export default {
   'device.peripheral.instruction.acknowledge': 'Acknowledge',
   'device.peripheral.instruction.comment': 'Comment',
   'menu.device.products': 'Product Management',
-  'device.product.list.title': 'Product List',
+  'device.product.list': 'Product List',
   'device.product.code': 'Product Code',
   'device.product.name': 'Product Name',
   'device.product.m_date': 'Manufacture Date',

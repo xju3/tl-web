@@ -3,7 +3,7 @@ import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
 import { buildFormFields } from '@/components/Entities/Builder';
-import { ProductItemEntity } from '@/components/Entities/ProductItemEntity';
+import { ProductItemEntity } from '@/components/Entities/Device/ProductItemEntity';
 import type { ProductItem } from '@/services/Device/Product/data';
 import {
   addProductItem,
@@ -20,14 +20,14 @@ const ProductItemForm: React.FC<FormProps> = ({ formRef }) => {
   return <>{buildFormFields<ProductItem>(ProductItemEntity, intl, formRef)}</>;
 };
 
-const ProductItemPage = () => {
+const ProductItemEditPage = () => {
   const services = {
     addItem: addProductItem,
     updateItem: updateProductItem,
     getItemById: getProductItemById,
   };
 
-  const backRoute = '/device/product/view/:id';
+  const backRoute = '/device/products/view/:id';
 
   return (
     <EditPage<ProductItem> services={services} backRoute={backRoute}>
@@ -36,4 +36,4 @@ const ProductItemPage = () => {
   );
 };
 
-export default ProductItemPage;
+export default ProductItemEditPage;

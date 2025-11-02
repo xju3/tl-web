@@ -2,7 +2,7 @@ import React from 'react';
 import ListPage from '@/components/Common/Pages/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
-import { UserEntity } from '@/components/Entities/UserEntity';
+import { UserEntity } from '@/components/Entities/Sys/UserEntity';
 import type { User } from '@/services/Sys/User/data';
 import { deleteUser, getUsers } from '@/services/Sys/User/service';
 

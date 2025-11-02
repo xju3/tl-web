@@ -4,7 +4,7 @@ import { history, useParams } from '@umijs/max';
 import { message } from 'antd';
 import React, { useEffect, useRef } from 'react';
 import { v4 as uuid_v4 } from 'uuid';
-import CustomProForm from '@/components/Customization/Form/CustomProForm';
+import CustomProForm from '@/components/Common/Form/CustomProForm';
 
 interface EditPageProps<T> {
   services: {

@@ -4,7 +4,7 @@ import { history, useIntl } from '@umijs/max';
 import { Button, Popconfirm } from 'antd';
 import React, { useRef } from 'react';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
-import CustomProTable from '@/components/Customization/Table/CustomProTable';
+import CustomProTable from '@/components/Common/Table/CustomProTable';
 import type { AssociationListProps } from './typing';
 
 const AssociationList = <T extends { id: string }>({
@@ -17,6 +17,7 @@ const AssociationList = <T extends { id: string }>({
   rowKey = 'id',
   toolBarRender,
   pagination = { pageSize: 10 },
+  showIndexColumn,
 }: AssociationListProps<T>) => {
   const actionRef = useRef<ActionType>(null);
   const intl = useIntl();
@@ -90,6 +91,8 @@ const AssociationList = <T extends { id: string }>({
       request={async (params: ParamsType) => services.getPage(parentId, params)}
       columns={tableColumns}
       pagination={pagination}
+      view={false}
+      showIndexColumn={showIndexColumn}
     />
   );
 };

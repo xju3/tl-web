@@ -4,12 +4,12 @@ export type Product = API.BaseModel & {
   m_date: string;
 };
 
-
 export type ProductFilter = API.BaseFilter & {
   code?: string;
   name?: string;
   mDate?: string;
 }
+
 export type ProductItem = {
   id: string;
   productId: string;

@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
 import { buildDescriptions } from '@/components/Entities/Builder';
-import { MenuEntity } from '@/components/Entities/MenuEntity';
+import { MenuEntity } from '@/components/Entities/Sys/MenuEntity';
 import type { Menu } from '@/services/Sys/Menu/data';
 import { deleteMenu, getMenuById } from '@/services/Sys/Menu/service';
 

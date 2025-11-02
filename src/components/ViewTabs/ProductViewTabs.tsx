@@ -1,7 +1,7 @@
 import { history, useIntl, useLocation } from '@umijs/max';
 import { Card, Tabs } from 'antd';
 import React from 'react';
-import ProductItemAssociations from '@/components/Associations/ProductItemAssociations';
+import ProductItemAssociations from '@/components/Associations/Device/ProductItemAssociations';
 import type { Product } from '@/services/Device/Product/data';
 
 type ProductViewTabsProps = {

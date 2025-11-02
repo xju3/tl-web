@@ -17,49 +17,7 @@ export default [
     icon: 'smile',
     component: './Welcome',
   },
-  {
-    path: '/user',
-    layout: false,
-    routes: [
-      {
-        name: 'login',
-        path: '/user/login',
-        component: './user/login',
-      },
-    ],
-  },
 
-  {
-    path: '/admin',
-    name: 'admin',
-    icon: 'crown',
-    access: 'canAdmin',
-    hideInMenu: true,
-    routes: [
-      {
-        path: '/admin',
-        redirect: '/admin/sub-page',
-      },
-      {
-        path: '/admin/sub-page',
-        name: 'sub-page',
-        component: './Admin',
-      },
-      {
-        name: 'attributes',
-        icon: 'profile',
-        path: '/admin/attributes',
-        component: './Attributes',
-      },
-    ],
-  },
-  {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-    component: './table-list',
-    hideInMenu: true,
-  },
   {
     path: '/device',
     name: 'device',
@@ -239,7 +197,7 @@ export default [
       },
       {
         name: 'add.product',
-        path: '/device/products/:id/item/add',
+        path: '/device/products/add',
         component: './Device/Product/Edit',
         hideInMenu: true,
       },
@@ -253,6 +211,18 @@ export default [
         name: 'view.product',
         path: '/device/products/view/:id',
         component: './Device/Product/View',
+        hideInMenu: true,
+      },
+      {
+        name: 'add.product.item',
+        path: '/device/products/:productId/items/add',
+        component: './Device/Product/Item/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'edit.product.item',
+        path: '/device/products/:productId/items/:id/edit',
+        component: './Device/Product/Item/Edit',
         hideInMenu: true,
       },
     ],
@@ -451,6 +421,42 @@ export default [
     ],
   },
 
+  {
+    path: '/admin',
+    name: 'admin',
+    icon: 'crown',
+    access: 'canAdmin',
+    hideInMenu: true,
+    routes: [
+      {
+        path: '/admin',
+        redirect: '/admin/sub-page',
+      },
+      {
+        path: '/admin/sub-page',
+        name: 'sub-page',
+        component: './Admin',
+      },
+    ],
+  },
+  {
+    path: '/user',
+    layout: false,
+    routes: [
+      {
+        name: 'login',
+        path: '/user/login',
+        component: './user/login',
+      },
+    ],
+  },
+  {
+    name: 'list.table-list',
+    icon: 'table',
+    path: '/list',
+    component: './table-list',
+    hideInMenu: true,
+  },
   {
     path: '/',
     redirect: '/welcome',

@@ -1,54 +1,31 @@
-import { PageContainer, ProForm } from '@ant-design/pro-components';
-import { history, useIntl, useParams } from '@umijs/max';
-import { Form, message } from 'antd';
-import React, { useEffect } from 'react';
-import { v4 as uuid_v4 } from 'uuid';
-import RoleFormFields from '@/components/FormFields/RoleFormFields';
-import type {
-  CreateRoleCommand,
-  UpdateRoleCommand,
-} from '@/services/Sys/Role/data.d';
-import { addRole, getRoleById, updateRole } from '@/services/Sys/Role/service';
+import { useIntl } from '@umijs/max';
+import React from 'react';
+import EditPage from '@/components/Common/Pages/Edit';
+import { buildFormFields } from '@/components/Entities/Builder';
+import { RoleEntity } from '@/components/Entities/Sys/RoleEntity';
+import { updateMenu } from '@/services/Sys/Menu/service';
+import type { Role } from '@/services/Sys/Role/data.d';
+import { addRole, getRoleById } from '@/services/Sys/Role/service';
 
-const RoleEdit: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const [form] = Form.useForm();
+const RoleForm: React.FC = () => {
   const intl = useIntl();
+  return <>{buildFormFields<Role>(RoleEntity, intl)}</>;
+};
 
-  useEffect(() => {
-    if (id) {
-      getRoleById(id).then((res) => {
-        form.setFieldsValue(res);
-      });
-    }
-  }, [id, form]);
-
-  const onFinish = async (values: Record<string, any>) => {
-    try {
-      if (id) {
-        await updateRole({ ...values, id } as UpdateRoleCommand);
-        message.success(
-          intl.formatMessage({ id: 'common.actions.edit.success' }),
-        );
-      } else {
-        await addRole({ ...values, id: uuid_v4() } as CreateRoleCommand);
-        message.success(
-          intl.formatMessage({ id: 'common.actions.save.success' }),
-        );
-      }
-      history.push('/sys/role');
-    } catch (error) {
-      // Error handling is managed by the global request error handler
-    }
+const RoleEditPage = () => {
+  const services = {
+    addItem: addRole,
+    updateItem: updateMenu,
+    getItemById: getRoleById,
   };
 
+  const backRoute = '/sys/menu';
+
   return (
-    <PageContainer onBack={() => history.push('/sys/role')}>
-      <ProForm form={form} onFinish={onFinish}>
-        <RoleFormFields />
-      </ProForm>
-    </PageContainer>
+    <EditPage<Role> services={services} backRoute={backRoute}>
+      <RoleForm />
+    </EditPage>
   );
 };
 
-export default RoleEdit;
+export default RoleEditPage;

@@ -17,4 +17,5 @@ export interface AssociationListProps<T extends { id: string }> {
   rowKey?: string;
   toolBarRender?: () => React.ReactNode[];
   pagination?: any;
+  showIndexColumn?: boolean;
 }

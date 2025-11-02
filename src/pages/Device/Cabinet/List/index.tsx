@@ -1,7 +1,7 @@
 import ListPage from '@/components/Common/Pages/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
-import { CabinetEntity } from '@/components/Entities/CabinetEntity';
+import { CabinetEntity } from '@/components/Entities/Device/CabinetEntity';
 import type { Cabinet } from '@/services/Device/Cabinet/data';
 import { deleteCabinet, getCabinets } from '@/services/Device/Cabinet/service';
 

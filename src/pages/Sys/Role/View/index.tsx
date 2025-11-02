@@ -1,7 +1,7 @@
 import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
 import { buildDescriptions } from '@/components/Entities/Builder';
-import { RoleEntity } from '@/components/Entities/RoleEntity';
+import { RoleEntity } from '@/components/Entities/Sys/RoleEntity';
 import type { Role } from '@/services/Sys/Role/data';
 import { deleteRole, getRoleById } from '@/services/Sys/Role/service';
 

@@ -1,7 +1,7 @@
 import ListPage from '@/components/Common/Pages/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
-import { PeripheralEntity } from '@/components/Entities/PeripheralEntity';
+import { PeripheralEntity } from '@/components/Entities/Device/PeripheralEntity';
 import type { Peripheral } from '@/services/Device/Peripheral/data';
 import {
   deletePeripheral,

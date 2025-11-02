@@ -1,7 +1,7 @@
 import { history, useIntl, useLocation } from '@umijs/max';
 import { Card, Tabs } from 'antd';
 import React from 'react';
-import PeripheralInstructionAssociations from '@/components/Associations/PeripheralInstructionAssociations';
+import PeripheralInstructionAssociations from '@/components/Associations/Device/PeripheralInstructionAssociations';
 import type { Peripheral } from '@/services/Device/Peripheral/data';
 
 type PeripheralViewTabsProps = {
