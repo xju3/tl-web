@@ -13,7 +13,7 @@ export type ProductFilter = API.BaseFilter & {
 export type ProductItem = {
   id: string;
   productId: string;
-  deviceId: string;
-  deviceCode: string;
-  deviceName: string;
+  cabinetId: string;
+  cabinetCode: string;
+  cabinetName: string;
 };

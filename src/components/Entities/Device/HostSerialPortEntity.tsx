@@ -38,6 +38,7 @@ export const HostSerialPortEntity: EntityField<HostSerialPort>[] = [
     visibility: {
       inTable: true,
       inForm: true,
+      inSelector: true,
     },
     form: {
       fieldType: 'text',
@@ -49,6 +50,7 @@ export const HostSerialPortEntity: EntityField<HostSerialPort>[] = [
     visibility: {
       inTable: true,
       inForm: true,
+      inSelector: true,
     },
     form: {
       fieldType: 'custom',
@@ -76,6 +78,7 @@ export const HostSerialPortEntity: EntityField<HostSerialPort>[] = [
     visibility: {
       inTable: true,
       inForm: true,
+      inSelector: true,
     },
     form: {
       formItemProps: {
@@ -91,6 +94,7 @@ export const HostSerialPortEntity: EntityField<HostSerialPort>[] = [
     visibility: {
       inTable: true,
       inForm: true,
+      inSelector: true,
     },
     form: {
       formItemProps: {

@@ -3,6 +3,11 @@ import type { EntityField } from '../types';
 
 export const CabinetEntity: EntityField<Cabinet>[] = [
   {
+    dataIndex: 'id',
+    visibility: { inForm: true },
+    form: { hidden: true },
+  },
+  {
     intlId: 'device.cabinet.code',
     dataIndex: 'code',
     key: 'code',

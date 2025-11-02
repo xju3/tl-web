@@ -8,7 +8,7 @@ import { getPeripheralsByCabinetId } from '@/services/Device/Cabinet/service';
 
 export type CabinetPeripheralSelectorProps = {
   open: boolean;
-  cabinetId: string;
+  cabinetId?: string;
   onCancel: () => void;
   onSelect: (peripheral: CabinetPeripheral) => void;
 };
@@ -29,11 +29,11 @@ const CabinetPeripheralSelector = ({
   return (
     <SelectModal<CabinetPeripheral>
       title={intl.formatMessage({ id: 'device.cabinet.peripheral.selector' })}
-      headerTitle={intl.formatMessage({ id: 'device.cabinet.peripheral.list' })}
+      headerTitle={intl.formatMessage({ id: 'device.cabinet.peripherals' })}
       open={open}
       onCancel={onCancel}
       onSelect={onSelect}
-      request={(params) => getPeripheralsByCabinetId(cabinetId, params)}
+      request={(params) => getPeripheralsByCabinetId(cabinetId!, params)}
       columns={selectorColumns}
     />
   );

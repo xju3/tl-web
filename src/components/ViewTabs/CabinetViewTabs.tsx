@@ -14,14 +14,15 @@ const CabinetViewTabs: React.FC<CabinetViewTabsProps> = ({ cabinet }) => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const intl = useIntl();
+  const tabItems = [];
 
-  const tabItems = [
-    {
+  if (cabinet?.parentId == null) {
+    tabItems.push({
       label: intl.formatMessage({ id: 'device.peripheral.list.title' }),
       key: 'peripherals',
       children: <CabinetPeripheralAssociations cabinetId={cabinet.id} />,
-    },
-  ];
+    });
+  }
 
   if (cabinet?.parentId == null) {
     tabItems.push({
@@ -33,16 +34,17 @@ const CabinetViewTabs: React.FC<CabinetViewTabsProps> = ({ cabinet }) => {
 
   if (cabinet?.parentId != null) {
     tabItems.push({
-      label: intl.formatMessage({ id: 'device.cabinet.usage.list.title' }),
+      label: intl.formatMessage({ id: 'device.cabinet.usage.list' }),
       key: 'usages',
       children: <CabinetUsageAssociations cabinetId={cabinet.id} />,
     });
+    console.log('size: ', tabItems.length);
   }
 
   return (
     <Card>
       <Tabs
-        activeKey={searchParams.get('tab') || 'peripherals'}
+        activeKey={searchParams.get('tab') || 'peripherals' || 'usages'}
         onChange={(key) => {
           history.push({
             pathname: location.pathname,

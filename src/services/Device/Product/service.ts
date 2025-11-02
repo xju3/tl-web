@@ -49,7 +49,7 @@ export async function addProductItem(
 export async function updateProductItem(
   data: ProductItem,
 ) {
-  const url = `${product_base_url}${data.productId}/items`;
+  const url = `${product_base_url}/${data.productId}/items`;
   return apiUpdate<ProductItem>(url, data);
 }
 

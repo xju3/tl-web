@@ -1,7 +1,8 @@
 import EntitySelectorFormItem from '@/components/Common/FormItem/EntitySelectorFormItem';
 import HostSelector from '@/components/Selectors/HostSelector';
+import HostSerialPortSelector from '@/components/Selectors/HostSerialPortSelector';
 import type { CabinetCable } from '@/services/Device/Cabinet/data';
-import type { Host } from '@/services/Device/Host/data';
+import type { Host, HostSerialPort } from '@/services/Device/Host/data';
 import type { EntityField } from '../types';
 
 export const CabinetCableEntity: EntityField<CabinetCable>[] = [
@@ -24,6 +25,25 @@ export const CabinetCableEntity: EntityField<CabinetCable>[] = [
       inDescription: false,
       inForm: true,
       inSelector: false,
+    },
+    form: {
+      hidden: true,
+    },
+  },
+  {
+    dataIndex: 'hostId', // Virtual field for the form
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      hidden: true,
+    },
+  },
+  {
+    dataIndex: 'hostPortId', // Virtual field for the form
+    visibility: {
+      inForm: true,
     },
     form: {
       hidden: true,
@@ -58,21 +78,13 @@ export const CabinetCableEntity: EntityField<CabinetCable>[] = [
       formItemProps: {},
     },
   },
-  {
-    dataIndex: 'hostId', // Virtual field for the form
-    visibility: {
-      inForm: true,
-    },
-    form: {
-      fieldType: 'text',
-      hidden: true,
-    },
-  },
+
   {
     dataIndex: 'hostCode', // Virtual field for the form
     intlId: 'device.host.code', // Not directly used, but good for context
     visibility: {
       inForm: true,
+      inTable: true,
     },
     form: {
       fieldType: 'custom',
@@ -98,6 +110,7 @@ export const CabinetCableEntity: EntityField<CabinetCable>[] = [
     intlId: 'device.host.name', // Not directly used, but good for context
     visibility: {
       inForm: true,
+      inTable: true,
     },
     form: {
       fieldType: 'text',
@@ -106,6 +119,36 @@ export const CabinetCableEntity: EntityField<CabinetCable>[] = [
       },
     },
   },
+  {
+    dataIndex: 'hostPortCode',
+    intlId: 'device.host.port.code',
+    visibility: {
+      inForm: true,
+      inTable: true,
+    },
+    form: {
+      fieldType: 'custom',
+      renderFormItem: () => (
+        <EntitySelectorFormItem<HostSerialPort>
+          nameFieldName="hostPortCode"
+          labelIntl="device.host.port.code"
+          width={'lg'}
+          selectorProps={(dependencies: Record<string, any>) => ({
+            hostId: dependencies.hostId,
+          })}
+          SelectorModal={HostSerialPortSelector}
+          formDependencies={['hostId']}
+          onSelect={(entity, formInstance) => {
+            formInstance.setFieldsValue({
+              hostPortId: entity.id,
+              hostPortCode: entity.portCode,
+            });
+          }}
+        />
+      ),
+    },
+  },
+
   {
     dataIndex: 'description',
     intlId: 'device.cabinet.cable.description',

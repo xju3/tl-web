@@ -27,10 +27,8 @@ const ProductItemEditPage = () => {
     getItemById: getProductItemById,
   };
 
-  const backRoute = '/device/products/view/:id';
-
   return (
-    <EditPage<ProductItem> services={services} backRoute={backRoute}>
+    <EditPage<ProductItem> services={services}>
       <ProductItemForm />
     </EditPage>
   );

@@ -3,11 +3,22 @@ import type { EntityField } from '../types';
 
 export const TenantEntity: EntityField<Tenant>[] = [
   {
-    intlId: 'org.tenant.name',
-    dataIndex: 'name',
+    intlId: 'org.tenant.id',
+    dataIndex: 'id',
+    valueType: 'text',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
+  },
+  {
+    intlId: 'org.tenant.code',
+    dataIndex: 'code',
     valueType: 'text',
     sorter: {
-      multiple: 1,
+      multiple: 2,
     },
     visibility: {
       inTable: true,
@@ -21,11 +32,11 @@ export const TenantEntity: EntityField<Tenant>[] = [
     },
   },
   {
-    intlId: 'org.tenant.code',
-    dataIndex: 'code',
+    intlId: 'org.tenant.name',
+    dataIndex: 'name',
     valueType: 'text',
     sorter: {
-      multiple: 2,
+      multiple: 1,
     },
     visibility: {
       inTable: true,

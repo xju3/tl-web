@@ -14,7 +14,7 @@ const ProductViewPage = () => {
 
   return (
     <ViewPage<Product>
-      title={intl.formatMessage({ id: 'device.product.view.title' })}
+      title={intl.formatMessage({ id: 'device.product.view' })}
       description={(product) => product.name}
       getById={getProductById}
       deleteById={deleteProduct}

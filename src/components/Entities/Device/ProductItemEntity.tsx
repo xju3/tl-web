@@ -6,8 +6,35 @@ import type { EntityField } from '../types';
 
 export const ProductItemEntity: EntityField<ProductItem>[] = [
   {
+    dataIndex: 'cabinetId',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
+  },
+  {
+    dataIndex: 'productId',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
+  },
+  {
+    dataIndex: 'id',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
+  },
+  {
     intlId: 'device.cabinet.code',
-    dataIndex: 'deviceCode',
+    dataIndex: 'cabinetCode',
     visibility: {
       inTable: true,
       inForm: true,
@@ -16,15 +43,15 @@ export const ProductItemEntity: EntityField<ProductItem>[] = [
       fieldType: 'custom',
       renderFormItem: () => (
         <EntitySelectorFormItem<Cabinet>
-          nameFieldName="deviceCode"
+          nameFieldName="cabinetCode"
           width={'lg'}
-          labelIntl="device.serial-port.code"
+          labelIntl="device.cabinet.code"
           SelectorModal={CabinetSelector}
           onSelect={(entity, formInstance) => {
             formInstance.setFieldsValue({
-              deviceId: entity.id,
-              deviceCode: entity.code,
-              deviceName: entity.name,
+              cabinetId: entity.id,
+              cabinetCode: entity.code,
+              cabinetName: entity.name,
             });
           }}
         />
@@ -33,7 +60,7 @@ export const ProductItemEntity: EntityField<ProductItem>[] = [
   },
   {
     intlId: 'device.cabinet.name',
-    dataIndex: 'deviceName',
+    dataIndex: 'cabinetName',
     visibility: {
       inTable: true,
       inForm: true,

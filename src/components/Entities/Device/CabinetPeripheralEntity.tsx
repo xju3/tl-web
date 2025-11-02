@@ -43,6 +43,7 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
     visibility: {
       inForm: true,
       inTable: true,
+      inSelector: true,
     },
     form: {
       formItemProps: {
@@ -72,6 +73,7 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
     visibility: {
       inTable: true,
       inForm: true,
+      inSelector: true,
     },
     form: {
       formItemProps: {
@@ -86,6 +88,7 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
     visibility: {
       inForm: true,
       inTable: true,
+      inSelector: true,
     },
     form: {
       fieldType: 'digit',
