@@ -7,7 +7,10 @@ import { buildTableColumns } from '@/components/Entities/Builder';
 import { HostPortEntity } from '@/components/Entities/Device/HostPortEntity';
 import { HostSerialPortEntity } from '@/components/Entities/Device/HostSerialPortEntity';
 import type { HostSerialPort } from '@/services/Device/Host/data';
-import { deleteHostPort, getHostPorts } from '@/services/Device/Host/service';
+import {
+  deleteHostPort,
+  getHostSerialPorts,
+} from '@/services/Device/Host/service';
 
 type PortsProps = {
   hostId: string;
@@ -25,7 +28,7 @@ const HostPortAssociations: React.FC<PortsProps> = ({ hostId }) => {
     <AssociationList<HostSerialPort>
       parentId={hostId}
       services={{
-        getPage: getHostPorts,
+        getPage: getHostSerialPorts,
         deleteItem: deleteHostPort,
       }}
       columns={getHostPortColumns(intl)}

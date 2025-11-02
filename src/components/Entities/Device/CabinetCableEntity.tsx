@@ -55,6 +55,7 @@ export const CabinetCableEntity: EntityField<CabinetCable>[] = [
     form: {
       fieldType: 'text',
       rules: [{ type: 'required' }],
+      formItemProps: {},
     },
   },
   {
@@ -74,21 +75,12 @@ export const CabinetCableEntity: EntityField<CabinetCable>[] = [
       inForm: true,
     },
     form: {
-      fieldType: 'text',
-    },
-  },
-  {
-    dataIndex: 'hostName', // Virtual field for the form
-    intlId: 'device.host.name', // Not directly used, but good for context
-    visibility: {
-      inForm: true,
-    },
-    form: {
       fieldType: 'custom',
       renderFormItem: () => (
         <EntitySelectorFormItem<Host>
-          nameFieldName="hostName"
+          nameFieldName="hostCode"
           labelIntl="device.host.name"
+          width={'lg'}
           SelectorModal={HostSelector}
           onSelect={(entity, formInstance) => {
             formInstance.setFieldsValue({
@@ -99,6 +91,19 @@ export const CabinetCableEntity: EntityField<CabinetCable>[] = [
           }}
         />
       ),
+    },
+  },
+  {
+    dataIndex: 'hostName', // Virtual field for the form
+    intlId: 'device.host.name', // Not directly used, but good for context
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      formItemProps: {
+        disabled: true,
+      },
     },
   },
   {

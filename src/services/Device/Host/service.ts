@@ -31,7 +31,7 @@ export async function deleteHost(id: string) {
 }
 
 // 6. Get all serial ports for a specific host (paginated)
-export async function getHostPorts(
+export async function getHostSerialPorts(
   hostId: string,
   params: ParamsType,
 ) {

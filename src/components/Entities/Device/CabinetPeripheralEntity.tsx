@@ -16,6 +16,27 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
     },
   },
   {
+    dataIndex: 'cableId',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
+  },
+  {
+    dataIndex: 'peripheralId',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+      formItemProps: {
+        initialValue: 1,
+      },
+    },
+  },
+  {
     intlId: 'device.peripheral.code',
     dataIndex: 'code',
     width: 180,
@@ -113,19 +134,6 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
       formItemProps: {
         width: 'lg', // ✅ 通过 formItemProps 传递
         disabled: true,
-      },
-    },
-  },
-
-  {
-    dataIndex: 'peripheralId',
-    visibility: {
-      inForm: true,
-    },
-    form: {
-      hidden: true,
-      formItemProps: {
-        initialValue: 1,
       },
     },
   },

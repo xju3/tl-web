@@ -3,6 +3,15 @@ import type { EntityField } from '../types';
 
 export const HostPortEntity: EntityField<HostSerialPort>[] = [
   {
+    dataIndex: 'id',
+  },
+  {
+    dataIndex: 'hostId',
+  },
+  {
+    dataIndex: 'serialPortId',
+  },
+  {
     intlId: 'device.serial-port.name',
     dataIndex: 'name',
     visibility: {
