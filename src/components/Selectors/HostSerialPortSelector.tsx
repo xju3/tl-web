@@ -10,6 +10,7 @@ export type HostSerialPortSelectModalProps = {
   open: boolean;
   onCancel: () => void;
   onSelect: (host: HostSerialPort) => void;
+  hostId: string;
 };
 
 const columns = (intl: any): CustomProColumns<HostSerialPort>[] =>
@@ -19,6 +20,7 @@ const HostSerialPortSelector = ({
   open,
   onCancel,
   onSelect,
+  hostId,
 }: HostSerialPortSelectModalProps) => {
   const intl = useIntl();
   const selectorColumns = columns(intl);
@@ -30,7 +32,7 @@ const HostSerialPortSelector = ({
       open={open}
       onCancel={onCancel}
       onSelect={onSelect}
-      request={getHostSerialPorts}
+      request={(params) => getHostSerialPorts(hostId, { ...params })}
       columns={selectorColumns}
     />
   );
