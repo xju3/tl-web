@@ -15,6 +15,30 @@ const CabinetViewTabs: React.FC<CabinetViewTabsProps> = ({ cabinet }) => {
   const searchParams = new URLSearchParams(location.search);
   const intl = useIntl();
 
+  const tabItems = [
+    {
+      label: intl.formatMessage({ id: 'device.peripheral.list.title' }),
+      key: 'peripherals',
+      children: <CabinetPeripheralAssociations cabinetId={cabinet.id} />,
+    },
+  ];
+
+  if (cabinet?.parentId == null) {
+    tabItems.push({
+      label: intl.formatMessage({ id: 'device.cabinet.cable.list.title' }),
+      key: 'cables',
+      children: <CabinetCableAssociations cabinetId={cabinet.id} />,
+    });
+  }
+
+  if (cabinet?.parentId != null) {
+    tabItems.push({
+      label: intl.formatMessage({ id: 'device.cabinet.usage.list.title' }),
+      key: 'usages',
+      children: <CabinetUsageAssociations cabinetId={cabinet.id} />,
+    });
+  }
+
   return (
     <Card>
       <Tabs
@@ -25,35 +49,8 @@ const CabinetViewTabs: React.FC<CabinetViewTabsProps> = ({ cabinet }) => {
             search: `?tab=${key}`,
           });
         }}
-      >
-        <Tabs.TabPane
-          tab={intl.formatMessage({ id: 'device.peripheral.list.title' })}
-          key="peripherals"
-        >
-          <CabinetPeripheralAssociations cabinetId={cabinet.id} />
-        </Tabs.TabPane>
-
-        {cabinet?.parentId == null && (
-          <Tabs.TabPane
-            tab={intl.formatMessage({
-              id: 'device.cabinet.cable.list.title',
-            })}
-            key="cables"
-          >
-            <CabinetCableAssociations cabinetId={cabinet.id} />
-          </Tabs.TabPane>
-        )}
-        {cabinet?.parentId != null && (
-          <Tabs.TabPane
-            tab={intl.formatMessage({
-              id: 'device.cabinet.usage.list.title',
-            })}
-            key="usages"
-          >
-            <CabinetUsageAssociations cabinetId={cabinet.id} />
-          </Tabs.TabPane>
-        )}
-      </Tabs>
+        items={tabItems}
+      />
     </Card>
   );
 };

@@ -18,6 +18,7 @@ export default {
   'common.code': '编码',
   'common.ip': 'IP 地址',
   'common.port': '端口',
+  'common.quantity': '数量',
   'common.create': '创建',
   'common.details': '详情',
   'common.delete.confirm': '确定要删除吗？',

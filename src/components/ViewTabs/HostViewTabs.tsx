@@ -13,6 +13,14 @@ const HostViewTabs: React.FC<HostViewTabsProps> = ({ host }) => {
   const searchParams = new URLSearchParams(location.search);
   const intl = useIntl();
 
+  const tabItems = [
+    {
+      label: intl.formatMessage({ id: 'device.host.serial-ports.title' }),
+      key: 'ports',
+      children: <HostPortAssociations hostId={host.id} />,
+    },
+  ];
+
   return (
     <Card>
       <Tabs
@@ -23,16 +31,8 @@ const HostViewTabs: React.FC<HostViewTabsProps> = ({ host }) => {
             search: `?tab=${key}`,
           });
         }}
-      >
-        <Tabs.TabPane
-          tab={intl.formatMessage({
-            id: 'device.host.serial-ports.title',
-          })}
-          key="ports"
-        >
-          <HostPortAssociations hostId={host.id} />
-        </Tabs.TabPane>
-      </Tabs>
+        items={tabItems}
+      />
     </Card>
   );
 };

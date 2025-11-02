@@ -15,6 +15,18 @@ const PeripheralViewTabs: React.FC<PeripheralViewTabsProps> = ({
   const searchParams = new URLSearchParams(location.search);
   const intl = useIntl();
 
+  const tabItems = [
+    {
+      label: intl.formatMessage({
+        id: 'device.peripheral.instruction.list.title',
+      }),
+      key: 'instructions',
+      children: (
+        <PeripheralInstructionAssociations peripheralId={peripheral.id} />
+      ),
+    },
+  ];
+
   return (
     <Card style={{ marginTop: 16 }}>
       <Tabs
@@ -25,16 +37,8 @@ const PeripheralViewTabs: React.FC<PeripheralViewTabsProps> = ({
             search: `?tab=${key}`,
           });
         }}
-      >
-        <Tabs.TabPane
-          tab={intl.formatMessage({
-            id: 'device.peripheral.instruction.list.title',
-          })}
-          key="instructions"
-        >
-          <PeripheralInstructionAssociations peripheralId={peripheral.id} />
-        </Tabs.TabPane>
-      </Tabs>
+        items={tabItems}
+      />
     </Card>
   );
 };

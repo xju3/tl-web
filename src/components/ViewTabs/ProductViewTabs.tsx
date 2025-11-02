@@ -13,6 +13,16 @@ const ProductViewTabs: React.FC<ProductViewTabsProps> = ({ product }) => {
   const searchParams = new URLSearchParams(location.search);
   const intl = useIntl();
 
+  const tabItems = [
+    {
+      label: intl.formatMessage({
+        id: 'device.product.item.list.title',
+      }),
+      key: 'items',
+      children: <ProductItemAssociations productId={product.id} />,
+    },
+  ];
+
   return (
     <Card>
       <Tabs
@@ -23,16 +33,8 @@ const ProductViewTabs: React.FC<ProductViewTabsProps> = ({ product }) => {
             search: `?tab=${key}`,
           });
         }}
-      >
-        <Tabs.TabPane
-          tab={intl.formatMessage({
-            id: 'device.product.item.list.title',
-          })}
-          key="items"
-        >
-          <ProductItemAssociations productId={product.id} />
-        </Tabs.TabPane>
-      </Tabs>
+        items={tabItems}
+      />
     </Card>
   );
 };

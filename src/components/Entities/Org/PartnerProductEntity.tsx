@@ -57,6 +57,7 @@ export const PartnerProductEntity: EntityField<PartnerProduct>[] = [
     },
     form: {
       fieldType: 'text',
+      hidden: true,
     },
   },
 ];

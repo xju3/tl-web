@@ -48,6 +48,9 @@ const ViewPage = <T extends Record<string, any>>({
           title={descriptionTitle}
           dataSource={data}
           columns={columns}
+          styles={{
+            content: {},
+          }}
           extra={
             <>
               <Button

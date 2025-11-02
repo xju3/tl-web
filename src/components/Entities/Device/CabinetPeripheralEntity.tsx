@@ -119,6 +119,9 @@ export const CabinetPeripheralEntity: EntityField<CabinetPeripheral>[] = [
     },
     form: {
       hidden: true,
+      formItemProps: {
+        initialValue: 1,
+      },
     },
   },
 ];

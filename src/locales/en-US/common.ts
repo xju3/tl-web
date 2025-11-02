@@ -18,6 +18,7 @@ export default {
   'common.index': 'Index',
   'common.ip': 'IP Address',
   'common.port': 'Port',
+  'common.quantity': 'Quantity',
   'common.create': 'Create',
   'common.delete.confirm': 'Are you sure you want to delete?',
   'common.description': 'Description',

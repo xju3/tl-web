@@ -14,6 +14,14 @@ const PartnerViewTabs: React.FC<PartnerViewTabsProps> = ({ partner }) => {
   const searchParams = new URLSearchParams(location.search);
   const intl = useIntl();
 
+  const tabItems = [
+    {
+      label: intl.formatMessage({ id: 'org.partner.products' }),
+      key: 'ports',
+      children: <PartnerProductAssociations partnerId={partner.id} />,
+    },
+  ];
+
   return (
     <Card>
       <Tabs
@@ -24,16 +32,8 @@ const PartnerViewTabs: React.FC<PartnerViewTabsProps> = ({ partner }) => {
             search: `?tab=${key}`,
           });
         }}
-      >
-        <Tabs.TabPane
-          tab={intl.formatMessage({
-            id: 'org.partner.products',
-          })}
-          key="ports"
-        >
-          <PartnerProductAssociations partnerId={partner.id} />
-        </Tabs.TabPane>
-      </Tabs>
+        items={tabItems}
+      />
     </Card>
   );
 };
