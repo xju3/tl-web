@@ -13,7 +13,6 @@ export interface AssociationListProps<T extends { id: string }> {
   columns: ProColumns<T>[];
   addRoute?: string;
   editRoutePattern?: string; // e.g., /device/cabinets/:parentId/cables/:id/edit
-  headerTitle: string;
   rowKey?: string;
   toolBarRender?: () => React.ReactNode[];
   pagination?: any;

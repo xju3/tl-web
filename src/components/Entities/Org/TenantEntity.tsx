@@ -9,12 +9,16 @@ export const TenantEntity: EntityField<Tenant>[] = [
     sorter: {
       multiple: 1,
     },
-    inTable: true,
-    inDescription: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
   {
     intlId: 'org.tenant.code',
@@ -23,11 +27,15 @@ export const TenantEntity: EntityField<Tenant>[] = [
     sorter: {
       multiple: 2,
     },
-    inTable: true,
-    inDescription: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
 ];

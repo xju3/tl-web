@@ -33,9 +33,6 @@ const CabinetUsageAssociations: React.FC<UsagesProps> = ({ cabinetId }) => {
       columns={getCabinetUsageColumns(intl)}
       addRoute={`/device/cabinets/${cabinetId}/usages/add`}
       editRoutePattern={`/device/cabinets/:parentId/usages/:id/edit`}
-      headerTitle={intl.formatMessage({
-        id: 'device.cabinet.usage.list.title',
-      })}
       pagination={true}
     />
   );

@@ -30,9 +30,6 @@ const HostPortAssociations: React.FC<PortsProps> = ({ hostId }) => {
       columns={getHostPortColumns(intl)}
       addRoute={`/device/hosts/${hostId}/ports/add`}
       editRoutePattern={`/device/hosts/${hostId}/ports/:id/edit`}
-      headerTitle={intl.formatMessage({
-        id: 'device.cabinet.host.list',
-      })}
       pagination={true}
     />
   );

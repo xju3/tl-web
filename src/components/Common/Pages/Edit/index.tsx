@@ -12,8 +12,8 @@ interface EditPageProps<T> {
     addItem: (data: T) => Promise<any>;
     updateItem: (data: T) => Promise<any>;
   };
-  backRoute: string;
   children: React.ReactNode;
+  backRoute?: string;
 }
 
 const EditPage = <T extends { id?: string }>({
@@ -58,7 +58,11 @@ const EditPage = <T extends { id?: string }>({
         await services.addItem({ ...values, id: uuid_v4() });
         message.success('Added successfully');
       }
-      history.push(backRoute);
+      if (backRoute) {
+        history.push(backRoute);
+      } else {
+        history.back();
+      }
     } catch (error) {
       // Error handling is managed by the global request error handler
     }

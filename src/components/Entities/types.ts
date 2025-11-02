@@ -11,26 +11,38 @@ export interface ValidationRule {
   messageId?: string;
 }
 
+export interface PageVisibility {
+  inTable?: boolean;
+  inDescription?: boolean;
+  inSelector?: boolean;
+  inForm?: boolean;
+}
+
+export interface FormFieldConfig {
+  hidden?: boolean;
+  fieldType?:
+    | 'text'
+    | 'textarea'
+    | 'digit'
+    | 'password'
+    | 'switch'
+    | 'dependency'
+    | 'custom';
+  formItemProps?: ProFormItemProps;
+  rules?: ValidationRule[];
+  renderFormItem?: (item: any, config: any, form: any) => React.ReactNode;
+}
+
+export interface ColumnConfig {
+  showColumnFilter?: boolean;
+}
+
 // A type that includes properties from column, description, and selector types
 export type EntityField<T> = ProColumnType<T> &
   ProDescriptionsItemProps<T> & {
     intlId?: string;
-    inTable?: boolean;
-    inDescription?: boolean;
-    inSelector?: boolean;
-    showColumnFilter?: boolean;
+    visibility?: PageVisibility;
+    form?: FormFieldConfig;
+    column?: ColumnConfig; // Renamed from tableColumnConfig
     enable?: boolean;
-    hidden?: boolean;
-    inForm?: boolean;
-    fieldType?:
-      | 'text'
-      | 'textarea'
-      | 'digit'
-      | 'password'
-      | 'switch'
-      | 'dependency'
-      | 'custom';
-    formItemProps?: ProFormItemProps;
-    rules?: ValidationRule[];
-    renderFormItem?: (item: any, config: any, form: any) => React.ReactNode;
   };

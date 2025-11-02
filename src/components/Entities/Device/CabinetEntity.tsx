@@ -9,13 +9,17 @@ export const CabinetEntity: EntityField<Cabinet>[] = [
     sorter: {
       multiple: 1,
     },
-    inTable: true,
-    inDescription: true,
-    inSelector: true,
-    inForm: true,
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
     width: 160,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
   {
     intlId: 'device.cabinet.name',
@@ -24,19 +28,36 @@ export const CabinetEntity: EntityField<Cabinet>[] = [
     sorter: {
       multiple: 2,
     },
-    inTable: true,
-    inDescription: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
   {
     intlId: 'device.cabinet.description',
     dataIndex: 'description',
     key: 'description',
-    inTable: true,
-    inForm: true,
-    fieldType: 'textarea',
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'textarea',
+    },
+  },
+  {
+    dataIndex: 'parentId',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
   },
 ];

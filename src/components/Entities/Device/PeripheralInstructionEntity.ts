@@ -5,28 +5,40 @@ export const PeripheralInstructionEntity: EntityField<Instruction>[] = [
   {
     intlId: 'device.peripheral.instruction.instruction',
     dataIndex: 'instruction',
-    inTable: true,
-    inForm: true,
-    formItemProps: {
-      width: 'lg',
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      formItemProps: {
+        width: 'lg',
+      },
     },
   },
   {
     intlId: 'device.peripheral.instruction.acknowledge',
     dataIndex: 'acknowledge',
-    inTable: true,
-    inForm: true,
-    formItemProps: {
-      width: 'lg',
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      formItemProps: {
+        width: 'lg',
+      },
     },
   },
   {
     intlId: 'device.peripheral.instruction.comment',
     dataIndex: 'comment',
-    inTable: true,
-    inForm: true,
-    formItemProps: {
-      width: 'lg',
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      formItemProps: {
+        width: 'lg',
+      },
     },
   },
 ];

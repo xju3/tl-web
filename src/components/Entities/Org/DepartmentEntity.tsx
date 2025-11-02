@@ -5,16 +5,24 @@ export const DepartmentEntity: EntityField<Department>[] = [
   {
     intlId: 'org.department.parentId',
     dataIndex: 'parentId',
-    inDescription: true,
-    inForm: true,
-    hidden: true,
+    visibility: {
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
   },
   {
     intlId: 'org.department.companyId',
     dataIndex: 'companyId',
-    inDescription: true,
-    inForm: true,
-    hidden: true,
+    visibility: {
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
   },
   {
     intlId: 'org.department.name',
@@ -23,12 +31,16 @@ export const DepartmentEntity: EntityField<Department>[] = [
     sorter: {
       multiple: 1,
     },
-    inTable: true,
-    inDescription: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
   {
     intlId: 'org.department.code',
@@ -37,11 +49,15 @@ export const DepartmentEntity: EntityField<Department>[] = [
     sorter: {
       multiple: 2,
     },
-    inTable: true,
-    inDescription: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
 ];

@@ -160,19 +160,6 @@ const ListPage = <T extends { id: string }>({
     return services.getList(params, sorter, combinedFilter);
   };
 
-  const toolbar: ListToolBarProps | false = {
-    actions: [
-      <Button
-        key="add"
-        type="primary"
-        onClick={() => saveStateAndNavigate(routes.add)}
-      >
-        <PlusOutlined />
-        {intl.formatMessage({ id: 'common.actions.add' })}
-      </Button>,
-    ],
-  };
-
   const actionColumn = (
     saveStateAndNavigate: (path: string) => void,
   ): CustomProColumns<T> => ({
@@ -279,7 +266,16 @@ const ListPage = <T extends { id: string }>({
         form={{
           initialValues: initialValues,
         }}
-        toolbar={toolbar}
+        headerTitle={
+          <Button
+            key="add"
+            type="primary"
+            onClick={() => saveStateAndNavigate(routes.add)}
+          >
+            <PlusOutlined />
+            {intl.formatMessage({ id: 'common.actions.add' })}
+          </Button>
+        }
         request={pageRequest}
         columns={tableColumns}
         pagination={{

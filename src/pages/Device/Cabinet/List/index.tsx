@@ -27,7 +27,7 @@ const CabinetListPage = () => {
     <a
       key="create"
       onClick={() =>
-        saveStateAndNavigate(`/device/cabinets/add-child/${record.id}`)
+        saveStateAndNavigate(`/device/cabinets/${record.id}/children/add`)
       }
     >
       {intl.formatMessage({ id: 'common.actions.add' })}

@@ -8,30 +8,38 @@ export const ProductItemEntity: EntityField<ProductItem>[] = [
   {
     intlId: 'device.cabinet.code',
     dataIndex: 'deviceCode',
-    inTable: true,
-    inForm: true,
-    fieldType: 'custom',
-    renderFormItem: () => (
-      <EntitySelectorFormItem<Cabinet>
-        nameFieldName="deviceCode"
-        width={'lg'}
-        labelIntl="device.serial-port.code"
-        SelectorModal={CabinetSelector}
-        onSelect={(entity, formInstance) => {
-          formInstance.setFieldsValue({
-            deviceId: entity.id,
-            deviceCode: entity.code,
-            deviceName: entity.name,
-          });
-        }}
-      />
-    ),
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'custom',
+      renderFormItem: () => (
+        <EntitySelectorFormItem<Cabinet>
+          nameFieldName="deviceCode"
+          width={'lg'}
+          labelIntl="device.serial-port.code"
+          SelectorModal={CabinetSelector}
+          onSelect={(entity, formInstance) => {
+            formInstance.setFieldsValue({
+              deviceId: entity.id,
+              deviceCode: entity.code,
+              deviceName: entity.name,
+            });
+          }}
+        />
+      ),
+    },
   },
   {
     intlId: 'device.cabinet.name',
     dataIndex: 'deviceName',
-    inTable: true,
-    inForm: true,
-    formItemProps: { disabled: true },
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      formItemProps: { disabled: true },
+    },
   },
 ];

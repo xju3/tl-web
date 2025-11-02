@@ -8,13 +8,19 @@ export const ProductEntity: EntityField<Product>[] = [
     sorter: {
       multiple: 1,
     },
-    showColumnFilter: true,
-    inTable: true,
-    inDescription: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    column: {
+      showColumnFilter: true,
+    },
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
   {
     intlId: 'device.product.name',
@@ -22,12 +28,16 @@ export const ProductEntity: EntityField<Product>[] = [
     sorter: {
       multiple: 1,
     },
-    inTable: true,
-    inDescription: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
   {
     intlId: 'device.product.m_date',
@@ -36,9 +46,13 @@ export const ProductEntity: EntityField<Product>[] = [
     sorter: {
       multiple: 1,
     },
-    inTable: true,
-    inDescription: true,
-    inForm: true,
-    fieldType: 'text',
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+    },
   },
 ];

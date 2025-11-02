@@ -33,11 +33,8 @@ const CabinetPeripheralAssociations: React.FC<PeripheralsProps> = ({
         deleteItem: deleteCabinetPeripheral,
       }}
       columns={getCabinetPeripheralColumns(intl)}
-      addRoute={`/device/cabinets/${cabinetId}/bind`}
-      editRoutePattern={`/device/cabinets/bindings/:id/edit`}
-      headerTitle={intl.formatMessage({
-        id: 'device.peripheral.list.title',
-      })}
+      addRoute={`/device/cabinets/${cabinetId}/peripherals/create`}
+      editRoutePattern={`/device/cabinets/${cabinetId}/peripherals/:id/edit`}
       pagination={true}
     />
   );

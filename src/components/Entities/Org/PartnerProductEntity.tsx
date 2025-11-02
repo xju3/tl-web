@@ -6,31 +6,43 @@ export const PartnerProductEntity: EntityField<PartnerProduct>[] = [
     intlId: 'org.partner.code',
     dataIndex: 'code',
     sorter: true,
-    inTable: true,
-    inDescription: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
   {
     intlId: 'org.partner.name',
     dataIndex: 'name',
     sorter: true,
-    inTable: true,
-    inDescription: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
   {
     intlId: 'org.partner.address',
     dataIndex: 'address',
-    inTable: true,
-    inDescription: true,
-    inForm: true,
-    fieldType: 'text',
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+    },
   },
   {
     intlId: 'org.partner.org',
@@ -40,7 +52,11 @@ export const PartnerProductEntity: EntityField<PartnerProduct>[] = [
       true: { text: 'Yes' },
       false: { text: 'No' },
     },
-    inForm: true,
-    fieldType: 'text',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+    },
   },
 ];

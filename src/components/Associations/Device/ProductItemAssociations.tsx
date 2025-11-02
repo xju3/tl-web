@@ -33,9 +33,6 @@ const ProductItemAssociations: React.FC<ItemsProps> = ({ productId }) => {
       columns={getProductItemColumns(intl)}
       addRoute={`/device/products/${productId}/items/add`}
       editRoutePattern={`/device/products/${productId}/items/:id/edit`}
-      headerTitle={intl.formatMessage({
-        id: 'device.product.item.list.title',
-      })}
       pagination={true}
       showIndexColumn={false}
     />

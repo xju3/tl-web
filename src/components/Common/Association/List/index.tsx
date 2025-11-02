@@ -13,7 +13,6 @@ const AssociationList = <T extends { id: string }>({
   columns,
   addRoute,
   editRoutePattern,
-  headerTitle,
   rowKey = 'id',
   toolBarRender,
   pagination = { pageSize: 10 },
@@ -64,30 +63,28 @@ const AssociationList = <T extends { id: string }>({
 
   const tableColumns = [...columns, defaultActionColumn];
 
-  const defaultToolBarRender = () => [
-    <Button
-      key="add"
-      type="primary"
-      onClick={() => {
-        if (addRoute) {
-          history.push(addRoute);
-        }
-      }}
-    >
-      <PlusOutlined />
-      {intl.formatMessage({ id: 'common.actions.add' })}
-    </Button>,
-  ];
-
   return (
     <CustomProTable<T>
-      headerTitle={headerTitle}
+      headerTitle={
+        addRoute && (
+          <Button
+            key="add"
+            type="primary"
+            onClick={() => {
+              if (addRoute) {
+                history.push(addRoute);
+              }
+            }}
+          >
+            <PlusOutlined />
+            {intl.formatMessage({ id: 'common.actions.add' })}
+          </Button>
+        )
+      }
       actionRef={actionRef}
       rowKey={rowKey}
       search={false}
-      toolBarRender={
-        toolBarRender || (addRoute ? defaultToolBarRender : undefined)
-      }
+      toolBarRender={toolBarRender}
       request={async (params: ParamsType) => services.getPage(parentId, params)}
       columns={tableColumns}
       pagination={pagination}

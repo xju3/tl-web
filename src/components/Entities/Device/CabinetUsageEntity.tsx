@@ -5,27 +5,41 @@ export const CabinetUsageEntity: EntityField<CabinetPeripheralUsage>[] = [
   {
     intlId: 'device.peripheral.code',
     dataIndex: 'peripheralCode',
-    inTable: true,
-    inForm: true,
-    fieldType: 'custom',
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'custom',
+    },
   },
   {
     intlId: 'device.peripheral.name',
     dataIndex: 'peripheralName',
-    inTable: true,
+    visibility: {
+      inTable: true,
+    },
   },
   {
     intlId: 'device.cabinet.usage.sequence',
     dataIndex: 'sequence',
-    inTable: true,
-    inForm: true,
-    fieldType: 'digit',
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'digit',
+    },
   },
   {
     intlId: 'device.cabinet.usage.sequence',
     dataIndex: 'sequence',
-    inTable: true,
-    inForm: true,
-    fieldType: 'digit',
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'digit',
+    },
   },
 ];

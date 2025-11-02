@@ -5,16 +5,22 @@ export const HostPortEntity: EntityField<HostSerialPort>[] = [
   {
     intlId: 'device.serial-port.name',
     dataIndex: 'name',
-    inTable: true,
+    visibility: {
+      inTable: true,
+    },
   },
   {
     intlId: 'device.serial-port.code',
     dataIndex: 'port',
-    inTable: true,
+    visibility: {
+      inTable: true,
+    },
   },
   {
     intlId: 'device.serial-port.baudRate',
     dataIndex: 'baudRate',
-    inTable: true,
+    visibility: {
+      inTable: true,
+    },
   },
 ];

@@ -17,7 +17,7 @@ export function buildTableColumns<T>(
   intl: IntlShape,
 ): CustomProColumns<T>[] {
   return definitions
-    .filter((def) => def.inTable)
+    .filter((def) => def.visibility?.inTable)
     .map((def) => ({
       ...def,
       title: def.intlId ? intl.formatMessage({ id: def.intlId }) : '',
@@ -29,7 +29,7 @@ export function buildDescriptions<T>(
   intl: IntlShape,
 ): ProDescriptionsItemProps<T>[] {
   return definitions
-    .filter((def) => def.inDescription)
+    .filter((def) => def.visibility?.inDescription)
     .map((def) => ({
       ...def,
       title: def.intlId ? intl.formatMessage({ id: def.intlId }) : '',
@@ -41,7 +41,7 @@ export function buildSelectors<T>(
   intl: IntlShape,
 ): CustomProColumns<T>[] {
   return definitions
-    .filter((def) => def.inSelector)
+    .filter((def) => def.visibility?.inSelector)
     .map((def) => ({
       ...def,
       title: intl.formatMessage({ id: def.intlId }),
@@ -56,20 +56,24 @@ export function buildFormFields<T>(
   const rulesBuilder = validationRules(intl);
 
   return definitions
-    .filter((def) => def.inForm)
+    .filter((def) => def.visibility?.inForm)
     .map((def, index) => {
       // 使用组合键确保唯一性
       const key = `${def.dataIndex as string}-${index}`;
 
-      if (def.fieldType === 'custom' && def.renderFormItem && formRef) {
+      if (
+        def.form?.fieldType === 'custom' &&
+        def.form?.renderFormItem &&
+        formRef
+      ) {
         return (
           <React.Fragment key={key}>
-            {def.renderFormItem(undefined, { formRef }, intl)}
+            {def.form.renderFormItem(undefined, { formRef }, intl)}
           </React.Fragment>
         );
       }
 
-      const generatedRules = def.rules?.map((rule) => {
+      const generatedRules = def.form?.rules?.map((rule) => {
         const messageKey = def.intlId;
         switch (rule.type) {
           case 'required':
@@ -95,11 +99,11 @@ export function buildFormFields<T>(
         name: def.dataIndex,
         label: def.intlId ? intl.formatMessage({ id: def.intlId }) : '',
         rules: generatedRules,
-        hidden: def.hidden,
-        ...def.formItemProps,
+        hidden: def.form?.hidden,
+        ...def.form?.formItemProps,
       };
 
-      switch (def.fieldType) {
+      switch (def.form?.fieldType) {
         case 'textarea':
           return <ProFormTextArea key={key} width="lg" {...commonProps} />;
         case 'digit':

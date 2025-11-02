@@ -8,12 +8,16 @@ export const PeripheralEntity: EntityField<Peripheral>[] = [
     sorter: {
       multiple: 1,
     },
-    inTable: true,
-    inDescription: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
   {
     intlId: 'device.peripheral.name',
@@ -21,12 +25,16 @@ export const PeripheralEntity: EntityField<Peripheral>[] = [
     sorter: {
       multiple: 2,
     },
-    inTable: true,
-    inDescription: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
   {
     intlId: 'device.peripheral.type',
@@ -34,8 +42,12 @@ export const PeripheralEntity: EntityField<Peripheral>[] = [
     sorter: {
       multiple: 3,
     },
-    inTable: true,
-    inForm: true,
-    fieldType: 'text',
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+    },
   },
 ];

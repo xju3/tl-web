@@ -44,6 +44,7 @@ export default {
     'Are you sure you want to delete this port?',
   'device.host.port.code': 'Serial Port Code',
   'device.peripheral.list.title': 'Peripherals List',
+  'device.peripheral.list': 'Peripherals',
   'device.peripheral.add': 'Add Peripherals',
   'device.peripheral.view': 'View Peripherals',
   'device.peripheral.view.title': 'Peripheral Details',

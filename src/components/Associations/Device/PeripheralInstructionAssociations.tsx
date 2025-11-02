@@ -31,9 +31,6 @@ const PeripheralInstructionAssociations: React.FC<InstructionsProps> = ({
       columns={getPeripheralInstructionColumns(intl)}
       addRoute={`/device/peripherals/${peripheralId}/instructions/edit`}
       editRoutePattern={`/device/peripherals/:parentId/instructions/edit/:id`}
-      headerTitle={intl.formatMessage({
-        id: 'device.peripheral.instruction.list.title',
-      })}
       pagination={true}
     />
   );

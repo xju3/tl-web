@@ -5,9 +5,13 @@ export const MenuEntity: EntityField<Menu>[] = [
   {
     intlId: 'sys.menu.parentId',
     dataIndex: 'parentId',
-    inDescription: true,
-    inForm: true,
-    hidden: true,
+    visibility: {
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
   },
   {
     intlId: 'sys.menu.name',
@@ -16,12 +20,16 @@ export const MenuEntity: EntityField<Menu>[] = [
     sorter: {
       multiple: 2,
     },
-    inTable: true,
-    inDescription: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
   {
     intlId: 'sys.menu.code',
@@ -30,11 +38,15 @@ export const MenuEntity: EntityField<Menu>[] = [
     sorter: {
       multiple: 1,
     },
-    inTable: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    visibility: {
+      inTable: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
   {
     intlId: 'sys.menu.path',
@@ -43,10 +55,14 @@ export const MenuEntity: EntityField<Menu>[] = [
     sorter: {
       multiple: 3,
     },
-    inTable: true,
-    inDescription: true,
-    inForm: true,
-    fieldType: 'text',
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+    },
   },
   {
     intlId: 'sys.menu.component',
@@ -55,10 +71,14 @@ export const MenuEntity: EntityField<Menu>[] = [
     sorter: {
       multiple: 4,
     },
-    inTable: true,
-    inDescription: true,
-    inForm: true,
-    fieldType: 'text',
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+    },
   },
   {
     intlId: 'sys.menu.icon',
@@ -67,10 +87,14 @@ export const MenuEntity: EntityField<Menu>[] = [
     sorter: {
       multiple: 5,
     },
-    inTable: true,
-    inDescription: true,
-    inForm: true,
-    fieldType: 'text',
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+    },
   },
   {
     intlId: 'sys.menu.type',
@@ -79,10 +103,14 @@ export const MenuEntity: EntityField<Menu>[] = [
     sorter: {
       multiple: 6,
     },
-    inTable: true,
-    inDescription: true,
-    inForm: true,
-    fieldType: 'text',
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+    },
   },
   {
     intlId: 'sys.menu.visible',
@@ -91,10 +119,14 @@ export const MenuEntity: EntityField<Menu>[] = [
     sorter: {
       multiple: 7,
     },
-    inTable: true,
-    inDescription: true,
-    inForm: true,
-    fieldType: 'switch',
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'switch',
+    },
   },
   {
     intlId: 'sys.menu.permission',
@@ -103,9 +135,13 @@ export const MenuEntity: EntityField<Menu>[] = [
     sorter: {
       multiple: 8,
     },
-    inTable: true,
-    inDescription: true,
-    inForm: true,
-    fieldType: 'text',
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+    },
   },
 ];

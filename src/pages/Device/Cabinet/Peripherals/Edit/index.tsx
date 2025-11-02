@@ -35,10 +35,8 @@ const CabinetPeripheralBindPage: React.FC = () => {
     getItemById: getCabinetPeripheralById,
   };
 
-  const backRoute = '/device/cabinets';
-
   return (
-    <EditPage<CabinetPeripheral> services={services} backRoute={backRoute}>
+    <EditPage<CabinetPeripheral> services={services}>
       <CabinetPeripheralForm />
     </EditPage>
   );

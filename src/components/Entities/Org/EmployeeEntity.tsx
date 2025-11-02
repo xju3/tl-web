@@ -5,15 +5,21 @@ export const EmployeeEntity: EntityField<Employee>[] = [
   {
     intlId: 'org.employee.personId',
     dataIndex: 'personId',
-    inDescription: true,
-    inForm: true,
-    hidden: true,
+    visibility: {
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
   },
   {
     intlId: 'org.employee.employeeNumber',
     dataIndex: 'employeeNumber',
-    inDescription: true,
-    inForm: true,
+    visibility: {
+      inDescription: true,
+      inForm: true,
+    },
   },
   {
     intlId: 'org.employee.code',
@@ -22,11 +28,15 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     sorter: {
       multiple: 2,
     },
-    inTable: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    visibility: {
+      inTable: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
   {
     intlId: 'org.employee.name',
@@ -35,11 +45,15 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     sorter: {
       multiple: 1,
     },
-    inTable: true,
-    inSelector: true,
-    inForm: true,
-    fieldType: 'text',
-    rules: [{ type: 'required' }],
+    visibility: {
+      inTable: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
   },
   {
     intlId: 'org.employee.gender',
@@ -48,9 +62,13 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     sorter: {
       multiple: 1,
     },
-    inTable: true,
-    inForm: true,
-    fieldType: 'text',
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+    },
   },
   {
     intlId: 'org.employee.email',
@@ -59,9 +77,13 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     sorter: {
       multiple: 1,
     },
-    inTable: true,
-    inForm: true,
-    fieldType: 'text',
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+    },
   },
   {
     intlId: 'org.employee.mobile',
@@ -70,8 +92,12 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     sorter: {
       multiple: 1,
     },
-    inTable: true,
-    inForm: true,
-    fieldType: 'text',
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+    },
   },
 ];
