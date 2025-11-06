@@ -12,9 +12,7 @@ type ItemsProps = {
   tenantId: string;
 };
 
-const tenantProductColumns = (
-  intl: IntlShape,
-): CustomProColumns<TenantProduct>[] =>
+const columns = (intl: IntlShape): CustomProColumns<TenantProduct>[] =>
   buildTableColumns(TenantProductEntity, intl);
 
 const TenantProductAssociations: React.FC<ItemsProps> = ({ tenantId }) => {
@@ -26,7 +24,7 @@ const TenantProductAssociations: React.FC<ItemsProps> = ({ tenantId }) => {
       services={{
         getPage: getTenantProducts,
       }}
-      columns={tenantProductColumns(intl)}
+      columns={columns(intl)}
       addRoute={`/org/tenant/${tenantId}/products/add`}
       editRoutePattern={`/org/tenant/${tenantId}/products/:id/edit`}
       pagination={true}
