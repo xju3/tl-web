@@ -267,6 +267,18 @@ export default [
         hideInMenu: true,
       },
       {
+        path: '/org/tenant/:tenantId/products/add',
+        name: 'tenant.create.product',
+        component: './Org/Tenant/Product/Edit',
+        hideInMenu: true,
+      },
+      {
+        path: '/org/partner/:tenant/products/:id/edit',
+        name: 'tenant.edit.product',
+        component: './Org/Tenant/Product/Edit',
+        hideInMenu: true,
+      },
+      {
         path: '/org/partner',
         name: 'partner',
         icon: 'user',
@@ -288,18 +300,6 @@ export default [
         path: '/org/partner/view/:id',
         name: 'view.partner',
         component: './Org/Partner/View',
-        hideInMenu: true,
-      },
-      {
-        path: '/org/partner/:partnerId/product/add',
-        name: 'create.partner.product',
-        component: './Org/Partner/Product/Edit',
-        hideInMenu: true,
-      },
-      {
-        path: '/org/partner/:partnerId/product/edit/:id',
-        name: 'edit.partner.product',
-        component: './Org/Partner/Product/Edit',
         hideInMenu: true,
       },
       {
@@ -422,6 +422,19 @@ export default [
         name: 'view.user',
         path: '/sys/user/view/:id',
         component: './Sys/User/View',
+        hideInMenu: true,
+      },
+
+      {
+        name: 'create.user.role',
+        path: '/sys/users/:userId/roles/add',
+        component: './Sys/User/Role/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'edit.user.role',
+        path: '/sys/users/:userId/roles/:id/edit',
+        component: './Sys/User/Role/Edit',
         hideInMenu: true,
       },
     ],

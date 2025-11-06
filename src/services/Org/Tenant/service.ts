@@ -1,32 +1,62 @@
-import type {CreateTenantCommand, Tenant, TenantFilter, UpdateTenantCommand} from './data.d';
+import type {
+  CreateTenantCommand,
+  Tenant,
+  TenantFilter,
+  TenantProduct,
+  TenantProductFilter,
+  UpdateTenantCommand
+} from './data.d';
 import {SortOrder} from "antd/es/table/interface";
-import {apiCreate, apiDelete, apiGetById, apiPutPage, apiUpdate} from "@/services/common";
+import {apiCreate, apiDelete, apiGetById, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
 import {ParamsType} from "@ant-design/pro-components";
+import {UUID} from "node:crypto";
 
-const url = `org/tenants`;
+const tenant_base_url = `org/tenants`;
 
 export async function getTenants(
   params: ParamsType,
   sorters: Record<string, SortOrder>,
   filter: TenantFilter,
 ) {
-  return apiPutPage<Tenant>(url, params, filter, sorters)
+  return apiPutPage<Tenant>(tenant_base_url, params, filter, sorters)
 }
 
-export default getTenants
+export async function getTenantProducts(
+  tenantId: string,
+  params: ParamsType,
+) {
+  const url = `${tenant_base_url}/${tenantId}/products`
+  return apiGetPage<TenantProduct>(url, params)
+}
 
 export async function getTenantById(id: string) {
-  return apiGetById<Tenant>(url, id);
+  return apiGetById<Tenant>(tenant_base_url, id);
 }
 
 export async function createTenant(body: CreateTenantCommand) {
-  return apiCreate(url, body);
+  return apiCreate(tenant_base_url, body);
 }
 
 export async function updateTenant(body: UpdateTenantCommand) {
-  return apiUpdate(url, body);
+  return apiUpdate(tenant_base_url, body);
 }
 
 export async function deleteTenant(id: string) {
-  return apiDelete(url, id);
+  return apiDelete(tenant_base_url, id);
 }
+
+export async function  createTenantProduct(body: TenantProduct) {
+  const url = `${tenant_base_url}/products`
+  return apiCreate(url, body)
+}
+
+export async function  updateTenantProduct(body: TenantProduct) {
+  const url = `${tenant_base_url}/products`
+  return apiUpdate(url, body)
+}
+
+export async function  getTenantProductById(id: string) {
+  const url = `${tenant_base_url}/products`
+  return apiGetById(url, id);
+}
+

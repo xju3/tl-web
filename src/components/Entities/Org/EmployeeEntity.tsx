@@ -3,10 +3,8 @@ import type { EntityField } from '../types';
 
 export const EmployeeEntity: EntityField<Employee>[] = [
   {
-    intlId: 'org.employee.personId',
-    dataIndex: 'personId',
+    dataIndex: 'id',
     visibility: {
-      inDescription: true,
       inForm: true,
     },
     form: {
@@ -14,22 +12,24 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     },
   },
   {
-    intlId: 'org.employee.employeeNumber',
-    dataIndex: 'employeeNumber',
+    intlId: 'org.employee.code',
+    dataIndex: 'code',
     visibility: {
       inDescription: true,
       inForm: true,
+      inTable: true,
     },
   },
   {
-    intlId: 'org.employee.code',
-    dataIndex: 'code',
+    intlId: 'org.employee.given.name',
+    dataIndex: 'givenName',
     valueType: 'text',
     sorter: {
       multiple: 2,
     },
     visibility: {
       inTable: true,
+      inDescription: true,
       inSelector: true,
       inForm: true,
     },
@@ -39,13 +39,14 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     },
   },
   {
-    intlId: 'org.employee.name',
-    dataIndex: 'name',
+    intlId: 'org.employee.last.name',
+    dataIndex: 'lastName',
     valueType: 'text',
     sorter: {
       multiple: 1,
     },
     visibility: {
+      inDescription: true,
       inTable: true,
       inSelector: true,
       inForm: true,
@@ -59,11 +60,16 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     intlId: 'org.employee.gender',
     dataIndex: 'gender',
     valueType: 'text',
+    valueEnum: {
+      '0': 'Female',
+      '1': 'Male',
+    },
     sorter: {
       multiple: 1,
     },
     visibility: {
       inTable: true,
+      inDescription: true,
       inForm: true,
     },
     form: {
@@ -80,6 +86,7 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     visibility: {
       inTable: true,
       inForm: true,
+      inDescription: true,
     },
     form: {
       fieldType: 'text',
@@ -95,6 +102,7 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     visibility: {
       inTable: true,
       inForm: true,
+      inDescription: true,
     },
     form: {
       fieldType: 'text',

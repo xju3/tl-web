@@ -3,6 +3,15 @@ import type { EntityField } from '../types';
 
 export const RoleEntity: EntityField<Role>[] = [
   {
+    dataIndex: 'id',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
+  },
+  {
     intlId: 'sys.role.code',
     dataIndex: 'code',
     valueType: 'text',

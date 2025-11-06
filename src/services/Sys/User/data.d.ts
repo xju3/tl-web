@@ -1,20 +1,37 @@
 export type User = API.BaseModel & {
-  username?: string;
+  account?: string,
+  password?: string,
+  status?: number,
   employeeId?: string;
+  employeeCode?: string;
+  employeeName?: string
 };
+export type UserRole = API.BaseModel & {
+  userId?: string;
+  roleId?: string
+  userAccount?: string;
+  roleCode?: string;
+  roleName?: string;
+  status?: number;
+};
+
+
 export type UserFilter = API.BaseFilter & {
-  username?: string;
+  account?: string,
+  status?: number,
   employeeId?: string;
 };
 export type CreateUserCommand = {
   id?: string;
-  username?: string;
   password?: string;
+  account?: string,
+  status?: number,
   employeeId?: string;
 };
 export type UpdateUserCommand = {
   id?: string;
-  username?: string;
+  account?: string,
+  status?: number,
   password?: string;
   employeeId?: string;
 };

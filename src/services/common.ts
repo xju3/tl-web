@@ -11,8 +11,6 @@ export async function apiDelete(url :string, id: string, options?: { [key: strin
   });
 }
 
-
-
 export async function apiUpdate<B>(url: string, body: B, options?: { [key: string]: any }) {
   return request<API.ResponseEntity<string>>(`/api/${url}`, {
     method: 'PUT',

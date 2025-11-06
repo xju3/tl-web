@@ -1,27 +1,38 @@
 export type Employee = API.BaseModel & {
-  personId?: string;
   code?: string;
-  name?: string;
-  email?: string;
+  givenName?: string;
+  lastName?: string;
   mobile?: string;
-  gender?: string;
+  gender?: number;
+  email?: string;
 };
 
 export type EmployeeFilter = API.BaseFilter & {
-  employeeNumber?: string;
-  personId?: string;
+  code?: string;
+  givenName?: string;
+  lastName?: string;
+  mobile?: string;
+  gender?: number;
+  email?: string;
 };
 
 export type CreateEmployeeCommand = {
   id?: string;
-  personId?: string;
-  employeeNumber?: string;
+  code?: string;
+  givenName?: string;
+  lastName?: string;
+  mobile?: string;
+  gender?: number;
 };
 export type UpdateEmployeeCommand = {
   id?: string;
-  personId?: string;
-  employeeNumber?: string;
+  code?: string;
+  givenName?: string;
+  lastName?: string;
+  mobile?: string;
+  gender?: number;
 };
+
 export type IPageEmployeeVo = {
   pages?: number;
   records?: Employee[];

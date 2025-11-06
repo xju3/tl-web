@@ -9,22 +9,26 @@ import { getProducts } from '@/services/Device/Product/service';
 export type ProductSelectorProps = {
   open: boolean;
   onCancel: () => void;
-  onOk: (product: Product) => void;
+  onSelect: (product: Product) => void;
 };
 
 const columns = (intl: any): CustomProColumns<Product>[] =>
   buildSelectors(ProductEntity, intl);
 
-const ProductSelector = ({ open, onCancel, onOk }: ProductSelectorProps) => {
+const ProductSelector = ({
+  open,
+  onCancel,
+  onSelect,
+}: ProductSelectorProps) => {
   const intl = useIntl();
   const selectorColumns = columns(intl);
 
   return (
     <SelectModal<Product>
-      title={intl.formatMessage({ id: 'device.product.list.title' })}
+      title={intl.formatMessage({ id: 'device.product.list' })}
       open={open}
       onCancel={onCancel}
-      onSelect={onOk}
+      onSelect={onSelect}
       request={getProducts}
       columns={selectorColumns}
       intl={intl}

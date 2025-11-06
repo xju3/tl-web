@@ -1,29 +1,31 @@
+import type { ProFormInstance } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
 import { buildFormFields } from '@/components/Entities/Builder';
 import { UserEntity } from '@/components/Entities/Sys/UserEntity';
-import { updateMenu } from '@/services/Sys/Menu/service';
 import type { User } from '@/services/Sys/User/data';
-import { addUser, getUserById } from '@/services/Sys/User/service';
+import { addUser, getUserById, updateUser } from '@/services/Sys/User/service';
 
-const UserForm: React.FC = () => {
+interface FormProps {
+  formRef?: React.RefObject<ProFormInstance<User>>;
+}
+
+const EditForm: React.FC<FormProps> = ({ formRef }) => {
   const intl = useIntl();
-  return <>{buildFormFields<User>(UserEntity, intl)}</>;
+  return <>{buildFormFields<User>(UserEntity, intl, formRef)}</>;
 };
 
 const UserEditPage = () => {
   const services = {
     addItem: addUser,
-    updateItem: updateMenu,
+    updateItem: updateUser,
     getItemById: getUserById,
   };
 
-  const backRoute = '/sys/user';
-
   return (
-    <EditPage<User> services={services} backRoute={backRoute}>
-      <UserForm />
+    <EditPage<User> services={services}>
+      <EditForm />
     </EditPage>
   );
 };

@@ -9,25 +9,6 @@ export type Partner = API.BaseModel & {
   tenant: boolean;
 };
 
-export type PartnerProduct = API.BaseModel & {
-  partnerId: string;
-  productId: string;
-  code: string;
-  startTime: string;
-  endTime: string;
-  locationId: string;
-  ddate: string;
-};
-
-export type PartnerProductFilter =  API.BaseFilter &{
-  partnerId?: string;
-  productId?: string;
-  code?: string;
-  startTime?: string;
-  endTime?: string;
-  locationId?: string;
-  ddate?: string;
-};
 
 export type PartnerFilter = API.BaseFilter & {
   code?: string;

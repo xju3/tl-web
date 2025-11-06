@@ -3,9 +3,8 @@ import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
 import { buildFormFields } from '@/components/Entities/Builder';
 import { RoleEntity } from '@/components/Entities/Sys/RoleEntity';
-import { updateMenu } from '@/services/Sys/Menu/service';
 import type { Role } from '@/services/Sys/Role/data.d';
-import { addRole, getRoleById } from '@/services/Sys/Role/service';
+import { addRole, getRoleById, updateRole } from '@/services/Sys/Role/service';
 
 const RoleForm: React.FC = () => {
   const intl = useIntl();
@@ -15,11 +14,11 @@ const RoleForm: React.FC = () => {
 const RoleEditPage = () => {
   const services = {
     addItem: addRole,
-    updateItem: updateMenu,
+    updateItem: updateRole,
     getItemById: getRoleById,
   };
 
-  const backRoute = '/sys/menu';
+  const backRoute = '/sys/role';
 
   return (
     <EditPage<Role> services={services} backRoute={backRoute}>

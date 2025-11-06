@@ -2,7 +2,7 @@ import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
 import { buildDescriptions } from '@/components/Entities/Builder';
 import { PartnerEntity } from '@/components/Entities/Org/PartnerEntity';
-import PartnerProductViewTabs from '@/components/ViewTabs/PartnerProductViewTabs';
+import PartnerProductViewTabs from '@/components/ViewTabs/TenantProductViewTabs';
 import type { Partner } from '@/services/Org/Partner/data';
 import { deletePartner, getPartner } from '@/services/Org/Partner/service';
 
@@ -18,7 +18,6 @@ const PartnerViewPage = () => {
       editUrl="/org/partner/edit"
       listUrl="/org/partner/list"
       columns={buildDescriptions(PartnerEntity, intl)}
-      detailsComponent={(data) => <PartnerProductViewTabs partner={data} />}
     />
   );
 };

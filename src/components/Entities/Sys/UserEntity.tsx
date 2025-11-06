@@ -1,11 +1,60 @@
+import EntitySelectorFormItem from '@/components/Common/FormItem/EntitySelectorFormItem';
+import EmployeeSelector from '@/components/Selectors/EmployeeSelector';
+import type { Employee } from '@/services/Org/Employee/data';
 import type { User } from '@/services/Sys/User/data';
 import type { EntityField } from '../types';
 
 export const UserEntity: EntityField<User>[] = [
   {
-    intlId: 'sys.user.username',
-    dataIndex: 'username',
+    intlId: 'org.employee.code',
+    dataIndex: 'employeeCode',
     visibility: {
+      inTable: true,
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      formItemProps: {
+        disabled: true,
+      },
+      fieldType: 'custom',
+      renderFormItem: () => (
+        <EntitySelectorFormItem<Employee>
+          nameFieldName="employeeCode"
+          labelIntl="org.employee.code"
+          width={'lg'}
+          SelectorModal={EmployeeSelector}
+          onSelect={(entity, formInstance) => {
+            formInstance.setFieldsValue({
+              employeeId: entity.id,
+              employeeCode: entity.code,
+              employeeName: `${entity.givenName}, ${entity.lastName}`,
+            });
+          }}
+        />
+      ),
+    },
+  },
+  {
+    intlId: 'org.employee.name',
+    dataIndex: 'employeeName',
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      formItemProps: {
+        disabled: true,
+      },
+    },
+  },
+  {
+    intlId: 'sys.user.account',
+    dataIndex: 'account',
+    visibility: {
+      inTable: true,
       inDescription: true,
       inForm: true,
     },
@@ -14,20 +63,10 @@ export const UserEntity: EntityField<User>[] = [
       rules: [{ type: 'required' }],
     },
   },
+
   {
-    intlId: 'sys.user.employeeId',
-    dataIndex: 'employeeId',
-    visibility: {
-      inDescription: true,
-      inForm: true,
-    },
-    form: {
-      hidden: true,
-    },
-  },
-  {
-    intlId: 'sys.user.code',
-    dataIndex: 'code',
+    intlId: 'sys.user.password',
+    dataIndex: 'password',
     valueType: 'text',
     sorter: {
       multiple: 1,
@@ -42,8 +81,8 @@ export const UserEntity: EntityField<User>[] = [
     },
   },
   {
-    intlId: 'sys.user.name',
-    dataIndex: 'name',
+    intlId: 'sys.user.status',
+    dataIndex: 'status',
     valueType: 'text',
     sorter: {
       multiple: 2,
@@ -53,8 +92,30 @@ export const UserEntity: EntityField<User>[] = [
       inSelector: true,
       inForm: true,
     },
+    valueEnum: {
+      '0': 'Disabled',
+      '1': 'Available',
+    },
     form: {
-      fieldType: 'text',
+      fieldType: 'digit',
+    },
+  },
+  {
+    dataIndex: 'id',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
+  },
+  {
+    dataIndex: 'employeeId',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
     },
   },
 ];

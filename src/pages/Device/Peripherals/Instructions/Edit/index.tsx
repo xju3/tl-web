@@ -1,33 +1,15 @@
-import {
-  PageContainer,
-  ProForm,
-  type ProFormInstance,
-} from '@ant-design/pro-components';
-import { history, useIntl, useParams } from '@umijs/max';
-import { Card, message } from 'antd';
-import React, { useEffect, useRef, useState } from 'react';
-import { v4 as uuid_v4 } from 'uuid';
+import type { ProFormInstance } from '@ant-design/pro-components';
+import { useIntl } from '@umijs/max';
+import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
 import { buildFormFields } from '@/components/Entities/Builder';
-import { HostSerialPortEntity } from '@/components/Entities/Device/HostSerialPortEntity';
 import { PeripheralInstructionEntity } from '@/components/Entities/Device/PeripheralInstructionEntity';
-import PeripheralInstructionFormFields from '@/components/FormFields/PeripheralInstructionFormFields';
-import type { HostSerialPort } from '@/services/Device/Host/data';
-import type {
-  Instruction,
-  Peripheral,
-} from '@/services/Device/Peripheral/data';
+import type { Instruction } from '@/services/Device/Peripheral/data';
 import {
   addInstruction,
-  deleteInstruction,
   getInstructionById,
   updateInstruction,
 } from '@/services/Device/Peripheral/service';
-import {
-  addSerialPort,
-  getSerialPortById,
-  updateSerialPort,
-} from '@/services/Device/SerialPort/service';
 
 interface FormProps {
   formRef?: React.RefObject<ProFormInstance<Instruction>>;

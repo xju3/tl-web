@@ -162,6 +162,7 @@ export default {
   'menu.sys.menu': 'Menus',
   'menu.sys.role': 'Roles',
   'menu.sys.user': 'Users',
+  'menu.sys.create.user.role': 'Create User Role',
   'menu.sys.view.menu': 'View Menu',
   'menu.sys.view.role': 'View Role',
   'menu.sys.view.user': 'View User',

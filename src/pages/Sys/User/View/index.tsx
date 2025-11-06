@@ -2,6 +2,7 @@ import { useIntl } from '@umijs/max';
 import ViewPage from '@/components/Common/Pages/View';
 import { buildDescriptions } from '@/components/Entities/Builder';
 import { UserEntity } from '@/components/Entities/Sys/UserEntity';
+import UserViewTabs from '@/components/ViewTabs/UserViewTabs';
 import type { User } from '@/services/Sys/User/data';
 import { deleteUser, getUserById } from '@/services/Sys/User/service';
 
@@ -17,6 +18,7 @@ const UserViewPage = () => {
       editUrl="/sys/user/edit"
       listUrl="/sys/user"
       columns={buildDescriptions(UserEntity, intl)}
+      detailsComponent={(user) => <UserViewTabs user={user} />}
     />
   );
 };

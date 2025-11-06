@@ -1,11 +1,9 @@
 import EntitySelectorFormItem from '@/components/Common/FormItem/EntitySelectorFormItem';
 import CabinetPeripheralSelector from '@/components/Selectors/CabinetPeripheralSelector';
-import HostSerialPortSelector from '@/components/Selectors/HostSerialPortSelector';
 import type {
   CabinetPeripheral,
   CabinetPeripheralUsage,
 } from '@/services/Device/Cabinet/data';
-import type { HostSerialPort } from '@/services/Device/Host/data';
 import type { EntityField } from '../types';
 
 export const CabinetUsageEntity: EntityField<CabinetPeripheralUsage>[] = [

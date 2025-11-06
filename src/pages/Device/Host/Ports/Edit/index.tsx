@@ -10,11 +10,6 @@ import {
   getHostPortById,
   updateHostPort,
 } from '@/services/Device/Host/service';
-import {
-  addSerialPort,
-  getSerialPortById,
-  updateSerialPort,
-} from '@/services/Device/SerialPort/service';
 
 interface FormProps {
   formRef?: React.RefObject<ProFormInstance<HostSerialPort>>;
