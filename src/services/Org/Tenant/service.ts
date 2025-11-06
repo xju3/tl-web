@@ -1,15 +1,7 @@
-import type {
-  CreateTenantCommand,
-  Tenant,
-  TenantFilter,
-  TenantProduct,
-  TenantProductFilter,
-  UpdateTenantCommand
-} from './data.d';
+import type {CreateTenantCommand, Tenant, TenantFilter, TenantProduct, UpdateTenantCommand} from './data.d';
 import {SortOrder} from "antd/es/table/interface";
 import {apiCreate, apiDelete, apiGetById, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
 import {ParamsType} from "@ant-design/pro-components";
-import {UUID} from "node:crypto";
 
 const tenant_base_url = `org/tenants`;
 

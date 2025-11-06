@@ -3,8 +3,7 @@ import { history, useIntl } from '@umijs/max';
 import { Card, Tabs } from 'antd';
 import React from 'react';
 import TenantProductAssociations from '@/components/Associations/Org/TenantProductAssociations';
-import type { Partner } from '@/services/Org/Partner/data';
-import { type Tenant, TenantProduct } from '@/services/Org/Tenant/data';
+import type { Tenant } from '@/services/Org/Tenant/data';
 
 type TenantViewTabsProps = {
   tenant: Tenant;

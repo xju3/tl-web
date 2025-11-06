@@ -1,10 +1,7 @@
-import type {
-  Partner,
-  PartnerFilter,
-} from './data';
+import type {Partner, PartnerFilter,} from './data';
 import {ParamsType} from "@ant-design/pro-components";
 import {SortOrder} from "antd/es/table/interface";
-import {apiCreate, apiDelete, apiGetById, apiGetList, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
+import {apiCreate, apiDelete, apiGetById, apiPutPage, apiUpdate} from "@/services/common";
 
 const partner_base_url = "org/partners"
 const product_base_url = `${partner_base_url}/products`;

@@ -5,7 +5,6 @@ import AssociationList from '@/components/Common/Association/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
 import { TenantProductEntity } from '@/components/Entities/Org/TenantProductEntity';
-import {} from '@/services/Org/Partner/service';
 import type { TenantProduct } from '@/services/Org/Tenant/data';
 import { getTenantProducts } from '@/services/Org/Tenant/service';
 
