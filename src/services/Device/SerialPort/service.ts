@@ -1,6 +1,6 @@
 import type {SerialPort, SerialPortFilter} from './data';
 import {ParamsType} from "@ant-design/pro-components";
-import {apiCreate, apiDelete, apiGetById, apiPutPage, apiUpdate} from "@/services/common";
+import {apiPost, apiDelete, apiGetById, apiPutPage, apiPut} from "@/services/common";
 import {SortOrder} from "antd/es/table/interface";
 
 const serial_port_base_url = "device/serial-ports"
@@ -17,12 +17,12 @@ export async function getSerialPortById(id: string) {
 
 // 3. 新增串口 (API 返回 body 为新串口 ID 字符串)
 export async function addSerialPort(data: SerialPort) {
-  return apiCreate<SerialPort>(serial_port_base_url, data);
+  return apiPost<SerialPort>(serial_port_base_url, data);
 }
 
 // 4. 更新串口 (API 返回 body 为 null)
 export async function updateSerialPort(data: SerialPort) {
-  return apiUpdate<SerialPort>(serial_port_base_url, data);
+  return apiPut<SerialPort>(serial_port_base_url, data);
 }
 
 // 5. 删除串口 (API 返回 body 为 null)

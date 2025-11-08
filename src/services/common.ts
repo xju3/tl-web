@@ -11,7 +11,7 @@ export async function apiDelete(url :string, id: string, options?: { [key: strin
   });
 }
 
-export async function apiUpdate<B>(url: string, body: B, options?: { [key: string]: any }) {
+export async function apiPut<B>(url: string, body: B, options?: { [key: string]: any }) {
   return request<API.ResponseEntity<string>>(`/api/${url}`, {
     method: 'PUT',
     headers: {
@@ -22,8 +22,8 @@ export async function apiUpdate<B>(url: string, body: B, options?: { [key: strin
   });
 }
 
-export async function apiCreate<B>(url: string, body: B, options?: { [key: string]: any }) {
-  return request<API.ResponseEntity<string>>(`/api/${url}`, {
+export async function apiPost<T>(url: string, body: any, options?: { [key: string]: any }) {
+  const resp = await request<API.ResponseEntity<T>>(`/api/${url}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -31,6 +31,7 @@ export async function apiCreate<B>(url: string, body: B, options?: { [key: strin
     data: body,
     ...(options || {}),
   });
+  return resp.body;
 }
 
 export async function apiGetById<T>(url: string, id: string, options?: { [key: string]: any }) {

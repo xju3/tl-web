@@ -4,7 +4,7 @@ import {
   MaterialVo,
   UpdateMaterialCommand,
 } from './data';
-import {apiCreate, apiDelete, apiGetById, apiPutPage, apiUpdate} from "@/services/common";
+import {apiPost, apiDelete, apiGetById, apiPutPage, apiPut} from "@/services/common";
 import {ParamsType} from "@ant-design/pro-components";
 import {SortOrder} from "antd/es/table/interface";
 
@@ -15,11 +15,11 @@ export async function getMaterial(id: string) {
 }
 
 export async function createMaterial(data: CreateMaterialCommand) {
-  return apiCreate(material_base_url, data);
+  return apiPost(material_base_url, data);
 }
 
 export async function updateMaterial(data: UpdateMaterialCommand) {
-  return apiUpdate(material_base_url, data);
+  return apiPut(material_base_url, data);
 }
 
 export async function deleteMaterial(id: string) {

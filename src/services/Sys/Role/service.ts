@@ -1,7 +1,7 @@
 import type {CreateRoleCommand, Role, RoleFilter, UpdateRoleCommand} from './data.d';
 import {ParamsType} from "@ant-design/pro-components";
 import {SortOrder} from "antd/es/table/interface";
-import {apiCreate, apiDelete, apiGetById, apiPutPage, apiUpdate} from "@/services/common";
+import {apiPost, apiDelete, apiGetById, apiPutPage, apiPut} from "@/services/common";
 
 const role_base_url = `sys/roles`;
 
@@ -18,11 +18,11 @@ export async function getRoleById(id: string) {
 }
 
 export async function addRole(body: CreateRoleCommand) {
-  return apiCreate(role_base_url, body);
+  return apiPost(role_base_url, body);
 }
 
 export async function updateRole(body: UpdateRoleCommand) {
-  return apiUpdate(role_base_url, body);
+  return apiPut(role_base_url, body);
 }
 
 export async function deleteRole(id: string) {

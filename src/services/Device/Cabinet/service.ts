@@ -1,6 +1,6 @@
 import type {Cabinet, CabinetCable, CabinetFilter, CabinetPeripheral, CabinetPeripheralUsage,} from './data';
 import {SortOrder} from "antd/es/table/interface";
-import {apiCreate, apiDelete, apiGetById, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
+import {apiPost, apiDelete, apiGetById, apiGetPage, apiPutPage, apiPut} from "@/services/common";
 import {ParamsType} from "@ant-design/pro-components";
 import PageParams = API.PageParams;
 
@@ -21,12 +21,12 @@ export async function getCabinetById(id: string) {
 
 // 3. 新增机柜 (API 返回 body 为新机柜 ID 字符串)
 export async function addCabinet(data: Cabinet) {
-  return apiCreate<Cabinet>(cabinet_base_url, data)
+  return apiPost<Cabinet>(cabinet_base_url, data)
 }
 
 // 4. 更新机柜 (API 返回 body 为 null)
 export async function updateCabinet(data: Cabinet) {
-  return apiUpdate<Cabinet>(cabinet_base_url, data)
+  return apiPut<Cabinet>(cabinet_base_url, data)
 }
 
 // 5. 删除机柜 (API 返回 body 为 null)
@@ -46,13 +46,13 @@ export async function getPeripheralsByCabinetId(
 // 7. 新增机柜外设绑定
 export async function addCabinetPeripheral(data: CabinetPeripheral) {
   const url = `${cabinet_base_url}/peripherals`;
-  return apiCreate(url, data);
+  return apiPost(url, data);
 }
 
 // 8. 更新机柜外设绑定
 export async function updateCabinetPeripheral(data: CabinetPeripheral) {
   const url = `${cabinet_base_url}/peripherals`;
-  return apiUpdate(url, data);
+  return apiPut(url, data);
 }
 
 // 9. 获取单个机柜外设绑定详情
@@ -82,13 +82,13 @@ export async function getCabinetCableById(id: string) {
 // 12. 新增机柜线缆
 export async function addCabinetCables(data: CabinetCable) {
   const url = `${cabinet_base_url}/cables`;
-  return apiCreate(url, data);
+  return apiPost(url, data);
 }
 
 // 13. 更新机柜线缆
 export async function updateCabinetCables(data: CabinetCable) {
   const url = `${cabinet_base_url}/cables`;
-  return apiUpdate(url, data);
+  return apiPut(url, data);
 }
 
 // 14. 删除机柜线缆
@@ -112,7 +112,7 @@ export async function getCabinetPeripheralUsageById(id: string) {
 // 17. Add cabinet peripheral usage
 export async function addCabinetPeripheralUsage(data: CabinetPeripheralUsage) {
   const url = `${cabinet_base_url}/usages`;
-  return apiCreate(url, data);
+  return apiPost(url, data);
 }
 
 // 18. Update cabinet peripheral usage
@@ -120,7 +120,7 @@ export async function updateCabinetPeripheralUsage(
   data: CabinetPeripheralUsage,
 ) {
   const url = `${cabinet_base_url}/usages`;
-  return apiUpdate(url, data);
+  return apiPut(url, data);
 }
 
 // 19. Delete cabinet peripheral usage

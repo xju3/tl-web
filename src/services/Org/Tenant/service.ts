@@ -1,6 +1,6 @@
 import type {CreateTenantCommand, Tenant, TenantFilter, TenantProduct, UpdateTenantCommand} from './data.d';
 import {SortOrder} from "antd/es/table/interface";
-import {apiCreate, apiDelete, apiGetById, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
+import {apiPost, apiDelete, apiGetById, apiGetPage, apiPutPage, apiPut} from "@/services/common";
 import {ParamsType} from "@ant-design/pro-components";
 
 const tenant_base_url = `org/tenants`;
@@ -26,11 +26,11 @@ export async function getTenantById(id: string) {
 }
 
 export async function createTenant(body: CreateTenantCommand) {
-  return apiCreate(tenant_base_url, body);
+  return apiPost(tenant_base_url, body);
 }
 
 export async function updateTenant(body: UpdateTenantCommand) {
-  return apiUpdate(tenant_base_url, body);
+  return apiPut(tenant_base_url, body);
 }
 
 export async function deleteTenant(id: string) {
@@ -39,12 +39,12 @@ export async function deleteTenant(id: string) {
 
 export async function  createTenantProduct(body: TenantProduct) {
   const url = `${tenant_base_url}/products`
-  return apiCreate(url, body)
+  return apiPost(url, body)
 }
 
 export async function  updateTenantProduct(body: TenantProduct) {
   const url = `${tenant_base_url}/products`
-  return apiUpdate(url, body)
+  return apiPut(url, body)
 }
 
 export async function  getTenantProductById(id: string) {

@@ -1,7 +1,7 @@
 import type {CreateEmployeeCommand, Employee, EmployeeFilter, UpdateEmployeeCommand} from './data.d';
 import {ParamsType} from "@ant-design/pro-components";
 import {SortOrder} from "antd/es/table/interface";
-import {apiCreate, apiDelete, apiGetById, apiPutPage, apiUpdate} from "@/services/common";
+import {apiPost, apiDelete, apiGetById, apiPutPage, apiPut} from "@/services/common";
 
 const employee_base_url = `org/employees`;
 
@@ -18,11 +18,11 @@ export async function getEmployeeById(id: string) {
 }
 
 export async function addEmployee(body: CreateEmployeeCommand) {
-  return apiCreate(employee_base_url, body);
+  return apiPost(employee_base_url, body);
 }
 
 export async function updateEmployee(body: UpdateEmployeeCommand) {
-  return apiUpdate(employee_base_url, body);
+  return apiPut(employee_base_url, body);
 }
 
 export async function deleteEmployee(id: string) {

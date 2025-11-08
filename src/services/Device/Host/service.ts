@@ -1,7 +1,7 @@
 import type {Host, HostFilter, HostSerialPort} from './data';
 import {ParamsType} from "@ant-design/pro-components";
 import {SortOrder} from "antd/es/table/interface";
-import {apiCreate, apiDelete, apiGetById, apiGetList, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
+import {apiPost, apiDelete, apiGetById, apiGetList, apiGetPage, apiPutPage, apiPut} from "@/services/common";
 
 const host_base_url = `device/hosts`;
 // 通用API响应结构 (成功时)
@@ -17,12 +17,12 @@ export async function getHostById(id: string) {
 
 // 3. 新增主机 (API 返回 body 为新主机 ID 字符串)
 export async function addHost(data: Host) {
-  return apiCreate(host_base_url, data);
+  return apiPost(host_base_url, data);
 }
 
 // 4. 更新主机 (API 返回 body 为 null)
 export async function updateHost(data: Host) {
-  return apiUpdate(host_base_url, data);
+  return apiPut(host_base_url, data);
 }
 
 // 5. 删除主机 (API 返回 body 为 null)
@@ -44,7 +44,7 @@ export async function getHostSerialPorts(
 export async function addHostPort(data: HostSerialPort) {
   console.log(data)
   const url = `${host_base_url}/${data.hostId}/ports`;
-  return apiCreate(url, data);
+  return apiPost(url, data);
 }
 
 // 8. Delete a serial port from a host
@@ -60,7 +60,7 @@ export async function updateHostPort(
 ) {
   console.log(data)
   const url = `${host_base_url}/${data.hostId}/ports`;
-  return apiUpdate(url, data);
+  return apiPut(url, data);
 }
 
 export async function getHostPortById( id: string) {

@@ -1,10 +1,16 @@
-import type {CreateUserCommand, User, UserFilter, UpdateUserCommand, UserRole} from './data.d';
+import type {CreateUserCommand, User, UserFilter, UpdateUserCommand, UserRole, LoginInfo} from './data.d';
 import {ParamsType} from "@ant-design/pro-components";
 import {SortOrder} from "antd/es/table/interface";
-import {apiCreate, apiDelete, apiGetById, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
+import {apiPost, apiDelete, apiGetById, apiGetPage, apiPutPage, apiPut} from "@/services/common";
 
 const user_base_url = `sys/users`;
 const user_role_url = `${user_base_url}/roles`
+
+export async function login (payload: API.LoginParams) {
+  const url = `sys/auth/login`
+  return apiPost<LoginInfo>(url, payload);
+}
+
 export async function getUsers(
   params: ParamsType,
   sorters: Record<string, SortOrder>,
@@ -18,11 +24,11 @@ export async function getUserById(id: string) {
 }
 
 export async function addUser(body: CreateUserCommand) {
-  return apiCreate(user_base_url, body);
+  return apiPost(user_base_url, body);
 }
 
 export async function updateUser(body: UpdateUserCommand) {
-  return apiUpdate(user_base_url, body);
+  return apiPut(user_base_url, body);
 }
 
 export async function deleteUser(id: string) {
@@ -30,11 +36,11 @@ export async function deleteUser(id: string) {
 }
 
 export async function createUserRole(body: UserRole) {
-  return apiCreate(user_role_url, body);
+  return apiPost(user_role_url, body);
 }
 
 export async function updateUserRole(body: UserRole) {
-  return apiUpdate(user_role_url, body);
+  return apiPut(user_role_url, body);
 }
 export async function getUserRoles(userId: string, params: ParamsType) {
   const url = `${user_base_url}/${userId}/roles`

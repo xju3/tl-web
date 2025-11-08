@@ -16,6 +16,25 @@ export type UserRole = API.BaseModel & {
 };
 
 
+export type LoginInfo = {
+  id?: string;
+  username?: string;
+  password?: string;
+  employeeId?: string;
+  employeeCode?: string;
+  employeeName?: string;
+  partnerId?: string;
+  departmentId?: string;
+  status?: number;
+  credentialsNonExpired?: boolean;
+  accountNonExpired?: boolean;
+  accountNonLocked?: boolean;
+  enabled?: boolean;
+  loginType?: string;
+  type?: string;
+}
+
+
 export type UserFilter = API.BaseFilter & {
   account?: string,
   status?: number,

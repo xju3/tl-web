@@ -1,7 +1,7 @@
 import type {Product, ProductFilter, ProductItem} from './data';
 import {ParamsType} from "@ant-design/pro-components";
 import {SortOrder} from "antd/es/table/interface";
-import {apiCreate, apiDelete, apiGetById, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
+import {apiPost, apiDelete, apiGetById, apiGetPage, apiPutPage, apiPut} from "@/services/common";
 
 const product_base_url = "device/products"
 // 1. 获取产品列表 (分页)
@@ -16,12 +16,12 @@ export async function getProductById(id: string) {
 
 // 3. 新增产品
 export async function addProduct(data: Product) {
-  return apiCreate<Product>(product_base_url, data);
+  return apiPost<Product>(product_base_url, data);
 }
 
 // 4. 更新产品
 export async function updateProduct(data: Product) {
-  return apiUpdate<Product>(product_base_url, data);
+  return apiPut<Product>(product_base_url, data);
 }
 
 // 5. 删除产品
@@ -42,7 +42,7 @@ export async function addProductItem(
   data: ProductItem,
 ) {
   const url = `${product_base_url}/${data.productId}/items`;
-  return apiCreate<ProductItem>(url, data);
+  return apiPost<ProductItem>(url, data);
 }
 
 // 8. 更新产品关联项
@@ -50,7 +50,7 @@ export async function updateProductItem(
   data: ProductItem,
 ) {
   const url = `${product_base_url}/${data.productId}/items`;
-  return apiUpdate<ProductItem>(url, data);
+  return apiPut<ProductItem>(url, data);
 }
 
 // 9. 删除产品关联项

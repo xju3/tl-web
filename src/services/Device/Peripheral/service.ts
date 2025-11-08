@@ -1,5 +1,5 @@
 import type {Instruction, Peripheral, PeripheralFilter} from './data';
-import {apiCreate, apiDelete, apiGetById, apiGetPage, apiPutPage, apiUpdate} from "@/services/common";
+import {apiPost, apiDelete, apiGetById, apiGetPage, apiPutPage, apiPut} from "@/services/common";
 import {ParamsType} from "@ant-design/pro-components";
 import {SortOrder} from "antd/es/table/interface";
 
@@ -17,12 +17,12 @@ export async function getPeripheralById(id: string) {
 
 // 3. 新增外设 (API 返回 body 为新外设 ID 字符串)
 export async function addPeripheral(data: Peripheral) {
-  return apiCreate<Peripheral>(peripheral_base_url, data);
+  return apiPost<Peripheral>(peripheral_base_url, data);
 }
 
 // 4. 更新外设 (API 返回 body 为 null)
 export async function updatePeripheral(data: Peripheral) {
-  return apiUpdate<Peripheral>(peripheral_base_url, data);
+  return apiPut<Peripheral>(peripheral_base_url, data);
 }
 
 // 5. 删除外设 (API 返回 body 为 null)
@@ -47,7 +47,7 @@ export async function addInstruction(
   data: Instruction,
 ) {
   const url = `${peripheral_base_url}/${data.peripheralId}/instructions`;
-  return apiCreate<Instruction>(url, data);
+  return apiPost<Instruction>(url, data);
 }
 
 // 9. 更新指令
@@ -55,7 +55,7 @@ export async function updateInstruction(
   data: Instruction,
 ) {
   const url = `${peripheral_base_url}/${data.peripheralId}/instructions`;
-  return apiUpdate<Instruction>(url, data);
+  return apiPut<Instruction>(url, data);
 }
 
 // 10. 删除指令
