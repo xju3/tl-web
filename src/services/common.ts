@@ -116,3 +116,9 @@ export async function apiGetList<T>(url :string,  options?: { [key: string]: any
 
   return resp.body;
 }
+
+export class ErrorBody {
+  code?: string;
+  message?: string;
+  extra?: any;
+}

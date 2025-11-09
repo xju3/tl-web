@@ -12,13 +12,6 @@
  */
 export default [
   {
-    path: '/welcome',
-    name: 'welcome',
-    icon: 'smile',
-    component: './Welcome',
-  },
-
-  {
     path: '/device',
     name: 'device',
     icon: 'cluster',
@@ -454,9 +447,15 @@ export default [
       {
         path: '/admin/sub-page',
         name: 'sub-page',
-        component: './Admin',
+        component: './Common/Admin',
       },
     ],
+  },
+  {
+    path: '/welcome',
+    name: 'welcome',
+    icon: 'smile',
+    component: './Common/Welcome',
   },
   {
     path: '/user',
@@ -465,23 +464,16 @@ export default [
       {
         name: 'login',
         path: '/user/login',
-        component: './user/login',
+        component: './Sys/User/login',
       },
     ],
-  },
-  {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-    component: './table-list',
-    hideInMenu: true,
   },
   {
     path: '/',
     redirect: '/welcome',
   },
   {
-    component: '404',
+    component: './common/404',
     layout: false,
     path: './*',
   },

@@ -20,7 +20,7 @@ import { Footer } from '@/components';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 import type { LoginInfo } from '@/services/Sys/User/data';
 import { login } from '@/services/Sys/User/service';
-import Settings from '../../../../config/defaultSettings';
+import Settings from '../../../../../config/defaultSettings';
 
 const useStyles = createStyles(({ token }) => {
   return {
@@ -105,7 +105,7 @@ const LoginMessage: React.FC<{
 };
 
 const Login: React.FC = () => {
-  const [userLoginState, setUserLoginState] = useState<LoginInfo>({});
+  const [loginStatus, setLoginStatus] = useState<any>({});
   const [type, setType] = useState<string>('account');
   const { styles } = useStyles();
   const { message } = App.useApp();
@@ -115,7 +115,10 @@ const Login: React.FC = () => {
     try {
       // 登录
       const msg = await login({ ...values, type });
-      if (msg.status && msg.status === 1) {
+      console.log(msg);
+      if (msg.accessToken) {
+        localStorage.setItem('token', msg.accessToken);
+        localStorage.setItem('user-info', JSON.stringify(msg));
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
           defaultMessage: '登录成功！',
@@ -125,17 +128,17 @@ const Login: React.FC = () => {
         window.location.href = urlParams.get('redirect') || '/';
         return;
       }
-      setUserLoginState(msg);
     } catch (error) {
       const defaultLoginFailureMessage = intl.formatMessage({
         id: 'pages.login.failure',
         defaultMessage: '登录失败，请重试！',
       });
       console.log(error);
+      setLoginStatus({ status: 'error', type });
       message.error(defaultLoginFailureMessage);
     }
   };
-  const { status, type: loginType } = userLoginState;
+  const { status, type: loginType } = loginStatus;
 
   return (
     <div className={styles.container}>
@@ -204,7 +207,7 @@ const Login: React.FC = () => {
             ]}
           />
 
-          {status === 0 && loginType === 'account' && (
+          {status === 'error' && loginType === 'account' && (
             <LoginMessage
               content={intl.formatMessage({
                 id: 'pages.login.accountLogin.errorMessage',
@@ -261,7 +264,7 @@ const Login: React.FC = () => {
             </>
           )}
 
-          {status === 1 && loginType === 'mobile' && (
+          {status === 'error' && loginType === 'mobile' && (
             <LoginMessage content="验证码错误" />
           )}
           {type === 'mobile' && (

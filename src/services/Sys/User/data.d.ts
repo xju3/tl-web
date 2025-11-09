@@ -18,20 +18,25 @@ export type UserRole = API.BaseModel & {
 
 export type LoginInfo = {
   id?: string;
-  username?: string;
-  password?: string;
-  employeeId?: string;
-  employeeCode?: string;
-  employeeName?: string;
-  partnerId?: string;
-  departmentId?: string;
-  status?: number;
-  credentialsNonExpired?: boolean;
-  accountNonExpired?: boolean;
-  accountNonLocked?: boolean;
-  enabled?: boolean;
-  loginType?: string;
-  type?: string;
+  accessToken?: string;
+  refreshToken?: string;
+  tokenType?: string;
+  customUserDetails: {
+    id:? string; // user id
+    username?: string; // user login account
+    password?: string; // encrypted password
+    employeeId?: string; // employee id
+    employeeCode?: string; // employee code
+    employeeName?: string; // employee name
+    partnerId?: string;  // partner or company id
+    departmentId?: string;
+    status?: number; // user status, 0: disabled, 1: available
+    credentialsNonExpired?: boolean;
+    accountNonExpired?: boolean;
+    accountNonLocked?: boolean;
+    enabled?: boolean;
+    loginType?: string;
+  }
 }
 
 
