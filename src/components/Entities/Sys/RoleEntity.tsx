@@ -47,4 +47,41 @@ export const RoleEntity: EntityField<Role>[] = [
       rules: [{ type: 'required' }],
     },
   },
+  {
+    intlId: 'common.available',
+    dataIndex: 'available',
+    valueType: 'text',
+    valueEnum: {
+      '0': 'Disabled',
+      '1': 'Available',
+    },
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
+  },
+  {
+    intlId: 'common.description',
+    dataIndex: 'description',
+    valueType: 'text',
+    sorter: {
+      multiple: 2,
+    },
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
+  },
 ];

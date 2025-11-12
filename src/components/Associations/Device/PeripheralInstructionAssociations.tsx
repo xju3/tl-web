@@ -6,7 +6,10 @@ import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
 import { PeripheralInstructionEntity } from '@/components/Entities/Device/PeripheralInstructionEntity';
 import type { Instruction } from '@/services/Device/Peripheral/data';
-import { getInstructions } from '@/services/Device/Peripheral/service';
+import {
+  deleteInstruction,
+  getInstructions,
+} from '@/services/Device/Peripheral/service';
 
 type InstructionsProps = {
   peripheralId: string;
@@ -27,10 +30,11 @@ const PeripheralInstructionAssociations: React.FC<InstructionsProps> = ({
       parentId={peripheralId}
       services={{
         getPage: getInstructions,
+        deleteItem: deleteInstruction,
       }}
       columns={getPeripheralInstructionColumns(intl)}
-      addRoute={`/device/peripherals/${peripheralId}/instructions/edit`}
-      editRoutePattern={`/device/peripherals/:parentId/instructions/edit/:id`}
+      addRoute={`/device/peripherals/${peripheralId}/instructions/create`}
+      editRoutePattern={`/device/peripherals/${peripheralId}/instructions/:id/edit`}
       pagination={true}
     />
   );

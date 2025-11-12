@@ -4,7 +4,6 @@ import type { IntlShape } from 'react-intl';
 import AssociationList from '@/components/Common/Association/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
-import { HostPortEntity } from '@/components/Entities/Device/HostPortEntity';
 import { HostSerialPortEntity } from '@/components/Entities/Device/HostSerialPortEntity';
 import type { HostSerialPort } from '@/services/Device/Host/data';
 import {
@@ -16,9 +15,7 @@ type PortsProps = {
   hostId: string;
 };
 
-const getHostPortColumns = (
-  intl: IntlShape,
-): CustomProColumns<HostSerialPort>[] =>
+const columns = (intl: IntlShape): CustomProColumns<HostSerialPort>[] =>
   buildTableColumns(HostSerialPortEntity, intl);
 
 const HostPortAssociations: React.FC<PortsProps> = ({ hostId }) => {
@@ -31,7 +28,7 @@ const HostPortAssociations: React.FC<PortsProps> = ({ hostId }) => {
         getPage: getHostSerialPorts,
         deleteItem: deleteHostPort,
       }}
-      columns={getHostPortColumns(intl)}
+      columns={columns(intl)}
       addRoute={`/device/hosts/${hostId}/ports/add`}
       editRoutePattern={`/device/hosts/${hostId}/ports/:id/edit`}
       pagination={true}

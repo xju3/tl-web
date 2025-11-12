@@ -127,7 +127,8 @@ const ListPage = <T extends { id: string }>({
   const initialValues = getInitialState();
 
   const saveStateAndNavigate = useCallback(
-    (pathname: string) => {
+    (pathname?: string) => {
+      if (!pathname) return;
       const state = {
         current: actionRef.current?.pageInfo?.current,
         pageSize: actionRef.current?.pageInfo?.pageSize,
@@ -170,13 +171,15 @@ const ListPage = <T extends { id: string }>({
     align: 'center',
     render: (_, record) => {
       const defaultActions = [
-        <a
-          key="edit"
-          onClick={() => saveStateAndNavigate(`${routes.edit}/${record.id}`)}
-        >
-          {intl.formatMessage({ id: 'common.actions.edit' })}
-        </a>,
-        view && (
+        routes.edit && (
+          <a
+            key="edit"
+            onClick={() => saveStateAndNavigate(`${routes.edit}/${record.id}`)}
+          >
+            {intl.formatMessage({ id: 'common.actions.edit' })}
+          </a>
+        ),
+        routes.view && (
           <a
             key="view"
             onClick={() => saveStateAndNavigate(`${routes.view}/${record.id}`)}
@@ -184,16 +187,20 @@ const ListPage = <T extends { id: string }>({
             {intl.formatMessage({ id: 'common.actions.view' })}
           </a>
         ),
-        <Popconfirm
-          key="delete"
-          title={intl.formatMessage({ id: 'common.delete.confirm' })}
-          onConfirm={async () => {
-            await services.deleteItem(record.id);
-            actionRef.current?.reload();
-          }}
-        >
-          <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
-        </Popconfirm>,
+        services.deleteItem && (
+          <Popconfirm
+            key="delete"
+            title={intl.formatMessage({ id: 'common.delete.confirm' })}
+            onConfirm={async () => {
+              if (services.deleteItem) {
+                await services.deleteItem(record.id);
+              }
+              actionRef.current?.reload();
+            }}
+          >
+            <a>{intl.formatMessage({ id: 'common.actions.delete' })}</a>
+          </Popconfirm>
+        ),
       ];
 
       if (extraActions) {
@@ -249,7 +256,7 @@ const ListPage = <T extends { id: string }>({
       ];
     }
     return [...processedColumns, actionColumn(saveStateAndNavigate)];
-  }, [columns, saveStateAndNavigate, intl]);
+  }, [columns, saveStateAndNavigate, intl, showIndexColumn]);
 
   return (
     <PageContainer>
@@ -267,14 +274,16 @@ const ListPage = <T extends { id: string }>({
           initialValues: initialValues,
         }}
         headerTitle={
-          <Button
-            key="add"
-            type="primary"
-            onClick={() => saveStateAndNavigate(routes.add)}
-          >
-            <PlusOutlined />
-            {intl.formatMessage({ id: 'common.actions.add' })}
-          </Button>
+          routes.add && (
+            <Button
+              key="add"
+              type="primary"
+              onClick={() => saveStateAndNavigate(routes.add)}
+            >
+              <PlusOutlined />
+              {intl.formatMessage({ id: 'common.actions.add' })}
+            </Button>
+          )
         }
         request={pageRequest}
         columns={tableColumns}

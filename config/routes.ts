@@ -12,13 +12,65 @@
  */
 export default [
   {
+    path: '/welcome',
+    name: 'welcome',
+    icon: 'smile',
+    component: './Common/Welcome',
+  },
+
+  {
+    name: 'instance',
+    path: '/inst',
+    icon: 'desktop',
+    routes: [
+      {
+        path: '/inst',
+        redirect: '/inst/cabinet',
+      },
+      {
+        name: 'cabinets',
+        path: '/inst/cabinet',
+        component: './Inst/Cabinet/List',
+      },
+      {
+        name: 'edit.cabinet',
+        path: '/inst/cabinets/edit/:id',
+        component: './Inst/Cabinet/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'view.cabinet',
+        path: '/inst/cabinets/view/:id',
+        component: './Inst/Cabinet/View',
+        hideInMenu: true,
+      },
+      {
+        name: 'hosts',
+        path: '/inst/host',
+        component: './Inst/Host/List',
+      },
+      {
+        name: 'edit.host',
+        path: '/inst/hosts/edit/:id',
+        component: './Inst/Host/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'view.host',
+        path: '/inst/hosts/view/:id',
+        component: './Inst/Host/View',
+        hideInMenu: true,
+      },
+    ],
+  },
+  {
     path: '/device',
     name: 'device',
     icon: 'cluster',
     routes: [
       {
         path: '/device',
-        redirect: '/device/host',
+        redirect: '/device/cabinets',
       },
       {
         name: 'cabinets',
@@ -154,13 +206,13 @@ export default [
       },
       {
         name: 'instruction.create',
-        path: '/device/peripherals/:peripheralId/instructions/edit',
+        path: '/device/peripherals/:peripheralId/instructions/create',
         component: './Device/Peripherals/Instructions/Edit',
         hideInMenu: true,
       },
       {
         name: 'instruction.edit',
-        path: '/device/peripherals/:peripheralId/instructions/edit/:instructionId',
+        path: '/device/peripherals/:peripheralId/instructions/:id/edit',
         component: './Device/Peripherals/Instructions/Edit',
         hideInMenu: true,
       },
@@ -236,42 +288,6 @@ export default [
         redirect: '/org/partner',
       },
       {
-        path: '/org/tenant',
-        name: 'tenant',
-        icon: 'user',
-        component: './Org/Tenant/List',
-      },
-      {
-        path: '/org/tenant/edit/:id',
-        name: 'edit.tenant',
-        component: './Org/Tenant/Edit',
-        hideInMenu: true,
-      },
-      {
-        path: '/org/tenant/add',
-        name: 'create.tenant',
-        component: './Org/Tenant/Edit',
-        hideInMenu: true,
-      },
-      {
-        path: '/org/tenant/view/:id',
-        name: 'view.tenant',
-        component: './Org/Tenant/View',
-        hideInMenu: true,
-      },
-      {
-        path: '/org/tenant/:tenantId/products/add',
-        name: 'tenant.create.product',
-        component: './Org/Tenant/Product/Edit',
-        hideInMenu: true,
-      },
-      {
-        path: '/org/partner/:tenant/products/:id/edit',
-        name: 'tenant.edit.product',
-        component: './Org/Tenant/Product/Edit',
-        hideInMenu: true,
-      },
-      {
         path: '/org/partner',
         name: 'partner',
         icon: 'user',
@@ -295,6 +311,19 @@ export default [
         component: './Org/Partner/View',
         hideInMenu: true,
       },
+      {
+        name: 'edit.partner.product',
+        path: '/org/partner/:partnerId/products/:id/edit',
+        component: './org/Partner/Product/Edit',
+        hideInMenu: true,
+      },
+      {
+        path: '/org/partner/:partnerId/products/create',
+        name: 'create.partner.product',
+        component: './Org/Partner/Product/Edit',
+        hideInMenu: true,
+      },
+
       {
         name: 'department',
         path: '/org/department',
@@ -451,12 +480,7 @@ export default [
       },
     ],
   },
-  {
-    path: '/welcome',
-    name: 'welcome',
-    icon: 'smile',
-    component: './Common/Welcome',
-  },
+
   {
     path: '/user',
     layout: false,

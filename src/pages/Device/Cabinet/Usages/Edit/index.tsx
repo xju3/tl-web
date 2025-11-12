@@ -3,7 +3,7 @@ import { useIntl, useParams } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
 import { buildFormFields } from '@/components/Entities/Builder';
-import { CabinetUsageEntity } from '@/components/Entities/Device/CabinetUsageEntity';
+import { CabinetPeripheralUsageEntity } from '@/components/Entities/Device/CabinetPeripheralUsageEntity';
 import type { CabinetPeripheralUsage } from '@/services/Device/Cabinet/data';
 import {
   addCabinetPeripheralUsage,
@@ -20,7 +20,7 @@ const UsageForm: React.FC<UsageFormProps> = ({ formRef }) => {
   return (
     <>
       {buildFormFields<CabinetPeripheralUsage>(
-        CabinetUsageEntity,
+        CabinetPeripheralUsageEntity,
         intl,
         formRef,
       )}

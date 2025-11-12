@@ -14,16 +14,16 @@ export interface ListPageProps<T extends { id: string }> {
       sorter: any,
       filter: any,
     ) => Promise<{ data: T[]; total: number; size: number; current: number }>;
-    deleteItem: (id: string) => Promise<any>;
+    deleteItem?: (id: string) => Promise<any>;
   };
   columns: (
     saveStateAndNavigate: (path: string, id?: string) => void,
     intl: any,
   ) => CustomProColumns<T>[];
   routes: {
-    add: string;
-    edit: string;
-    view: string;
+    add?: string;
+    edit?: string;
+    view?: string;
   };
   sessionKey: string;
   extraActions?: (

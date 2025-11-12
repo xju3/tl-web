@@ -1,7 +1,10 @@
 export type Role = API.BaseModel & {
   name?: string;
   code?: string;
+  description?: string;
+  available?: number;
 };
+
 export type RoleFilter = API.BaseFilter & {
   name?: string;
   code?: string;

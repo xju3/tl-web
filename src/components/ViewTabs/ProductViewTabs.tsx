@@ -16,7 +16,7 @@ const ProductViewTabs: React.FC<ProductViewTabsProps> = ({ product }) => {
   const tabItems = [
     {
       label: intl.formatMessage({
-        id: 'device.product.item.list.title',
+        id: 'device.product.item.list',
       }),
       key: 'items',
       children: <ProductItemAssociations productId={product.id} />,

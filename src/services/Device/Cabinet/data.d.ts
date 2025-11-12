@@ -5,6 +5,20 @@ export type Cabinet = API.BaseModel & {
   name: string;
   ip: string;
   parentId?: string;
+
+  lockerInstructions: any;
+  lockerVal: number;
+
+  scaleInstructions: any;
+  scaleVal: number;
+
+  lightInstructions: any;
+  lightVal: number;
+
+  ledInstructions: any;
+  ledVal: any;
+
+
   children: Cabinet[];
 };
 
@@ -18,6 +32,7 @@ export type CabinetPeripheral = API.BaseModel & {
   cableCode?: string;
   cableName?: string;
   quantity: number;
+  line: number;
 };
 
 // 分页查询参数类型
@@ -53,4 +68,6 @@ export type CabinetPeripheralUsage = API.BaseModel & {
   peripheralCode: string;
   peripheralName: string;
   sequence: number;
+  high: number,
+  low: number,
 };

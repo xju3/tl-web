@@ -2,14 +2,14 @@ import { useLocation } from '@@/exports';
 import { history, useIntl } from '@umijs/max';
 import { Card, Tabs } from 'antd';
 import React from 'react';
-import TenantProductAssociations from '@/components/Associations/Org/TenantProductAssociations';
-import type { Tenant } from '@/services/Org/Tenant/data';
+import PartnerProductAssociations from '@/components/Associations/Org/PartnerProductAssociations';
+import type { Partner } from '@/services/Org/Partner/data';
 
-type TenantViewTabsProps = {
-  tenant: Tenant;
+type PartnerViewTabsProps = {
+  partner: Partner;
 };
 
-const TenantProductViewTabs: React.FC<TenantViewTabsProps> = ({ tenant }) => {
+const PartnerViewTabs: React.FC<PartnerViewTabsProps> = ({ partner }) => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const intl = useIntl();
@@ -18,7 +18,7 @@ const TenantProductViewTabs: React.FC<TenantViewTabsProps> = ({ tenant }) => {
     {
       label: intl.formatMessage({ id: 'org.tenant.products' }),
       key: 'products',
-      children: <TenantProductAssociations tenantId={tenant.id} />,
+      children: <PartnerProductAssociations partnerId={partner.id} />,
     },
   ];
 
@@ -38,4 +38,4 @@ const TenantProductViewTabs: React.FC<TenantViewTabsProps> = ({ tenant }) => {
   );
 };
 
-export default TenantProductViewTabs;
+export default PartnerViewTabs;

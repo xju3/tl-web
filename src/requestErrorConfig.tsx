@@ -1,5 +1,6 @@
 ﻿import type { RequestOptions } from '@@/plugin-request/request';
 import type { RequestConfig } from '@umijs/max';
+import { history } from '@umijs/max';
 import { message, notification } from 'antd';
 import type { ErrorBody } from '@/services/common';
 
@@ -74,6 +75,12 @@ export const errorConfig: RequestConfig = {
         // Axios 的错误, 包含了更详细的错误信息
         const { status, data } = error.response;
         const errorBody: ErrorBody | undefined = data?.body;
+
+        if (status === 401) {
+          message.error('登录已过期，请重新登录');
+          history.push('/user/login');
+          return;
+        }
 
         if (errorBody && errorBody.code && errorBody.message) {
           notification.error({

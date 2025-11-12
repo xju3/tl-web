@@ -31,8 +31,6 @@ export async function deleteProduct(id: string) {
 
 // 6. 获取产品关联项列表
 export async function getProductItems(productId: string, params: ParamsType) {
-  console.log(params);
-  console.log(productId);
   const url = `${product_base_url}/${productId}/items`;
   return apiGetPage<ProductItem>(url, params);
 }

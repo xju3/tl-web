@@ -16,7 +16,7 @@ const ViewTabs: React.FC<TabsProps> = ({ user }) => {
   const tabItems = [
     {
       label: intl.formatMessage({ id: 'sys.user.roles' }),
-      key: 'ports',
+      key: 'roles',
       children: <UserRoleAssociations userId={user.id} />,
     },
   ];
@@ -24,7 +24,7 @@ const ViewTabs: React.FC<TabsProps> = ({ user }) => {
   return (
     <Card>
       <Tabs
-        activeKey={searchParams.get('tab') || 'ports'}
+        activeKey={searchParams.get('tab') || 'roles'}
         onChange={(key) => {
           history.push({
             pathname: location.pathname,

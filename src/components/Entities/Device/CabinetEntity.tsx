@@ -45,6 +45,74 @@ export const CabinetEntity: EntityField<Cabinet>[] = [
     },
   },
   {
+    intlId: 'common.locker',
+    dataIndex: 'lockerVal',
+    key: 'lkName',
+    sorter: {
+      multiple: 2,
+    },
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+      hidden: true,
+    },
+  },
+  {
+    intlId: 'common.scale',
+    dataIndex: 'scaleVal',
+    key: 'lcName',
+    sorter: {
+      multiple: 2,
+    },
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+      hidden: true,
+    },
+  },
+  {
+    intlId: 'common.led',
+    dataIndex: 'ledVal',
+    key: 'ldName',
+    sorter: {
+      multiple: 2,
+    },
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+      hidden: true,
+    },
+  },
+  {
+    intlId: 'common.lt',
+    dataIndex: 'lightVal',
+    key: 'ltName',
+    sorter: {
+      multiple: 2,
+    },
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+      hidden: true,
+    },
+  },
+  {
     intlId: 'device.cabinet.description',
     dataIndex: 'description',
     key: 'description',

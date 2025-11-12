@@ -29,6 +29,7 @@ const EditPage = <T extends { id?: string }>({
     if (id) {
       // Edit mode
       services.getItemById(id).then((res) => {
+        console.log(res);
         formRef.current?.setFieldsValue(res);
       });
     } else {
@@ -63,7 +64,7 @@ const EditPage = <T extends { id?: string }>({
         history.back();
       }
     } catch (error) {
-      // Error handling is managed by the global request error handler
+      console.log(error);
     }
   };
 

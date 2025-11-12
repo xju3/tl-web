@@ -2,9 +2,10 @@ import { useIntl } from '@umijs/max';
 import React from 'react';
 import type { IntlShape } from 'react-intl';
 import AssociationList from '@/components/Common/Association/List';
+import CustomProFormText from '@/components/Common/Form/CustomProFormText';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
-import { CabinetUsageEntity } from '@/components/Entities/Device/CabinetUsageEntity';
+import { CabinetPeripheralUsageEntity } from '@/components/Entities/Device/CabinetPeripheralUsageEntity';
 import type { CabinetPeripheralUsage } from '@/services/Device/Cabinet/data';
 import {
   deleteCabinetPeripheralUsage,
@@ -15,12 +16,12 @@ type UsagesProps = {
   cabinetId: string;
 };
 
-const getCabinetUsageColumns = (
-  intl: IntlShape,
-): CustomProColumns<CabinetPeripheralUsage>[] =>
-  buildTableColumns(CabinetUsageEntity, intl);
+const columns = (intl: IntlShape): CustomProColumns<CabinetPeripheralUsage>[] =>
+  buildTableColumns(CabinetPeripheralUsageEntity, intl);
 
-const CabinetUsageAssociations: React.FC<UsagesProps> = ({ cabinetId }) => {
+const CabinetPeripheralUsageAssociations: React.FC<UsagesProps> = ({
+  cabinetId,
+}) => {
   const intl = useIntl();
 
   return (
@@ -30,12 +31,12 @@ const CabinetUsageAssociations: React.FC<UsagesProps> = ({ cabinetId }) => {
         getPage: getCabinetPeripheralUsages,
         deleteItem: deleteCabinetPeripheralUsage,
       }}
-      columns={getCabinetUsageColumns(intl)}
+      columns={columns(intl)}
       addRoute={`/device/cabinets/${cabinetId}/usages/add`}
-      editRoutePattern={`/device/cabinets/:parentId/usages/:id/edit`}
+      editRoutePattern={`/device/cabinets/${cabinetId}/usages/:id/edit`}
       pagination={true}
     />
   );
 };
 
-export default CabinetUsageAssociations;
+export default CabinetPeripheralUsageAssociations;

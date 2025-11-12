@@ -72,12 +72,12 @@ export const UserEntity: EntityField<User>[] = [
       multiple: 1,
     },
     visibility: {
-      inTable: true,
       inSelector: true,
       inForm: true,
     },
     form: {
       fieldType: 'text',
+      hidden: true,
     },
   },
   {

@@ -3,7 +3,7 @@ import { Card, Tabs } from 'antd';
 import React from 'react';
 import CabinetCableAssociations from '@/components/Associations/Device/CabinetCableAssociations';
 import CabinetPeripheralAssociations from '@/components/Associations/Device/CabinetPeripheralAssociations';
-import CabinetUsageAssociations from '@/components/Associations/Device/CabinetUsageAssociations';
+import CabinetPeripheralUsageAssociations from '@/components/Associations/Device/CabinetPeripheralUsageAssociations';
 import type { Cabinet } from '@/services/Device/Cabinet/data';
 
 type CabinetViewTabsProps = {
@@ -34,17 +34,18 @@ const CabinetViewTabs: React.FC<CabinetViewTabsProps> = ({ cabinet }) => {
 
   if (cabinet?.parentId != null) {
     tabItems.push({
-      label: intl.formatMessage({ id: 'device.cabinet.usage.list' }),
+      label: intl.formatMessage({ id: 'device.cabinet.peripheral.usage' }),
       key: 'usages',
-      children: <CabinetUsageAssociations cabinetId={cabinet.id} />,
+      children: <CabinetPeripheralUsageAssociations cabinetId={cabinet.id} />,
     });
-    console.log('size: ', tabItems.length);
   }
 
+  // console.log("tabs:", tabItems.length);
+  const defaultActiveKey = cabinet?.parentId != null ? 'usages' : 'peripherals';
   return (
     <Card>
       <Tabs
-        activeKey={searchParams.get('tab') || 'peripherals' || 'usages'}
+        activeKey={searchParams.get('tab') || defaultActiveKey}
         onChange={(key) => {
           history.push({
             pathname: location.pathname,

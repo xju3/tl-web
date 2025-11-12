@@ -22,10 +22,8 @@ const PartnerEditPage = () => {
     getItemById: getPartner,
   };
 
-  const backRoute = '/org/partner';
-
   return (
-    <EditPage<Partner> services={services} backRoute={backRoute}>
+    <EditPage<Partner> services={services}>
       <PartnerForm />
     </EditPage>
   );

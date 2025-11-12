@@ -15,7 +15,7 @@ interface FormProps {
   formRef?: React.RefObject<ProFormInstance<Instruction>>;
 }
 
-const PeripheralInstructionForm: React.FC<FormProps> = ({ formRef }) => {
+const PageForm: React.FC<FormProps> = ({ formRef }) => {
   const intl = useIntl();
   return (
     <>
@@ -31,11 +31,9 @@ const PeripheralInstructionPage = () => {
     getItemById: getInstructionById,
   };
 
-  const backRoute = '/device/peripherals/view/:id';
-
   return (
-    <EditPage<Instruction> services={services} backRoute={backRoute}>
-      <PeripheralInstructionForm />
+    <EditPage<Instruction> services={services}>
+      <PageForm />
     </EditPage>
   );
 };

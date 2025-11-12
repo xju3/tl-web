@@ -1,7 +1,7 @@
 import type {CreateUserCommand, User, UserFilter, UpdateUserCommand, UserRole, LoginInfo} from './data.d';
 import {ParamsType} from "@ant-design/pro-components";
 import {SortOrder} from "antd/es/table/interface";
-import {apiPost, apiDelete, apiGetById, apiGetPage, apiPutPage, apiPut} from "@/services/common";
+import {apiPost, apiDelete, apiGetById, apiGetPage, apiPutPage, apiPut, apiGet} from "@/services/common";
 
 const user_base_url = `sys/users`;
 const user_role_url = `${user_base_url}/roles`
@@ -55,4 +55,8 @@ export async function getUserRoleById(id: string) {
 export async function deleteUserRoleById(userId: string, id: string) {
   const url = `${user_base_url}/${userId}/roles`
   return apiDelete(url, id);
+}
+
+export async function logout() {
+ return  apiGet("/sys/auth/logout")
 }

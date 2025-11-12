@@ -39,6 +39,10 @@ export const PeripheralEntity: EntityField<Peripheral>[] = [
   {
     intlId: 'device.peripheral.type',
     dataIndex: 'type',
+    valueEnum: {
+      '1': 'Load Cell',
+      '2': 'Locker',
+    },
     sorter: {
       multiple: 3,
     },
@@ -48,6 +52,29 @@ export const PeripheralEntity: EntityField<Peripheral>[] = [
     },
     form: {
       fieldType: 'text',
+    },
+  },
+  {
+    intlId: 'device.peripheral.comment',
+    dataIndex: 'comment',
+    sorter: {
+      multiple: 4,
+    },
+    visibility: {
+      inTable: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'textarea',
+    },
+  },
+  {
+    dataIndex: 'id',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
     },
   },
 ];

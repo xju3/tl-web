@@ -18,7 +18,6 @@ import { createStyles } from 'antd-style';
 import React, { useState } from 'react';
 import { Footer } from '@/components';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
-import type { LoginInfo } from '@/services/Sys/User/data';
 import { login } from '@/services/Sys/User/service';
 import Settings from '../../../../../config/defaultSettings';
 

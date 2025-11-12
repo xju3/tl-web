@@ -10,7 +10,7 @@ export type Employee = API.BaseModel & {
 export type EmployeeFilter = API.BaseFilter & {
   code?: string;
   givenName?: string;
-  lastName?: string;
+  familyName?: string;
   mobile?: string;
   gender?: number;
   email?: string;

@@ -3,7 +3,11 @@ import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
 import { CabinetEntity } from '@/components/Entities/Device/CabinetEntity';
 import type { Cabinet } from '@/services/Device/Cabinet/data';
-import { deleteCabinet, getCabinets } from '@/services/Device/Cabinet/service';
+import {
+  buildInstructions,
+  deleteCabinet,
+  getCabinets,
+} from '@/services/Device/Cabinet/service';
 
 const SESSION_KEY = 'cabinetListState';
 
@@ -31,6 +35,9 @@ const CabinetListPage = () => {
       }
     >
       {intl.formatMessage({ id: 'common.actions.add' })}
+    </a>,
+    <a key="instructions" onClick={() => buildInstructions(record.id)}>
+      {intl.formatMessage({ id: 'device.cabinet.instructions' })}
     </a>,
   ];
 

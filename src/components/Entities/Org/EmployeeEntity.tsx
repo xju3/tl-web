@@ -40,7 +40,7 @@ export const EmployeeEntity: EntityField<Employee>[] = [
   },
   {
     intlId: 'org.employee.last.name',
-    dataIndex: 'lastName',
+    dataIndex: 'familyName',
     valueType: 'text',
     sorter: {
       multiple: 1,

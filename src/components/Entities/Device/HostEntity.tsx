@@ -4,6 +4,12 @@ import type { EntityField } from '../types';
 export const HostEntity: EntityField<Host>[] = [
   {
     dataIndex: 'id',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
   },
   {
     dataIndex: 'code',
@@ -20,7 +26,7 @@ export const HostEntity: EntityField<Host>[] = [
         width: 'lg',
         placeholder: 'input code here, max length less than 8',
       },
-      rules: [{ type: 'required' }, { type: 'length', args: [2, 8] }],
+      rules: [{ type: 'required' }, { type: 'length', args: [2, 16] }],
     },
   },
   {
@@ -55,6 +61,15 @@ export const HostEntity: EntityField<Host>[] = [
         width: 'lg',
       },
       rules: [{ type: 'ip' }],
+    },
+  },
+  {
+    dataIndex: 'id',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
     },
   },
 ];

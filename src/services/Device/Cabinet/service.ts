@@ -14,6 +14,13 @@ export async function getCabinets(params: PageParams, sorter: Record<string, Sor
   return apiPutPage<Cabinet>(url, params, filter, sorter);
 }
 
+
+export async function buildInstructions(cabinetId: string) {
+  return apiPut<void>(`${cabinet_base_url}/${cabinetId}`);
+}
+
+
+
 // 2. 获取单个机柜详情
 export async function getCabinetById(id: string) {
   return apiGetById<Cabinet>(cabinet_base_url, id);

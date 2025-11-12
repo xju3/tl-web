@@ -23,6 +23,20 @@ export const PartnerEntity: EntityField<Partner>[] = [
     sorter: true,
     visibility: {
       inTable: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
+  },
+  {
+    intlId: 'org.partner.contact',
+    dataIndex: 'contact',
+    sorter: true,
+    visibility: {
+      inTable: true,
       inDescription: true,
       inSelector: true,
       inForm: true,
@@ -30,6 +44,47 @@ export const PartnerEntity: EntityField<Partner>[] = [
     form: {
       fieldType: 'text',
       rules: [{ type: 'required' }],
+    },
+  },
+  {
+    intlId: 'org.partner.email',
+    dataIndex: 'email',
+    sorter: true,
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
+  },
+  {
+    intlId: 'org.partner.phone',
+    dataIndex: 'phone',
+    sorter: true,
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+    },
+  },
+  {
+    intlId: 'org.partner.region',
+    dataIndex: 'region',
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
     },
   },
   {
@@ -45,18 +100,25 @@ export const PartnerEntity: EntityField<Partner>[] = [
     },
   },
   {
-    dataIndex: 'orgId',
-    valueType: 'select',
-    valueEnum: {
-      true: { text: 'Yes' },
-      false: { text: 'No' },
-    },
+    dataIndex: 'id',
+    valueType: 'text',
     visibility: {
-      inTable: true,
       inForm: true,
     },
     form: {
       fieldType: 'text',
+      hidden: true,
+    },
+  },
+  {
+    dataIndex: 'regionId',
+    valueType: 'text',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      hidden: true,
     },
   },
 ];
