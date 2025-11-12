@@ -29,7 +29,7 @@ export default [
       },
       {
         name: 'cabinets',
-        path: '/inst/cabinet',
+        path: '/inst/cabinets',
         component: './Inst/Cabinet/List',
       },
       {

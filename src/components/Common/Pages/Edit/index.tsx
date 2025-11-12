@@ -1,7 +1,7 @@
 import type { ProFormInstance } from '@ant-design/pro-components';
 import { PageContainer } from '@ant-design/pro-components';
-import { history, useParams } from '@umijs/max';
-import { message } from 'antd';
+import { history, useIntl, useParams } from '@umijs/max';
+import { Button, message } from 'antd';
 import React, { useEffect, useRef } from 'react';
 import { v4 as uuid_v4 } from 'uuid';
 import CustomProForm from '@/components/Common/Form/CustomProForm';
@@ -14,18 +14,21 @@ interface EditPageProps<T> {
   };
   children: React.ReactNode;
   backRoute?: string;
+  actionButtons?: React.ReactNode;
 }
 
 const EditPage = <T extends { id?: string }>({
   services,
   backRoute,
   children,
+  actionButtons,
 }: EditPageProps<T>) => {
+  const intl = useIntl();
   const params = useParams<Record<string, string>>();
   const { id } = params;
   const formRef = useRef<ProFormInstance<T>>(null);
 
-  useEffect(() => {
+  const loadData = () => {
     if (id) {
       // Edit mode
       services.getItemById(id).then((res) => {
@@ -45,8 +48,14 @@ const EditPage = <T extends { id?: string }>({
           [parentIdKey]: params[parentIdKey],
         } as any);
         console.log(formRef.current?.getFieldsValue());
+      } else {
+        formRef.current?.resetFields();
       }
     }
+  };
+
+  useEffect(() => {
+    loadData();
   }, [id, params, services]);
 
   const onFinish = async (values: T) => {
@@ -77,7 +86,27 @@ const EditPage = <T extends { id?: string }>({
 
   return (
     <PageContainer onBack={() => history.back()}>
-      <CustomProForm<T> ref={formRef} onFinish={onFinish}>
+      <CustomProForm<T>
+        ref={formRef}
+        onFinish={onFinish}
+        submitter={{
+          render: (props) => (
+            <>
+              <Button key="cancel" onClick={loadData}>
+                {intl.formatMessage({ id: 'common.actions.cancel' })}
+              </Button>
+              {actionButtons}
+              <Button
+                key="submit"
+                type="primary"
+                onClick={() => props.form?.submit()}
+              >
+                {intl.formatMessage({ id: 'common.actions.save' })}
+              </Button>
+            </>
+          ),
+        }}
+      >
         {childrenWithProps}
       </CustomProForm>
     </PageContainer>

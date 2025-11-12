@@ -11,6 +11,7 @@ export default {
   'common.actions.delete.success': 'Deleted successfully',
   'common.actions.saving': 'Saving',
   'common.actions.save': 'Save',
+  'common.actions.cancel': 'Cancel',
   'common.actions.save.success': 'Saved successfully',
   'common.name': 'Name',
   'common.details': 'Details',

@@ -22,15 +22,10 @@ export async function getInstCabinetById(id: string) {
 
 
 export async function createInstCabinet(data: InstCabinet) {
-  // return apiPut<InstCabinet>(inst_cabinet_base_url, data)
-}
-
-// 4. 更新机柜 (API 返回 body 为 null)
-export async function updateInstCabinetBasicInfo(data: InstCabinet) {
   return apiPut<InstCabinet>(inst_cabinet_base_url, data)
 }
 
-// 5. 删除机柜 (API 返回 body 为 null)
-export async function deleteInstCabinet(id: string) {
-  return apiDelete(inst_cabinet_base_url, id);
+// 4. 更新机柜 (API 返回 body 为 null)
+export async function updateInstCabinet(data: InstCabinet) {
+  return apiPut<InstCabinet>(inst_cabinet_base_url, data)
 }

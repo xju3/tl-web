@@ -7,7 +7,7 @@ import type { InstCabinet } from '@/services/Inst/Cabinet/data';
 import {
   createInstCabinet,
   getInstCabinetById,
-  updateInstCabinetBasicInfo,
+  updateInstCabinet,
 } from '@/services/Inst/Cabinet/service';
 
 const InstCabinetForm: React.FC = () => {
@@ -18,7 +18,7 @@ const InstCabinetForm: React.FC = () => {
 const InstCabinetEditPage = () => {
   const services = {
     addItem: createInstCabinet,
-    updateItem: updateInstCabinetBasicInfo,
+    updateItem: updateInstCabinet,
     getItemById: getInstCabinetById,
   };
 

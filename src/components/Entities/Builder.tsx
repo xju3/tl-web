@@ -21,6 +21,9 @@ export function buildTableColumns<T>(
     .map((def) => ({
       ...def,
       title: def.intlId ? intl.formatMessage({ id: def.intlId }) : '',
+      align: def.column?.align,
+      render: def.column?.render,
+      sorter: def.column?.sorter,
     }));
 }
 

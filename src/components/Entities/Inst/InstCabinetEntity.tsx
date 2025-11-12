@@ -1,3 +1,5 @@
+import { Badge } from 'antd';
+import React from 'react';
 import type { InstCabinet } from '@/services/Inst/Cabinet/data';
 import type { EntityField } from '../types';
 
@@ -47,17 +49,27 @@ export const InstCabinetEntity: EntityField<InstCabinet>[] = [
     intlId: 'common.locker',
     dataIndex: 'lockerVal',
     key: 'lkName',
-    sorter: {
-      multiple: 2,
-    },
     visibility: {
       inTable: true,
       inForm: true,
       inDescription: true,
     },
+    valueEnum: {
+      '0': 'locked',
+      '1': 'open',
+    },
+    column: {
+      align: 'center',
+      sorter: {
+        multiple: 2,
+      },
+      // render: (text: any) => {
+      //   const status = text === 1 ? 'success' : 'default';
+      //   return <Badge size= {"default"} status={status}/>;
+      // },
+    },
     form: {
       fieldType: 'text',
-      rules: [{ type: 'required' }],
       hidden: true,
     },
   },
@@ -75,7 +87,6 @@ export const InstCabinetEntity: EntityField<InstCabinet>[] = [
     },
     form: {
       fieldType: 'text',
-      rules: [{ type: 'required' }],
       hidden: true,
     },
   },
@@ -93,7 +104,6 @@ export const InstCabinetEntity: EntityField<InstCabinet>[] = [
     },
     form: {
       fieldType: 'text',
-      rules: [{ type: 'required' }],
       hidden: true,
     },
   },
@@ -111,7 +121,6 @@ export const InstCabinetEntity: EntityField<InstCabinet>[] = [
     },
     form: {
       fieldType: 'text',
-      rules: [{ type: 'required' }],
       hidden: true,
     },
   },

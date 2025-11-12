@@ -57,7 +57,6 @@ export const CabinetEntity: EntityField<Cabinet>[] = [
     },
     form: {
       fieldType: 'text',
-      rules: [{ type: 'required' }],
       hidden: true,
     },
   },
@@ -74,7 +73,6 @@ export const CabinetEntity: EntityField<Cabinet>[] = [
     },
     form: {
       fieldType: 'text',
-      rules: [{ type: 'required' }],
       hidden: true,
     },
   },
@@ -91,7 +89,6 @@ export const CabinetEntity: EntityField<Cabinet>[] = [
     },
     form: {
       fieldType: 'text',
-      rules: [{ type: 'required' }],
       hidden: true,
     },
   },
@@ -108,7 +105,6 @@ export const CabinetEntity: EntityField<Cabinet>[] = [
     },
     form: {
       fieldType: 'text',
-      rules: [{ type: 'required' }],
       hidden: true,
     },
   },
