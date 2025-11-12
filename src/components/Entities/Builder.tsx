@@ -2,6 +2,7 @@ import {
   type ProDescriptionsItemProps,
   ProFormDigit,
   type ProFormInstance,
+  ProFormSelect,
   ProFormText,
   ProFormTextArea,
 } from '@ant-design/pro-components';
@@ -18,13 +19,27 @@ export function buildTableColumns<T>(
 ): CustomProColumns<T>[] {
   return definitions
     .filter((def) => def.visibility?.inTable)
-    .map((def) => ({
-      ...def,
-      title: def.intlId ? intl.formatMessage({ id: def.intlId }) : '',
-      align: def.column?.align,
-      render: def.column?.render,
-      sorter: def.column?.sorter,
-    }));
+    .map((def) => {
+      const { valueEnum, ...rest } = def;
+      const processedValueEnum =
+        valueEnum &&
+        Object.entries(valueEnum).reduce(
+          (acc, [key, value]) => {
+            acc[key] = intl.formatMessage({ id: value });
+            return acc;
+          },
+          {} as Record<string, string>,
+        );
+
+      return {
+        ...rest,
+        valueEnum: processedValueEnum,
+        title: def.intlId ? intl.formatMessage({ id: def.intlId }) : '',
+        align: def.column?.align,
+        render: def.column?.render,
+        sorter: def.column?.sorter,
+      };
+    });
 }
 
 export function buildDescriptions<T>(
@@ -105,6 +120,22 @@ export function buildFormFields<T>(
         hidden: def.form?.hidden,
         ...def.form?.formItemProps,
       };
+
+      if (def.valueEnum) {
+        const options = Object.entries(def.valueEnum).map(([value, label]) => ({
+          value,
+          label: intl.formatMessage({ id: label }),
+        }));
+        return (
+          <ProFormSelect
+            key={key}
+            width="lg"
+            {...commonProps}
+            options={options}
+            transform={(value) => Number(value)}
+          />
+        );
+      }
 
       switch (def.form?.fieldType) {
         case 'textarea':

@@ -55,22 +55,17 @@ export const InstCabinetEntity: EntityField<InstCabinet>[] = [
       inDescription: true,
     },
     valueEnum: {
-      '0': 'locked',
-      '1': 'open',
+      '0': 'common.locked',
+      '1': 'common.open',
     },
     column: {
       align: 'center',
       sorter: {
         multiple: 2,
       },
-      // render: (text: any) => {
-      //   const status = text === 1 ? 'success' : 'default';
-      //   return <Badge size= {"default"} status={status}/>;
-      // },
     },
     form: {
-      fieldType: 'text',
-      hidden: true,
+      fieldType: 'text', // This will be overridden by the presence of valueEnum
     },
   },
   {

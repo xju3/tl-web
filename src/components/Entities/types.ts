@@ -54,5 +54,6 @@ export type EntityField<T> = ProColumnType<T> &
     visibility?: PageVisibility;
     form?: FormFieldConfig;
     column?: ColumnConfig<T>; // Renamed from tableColumnConfig
+    valueEnum?: Record<string, string>;
     enable?: boolean;
   };

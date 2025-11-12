@@ -24,8 +24,19 @@ const InstCabinetEditPage = () => {
 
   const backRoute = '/inst/cabinets';
 
+  const transformData = (data: InstCabinet) => {
+    return {
+      ...data,
+      lockerVal: String(data.lockerVal),
+    };
+  };
+
   return (
-    <EditPage<InstCabinet> services={services} backRoute={backRoute}>
+    <EditPage<InstCabinet>
+      services={services}
+      backRoute={backRoute}
+      transformData={transformData}
+    >
       <InstCabinetForm />
     </EditPage>
   );

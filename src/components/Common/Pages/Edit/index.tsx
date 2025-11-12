@@ -15,6 +15,7 @@ interface EditPageProps<T> {
   children: React.ReactNode;
   backRoute?: string;
   actionButtons?: React.ReactNode;
+  transformData?: (data: T) => T;
 }
 
 const EditPage = <T extends { id?: string }>({
@@ -22,6 +23,7 @@ const EditPage = <T extends { id?: string }>({
   backRoute,
   children,
   actionButtons,
+  transformData,
 }: EditPageProps<T>) => {
   const intl = useIntl();
   const params = useParams<Record<string, string>>();
@@ -32,8 +34,9 @@ const EditPage = <T extends { id?: string }>({
     if (id) {
       // Edit mode
       services.getItemById(id).then((res) => {
-        console.log(res);
-        formRef.current?.setFieldsValue(res);
+        const transformedRes = transformData ? transformData(res) : res;
+        console.log(transformedRes);
+        formRef.current?.setFieldsValue(transformedRes);
       });
     } else {
       // Add child mode
