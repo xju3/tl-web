@@ -67,7 +67,9 @@ const ViewPage = <T extends Record<string, any>>({
                 })}
                 onConfirm={async () => {
                   if (id) {
-                    await deleteById(id);
+                    if (deleteById) {
+                      await deleteById(id);
+                    }
                     history.push(listUrl);
                   }
                 }}

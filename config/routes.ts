@@ -61,6 +61,42 @@ export default [
         component: './Inst/Host/View',
         hideInMenu: true,
       },
+
+      {
+        name: 'cabinet-groups',
+        path: '/inst/cabinet-groups',
+        component: './Inst/Group/List',
+      },
+      {
+        name: 'create.cabinet-group',
+        path: '/inst/cabinet-group/create',
+        component: './Inst/Group/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'edit.cabinet-group',
+        path: '/inst/cabinet-group/edit/:id',
+        component: './Inst/Group/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'view.cabinet-group',
+        path: '/inst/cabinet-group/view/:id',
+        component: './Inst/Group/View',
+        hideInMenu: true,
+      },
+      {
+        name: 'cabinet.group.items.create',
+        path: '/inst/cabinet-group/:instCabinetGroupId/items/create',
+        component: './Inst/Group/Items/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'cabinet.group.items.edit',
+        path: '/inst/cabinet-group/:instCabinetGroupId/items/:id/edit',
+        component: './Inst/Group/Items/Edit',
+        hideInMenu: true,
+      },
     ],
   },
   {

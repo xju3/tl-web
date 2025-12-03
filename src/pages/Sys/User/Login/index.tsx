@@ -170,7 +170,7 @@ const Login: React.FC = () => {
           initialValues={{
             autoLogin: true,
             username: 'admin',
-            password: 'ant.design',
+            password: '123456',
           }}
           actions={[
             <FormattedMessage

@@ -13,13 +13,10 @@ export async function getInstCabinets(params: PageParams, sorter: Record<string,
   return apiPutPage<InstCabinet>(url, params, filter, sorter);
 }
 
-
-
 // 2. 获取单个机柜详情
 export async function getInstCabinetById(id: string) {
   return apiGetById<InstCabinet>(inst_cabinet_base_url, id);
 }
-
 
 export async function createInstCabinet(data: InstCabinet) {
   return apiPut<InstCabinet>(inst_cabinet_base_url, data)

@@ -2,6 +2,7 @@ import common from './en-US/common';
 import component from './en-US/component';
 import device from './en-US/device';
 import globalHeader from './en-US/globalHeader';
+import inst from './en-US/inst';
 import menu from './en-US/menu';
 import org from './en-US/org';
 import pages from './en-US/pages';
@@ -15,6 +16,7 @@ export default {
   ...device,
   ...org,
   ...sys,
+  ...inst,
   'navBar.lang': 'Languages',
   'layout.user.link.help': 'Help',
   'layout.user.link.privacy': 'Privacy',

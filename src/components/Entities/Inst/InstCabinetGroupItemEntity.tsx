@@ -1,10 +1,16 @@
-import type { Peripheral } from '@/services/Device/Peripheral/data';
+import type { InstCabinetGroupItem } from '@/services/Inst/Group/data';
 import type { EntityField } from '../types';
 
-export const PeripheralEntity: EntityField<Peripheral>[] = [
+export const InstCabinetGroupItemEntity: EntityField<InstCabinetGroupItem>[] = [
   {
-    intlId: 'device.peripheral.code',
-    dataIndex: 'code',
+    dataIndex: 'id',
+    visibility: { inForm: true },
+    form: { hidden: true },
+  },
+  {
+    intlId: 'device.cabinet.code',
+    dataIndex: 'instCabinetCode',
+    key: 'instCabinetCode',
     sorter: {
       multiple: 1,
     },
@@ -14,16 +20,36 @@ export const PeripheralEntity: EntityField<Peripheral>[] = [
       inSelector: true,
       inForm: true,
     },
+    width: 160,
     form: {
       fieldType: 'text',
       rules: [{ type: 'required' }],
     },
   },
   {
-    intlId: 'device.peripheral.name',
-    dataIndex: 'name',
+    intlId: 'device.cabinet.name',
+    dataIndex: 'instCabinetName',
+    key: 'instCabinetName',
     sorter: {
-      multiple: 2,
+      multiple: 3,
+    },
+    visibility: {
+      inTable: true,
+      inSelector: true,
+      inForm: true,
+    },
+    width: 160,
+    form: {
+      fieldType: 'text',
+      rules: [{ type: 'required' }],
+    },
+  },
+  {
+    intlId: 'common.status',
+    dataIndex: 'status',
+    key: 'status',
+    sorter: {
+      multiple: 3,
     },
     visibility: {
       inTable: true,
@@ -31,45 +57,13 @@ export const PeripheralEntity: EntityField<Peripheral>[] = [
       inSelector: true,
       inForm: true,
     },
-    form: {
-      fieldType: 'text',
-      rules: [{ type: 'required' }],
-    },
-  },
-  {
-    intlId: 'device.peripheral.type',
-    dataIndex: 'type',
-    valueEnum: {
-      '1': 'device.peripheral.load-cell',
-      '2': 'device.peripheral.locker',
-    },
-    sorter: {
-      multiple: 3,
-    },
-    visibility: {
-      inTable: true,
-      inForm: true,
-    },
+    width: 160,
     form: {
       fieldType: 'text',
     },
   },
   {
-    intlId: 'device.peripheral.comment',
-    dataIndex: 'comment',
-    sorter: {
-      multiple: 4,
-    },
-    visibility: {
-      inTable: true,
-      inForm: true,
-    },
-    form: {
-      fieldType: 'textarea',
-    },
-  },
-  {
-    dataIndex: 'id',
+    dataIndex: 'instCabinetGroupId',
     visibility: {
       inForm: true,
     },

@@ -2,6 +2,7 @@ import common from './zh-CN/common';
 import component from './zh-CN/component';
 import device from './zh-CN/device';
 import globalHeader from './zh-CN/globalHeader';
+import inst from './zh-CN/inst';
 import menu from './zh-CN/menu';
 import org from './zh-CN/org';
 import pages from './zh-CN/pages';
@@ -14,6 +15,7 @@ export default {
   ...sys,
   ...device,
   ...org,
+  ...inst,
   ...common,
   'navBar.lang': '语言',
   'layout.user.link.help': '帮助',

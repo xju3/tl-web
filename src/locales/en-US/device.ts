@@ -4,9 +4,9 @@ export default {
   'device.cabinet.add': 'Add Cabinet',
   'device.cabinet.edit': 'Edit Cabinet',
   'device.cabinet.view': 'View Cabinet',
+  'device.cabinet.code': 'Cabinet Code',
   'device.cabinet.name': 'Cabinet Name',
   'device.cabinet.instructions': 'Instructions',
-  'device.cabinet.code': 'Cabinet Code',
   'device.cabinet.description': 'Cabinet Description',
   'device.cabinet.view.title': 'Cabinet Details',
   'device.cabinet.delete.confirm':
@@ -24,6 +24,8 @@ export default {
   'device.cabinet.cable.name': 'Cable Name',
   'device.cabinet.cable.description': 'Description',
   'device.peripheral.comment': 'Comment',
+  'device.peripheral.locker': 'Locker',
+  'device.peripheral.load-cell': 'Load Cell',
   'device.cabinet.cable.code.required': 'Please enter cable code',
   'device.cabinet.cable.name.required': 'Please enter cable name',
   'device.cabinet.peripheral.usage': 'Cabinet Peripheral Usag',
@@ -99,4 +101,7 @@ export default {
   'device.serial-port.parity': 'Parity',
   'device.serial-port.delete.confirm':
     'Are you sure you want to delete this serial port？',
+
+  'inst.cabinet.group.code': 'Group Code',
+  'inst.cabinet.group.name': 'Group Name',
 };

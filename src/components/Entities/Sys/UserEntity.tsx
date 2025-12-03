@@ -93,8 +93,8 @@ export const UserEntity: EntityField<User>[] = [
       inForm: true,
     },
     valueEnum: {
-      '0': 'Disabled',
-      '1': 'Available',
+      '0': 'common.disabled',
+      '1': 'common.available',
     },
     form: {
       fieldType: 'digit',

@@ -1,5 +1,3 @@
-import { Badge } from 'antd';
-import React from 'react';
 import type { InstCabinet } from '@/services/Inst/Cabinet/data';
 import type { EntityField } from '../types';
 

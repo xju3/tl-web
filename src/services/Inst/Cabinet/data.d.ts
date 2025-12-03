@@ -17,9 +17,11 @@ export type InstCabinet = API.BaseModel & {
   ledInstructions: any;
   ledVal: any;
 
-
   children: InstCabinet[];
 };
+
+
+
 
 
 // 分页查询参数类型

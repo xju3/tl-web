@@ -1,7 +1,7 @@
 import type { ProFormInstance } from '@ant-design/pro-components';
 import { PageContainer } from '@ant-design/pro-components';
 import { history, useIntl, useParams } from '@umijs/max';
-import { Button, message } from 'antd';
+import { Button, message, Space } from 'antd';
 import React, { useEffect, useRef } from 'react';
 import { v4 as uuid_v4 } from 'uuid';
 import CustomProForm from '@/components/Common/Form/CustomProForm';
@@ -94,11 +94,10 @@ const EditPage = <T extends { id?: string }>({
         onFinish={onFinish}
         submitter={{
           render: (props) => (
-            <>
+            <Space size="small">
               <Button key="cancel" onClick={loadData}>
                 {intl.formatMessage({ id: 'common.actions.cancel' })}
               </Button>
-              {actionButtons}
               <Button
                 key="submit"
                 type="primary"
@@ -106,7 +105,8 @@ const EditPage = <T extends { id?: string }>({
               >
                 {intl.formatMessage({ id: 'common.actions.save' })}
               </Button>
-            </>
+              {actionButtons}
+            </Space>
           ),
         }}
       >

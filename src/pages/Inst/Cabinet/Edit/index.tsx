@@ -27,7 +27,7 @@ const InstCabinetEditPage = () => {
   const transformData = (data: InstCabinet) => {
     return {
       ...data,
-      lockerVal: String(data.lockerVal),
+      lockerVal: data.lockerVal,
     };
   };
 
