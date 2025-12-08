@@ -1,16 +1,19 @@
 import ListPage from '@/components/Common/Pages/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
-import { HostEntity } from '@/components/Entities/Device/HostEntity';
-import type { Host } from '@/services/Device/Host/data';
-import { deleteHost, getHosts } from '@/services/Device/Host/service';
+import { WorkshopEntity } from '@/components/Entities/Manufacture/WorkshopEntity';
+import type { Workshop } from '@/services/Manufacture/Workshop/data';
+import {
+  deleteWorkshop,
+  getWorkshops,
+} from '@/services/Manufacture/Workshop/service';
 
-const SESSION_KEY = 'hostListState';
+const SESSION_KEY = 'materialListState';
 
-const HostListPage = () => {
+const WorkshopListPage = () => {
   const services = {
-    getList: getHosts,
-    deleteItem: deleteHost,
+    getList: getWorkshops,
+    deleteItem: deleteWorkshop,
   };
 
   const routes = {
@@ -22,10 +25,10 @@ const HostListPage = () => {
   const columns = (
     saveStateAndNavigate: (path: string, id?: string) => void,
     intl: any,
-  ): CustomProColumns<Host>[] => buildTableColumns(HostEntity, intl);
+  ): CustomProColumns<Workshop>[] => buildTableColumns(WorkshopEntity, intl);
 
   return (
-    <ListPage<Host>
+    <ListPage<Workshop>
       services={services}
       columns={columns}
       routes={routes}
@@ -34,4 +37,4 @@ const HostListPage = () => {
   );
 };
 
-export default HostListPage;
+export default WorkshopListPage;

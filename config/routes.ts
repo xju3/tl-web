@@ -17,11 +17,10 @@ export default [
     icon: 'smile',
     component: './Common/Welcome',
   },
-
   {
     name: 'instance',
     path: '/inst',
-    icon: 'desktop',
+    icon: 'laptop',
     routes: [
       {
         path: '/inst',
@@ -100,9 +99,135 @@ export default [
     ],
   },
   {
+    path: '/manufacture',
+    name: 'manufacture',
+    icon: 'product',
+    routes: [
+      {
+        path: '/manufacture',
+        redirect: '/manufacture/material',
+      },
+      {
+        name: 'materials',
+        icon: 'hdd',
+        path: '/manufacture/materials',
+        component: './Manufacture/Material/List',
+      },
+      {
+        name: 'products',
+        icon: 'hdd',
+        path: '/manufacture/products',
+        component: './Manufacture/Product/List',
+      },
+      {
+        name: 'workgroups',
+        path: '/manufacture/workgroups',
+        component: './Manufacture/Workgroup/List',
+      },
+      {
+        name: 'processes',
+        icon: 'hdd',
+        path: '/manufacture/processes',
+        component: './Manufacture/Process/List',
+      },
+      {
+        name: 'workshops',
+        icon: 'hdd',
+        path: '/manufacture/workshops',
+        component: './Manufacture/Workshop/List',
+      },
+    ],
+  },
+  {
+    path: '/strategies',
+    name: 'strategies',
+    icon: 'scissor',
+    routes: [
+      {
+        path: '/strategies',
+        redirect: '/strategies/storages',
+      },
+      {
+        name: 'storages',
+        icon: 'hdd',
+        path: '/strategies/storages',
+        component: './Strategy/Storage/List',
+      },
+      {
+        name: 'consumptions',
+        icon: 'hdd',
+        path: '/strategies/consumptions',
+        component: './Strategy/Consumption/List',
+      },
+    ],
+  },
+  {
+    path: '/inventory',
+    name: 'inventory',
+    icon: 'gateway',
+    routes: [
+      {
+        path: '/inventory',
+        redirect: '/inventory/summary',
+      },
+      {
+        name: 'summary',
+        path: '/inventory/summary',
+        component: './Inventory/Summary/List',
+      },
+      {
+        name: 'purchase',
+        path: '/inventory/purchase',
+        component: './Inventory/Purchase/List',
+      },
+      {
+        name: 'issue',
+        path: '/inventory/issue',
+        component: './Inventory/issue/List',
+      },
+      {
+        name: 'transfer',
+        path: '/inventory/transfer',
+        component: './Inventory/Transfer/List',
+      },
+      {
+        name: 'loan',
+        path: '/inventory/loan',
+        component: './Inventory/Loan/List',
+      },
+      {
+        name: 'scrap',
+        path: '/inventory/scrap',
+        component: './Inventory/Scrap/List',
+      },
+      {
+        name: 'repair',
+        path: '/inventory/repair',
+        component: './Inventory/Repair/List',
+      },
+    ],
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    icon: 'setting',
+    routes: [
+      {
+        path: '/settings',
+        redirect: '/settings/attributes',
+      },
+      {
+        name: 'attributes',
+        icon: 'hdd',
+        path: '/settings/attributes',
+        component: './Setting/Attribute/List',
+      },
+    ],
+  },
+  {
     path: '/device',
     name: 'device',
-    icon: 'cluster',
+    icon: 'slack',
     routes: [
       {
         path: '/device',
@@ -317,7 +442,7 @@ export default [
   {
     path: '/org',
     name: 'org',
-    icon: 'appstore',
+    icon: 'team',
     routes: [
       {
         path: '/org',
@@ -411,7 +536,7 @@ export default [
   {
     path: '/sys',
     name: 'sys',
-    icon: 'setting',
+    icon: 'safety',
     routes: [
       {
         name: 'menu',
@@ -497,7 +622,6 @@ export default [
       },
     ],
   },
-
   {
     path: '/admin',
     name: 'admin',
@@ -516,7 +640,6 @@ export default [
       },
     ],
   },
-
   {
     path: '/user',
     layout: false,
