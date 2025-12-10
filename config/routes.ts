@@ -108,6 +108,7 @@ export default [
         redirect: '/manufacture/material',
       },
       {
+        name: 'materials',
         path: '/manufacture/materials',
         component: './Manufacture/Material/List',
       },
