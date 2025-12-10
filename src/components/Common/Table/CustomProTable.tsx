@@ -1,4 +1,8 @@
-import { type ProColumns, ProTable } from '@ant-design/pro-components';
+import {
+  type ActionType,
+  type ProColumns,
+  ProTable,
+} from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import React, { useMemo } from 'react';
 import type { CustomProTableProps } from '@/components/Common/Pages/List/typing'; // 导入你的 Props
@@ -6,11 +10,14 @@ import type { CustomProTableProps } from '@/components/Common/Pages/List/typing'
 // 序号列的定义
 const indexColumn = (intl: any): ProColumns<any> => ({
   title: intl.formatMessage({ id: 'common.index' }),
-  dataIndex: 'index',
-  valueType: 'indexBorder',
   width: 48,
   hideInSearch: true,
   align: 'center',
+  render: (dom, entity, index, action) => {
+    // console.log(entity)
+    const { current = 1, pageSize = 10 } = action?.pageInfo || {};
+    return (current - 1) * pageSize + index + 1;
+  },
 });
 
 export function CustomProTable<T extends Record<string, any>>(

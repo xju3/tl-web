@@ -114,7 +114,6 @@ const ListPage = <T extends { id: string }>({
     if (savedState) {
       try {
         const parsedState = JSON.parse(savedState);
-        sessionStorage.removeItem(sessionKey);
         return parsedState;
       } catch (e) {
         console.error('Failed to parse saved state', e);
@@ -138,6 +137,15 @@ const ListPage = <T extends { id: string }>({
     },
     [sessionKey],
   );
+
+  const handlePaginationChange = (page: number, pageSize: number) => {
+    const state = {
+      current: page,
+      pageSize: pageSize,
+      ...formRef.current?.getFieldsValue(),
+    };
+    sessionStorage.setItem(sessionKey, JSON.stringify(state));
+  };
 
   const pageRequest = async (
     params: ParamsType,
@@ -212,15 +220,6 @@ const ListPage = <T extends { id: string }>({
     },
   });
 
-  const indexColumn = (): CustomProColumns<T> => ({
-    title: intl.formatMessage({ id: 'common.index' }),
-    dataIndex: 'index',
-    valueType: 'indexBorder',
-    width: 60,
-    align: 'center',
-    hideInSearch: true,
-  });
-
   const tableColumns: CustomProColumns<T>[] = useMemo(() => {
     const processedColumns = columns(saveStateAndNavigate, intl).map(
       (col: CustomProColumns<T>) => {
@@ -247,15 +246,8 @@ const ListPage = <T extends { id: string }>({
       },
     );
 
-    if (showIndexColumn) {
-      return [
-        indexColumn(),
-        ...processedColumns,
-        actionColumn(saveStateAndNavigate),
-      ];
-    }
     return [...processedColumns, actionColumn(saveStateAndNavigate)];
-  }, [columns, saveStateAndNavigate, intl, showIndexColumn]);
+  }, [columns, saveStateAndNavigate, intl]);
 
   return (
     <PageContainer>
@@ -287,10 +279,11 @@ const ListPage = <T extends { id: string }>({
         }
         request={pageRequest}
         columns={tableColumns}
+        showIndexColumn={showIndexColumn}
         pagination={{
           defaultCurrent: (initialValues as any).current,
-          defaultPageSize: (initialValues as any).pageSize,
-          pageSize: 10,
+          defaultPageSize: (initialValues as any).pageSize || 10,
+          onChange: handlePaginationChange,
         }}
       />
     </PageContainer>
