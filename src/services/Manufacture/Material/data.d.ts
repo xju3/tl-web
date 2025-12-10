@@ -1,5 +1,3 @@
-
-
 export type Material = API.BaseModel & {
   code: string;
   name: string;
@@ -9,10 +7,12 @@ export type Material = API.BaseModel & {
   valueLevelId: string;
   processId: string;
   specGroupId: string;
+  specTypeId: string;
   scenarioId: string;
   process: string;
   value: string;
-  spec: string;
+  specGroup: string;
+  specType: string;
   scenario: any;
   partnerId: string;
   parentId: string;
@@ -29,7 +29,14 @@ export type MaterialFilter = API.BaseFilter & {
   valueLevelId: string;
   processId: string;
   specGroupId: string;
+  specTypeId: string;
   scenarioId: string;
+  process: string;
+  value: string;
+  specGroup: string;
+  specType: string;
+  scenario: any;
   partnerId: string;
   parentId: string;
+  children: []
 }
