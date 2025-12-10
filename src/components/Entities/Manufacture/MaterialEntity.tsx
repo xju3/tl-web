@@ -141,6 +141,44 @@ export const MaterialEntity: EntityField<Material>[] = [
     },
   },
   {
+    dataIndex: 'processId',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
+  },
+
+  {
+    dataIndex: 'scenarioId',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
+  },
+
+  {
+    dataIndex: 'specGroupIde',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
+  },
+  {
+    dataIndex: 'valueLevelId',
+    visibility: {
+      inForm: true,
+    },
+    form: {
+      hidden: true,
+    },
+  },
+  {
     dataIndex: 'parentId',
     visibility: {
       inForm: true,
