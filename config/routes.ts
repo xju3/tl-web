@@ -108,14 +108,19 @@ export default [
         redirect: '/manufacture/material',
       },
       {
-        name: 'materials',
-        icon: 'hdd',
         path: '/manufacture/materials',
         component: './Manufacture/Material/List',
       },
       {
+        path: '/manufacture/material/edit/:id',
+        component: './Manufacture/Material/edit',
+      },
+      {
+        path: '/manufacture/material/create',
+        component: './Manufacture/Material/edit',
+      },
+      {
         name: 'products',
-        icon: 'hdd',
         path: '/manufacture/products',
         component: './Manufacture/Goods/List',
       },

@@ -17,9 +17,9 @@ const MaterialListPage = () => {
   };
 
   const routes = {
-    add: '/device/hosts/add',
-    edit: '/device/hosts/edit',
-    view: '/device/hosts/view',
+    add: '/manufacture/material/add',
+    edit: '/manufacture/material/edit',
+    view: '/manufacture/material/view',
   };
 
   const columns = (
