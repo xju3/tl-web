@@ -5,7 +5,6 @@ import type {
   ProFormInstance,
 } from '@ant-design/pro-components';
 import { PageContainer } from '@ant-design/pro-components';
-import type { ListToolBarProps } from '@ant-design/pro-table/es/components/ListToolBar';
 import { history, useIntl } from '@umijs/max';
 import { Button, Input, type InputRef, Popconfirm, Space } from 'antd';
 import type { FilterDropdownProps, SortOrder } from 'antd/es/table/interface';
@@ -266,6 +265,7 @@ const ListPage = <T extends { id: string }>({
         showSorterTooltip={{
           title: intl.formatMessage({ id: 'common.sorter.tooltip' }),
         }}
+        size="middle"
         rowKey="id"
         search={{
           labelWidth: 'auto',

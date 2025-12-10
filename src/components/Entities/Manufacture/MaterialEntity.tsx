@@ -37,6 +37,75 @@ export const MaterialEntity: EntityField<Material>[] = [
       rules: [{ type: 'required' }, { type: 'length', args: [2, 32] }],
     },
   },
+
+  {
+    dataIndex: 'process',
+    intlId: 'material.process',
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      formItemProps: {
+        width: 'lg',
+      },
+      rules: [{ type: 'required' }, { type: 'length', args: [2, 32] }],
+    },
+  },
+  {
+    dataIndex: 'scenario',
+    intlId: 'material.scenario',
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      formItemProps: {
+        width: 'lg',
+      },
+      rules: [{ type: 'required' }, { type: 'length', args: [2, 32] }],
+    },
+  },
+  {
+    dataIndex: 'spec',
+    intlId: 'material.spec',
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      formItemProps: {
+        width: 'lg',
+      },
+      rules: [{ type: 'required' }, { type: 'length', args: [2, 32] }],
+    },
+  },
+  {
+    dataIndex: 'value',
+    intlId: 'material.value',
+    visibility: {
+      inTable: true,
+      inDescription: true,
+      inSelector: true,
+      inForm: true,
+    },
+    form: {
+      fieldType: 'text',
+      formItemProps: {
+        width: 'lg',
+      },
+      rules: [{ type: 'required' }, { type: 'length', args: [2, 32] }],
+    },
+  },
   {
     dataIndex: 'comment',
     intlId: 'material.comment',

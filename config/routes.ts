@@ -117,7 +117,7 @@ export default [
         name: 'products',
         icon: 'hdd',
         path: '/manufacture/products',
-        component: './Manufacture/Product/List',
+        component: './Manufacture/Goods/List',
       },
       {
         name: 'workgroups',
