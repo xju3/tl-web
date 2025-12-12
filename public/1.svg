@@ -1,0 +1,40 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="paint0_linear_large" x1="50" y1="250" x2="250" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#005bea"/>
+      <stop offset="1" stop-color="#00c6fb"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear_large" x1="250" y1="250" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6a11cb"/>
+      <stop offset="1" stop-color="#2575fc"/>
+    </linearGradient>
+    <radialGradient id="paint2_radial_large" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(150 150) rotate(90) scale(50)">
+      <stop stop-color="#ffffff"/>
+      <stop offset="0.6" stop-color="#00c6fb" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#00c6fb" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="bright_orange_ring_gradient" x1="0" y1="300" x2="300" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#009900"/> <stop offset="1" stop-color="#009900"/> </linearGradient>
+  </defs>
+
+  <circle cx="150" cy="150" r="145" stroke="url(#bright_orange_ring_gradient)" stroke-opacity="1.0" stroke-width="7"/>
+
+  <path d="M150 70C105.817 70 70 105.817 70 150C70 194.183 105.817 230 150 230C194.183 230 230 194.183 230 150C230 105.817 194.183 70 150 70ZM150 210C116.863 210 90 183.137 90 150C90 116.863 116.863 90 150 90C183.137 90 210 116.863 210 150C210 183.137 183.137 210 150 210Z" fill="url(#paint0_linear_large)" fill-opacity="0.08"/>
+
+  <path d="M150 85 C 114.1 85 85 114.1 85 150 C 85 185.9 114.1 215 150 215" stroke="url(#paint0_linear_large)" stroke-width="14" stroke-linecap="round"/>
+  <path d="M150 215 C 185.9 215 215 185.9 215 150 C 215 114.1 185.9 85 150 85" stroke="url(#paint1_linear_large)" stroke-width="14" stroke-linecap="round"/>
+
+  <circle cx="85" cy="150" r="16" fill="#00c6fb"/>
+  <circle cx="215" cy="150" r="16" fill="#6a11cb"/>
+  <circle cx="150" cy="85" r="13" fill="#005bea"/>
+  <circle cx="150" cy="215" r="13" fill="#2575fc"/>
+
+  <circle cx="150" cy="150" r="30" fill="url(#paint2_radial_large)"/>
+
+  <circle cx="190" cy="120" r="5" fill="#00c6fb" fill-opacity="0.8"/>
+  <circle cx="110" cy="180" r="5" fill="#6a11cb" fill-opacity="0.8"/>
+  <circle cx="125" cy="115" r="4" fill="#ffffff" fill-opacity="0.9"/>
+  <circle cx="175" cy="185" r="4" fill="#aaa000" fill-opacity="0.9"/>
+
+</svg>
