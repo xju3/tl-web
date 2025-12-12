@@ -261,7 +261,6 @@ const ListPage = <T extends { id: string }>({
         rowKey="id"
         search={{
           labelWidth: 'auto',
-          manualRequest: true,
         }}
         form={{
           initialValues: initialValues,

@@ -5,7 +5,7 @@ import {
 } from '@ant-design/icons';
 import { history, useModel } from '@umijs/max';
 import type { MenuProps } from 'antd';
-import { Spin } from 'antd';
+import { Avatar, Spin } from 'antd';
 import { createStyles } from 'antd-style';
 import React from 'react';
 import { flushSync } from 'react-dom';
@@ -20,7 +20,7 @@ export type GlobalHeaderRightProps = {
 export const AvatarName = () => {
   const { initialState } = useModel('@@initialState');
   const { currentUser } = initialState || {};
-  return <span className="anticon">{currentUser?.employeeName}</span>;
+  return <span className="anticon">{currentUser?.name}</span>;
 };
 
 const useStyles = createStyles(({ token }) => {
@@ -41,16 +41,14 @@ const useStyles = createStyles(({ token }) => {
   };
 });
 
-export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({
-  menu,
-  children,
-}) => {
+export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
   /**
    * 退出登录，并且将当前的 url 保存
    */
   const loginOut = async () => {
     await logout();
     const { search, pathname } = window.location;
+    localStorage.removeItem('token');
     const urlParams = new URL(window.location.href).searchParams;
     const searchParams = new URLSearchParams({
       redirect: pathname + search,
@@ -136,7 +134,10 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({
         items: menuItems,
       }}
     >
-      {children}
+      <span className={styles.action}>
+        <Avatar size="small" src={currentUser.avatar} alt="avatar" />
+        <span style={{ marginLeft: 8 }}>{currentUser.employeeName}</span>
+      </span>
     </HeaderDropdown>
   );
 };

@@ -17,11 +17,8 @@ import '@ant-design/v5-patch-for-react-19';
 
 const isDev = process.env.NODE_ENV === 'development';
 const isDevOrTest = isDev || process.env.CI;
-const loginPath = '/user/login';
+const loginPath = '/sys/auth/login';
 
-/**
- * @see https://umijs.org/docs/api/runtime-config#getinitialstate
- * */
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
   currentUser?: API.CurrentUser;
@@ -33,34 +30,37 @@ export async function getInitialState(): Promise<{
     if (userInfoStr) {
       const userInfo = JSON.parse(userInfoStr);
       const { customUserDetails } = userInfo;
-      return {
-        name: `${customUserDetails.username}`,
-        employeeName: customUserDetails.employeeName,
-        avatar:
-          'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
-        userid: customUserDetails.id,
-        email: 'antdesign@alipay.com',
-        signature: '海纳百川，有容乃大',
-        title: '交互专家',
-        group: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED',
-        tags: [],
-        notifyCount: 12,
-        unreadCount: 11,
-        country: 'China',
-        access: 'admin',
-        geographic: {
-          province: {
-            label: '浙江省',
-            key: '330000',
+      if (customUserDetails) {
+        const photo = customUserDetails.photo || '/icons/avatar-boy.svg';
+        return {
+          name: `${customUserDetails.username}`,
+          employeeName: customUserDetails.employeeName,
+          partnerName: customUserDetails.partnerName,
+          avatar: photo,
+          userid: customUserDetails.id,
+          email: customUserDetails.email,
+          signature: '海纳百川，有容乃大',
+          title: '交互专家',
+          group: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED',
+          tags: [],
+          notifyCount: 12,
+          unreadCount: 11,
+          country: 'China',
+          access: 'admin',
+          geographic: {
+            province: {
+              label: '浙江省',
+              key: '330000',
+            },
+            city: {
+              label: '杭州市',
+              key: '330100',
+            },
           },
-          city: {
-            label: '杭州市',
-            key: '330100',
-          },
-        },
-        address: '西湖区工专路 77 号',
-        phone: '0752-26888888',
-      };
+          address: '西湖区工专路 77 号',
+          phone: '0752-26888888',
+        };
+      }
     }
     history.push(loginPath);
     return undefined;
@@ -85,18 +85,20 @@ export async function getInitialState(): Promise<{
   };
 }
 
-// ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({
   initialState,
   setInitialState,
 }) => {
   return {
     actionsRender: () => [
+      // <AvatarName/>,
       <Question key="doc" />,
       <SelectLang key="SelectLang" />,
     ],
+    title: initialState?.currentUser?.partnerName,
     avatarProps: {
-      title: initialState?.currentUser?.name,
+      title: initialState?.currentUser?.employeeName,
+      logo: '/logo.svg',
       render: (_, avatarChildren) => (
         <AvatarDropdown menu>{avatarChildren}</AvatarDropdown>
       ),
@@ -168,7 +170,6 @@ export const layout: RunTimeLayoutConfig = ({
 
 /**
  * @name request 配置，可以配置错误处理
- * 它基于 axios 和 ahooks 的 useRequest 提供了一套统一的网络请求和错误处理方案。
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const request: RequestConfig = {

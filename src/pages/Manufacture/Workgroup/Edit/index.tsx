@@ -22,7 +22,7 @@ const WorkgroupEditPage = () => {
     getItemById: getWorkgroupById,
   };
 
-  const backRoute = '/device/hosts';
+  const backRoute = '/manufacture/workgroups';
 
   return (
     <EditPage<Workgroup> services={services} backRoute={backRoute}>

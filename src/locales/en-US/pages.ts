@@ -1,6 +1,7 @@
 export default {
+  'pages.layouts.userLayout.header': 'Nebula Smart Cabinet',
   'pages.layouts.userLayout.title':
-    'Ant Design is the most influential web design specification in Xihu district',
+    'Expert Solutions for Cutting Tool Management',
   'pages.login.accountLogin.tab': 'Account Login',
   'pages.login.accountLogin.errorMessage':
     'Incorrect username/password(admin/ant.design)',

@@ -14,7 +14,7 @@ const EmployeeViewPage = () => {
   return (
     <ViewPage<Employee>
       title={intl.formatMessage({ id: 'org.employee.view' })}
-      description={intl.formatMessage({ id: 'org.employee.view' })}
+      description={(employee) => employee.fullName}
       getById={getEmployeeById}
       deleteById={deleteEmployee}
       editUrl="/org/employee/edit"

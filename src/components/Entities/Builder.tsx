@@ -139,7 +139,18 @@ export function buildFormFields<T>(
 
       switch (def.form?.fieldType) {
         case 'textarea':
-          return <ProFormTextArea key={key} width="lg" {...commonProps} />;
+          return (
+            <ProFormTextArea
+              key={key}
+              fieldProps={{
+                style: { whiteSpace: 'pre-line' },
+                // 或者使用 pre-wrap
+                // style: { whiteSpace: 'pre-wrap' },
+              }}
+              width="lg"
+              {...commonProps}
+            />
+          );
         case 'digit':
           return <ProFormDigit key={key} width="lg" {...commonProps} />;
         case 'password':

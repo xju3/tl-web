@@ -7,7 +7,11 @@ declare namespace API {
     avatar?: string;
     userid?: string;
     email?: string;
+    mobile?: string;
     signature?: string;
+    partnerId?: string;
+    partnerName?: string;
+    employeeName?: string;
     title?: string;
     group?: string;
     tags?: { key?: string; label?: string }[];
@@ -21,7 +25,6 @@ declare namespace API {
     };
     address?: string;
     phone?: string;
-    employeeName?: string;
   };
 
   type LoginResult = {

@@ -38,7 +38,7 @@ export const RoleEntity: EntityField<Role>[] = [
     },
     visibility: {
       inTable: true,
-      inDescription: true,
+      inDescription: false,
       inSelector: true,
       inForm: true,
     },
@@ -48,7 +48,7 @@ export const RoleEntity: EntityField<Role>[] = [
     },
   },
   {
-    intlId: 'common.available',
+    intlId: 'common.status',
     dataIndex: 'available',
     valueType: 'text',
     valueEnum: {
@@ -80,8 +80,7 @@ export const RoleEntity: EntityField<Role>[] = [
       inForm: true,
     },
     form: {
-      fieldType: 'text',
-      rules: [{ type: 'required' }],
+      fieldType: 'textarea',
     },
   },
 ];

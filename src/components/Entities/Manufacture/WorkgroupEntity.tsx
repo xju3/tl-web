@@ -34,7 +34,7 @@ export const WorkgroupEntity: EntityField<Workgroup>[] = [
       formItemProps: {
         width: 'lg',
       },
-      rules: [{ type: 'required' }, { type: 'length', args: [2, 32] }],
+      rules: [{ type: 'required' }, { type: 'length', args: [2, 64] }],
     },
   },
   {
@@ -47,10 +47,13 @@ export const WorkgroupEntity: EntityField<Workgroup>[] = [
       inForm: true,
     },
     form: {
-      fieldType: 'text',
+      fieldType: 'textarea',
       formItemProps: {
         width: 'lg',
       },
+    },
+    column: {
+      render: (text) => <div style={{ whiteSpace: 'pre-line' }}>{text}</div>,
     },
   },
   {

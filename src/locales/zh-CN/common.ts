@@ -36,4 +36,11 @@ export default {
   'common.line': '线',
   'common.bit.high': '高',
   'common.bit.low': '低',
+  'common.female': '女',
+  'common.male': '男',
+  'common.err.required': '必填字段',
+  'common.status': '状态',
+  'common.available': '启用',
+  'common.disable': '禁用',
+  'common.disabled': '禁用',
 };

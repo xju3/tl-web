@@ -17,9 +17,9 @@ const WorkgroupListPage = () => {
   };
 
   const routes = {
-    add: '/device/hosts/add',
-    edit: '/device/hosts/edit',
-    view: '/device/hosts/view',
+    add: '/manufacture/workgroup/create',
+    edit: '/manufacture/workgroup/edit',
+    view: '/manufacture/workgroup/view',
   };
 
   const columns = (

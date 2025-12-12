@@ -10,8 +10,8 @@ const RoleViewPage = () => {
 
   return (
     <ViewPage<Role>
-      title={intl.formatMessage({ id: 'page.sys.role.view' })}
-      description={intl.formatMessage({ id: 'page.sys.role.view' })}
+      title={intl.formatMessage({ id: 'sys.role.view' })}
+      description={(role) => role.name}
       getById={getRoleById}
       deleteById={deleteRole}
       editUrl="/sys/role/edit"

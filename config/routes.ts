@@ -131,6 +131,25 @@ export default [
         component: './Manufacture/Workgroup/List',
       },
       {
+        hideInMenu: true,
+        name: 'workgroup.edit',
+        path: '/manufacture/workgroup/edit/:id',
+        component: './Manufacture/Workgroup/Edit',
+      },
+      {
+        hideInMenu: true,
+        name: 'workgroup.create',
+        path: '/manufacture/workgroup/create',
+        component: './Manufacture/Workgroup/Edit',
+      },
+      {
+        hideInMenu: true,
+        name: 'workgroup.view',
+        path: '/manufacture/workgroup/view/:id',
+        component: './Manufacture/Workgroup/View',
+      },
+
+      {
         name: 'processes',
         icon: 'hdd',
         path: '/manufacture/processes',

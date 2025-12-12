@@ -159,17 +159,19 @@ const Login: React.FC = () => {
       >
         <LoginForm
           contentStyle={{
-            minWidth: 280,
+            minWidth: 380,
             maxWidth: '75vw',
           }}
           logo={<img alt="logo" src="/logo.svg" />}
-          title="Ant Design"
+          title={intl.formatMessage({
+            id: 'pages.layouts.userLayout.header',
+          })}
           subTitle={intl.formatMessage({
             id: 'pages.layouts.userLayout.title',
           })}
           initialValues={{
             autoLogin: true,
-            username: 'admin',
+            username: 'juxj@hotmail.com',
             password: '123456',
           }}
           actions={[
@@ -210,7 +212,7 @@ const Login: React.FC = () => {
             <LoginMessage
               content={intl.formatMessage({
                 id: 'pages.login.accountLogin.errorMessage',
-                defaultMessage: '账户或密码错误(admin/ant.design)',
+                defaultMessage: '账户或密码错误(juxj@hotmail.com/123456)',
               })}
             />
           )}

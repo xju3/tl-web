@@ -21,39 +21,20 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     },
   },
   {
-    intlId: 'org.employee.given.name',
-    dataIndex: 'givenName',
-    valueType: 'text',
-    sorter: {
-      multiple: 2,
-    },
-    visibility: {
-      inTable: true,
-      inDescription: true,
-      inSelector: true,
-      inForm: true,
-    },
-    form: {
-      fieldType: 'text',
-      rules: [{ type: 'required' }],
-    },
-  },
-  {
-    intlId: 'org.employee.last.name',
-    dataIndex: 'familyName',
+    intlId: 'org.employee.fullname',
+    dataIndex: 'fullName',
     valueType: 'text',
     sorter: {
       multiple: 1,
     },
     visibility: {
-      inDescription: true,
+      inDescription: false,
       inTable: true,
       inSelector: true,
       inForm: true,
     },
     form: {
       fieldType: 'text',
-      rules: [{ type: 'required' }],
     },
   },
   {
@@ -61,8 +42,8 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     dataIndex: 'gender',
     valueType: 'text',
     valueEnum: {
-      '0': 'common.female',
-      '1': 'common.male',
+      '0': 'Female',
+      '1': 'Male',
     },
     sorter: {
       multiple: 1,

@@ -13,10 +13,8 @@ const DepartmentViewPage = () => {
 
   return (
     <ViewPage<Department>
-      description={intl.formatMessage({
-        id: 'org.department.description',
-      })}
       title={intl.formatMessage({ id: 'org.department.view' })}
+      description={(department) => department.name}
       getById={getDepartmentById}
       deleteById={deleteDepartment}
       editUrl="/org/department/edit"

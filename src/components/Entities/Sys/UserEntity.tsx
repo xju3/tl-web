@@ -28,7 +28,7 @@ export const UserEntity: EntityField<User>[] = [
             formInstance.setFieldsValue({
               employeeId: entity.id,
               employeeCode: entity.code,
-              employeeName: `${entity.givenName}, ${entity.lastName}`,
+              employeeName: `${entity.fullName}`,
             });
           }}
         />
@@ -63,7 +63,6 @@ export const UserEntity: EntityField<User>[] = [
       rules: [{ type: 'required' }],
     },
   },
-
   {
     intlId: 'sys.user.password',
     dataIndex: 'password',
@@ -71,13 +70,9 @@ export const UserEntity: EntityField<User>[] = [
     sorter: {
       multiple: 1,
     },
-    visibility: {
-      inSelector: true,
-      inForm: true,
-    },
     form: {
-      fieldType: 'text',
-      hidden: true,
+      fieldType: 'password',
+      hidden: false,
     },
   },
   {
