@@ -22,7 +22,7 @@ const WorkshopEditPage = () => {
     getItemById: getWorkshopById,
   };
 
-  const backRoute = '/device/hosts';
+  const backRoute = '/manufacture/workshops';
 
   return (
     <EditPage<Workshop> services={services} backRoute={backRoute}>

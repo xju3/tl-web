@@ -3,8 +3,10 @@ export type Instruction = API.BaseModel & {
   peripheralId?: string;
   instruction?: string;
   acknowledge?: string;
+  ackBytes?: number;
   comment?: string;
   type?: number;
+  status?: number;
 };
 
 // 外设数据类型

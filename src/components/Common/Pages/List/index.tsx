@@ -101,7 +101,8 @@ const ListPage = <T extends { id: string }>({
   routes,
   sessionKey,
   showIndexColumn = true,
-  extraActions,
+  columnExtraActions,
+  headeExtraActions,
   view = true,
 }: ListPageProps<T>) => {
   const actionRef = useRef<ActionType>(undefined);
@@ -174,7 +175,7 @@ const ListPage = <T extends { id: string }>({
     title: intl.formatMessage({ id: 'common.actions' }),
     dataIndex: 'option',
     valueType: 'option',
-    width: '140px',
+    width: '200px',
     align: 'center',
     render: (_, record) => {
       const defaultActions = [
@@ -210,9 +211,9 @@ const ListPage = <T extends { id: string }>({
         ),
       ];
 
-      if (extraActions) {
+      if (columnExtraActions) {
         return [
-          ...extraActions(saveStateAndNavigate, record, intl),
+          ...columnExtraActions(saveStateAndNavigate, record, intl),
           ...defaultActions,
         ];
       }

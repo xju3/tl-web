@@ -26,13 +26,14 @@ export interface ListPageProps<T extends { id: string }> {
     view?: string;
   };
   sessionKey: string;
-  extraActions?: (
+  columnExtraActions?: (
     saveStateAndNavigate: (path: string) => void,
     record: T,
     intl: any,
   ) => React.ReactNode[];
   showIndexColumn?: boolean;
   headerTitle?: string;
+  headeExtraActions?: React.ReactNode[];
   toolBarRender?: boolean | (() => React.ReactNode[]);
   view?: boolean;
 }

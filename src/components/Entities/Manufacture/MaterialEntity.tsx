@@ -33,7 +33,7 @@ export const MaterialEntity: EntityField<Material>[] = [
     intlId: 'material.name',
     visibility: {
       inTable: true,
-      inDescription: true,
+      inDescription: false,
       inSelector: true,
       inForm: true,
     },

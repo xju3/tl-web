@@ -1,4 +1,4 @@
-import type {MenuFilter, CreateMenuCommand, UpdateMenuCommand, Menu} from './data.d';
+import type {MenuFilter, Menu} from './data.d';
 import {apiPost, apiDelete, apiGetById, apiPutPage, apiPut} from "@/services/common";
 import {ParamsType} from "@ant-design/pro-components";
 
@@ -13,14 +13,14 @@ export async function getMenus(
 }
 
 export async function getMenuById(id: string) {
-  return apiGetById<Menu>(menu_base_url, id, options);
+  return apiGetById<Menu>(menu_base_url, id);
 }
 
-export async function addMenu(body: CreateMenuCommand, options?: { [key: string]: any }) {
+export async function addMenu(body: Menu, options?: { [key: string]: any }) {
   return apiPost(menu_base_url, body, options);
 }
 
-export async function updateMenu(body: UpdateMenuCommand, options?: { [key: string]: any }) {
+export async function updateMenu(body: Menu, options?: { [key: string]: any }) {
   return apiPut(menu_base_url, body, options);
 }
 

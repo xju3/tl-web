@@ -36,9 +36,6 @@ const CabinetListPage = () => {
     >
       {intl.formatMessage({ id: 'common.actions.add' })}
     </a>,
-    <a key="instructions" onClick={() => buildInstructions(record.id)}>
-      {intl.formatMessage({ id: 'device.cabinet.instructions' })}
-    </a>,
   ];
 
   const columns = (
@@ -53,7 +50,7 @@ const CabinetListPage = () => {
       showIndexColumn={false}
       routes={routes}
       sessionKey={SESSION_KEY}
-      extraActions={extraActions}
+      columnExtraActions={extraActions}
     />
   );
 };

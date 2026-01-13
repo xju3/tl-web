@@ -41,6 +41,8 @@ export default {
   'common.err.required': '必填字段',
   'common.status': '状态',
   'common.available': '启用',
+  'common.enabled': '启用',
   'common.disable': '禁用',
   'common.disabled': '禁用',
+  'common.locked': '已锁',
 };

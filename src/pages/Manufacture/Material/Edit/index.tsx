@@ -22,7 +22,7 @@ const MaterialEditPage = () => {
     getItemById: getMaterialById,
   };
 
-  const backRoute = '/device/hosts';
+  const backRoute = '/manufacture/materials';
 
   return (
     <EditPage<Material> services={services} backRoute={backRoute}>

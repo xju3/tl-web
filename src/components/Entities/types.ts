@@ -53,7 +53,26 @@ export type EntityField<T> = ProColumnType<T> &
     intlId?: string;
     visibility?: PageVisibility;
     form?: FormFieldConfig;
+    // form?: {
+    //   config: FormFieldConfig;
+    //   formItemProps?: ProFormItemProps;
+    //   fieldType?:
+    //     | 'text'
+    //     | 'textarea'
+    //     | 'digit'
+    //     | 'password'
+    //     | 'switch'
+    //     | 'dependency'
+    //     | 'custom';
+    //   rules?: ValidationRule[];
+    //   renderFormItem?: (
+    //     item: any,
+    //     config: any,
+    //     form: any
+    //   ) => React.ReactNode
+    // }
     column?: ColumnConfig<T>; // Renamed from tableColumnConfig
     valueEnum?: Record<string, string>;
+    fieldProps?: Record<string, string>;
     enable?: boolean;
   };

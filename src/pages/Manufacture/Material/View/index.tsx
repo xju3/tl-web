@@ -13,12 +13,12 @@ const MaterialViewPage = () => {
 
   return (
     <ViewPage<Material>
-      title={intl.formatMessage({ id: 'device.host.view.title' })}
-      description={(host) => host.name}
+      title={intl.formatMessage({ id: 'material.view' })}
+      description={(material) => material.name}
       getById={getMaterialById}
       deleteById={deleteMaterial}
-      editUrl="/device/hosts/edit"
-      listUrl="/device/hosts"
+      editUrl="/manufacture/material/edit"
+      listUrl="/maufacuture/materials"
       columns={buildDescriptions(MaterialEntity, intl)}
     />
   );

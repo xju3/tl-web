@@ -1,5 +1,6 @@
 export default {
   'sys.menu.title': '菜单',
+  'sys.menu.app': '应用',
   'sys.menu.code': '编号',
   'sys.menu.component': '组件',
   'sys.menu.icon': '图标',
@@ -11,7 +12,8 @@ export default {
   'sys.menu.sortOrder': '排序',
   'sys.menu.sorters': '排序',
   'sys.menu.type': '类型',
-  'sys.menu.visible': '可见',
+  'sys.menu.visible': '显示',
+  'menu.create.submenu': '创建子菜单',
   'sys.role.title': '角色',
   'sys.role.code': '编码',
   'sys.role.name': '名称',
@@ -25,4 +27,7 @@ export default {
   'sys.user.name': '账号',
   'sys.user.roles': '角色列表',
   'sys.user.view': '用户视图',
+  'sys.app.code': '编号',
+  'sys.app.name': '名称',
+  'sys.app.view': '视图',
 };

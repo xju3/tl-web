@@ -17,9 +17,9 @@ const WorkshopListPage = () => {
   };
 
   const routes = {
-    add: '/device/hosts/add',
-    edit: '/device/hosts/edit',
-    view: '/device/hosts/view',
+    add: '/manufacture/workshop/create',
+    edit: '/manufacture/workshop/edit',
+    view: '/manufacture/workshop/view',
   };
 
   const columns = (

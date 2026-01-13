@@ -113,12 +113,22 @@ export default [
         component: './Manufacture/Material/List',
       },
       {
+        hideInMenu: true,
+        name: 'material.edit',
         path: '/manufacture/material/edit/:id',
         component: './Manufacture/Material/edit',
       },
       {
+        hideInMenu: true,
+        name: 'material.create',
         path: '/manufacture/material/create',
         component: './Manufacture/Material/edit',
+      },
+      {
+        hideInMenu: true,
+        name: 'material.view',
+        path: '/manufacture/material/view/:id',
+        component: './Manufacture/Material/view',
       },
       {
         name: 'products',
@@ -160,6 +170,24 @@ export default [
         icon: 'hdd',
         path: '/manufacture/workshops',
         component: './Manufacture/Workshop/List',
+      },
+      {
+        hideInMenu: true,
+        name: 'workshop.create',
+        path: '/manufacture/workshop/create',
+        component: './Manufacture/Workshop/Edit',
+      },
+      {
+        hideInMenu: true,
+        name: 'workshop.edit',
+        path: '/manufacture/workshop/edit/:id',
+        component: './Manufacture/Workshop/Edit',
+      },
+      {
+        hideInMenu: true,
+        name: 'workshop.view',
+        path: '/manufacture/workshop/view/:id',
+        component: './Manufacture/Workshop/View',
       },
     ],
   },
@@ -564,6 +592,29 @@ export default [
     icon: 'safety',
     routes: [
       {
+        name: 'app',
+        path: '/sys/apps',
+        component: './Sys/app/List',
+      },
+      {
+        name: 'app.create',
+        path: '/sys/app/add',
+        component: './Sys/App/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'app.edit',
+        path: '/sys/app/edit/:id',
+        component: './Sys/App/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'app.view',
+        path: '/sys/app/view/:id',
+        component: './Sys/App/View',
+        hideInMenu: true,
+      },
+      {
         name: 'menu',
         path: '/sys/menu',
         component: './Sys/Menu/List',
@@ -571,6 +622,18 @@ export default [
       {
         name: 'create.menu',
         path: '/sys/menu/add',
+        component: './Sys/Menu/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'menu.create.submenu',
+        path: '/sys/menu/:parentId/children/add',
+        component: './Sys/Menu/Edit',
+        hideInMenu: true,
+      },
+      {
+        name: 'menu.edit.submenu',
+        path: '/sys/menu/:parentId/children/:id/edit',
         component: './Sys/Menu/Edit',
         hideInMenu: true,
       },

@@ -17,7 +17,7 @@ import '@ant-design/v5-patch-for-react-19';
 
 const isDev = process.env.NODE_ENV === 'development';
 const isDevOrTest = isDev || process.env.CI;
-const loginPath = '/sys/auth/login';
+const loginPath = '/user/login';
 
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
@@ -98,7 +98,6 @@ export const layout: RunTimeLayoutConfig = ({
     title: initialState?.currentUser?.partnerName,
     avatarProps: {
       title: initialState?.currentUser?.employeeName,
-      logo: '/logo.svg',
       render: (_, avatarChildren) => (
         <AvatarDropdown menu>{avatarChildren}</AvatarDropdown>
       ),

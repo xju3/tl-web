@@ -3,6 +3,7 @@ import {
   ProFormDigit,
   type ProFormInstance,
   ProFormSelect,
+  ProFormSwitch,
   ProFormText,
   ProFormTextArea,
 } from '@ant-design/pro-components';
@@ -79,11 +80,7 @@ export function buildFormFields<T>(
       // 使用组合键确保唯一性
       const key = `${def.dataIndex as string}-${index}`;
 
-      if (
-        def.form?.fieldType === 'custom' &&
-        def.form?.renderFormItem &&
-        formRef
-      ) {
+      if (def.form?.fieldType === 'custom' && def.form?.renderFormItem) {
         return (
           <React.Fragment key={key}>
             {def.form.renderFormItem(undefined, { formRef }, intl)}
@@ -122,16 +119,19 @@ export function buildFormFields<T>(
       };
 
       if (def.valueEnum) {
-        const options = Object.entries(def.valueEnum).map(([value, label]) => ({
-          value,
-          label: intl.formatMessage({ id: label }),
-        }));
+        const processedOptions = def.valueEnum
+          ? Object.entries(def.valueEnum).map(([key, value]) => ({
+              // 关键点：将 key 转回数字，确保与后端返回的整数 ID 类型一致
+              value: Number(key),
+              label: intl.formatMessage({ id: value as string }),
+            }))
+          : [];
         return (
           <ProFormSelect
             key={key}
             width="lg"
             {...commonProps}
-            options={options}
+            options={processedOptions}
             transform={(value) => Number(value)}
           />
         );
@@ -144,13 +144,13 @@ export function buildFormFields<T>(
               key={key}
               fieldProps={{
                 style: { whiteSpace: 'pre-line' },
-                // 或者使用 pre-wrap
-                // style: { whiteSpace: 'pre-wrap' },
               }}
               width="lg"
               {...commonProps}
             />
           );
+        case 'switch':
+          return <ProFormSwitch key={key} width="lg" {...commonProps} />;
         case 'digit':
           return <ProFormDigit key={key} width="lg" {...commonProps} />;
         case 'password':

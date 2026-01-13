@@ -6,18 +6,14 @@ export type Cabinet = API.BaseModel & {
   ip: string;
   parentId?: string;
 
-  lockerInstructions: any;
-  lockerVal: number;
-
-  scaleInstructions: any;
-  scaleVal: number;
-
-  lightInstructions: any;
-  lightVal: number;
-
-  ledInstructions: any;
-  ledVal: any;
-
+  cmdOpenDoor: any;
+  cmdQueryDoor: any;
+  cmdQueryLoadCell: any;
+  cmdLightOn: any;
+  cmdLightOff: any;
+  cmdSetLedText: any;
+  cmdDriveSpring: any;
+  cmdPlaySound: any;
 
   children: Cabinet[];
 };
@@ -67,7 +63,7 @@ export type CabinetPeripheralUsage = API.BaseModel & {
   peripheralId?: string;
   peripheralCode: string;
   peripheralName: string;
-  sequence: number;
+  sensorId: number;
   high: number,
   low: number,
 };

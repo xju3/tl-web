@@ -25,13 +25,29 @@ const menuListPage = () => {
     intl: any,
   ): CustomProColumns<Menu>[] => buildTableColumns(MenuEntity, intl);
 
+  const extraActions = (
+    saveStateAndNavigate: (path: string) => void,
+    record: Menu,
+    intl: any,
+  ) => [
+    <a
+      key="create"
+      onClick={() =>
+        saveStateAndNavigate(`/sys/menu/${record.id}/children/add`)
+      }
+    >
+      {intl.formatMessage({ id: 'common.actions.add' })}
+    </a>,
+  ];
+
   return (
     <ListPage<Menu>
       services={services}
       columns={columns}
       routes={routes}
-      showIndexColumn={true}
+      showIndexColumn={false}
       sessionKey={SESSION_KEY}
+      columnExtraActions={extraActions}
     />
   );
 };

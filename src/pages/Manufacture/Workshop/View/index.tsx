@@ -17,8 +17,8 @@ const WorkshopViewPage = () => {
       description={(host) => host.name}
       getById={getWorkshopById}
       deleteById={deleteWorkshop}
-      editUrl="/device/hosts/edit"
-      listUrl="/device/hosts"
+      editUrl="/manufacture/workshop/edit"
+      listUrl="/manufacture/workshops"
       columns={buildDescriptions(WorkshopEntity, intl)}
     />
   );

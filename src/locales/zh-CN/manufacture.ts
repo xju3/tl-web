@@ -7,6 +7,7 @@ export default {
   'material.specType': '分类',
   'material.specGroup': '规格',
   'material.value': '价格',
+  'material.view': '物料视图',
 
   'process.code': '工艺编号',
   'process.name': '工艺名称',

@@ -74,14 +74,15 @@ export const CabinetPeripheralUsageEntity: EntityField<CabinetPeripheralUsage>[]
       },
     },
     {
-      dataIndex: 'id',
-      visibility: { inForm: true },
-      form: { hidden: true },
-    },
-    {
-      dataIndex: 'cabinetId',
-      visibility: { inForm: true },
-      form: { hidden: true },
+      intlId: 'common.sensor.id',
+      dataIndex: 'sensorId',
+      visibility: {
+        inTable: true,
+        inForm: true,
+      },
+      form: {
+        fieldType: 'digit',
+      },
     },
     {
       dataIndex: 'peripheralId',
@@ -90,6 +91,16 @@ export const CabinetPeripheralUsageEntity: EntityField<CabinetPeripheralUsage>[]
     },
     {
       dataIndex: 'cabinetPeripheralId',
+      visibility: { inForm: true },
+      form: { hidden: true },
+    },
+    {
+      dataIndex: 'id',
+      visibility: { inForm: true },
+      form: { hidden: true },
+    },
+    {
+      dataIndex: 'cabinetId',
       visibility: { inForm: true },
       form: { hidden: true },
     },
