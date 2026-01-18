@@ -50,31 +50,31 @@ export const PartnerProductEntity: EntityField<PartnerProduct>[] = [
       rules: [{ type: 'required' }],
     },
   },
-  {
-    intlId: 'org.partner.product.location',
-    dataIndex: 'locationName',
-    visibility: {
-      inForm: true,
-      inTable: true,
-    },
-    form: {
-      fieldType: 'custom',
-      renderFormItem: () => (
-        <EntitySelectorFormItem<Partner>
-          nameFieldName="locationName"
-          labelIntl="org.partner.product.location"
-          width={'lg'}
-          SelectorModal={PartnerSelector}
-          onSelect={(entity, instance) => {
-            instance.setFieldsValue({
-              locationId: entity.id,
-              locationName: entity.name,
-            });
-          }}
-        />
-      ),
-    },
-  },
+  // {
+  //   intlId: 'org.partner.product.location',
+  //   dataIndex: 'locationName',
+  //   visibility: {
+  //     inForm: true,
+  //     inTable: true,
+  //   },
+  //   form: {
+  //     fieldType: 'custom',
+  //     renderFormItem: () => (
+  //       <EntitySelectorFormItem<Partner>
+  //         nameFieldName="locationName"
+  //         labelIntl="org.partner.product.location"
+  //         width={'lg'}
+  //         SelectorModal={PartnerSelector}
+  //         onSelect={(entity, instance) => {
+  //           instance.setFieldsValue({
+  //             locationId: entity.id,
+  //             locationName: entity.name,
+  //           });
+  //         }}
+  //       />
+  //     ),
+  //   },
+  // },
   {
     dataIndex: 'id',
     visibility: {
@@ -102,13 +102,13 @@ export const PartnerProductEntity: EntityField<PartnerProduct>[] = [
       hidden: true,
     },
   },
-  {
-    dataIndex: 'locationId',
-    visibility: {
-      inForm: true,
-    },
-    form: {
-      hidden: true,
-    },
-  },
+  // {
+  //   dataIndex: 'locationId',
+  //   visibility: {
+  //     inForm: true,
+  //   },
+  //   form: {
+  //     hidden: true,
+  //   },
+  // },
 ];

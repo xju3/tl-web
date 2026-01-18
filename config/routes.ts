@@ -23,29 +23,33 @@ export default [
     icon: 'laptop',
     routes: [
       {
-        path: '/inst',
-        redirect: '/inst/cabinet',
-      },
-      {
         name: 'cabinets',
         path: '/inst/cabinets',
-        component: './Inst/Cabinet/List',
-      },
-      {
-        name: 'edit.cabinet',
-        path: '/inst/cabinets/edit/:id',
-        component: './Inst/Cabinet/Edit',
-        hideInMenu: true,
-      },
-      {
-        name: 'view.cabinet',
-        path: '/inst/cabinets/view/:id',
-        component: './Inst/Cabinet/View',
-        hideInMenu: true,
+        routes: [
+          {
+            path: '/inst/cabinets',
+            redirect: '/inst/cabinets/list',
+          },
+          {
+            path: '/inst/cabinets/list',
+            component: './Inst/Cabinet/List',
+            hideInMenu: true,
+          },
+          {
+            path: '/inst/cabinets/edit/:id',
+            component: './Inst/Cabinet/Edit',
+            hideInMenu: true,
+          },
+          {
+            path: '/inst/cabinets/view/:id',
+            component: './Inst/Cabinet/View',
+            hideInMenu: true,
+          },
+        ],
       },
       {
         name: 'hosts',
-        path: '/inst/host',
+        path: '/inst/hosts',
         component: './Inst/Host/List',
       },
       {
@@ -398,26 +402,38 @@ export default [
         name: 'peripherals',
         icon: 'appstore',
         path: '/device/peripherals',
-        component: './Device/Peripherals/List',
+        routes: [
+          {
+            path: '/device/peripherals',
+            redirect: '/device/peripherals/list',
+          },
+          {
+            name: 'list.peripheral',
+            path: '/device/peripherals/list',
+            component: './Device/Peripherals/List',
+            hideInMenu: true,
+          },
+          {
+            name: 'add.peripheral',
+            path: '/device/peripherals/add',
+            component: './Device/Peripherals/Edit',
+            hideInMenu: true,
+          },
+          {
+            name: 'edit.peripheral',
+            path: '/device/peripherals/edit/:id',
+            component: './Device/Peripherals/Edit',
+            hideInMenu: true,
+          },
+          {
+            name: 'view.peripheral',
+            path: '/device/peripherals/view/:id',
+            component: './Device/Peripherals/View',
+            hideInMenu: true,
+          },
+        ],
       },
-      {
-        name: 'add.peripheral',
-        path: '/device/peripherals/add',
-        component: './Device/Peripherals/Edit',
-        hideInMenu: true,
-      },
-      {
-        name: 'edit.peripheral',
-        path: '/device/peripherals/edit/:id',
-        component: './Device/Peripherals/Edit',
-        hideInMenu: true,
-      },
-      {
-        name: 'view.peripheral',
-        path: '/device/peripherals/view/:id',
-        component: './Device/Peripherals/View',
-        hideInMenu: true,
-      },
+
       {
         name: 'instruction.create',
         path: '/device/peripherals/:peripheralId/instructions/create',
@@ -528,7 +544,7 @@ export default [
       {
         name: 'edit.partner.product',
         path: '/org/partner/:partnerId/products/:id/edit',
-        component: './org/Partner/Product/Edit',
+        component: './Org/Partner/Product/Edit',
         hideInMenu: true,
       },
       {

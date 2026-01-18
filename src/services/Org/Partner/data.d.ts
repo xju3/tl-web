@@ -28,11 +28,11 @@ export type PartnerProduct = API.BaseModel & {
   partnerId: string;
   productId: string;
   locationId: string;
+  locationName: string;
   productCode: string;
   productName: string;
   startTime: string;
   endTime: string;
-  locationName: string;
   ddate: string;
 };
 
