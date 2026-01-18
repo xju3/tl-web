@@ -13,12 +13,12 @@ const ProcessViewPage = () => {
 
   return (
     <ViewPage<Process>
-      title={intl.formatMessage({ id: 'device.host.view.title' })}
+      title={intl.formatMessage({ id: 'menu.manufacture.processes.view' })}
       description={(host) => host.name}
       getById={getProcessById}
       deleteById={deleteProcess}
-      editUrl="/device/hosts/edit"
-      listUrl="/device/hosts"
+      editUrl="/manufacture/processes/edit"
+      listUrl="/manufacture/processes"
       columns={buildDescriptions(ProcessEntity, intl)}
     />
   );

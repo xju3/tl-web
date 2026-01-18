@@ -1,5 +1,5 @@
 
-export type Goods= API.BaseModel & {
+export type PartnerProduct = API.BaseModel & {
   code: string;
   name: string;
   description: string;
@@ -9,7 +9,7 @@ export type Goods= API.BaseModel & {
 
 
 
-export type GoodsFilter = API.BaseFilter & {
+export type PartnerProductFilter = API.BaseFilter & {
   code: string;
   name: string;
   description: string;

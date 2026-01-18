@@ -22,7 +22,7 @@ const ProcessEditPage = () => {
     getItemById: getProcessById,
   };
 
-  const backRoute = '/device/hosts';
+  const backRoute = '/manufacture/processes';
 
   return (
     <EditPage<Process> services={services} backRoute={backRoute}>

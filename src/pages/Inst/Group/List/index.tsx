@@ -19,9 +19,9 @@ const InstCabinetListPage = () => {
   };
 
   const routes = {
-    add: '/inst/cabinet-group/create',
-    edit: '/inst/cabinet-group/edit',
-    view: '/inst/cabinet-group/view',
+    add: '/inst/cabinet-groups/create',
+    edit: '/inst/cabinet-groups/edit',
+    view: '/inst/cabinet-groups/view',
   };
 
   const columns = (

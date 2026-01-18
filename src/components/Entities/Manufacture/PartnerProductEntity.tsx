@@ -1,7 +1,7 @@
-import type { Goods } from '@/services/Manufacture/Goods/data';
+import type { PartnerProduct } from '@/services/Manufacture/Products/data';
 import type { EntityField } from '../types';
 
-export const GoodsEntity: EntityField<Goods>[] = [
+export const PartnerProductEntity: EntityField<PartnerProduct>[] = [
   {
     dataIndex: 'code',
     intlId: 'goods.code',

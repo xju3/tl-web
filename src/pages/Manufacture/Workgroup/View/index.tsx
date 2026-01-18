@@ -13,12 +13,12 @@ const WorkgroupViewPage = () => {
 
   return (
     <ViewPage<Workgroup>
-      title={intl.formatMessage({ id: 'device.host.view.title' })}
+      title={intl.formatMessage({ id: 'menu.manufacture.workgroups.view' })}
       description={(host) => host.name}
       getById={getWorkgroupById}
       deleteById={deleteWorkgroup}
-      editUrl="/device/hosts/edit"
-      listUrl="/device/hosts"
+      editUrl="/manufacture/workgroups/edit"
+      listUrl="/manufacture/workgroups"
       columns={buildDescriptions(WorkgroupEntity, intl)}
     />
   );

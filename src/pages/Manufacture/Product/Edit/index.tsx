@@ -2,17 +2,17 @@ import { useIntl } from '@umijs/max';
 import React from 'react';
 import EditPage from '@/components/Common/Pages/Edit';
 import { buildFormFields } from '@/components/Entities/Builder';
-import { GoodsEntity } from '@/components/Entities/Manufacture/GoodsEntity';
-import type { Goods } from '@/services/Manufacture/Goods/data';
+import { PartnerProductEntity } from '@/components/Entities/Manufacture/PartnerProductEntity';
+import type { PartnerProduct } from '@/services/Manufacture/Product/data';
 import {
   createGoods,
   getGoodsById,
   updateGoods,
-} from '@/services/Manufacture/Goods/service';
+} from '@/services/Manufacture/Product/service';
 
 const GoodsForm: React.FC = () => {
   const intl = useIntl();
-  return <>{buildFormFields<Goods>(GoodsEntity, intl)}</>;
+  return <>{buildFormFields<PartnerProduct>(PartnerProductEntity, intl)}</>;
 };
 
 const GoodsEditPage = () => {
@@ -22,10 +22,10 @@ const GoodsEditPage = () => {
     getItemById: getGoodsById,
   };
 
-  const backRoute = '/device/hosts';
+  const backRoute = '/manufacture/products';
 
   return (
-    <EditPage<Goods> services={services} backRoute={backRoute}>
+    <EditPage<PartnerProduct> services={services} backRoute={backRoute}>
       <GoodsForm />
     </EditPage>
   );

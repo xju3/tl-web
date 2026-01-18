@@ -1,12 +1,12 @@
 import ListPage from '@/components/Common/Pages/List';
 import type { CustomProColumns } from '@/components/Common/Pages/List/typing';
 import { buildTableColumns } from '@/components/Entities/Builder';
-import { GoodsEntity } from '@/components/Entities/Manufacture/GoodsEntity';
-import type { Goods } from '@/services/Manufacture/Goods/data';
+import { PartnerProductEntity } from '@/components/Entities/Manufacture/PartnerProductEntity';
+import type { PartnerProduct } from '@/services/Manufacture/Product/data';
 import {
   deleteGoods,
   getGoodsList,
-} from '@/services/Manufacture/Goods/service';
+} from '@/services/Manufacture/Product/service';
 
 const SESSION_KEY = 'materialListState';
 
@@ -17,18 +17,19 @@ const GoodsListPage = () => {
   };
 
   const routes = {
-    add: '/device/hosts/add',
-    edit: '/device/hosts/edit',
-    view: '/device/hosts/view',
+    add: '/manufacture/products/create',
+    edit: '/manufacture/products/edit',
+    view: '/manufacture/products/view',
   };
 
   const columns = (
     saveStateAndNavigate: (path: string, id?: string) => void,
     intl: any,
-  ): CustomProColumns<Goods>[] => buildTableColumns(GoodsEntity, intl);
+  ): CustomProColumns<PartnerProduct>[] =>
+    buildTableColumns(PartnerProductEntity, intl);
 
   return (
-    <ListPage<Goods>
+    <ListPage<PartnerProduct>
       services={services}
       columns={columns}
       routes={routes}

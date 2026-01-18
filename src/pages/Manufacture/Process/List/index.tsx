@@ -17,9 +17,9 @@ const ProcessListPage = () => {
   };
 
   const routes = {
-    add: '/manufacture/process/add',
-    edit: '/device/hosts/edit',
-    view: '/device/hosts/view',
+    add: '/manufacture/processes/add',
+    edit: '/manufacture/processes/edit',
+    view: '/manufacture/processes/view',
   };
 
   const columns = (

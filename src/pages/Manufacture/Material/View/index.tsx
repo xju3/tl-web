@@ -13,7 +13,7 @@ const MaterialViewPage = () => {
 
   return (
     <ViewPage<Material>
-      title={intl.formatMessage({ id: 'material.view' })}
+      title={intl.formatMessage({ id: 'menu.manufacture.materials.view' })}
       description={(material) => material.name}
       getById={getMaterialById}
       deleteById={deleteMaterial}

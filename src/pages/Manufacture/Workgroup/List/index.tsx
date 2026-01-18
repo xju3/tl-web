@@ -17,9 +17,9 @@ const WorkgroupListPage = () => {
   };
 
   const routes = {
-    add: '/manufacture/workgroup/create',
-    edit: '/manufacture/workgroup/edit',
-    view: '/manufacture/workgroup/view',
+    add: '/manufacture/workgroups/create',
+    edit: '/manufacture/workgroups/edit',
+    view: '/manufacture/workgroups/view',
   };
 
   const columns = (
