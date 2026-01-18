@@ -33,9 +33,12 @@ export interface ListPageProps<T extends { id: string }> {
   ) => React.ReactNode[];
   showIndexColumn?: boolean;
   headerTitle?: string;
-  headeExtraActions?: React.ReactNode[];
+  headerExtraActions?: (intl: any) => React.ReactNode[];
   toolBarRender?: boolean | (() => React.ReactNode[]);
   view?: boolean;
+  customerRowSelection?:
+    | (TableProps<DataSource>['rowSelection'] & { alwaysShowAlert?: boolean })
+    | false;
 }
 
 // 2. 扩展 ProTableProps

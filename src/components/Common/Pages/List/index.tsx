@@ -9,7 +9,7 @@ import { history, useIntl } from '@umijs/max';
 import { Button, Input, type InputRef, Popconfirm, Space } from 'antd';
 import type { FilterDropdownProps, SortOrder } from 'antd/es/table/interface';
 import type React from 'react';
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import CustomProTable from '@/components/Common/Table/CustomProTable';
 import type { CustomProColumns, ListPageProps } from './typing';
 
@@ -102,7 +102,8 @@ const ListPage = <T extends { id: string }>({
   sessionKey,
   showIndexColumn = true,
   columnExtraActions,
-  headeExtraActions,
+  headerExtraActions,
+  customerRowSelection,
   view = true,
 }: ListPageProps<T>) => {
   const actionRef = useRef<ActionType>(undefined);
@@ -267,20 +268,24 @@ const ListPage = <T extends { id: string }>({
           initialValues: initialValues,
         }}
         headerTitle={
-          routes.add && (
-            <Button
-              key="add"
-              type="primary"
-              onClick={() => saveStateAndNavigate(routes.add)}
-            >
-              <PlusOutlined />
-              {intl.formatMessage({ id: 'common.actions.add' })}
-            </Button>
-          )
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            {routes.add && (
+              <Button
+                key="add"
+                type="primary"
+                onClick={() => saveStateAndNavigate(routes.add)}
+              >
+                <PlusOutlined />
+                {intl.formatMessage({ id: 'common.actions.add' })}
+              </Button>
+            )}
+            {headerExtraActions && headerExtraActions(intl)}
+          </div>
         }
         request={pageRequest}
         columns={tableColumns}
         showIndexColumn={showIndexColumn}
+        rowSelection={customerRowSelection}
         pagination={{
           defaultCurrent: (initialValues as any).current,
           defaultPageSize: (initialValues as any).pageSize || 10,

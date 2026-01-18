@@ -23,6 +23,8 @@ export default {
   'device.cabinet.usage.edit.title': '编辑外设使用',
   'device.cabinet.usage.sequence': '顺序',
   'device.host.list.title': '主机列表',
+  'device.host.view.title': '主机详情',
+  'device.host.serial-port.code': '串口编号',
   'device.host.add': '新增主机',
   'device.host.edit': '编辑主机',
   'device.host.view': '查看主机',
@@ -100,4 +102,5 @@ export default {
   'cmd.set.the.led.text': '设单屏(41)',
   'cmd.drive.spring': '驱弹簧(51)',
   'cmd.play.sound': '播声音(61)',
+  'cabinet.build.instructions': '生成指令',
 };

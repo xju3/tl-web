@@ -73,7 +73,6 @@ export function buildFormFields<T>(
   formRef?: React.RefObject<ProFormInstance<T>>,
 ): React.ReactNode[] {
   const rulesBuilder = validationRules(intl);
-
   return definitions
     .filter((def) => def.visibility?.inForm)
     .map((def, index) => {
