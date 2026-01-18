@@ -31,7 +31,7 @@ const CabinetCableAssociations: React.FC<CablesProps> = ({ cabinetId }) => {
         deleteItem: deleteCabinetCable,
       }}
       columns={getCabinetCableColumns(intl)}
-      addRoute={`/device/cabinets/${cabinetId}/cables/add`}
+      addRoute={`/device/cabinets/${cabinetId}/cables/create`}
       editRoutePattern={`/device/cabinets/:parentId/cables/:id/edit`}
       pagination={true}
     />

@@ -15,9 +15,9 @@ const EmployeeListPage = () => {
   };
 
   const routes = {
-    add: '/org/employee/add',
-    edit: '/org/employee/edit',
-    view: '/org/employee/view',
+    add: '/org/employees/create',
+    edit: '/org/employees/edit',
+    view: '/org/employees/view',
   };
 
   const columns = (

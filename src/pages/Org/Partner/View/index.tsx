@@ -15,8 +15,8 @@ const PartnerViewPage = () => {
       description={(partner) => partner.name}
       getById={getPartner}
       deleteById={deletePartner}
-      editUrl="/org/partner/edit"
-      listUrl="/org/partner/list"
+      editUrl="/org/partners/edit"
+      listUrl="/org/partners/list"
       columns={buildDescriptions(PartnerEntity, intl)}
       detailsComponent={(partner) => <PartnerViewTabs partner={partner} />}
     />

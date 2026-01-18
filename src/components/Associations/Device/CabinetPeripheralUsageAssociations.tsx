@@ -32,7 +32,7 @@ const CabinetPeripheralUsageAssociations: React.FC<UsagesProps> = ({
         deleteItem: deleteCabinetPeripheralUsage,
       }}
       columns={columns(intl)}
-      addRoute={`/device/cabinets/${cabinetId}/usages/add`}
+      addRoute={`/device/cabinets/${cabinetId}/usages/create`}
       editRoutePattern={`/device/cabinets/${cabinetId}/usages/:id/edit`}
       pagination={true}
     />

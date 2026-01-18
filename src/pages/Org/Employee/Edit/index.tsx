@@ -22,7 +22,7 @@ const EmployeeEditPage = () => {
     getItemById: getEmployeeById,
   };
 
-  const backRoute = '/org/employee';
+  const backRoute = '/org/employees';
 
   return (
     <EditPage<Employee> services={services} backRoute={backRoute}>

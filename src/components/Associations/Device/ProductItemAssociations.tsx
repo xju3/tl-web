@@ -31,7 +31,7 @@ const ProductItemAssociations: React.FC<ItemsProps> = ({ productId }) => {
         deleteItem: deleteProductItem,
       }}
       columns={getProductItemColumns(intl)}
-      addRoute={`/device/products/${productId}/items/add`}
+      addRoute={`/device/products/${productId}/items/create`}
       editRoutePattern={`/device/products/${productId}/items/:id/edit`}
       pagination={true}
       showIndexColumn={false}

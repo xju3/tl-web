@@ -17,8 +17,8 @@ const EmployeeViewPage = () => {
       description={(employee) => employee.fullName}
       getById={getEmployeeById}
       deleteById={deleteEmployee}
-      editUrl="/org/employee/edit"
-      listUrl="/org/employee"
+      editUrl="/org/employees/edit"
+      listUrl="/org/employees"
       columns={buildDescriptions(EmployeeEntity, intl)}
     />
   );

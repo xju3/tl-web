@@ -29,8 +29,8 @@ const PartnerProductAssociations: React.FC<ItemsProps> = ({ partnerId }) => {
         deleteItem: deletePartnerProduct,
       }}
       columns={columns(intl)}
-      addRoute={`/org/partner/${partnerId}/products/create`}
-      editRoutePattern={`/org/partner/${partnerId}/products/:id/edit`}
+      addRoute={`/org/partners/${partnerId}/products/create`}
+      editRoutePattern={`/org/partners/${partnerId}/products/:id/edit`}
       pagination={true}
       showIndexColumn={false}
     />

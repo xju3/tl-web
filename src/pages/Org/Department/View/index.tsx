@@ -17,8 +17,8 @@ const DepartmentViewPage = () => {
       description={(department) => department.name}
       getById={getDepartmentById}
       deleteById={deleteDepartment}
-      editUrl="/org/department/edit"
-      listUrl="/org/department"
+      editUrl="/org/departments/edit"
+      listUrl="/org/departments"
       columns={buildDescriptions(DepartmentEntity, intl)}
     />
   );

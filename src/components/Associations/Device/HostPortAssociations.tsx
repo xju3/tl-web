@@ -29,7 +29,7 @@ const HostPortAssociations: React.FC<PortsProps> = ({ hostId }) => {
         deleteItem: deleteHostPort,
       }}
       columns={columns(intl)}
-      addRoute={`/device/hosts/${hostId}/ports/add`}
+      addRoute={`/device/hosts/${hostId}/ports/create`}
       editRoutePattern={`/device/hosts/${hostId}/ports/:id/edit`}
       pagination={true}
     />

@@ -15,9 +15,9 @@ const PartnerListPage = () => {
   };
 
   const routes = {
-    add: '/org/partner/add',
-    edit: '/org/partner/edit',
-    view: '/org/partner/view',
+    add: '/org/partners/add',
+    edit: '/org/partners/edit',
+    view: '/org/partners/view',
   };
 
   const columns = (

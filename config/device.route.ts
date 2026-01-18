@@ -30,13 +30,13 @@ export default [
           },
           {
             name: 'create',
-            path: '/device/cabinets/add',
+            path: '/device/cabinets/create',
             component: './Device/Cabinet/Edit',
             hideInMenu: true,
           },
           {
             name: 'create.child',
-            path: '/device/cabinets/:parentId/children/add',
+            path: '/device/cabinets/:parentId/children/create',
             component: './Device/Cabinet/Edit',
             hideInMenu: true,
           },
@@ -60,7 +60,7 @@ export default [
           },
           {
             name: 'bind.cable',
-            path: '/device/cabinets/:cabinetId/cables/add',
+            path: '/device/cabinets/:cabinetId/cables/create',
             component: './Device/Cabinet/Cables/Edit',
             hideInMenu: true,
           },
@@ -72,7 +72,7 @@ export default [
           },
           {
             name: 'bind.usage',
-            path: '/device/cabinets/:cabinetId/usages/add',
+            path: '/device/cabinets/:cabinetId/usages/create',
             component: './Device/Cabinet/Usages/Edit',
             hideInMenu: true,
           },
@@ -98,7 +98,7 @@ export default [
           },
           {
             name: 'create',
-            path: '/device/hosts/add',
+            path: '/device/hosts/create',
             component: './Device/Host/Edit',
             hideInMenu: true,
           },
@@ -115,8 +115,8 @@ export default [
             hideInMenu: true,
           },
           {
-            name: 'add.serial-port',
-            path: '/device/hosts/:hostId/ports/add',
+            name: 'create.serial-port',
+            path: '/device/hosts/:hostId/ports/create',
             component: './Device/Host/Ports/Edit',
             hideInMenu: true,
           },
@@ -146,7 +146,7 @@ export default [
           },
           {
             name: 'create',
-            path: '/device/peripherals/add',
+            path: '/device/peripherals/create',
             component: './Device/Peripherals/Edit',
             hideInMenu: true,
           },
@@ -192,8 +192,8 @@ export default [
             hideInMenu: true,
           },
           {
-            name: 'add',
-            path: '/device/serial-ports/add',
+            name: 'create',
+            path: '/device/serial-ports/create',
             component: './Device/SerialPort/Edit',
             hideInMenu: true,
           },
@@ -228,7 +228,7 @@ export default [
           },
           {
             name: 'create',
-            path: '/device/products/add',
+            path: '/device/products/create',
             component: './Device/Product/Edit',
             hideInMenu: true,
           },
@@ -246,13 +246,13 @@ export default [
           },
           {
             name: 'item.create',
-            path: '/device/products/:productId/items/add',
+            path: '/device/products/:productId/item/create',
             component: './Device/Product/Item/Edit',
             hideInMenu: true,
           },
           {
             name: 'item.edit',
-            path: '/device/products/:productId/items/:id/edit',
+            path: '/device/products/:productId/item/:id/edit',
             component: './Device/Product/Item/Edit',
             hideInMenu: true,
           },

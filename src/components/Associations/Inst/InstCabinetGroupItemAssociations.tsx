@@ -33,8 +33,8 @@ const CabinetCableAssociations: React.FC<InstCabinetGroupItemProps> = ({
         deleteItem: deleteInstCabinetGroupItem,
       }}
       columns={getInstCabinetGroupItemColumns(intl)}
-      addRoute={`/inst/cabinet-group/${instCabinetGroupId}/items/add`}
-      editRoutePattern={`/inst/cabinet-group/${instCabinetGroupId}/items/:id/edit`}
+      addRoute={`/inst/cabinet-groups/${instCabinetGroupId}/items/add`}
+      editRoutePattern={`/inst/cabinet-groups/${instCabinetGroupId}/items/:id/edit`}
       pagination={true}
     />
   );

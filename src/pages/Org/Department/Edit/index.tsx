@@ -22,7 +22,7 @@ const DepartmentEditPage = () => {
     getItemById: getDepartmentById,
   };
 
-  const backRoute = '/org/department';
+  const backRoute = '/org/departments';
 
   return (
     <EditPage<Department> services={services} backRoute={backRoute}>

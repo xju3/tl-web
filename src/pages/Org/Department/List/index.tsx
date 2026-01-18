@@ -17,9 +17,9 @@ const DepartmentListPage = () => {
   };
 
   const routes = {
-    add: '/org/department/add',
-    edit: '/org/department/edit',
-    view: '/org/department/view',
+    add: '/org/departments/create',
+    edit: '/org/departments/edit',
+    view: '/org/departments/view',
   };
 
   const columns = (
