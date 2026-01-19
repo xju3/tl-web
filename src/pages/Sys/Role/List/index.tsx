@@ -15,9 +15,9 @@ const roleListPage = () => {
   };
 
   const routes = {
-    add: '/sys/role/add',
-    edit: '/sys/role/edit',
-    view: '/sys/role/view',
+    add: '/sys/roles/add',
+    edit: '/sys/roles/edit',
+    view: '/sys/roles/view',
   };
 
   const columns = (

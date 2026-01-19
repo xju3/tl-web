@@ -46,4 +46,5 @@ export default {
   'common.disabled': '禁用',
   'common.locked': '已锁',
   'common.sensor.id': '传感器ID',
+  'common.open': '开锁',
 };

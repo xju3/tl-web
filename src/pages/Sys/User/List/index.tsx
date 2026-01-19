@@ -15,9 +15,9 @@ const userListPage = () => {
   };
 
   const routes = {
-    add: '/sys/user/add',
-    edit: '/sys/user/edit',
-    view: '/sys/user/view',
+    add: '/sys/users/add',
+    edit: '/sys/users/edit',
+    view: '/sys/users/view',
   };
 
   const columns = (

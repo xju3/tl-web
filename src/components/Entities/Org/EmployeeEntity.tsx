@@ -42,8 +42,8 @@ export const EmployeeEntity: EntityField<Employee>[] = [
     dataIndex: 'gender',
     valueType: 'text',
     valueEnum: {
-      0: 'Female',
-      1: 'Male',
+      0: 'common.female',
+      1: 'common.male',
     },
     sorter: {
       multiple: 1,

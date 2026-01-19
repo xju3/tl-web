@@ -14,8 +14,8 @@ const RoleViewPage = () => {
       description={(role) => role.name}
       getById={getRoleById}
       deleteById={deleteRole}
-      editUrl="/sys/role/edit"
-      listUrl="/sys/role"
+      editUrl="/sys/roles/edit"
+      listUrl="/sys/roles"
       columns={buildDescriptions(RoleEntity, intl)}
     />
   );

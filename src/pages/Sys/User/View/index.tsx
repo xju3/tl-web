@@ -15,8 +15,8 @@ const UserViewPage = () => {
       description={intl.formatMessage({ id: 'sys.user.view' })}
       getById={getUserById}
       deleteById={deleteUser}
-      editUrl="/sys/user/edit"
-      listUrl="/sys/user"
+      editUrl="/sys/users/edit"
+      listUrl="/sys/users"
       columns={buildDescriptions(UserEntity, intl)}
       detailsComponent={(user) => <UserViewTabs user={user} />}
     />

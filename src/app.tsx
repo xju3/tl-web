@@ -5,13 +5,7 @@ import { SettingDrawer } from '@ant-design/pro-components';
 import type { RequestConfig, RunTimeLayoutConfig } from '@umijs/max';
 import { history, Link } from '@umijs/max';
 import React from 'react';
-import {
-  AvatarDropdown,
-  AvatarName,
-  Footer,
-  Question,
-  SelectLang,
-} from '@/components';
+import { AvatarDropdown, Footer, Question, SelectLang } from '@/components';
 import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
 import '@ant-design/v5-patch-for-react-19';
@@ -214,15 +208,14 @@ export const layout: RunTimeLayoutConfig = ({
                         child.path === newItem.path && child.redirect,
                     );
                     if (!hasRedirect) {
-                      newItem.children.unshift({
-                        path: newItem.path,
-                        redirect: `${newItem.path}/list`,
-                        hideInMenu: true,
-                      });
+                      // newItem.children.unshift({
+                      //   path: newItem.path,
+                      //   redirect: `${newItem.path}/list`,
+                      //   hideInMenu: true,
+                      // });
                     }
                   }
                 }
-
                 // If all children are hidden, remove children to make it a leaf node
                 if (newItem.children.every((child: any) => child.hideInMenu)) {
                   delete newItem.children;

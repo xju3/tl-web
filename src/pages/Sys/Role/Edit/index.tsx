@@ -18,7 +18,7 @@ const RoleEditPage = () => {
     getItemById: getRoleById,
   };
 
-  const backRoute = '/sys/role';
+  const backRoute = '/sys/roles';
 
   return (
     <EditPage<Role> services={services} backRoute={backRoute}>
