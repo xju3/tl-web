@@ -21,7 +21,6 @@ import miscRoute from './misc.route';
 // import sysRoute from './sys.route';
 
 export default [
-  //
   // ...deviceRoute,
   // ...instanceRoute,
   // ...manufactureRoute,

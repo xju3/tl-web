@@ -199,28 +199,9 @@ export const layout: RunTimeLayoutConfig = ({
                 // Recursively map children first
                 newItem.children = mapMenu(newItem.children);
 
-                // Logic to add redirect if needed.
-                // The user said: "In the third layer menu's first record, add { path: '/device/cabinets', redirect: '/device/cabinets/list' }"
-                // "Here path is same as parent path, redirect is parent path + list node"
-
-                if (newItem.path) {
-                  const hasListChild = newItem.children.some(
-                    (child: any) => child.path === `${newItem.path}/list`,
-                  );
-                  if (hasListChild) {
-                    // Check if redirect already exists to avoid duplication if run multiple times (though request is per load)
-                    const hasRedirect = newItem.children.some(
-                      (child: any) =>
-                        child.path === newItem.path && child.redirect,
-                    );
-                    if (!hasRedirect) {
-                      newItem.children.unshift({
-                        path: newItem.path,
-                        redirect: `${newItem.path}/list`,
-                        hideInMenu: true,
-                      });
-                    }
-                  }
+                // If all children are hidden, remove children to make it a leaf node
+                if (newItem.children.every((child: any) => child.hideInMenu)) {
+                  delete newItem.children;
                 }
               }
 
