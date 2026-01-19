@@ -9,7 +9,7 @@ import { history, useIntl } from '@umijs/max';
 import { Button, Input, type InputRef, Popconfirm, Space } from 'antd';
 import type { FilterDropdownProps, SortOrder } from 'antd/es/table/interface';
 import type React from 'react';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import CustomProTable from '@/components/Common/Table/CustomProTable';
 import type { CustomProColumns, ListPageProps } from './typing';
 
@@ -115,8 +115,7 @@ const ListPage = <T extends { id: string }>({
     const savedState = sessionStorage.getItem(sessionKey);
     if (savedState) {
       try {
-        const parsedState = JSON.parse(savedState);
-        return parsedState;
+        return JSON.parse(savedState);
       } catch (e) {
         console.error('Failed to parse saved state', e);
       }

@@ -15,7 +15,7 @@ export default [
           {
             name: 'list',
             path: '/sys/apps/list',
-            component: './Sys/app/List',
+            component: './Sys/App/List',
             hideInMenu: true,
           },
           {
@@ -85,7 +85,6 @@ export default [
           {
             path: '/sys/roles',
             redirect: '/sys/roles/list',
-            hideInMenu: true,
           },
           {
             name: 'list',
@@ -120,7 +119,6 @@ export default [
           {
             path: '/sys/users',
             redirect: '/sys/users/list',
-            hideInMenu: true,
           },
           {
             name: 'list',

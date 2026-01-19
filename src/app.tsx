@@ -221,12 +221,13 @@ export const layout: RunTimeLayoutConfig = ({
                   delete newItem.children;
                 }
               }
-
               return newItem;
             });
           };
 
-          return mapMenu(menus);
+          const appMenus = mapMenu(menus);
+          console.log(appMenus);
+          return appMenus;
         } catch (error) {
           console.error('Fetch menu error:', error);
           return [];

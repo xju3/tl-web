@@ -10,7 +10,6 @@ export default [
         path: '/device/cabinets',
         routes: [
           {
-            name: 'list',
             path: '/device/cabinets',
             redirect: '/device/cabinets/list',
           },
@@ -94,7 +93,6 @@ export default [
         path: '/device/hosts',
         routes: [
           {
-            name: 'list',
             path: '/device/hosts',
             redirect: '/device/hosts/list',
           },
@@ -143,7 +141,6 @@ export default [
         path: '/device/peripherals',
         routes: [
           {
-            name: 'list',
             path: '/device/peripherals',
             redirect: '/device/peripherals/list',
           },
@@ -191,7 +188,6 @@ export default [
         path: '/device/serial-ports',
         routes: [
           {
-            name: 'list',
             path: '/device/serial-ports',
             redirect: '/device/serial-ports/list',
           },

@@ -9,7 +9,6 @@ export default [
         path: '/inst/cabinets',
         routes: [
           {
-            name: 'list',
             path: '/inst/cabinets',
             redirect: '/inst/cabinets/list',
           },
@@ -38,7 +37,6 @@ export default [
         path: '/inst/hosts',
         routes: [
           {
-            name: 'list',
             path: '/inst/hosts',
             redirect: '/inst/hosts/list',
           },
