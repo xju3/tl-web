@@ -54,6 +54,17 @@ body,
   filter: invert(80%);
 }
 
+// 修正没有图标的二级菜单对齐问题
+.ant-layout-sider {
+  .ant-menu-sub.ant-menu-inline {
+    // 针对二级菜单项
+    .ant-menu-item {
+      // 24px(一级缩进) + 24px(图标占位) = 48px
+      padding-left: 48px !important;
+    }
+  }
+}
+
 .ant-layout {
   min-height: 100vh;
 }
@@ -92,3 +103,5 @@ ol {
     }
   }
 }
+
+

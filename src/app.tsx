@@ -177,54 +177,52 @@ export const layout: RunTimeLayoutConfig = ({
 
           const mapMenu = (menuItems: any[]): any[] => {
             return menuItems.map((item) => {
-              const newItem = { ...item };
+              const currItem = { ...item };
 
               // 1. Fix Icon
-              if (newItem.icon && typeof newItem.icon === 'string') {
-                newItem.icon = IconMap(newItem.icon);
+              if (currItem.icon && typeof currItem.icon === 'string') {
+                currItem.icon = IconMap(currItem.icon);
               }
 
               // Map 'visible' to 'hideInMenu' (inverse)
-              if (newItem.visible === false) {
-                newItem.hideInMenu = true;
+              if (currItem.visible === false) {
+                currItem.hideInMenu = true;
               }
 
-              if (newItem.children && newItem.children.length > 0) {
+              if (currItem.children && currItem.children.length > 0) {
                 // Recursively map children first
-                newItem.children = mapMenu(newItem.children);
+                currItem.children = mapMenu(currItem.children);
 
                 // Logic to add redirect if needed.
                 // The user said: "In the third layer menu's first record, add { path: '/device/cabinets', redirect: '/device/cabinets/list' }"
                 // "Here path is same as parent path, redirect is parent path + list node"
 
-                if (newItem.path) {
-                  const hasListChild = newItem.children.some(
-                    (child: any) => child.path === `${newItem.path}/list`,
+                if (currItem.path) {
+                  const hasListChild = currItem.children.some(
+                    (child: any) => child.path === `${currItem.path}/list`,
                   );
                   if (hasListChild) {
                     // Check if redirect already exists to avoid duplication if run multiple times (though request is per load)
-                    const hasRedirect = newItem.children.some(
+                    const hasRedirect = currItem.children.some(
                       (child: any) =>
-                        child.path === newItem.path && child.redirect,
+                        child.path === currItem.path && child.redirect,
                     );
                     if (!hasRedirect) {
-                      // newItem.children.unshift({
-                      //   path: newItem.path,
-                      //   redirect: `${newItem.path}/list`,
-                      //   hideInMenu: true,
-                      // });
+                      currItem.children.unshift({
+                        path: currItem.path,
+                        redirect: `${currItem.path}/list`,
+                      });
                     }
                   }
                 }
                 // If all children are hidden, remove children to make it a leaf node
-                if (newItem.children.every((child: any) => child.hideInMenu)) {
-                  delete newItem.children;
-                }
+                // if (newItem.children.every((child: any) => child.hideInMenu)) {
+                //   delete newItem.children;
+                // }
               }
-              return newItem;
+              return currItem;
             });
           };
-
           const appMenus = mapMenu(menus);
           console.log(appMenus);
           return appMenus;

@@ -28,6 +28,6 @@ export default [
   ...strategiesRoute,
   ...settingRoute,
   ...orgRoute,
-  ...sysRoute,
   ...miscRoute,
+  ...sysRoute,
 ];

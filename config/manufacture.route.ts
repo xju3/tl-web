@@ -6,7 +6,7 @@ export default [
     routes: [
       {
         path: '/manufacture',
-        redirect: '/manufacture/material',
+        redirect: '/manufacture/materials',
       },
       {
         name: 'materials',

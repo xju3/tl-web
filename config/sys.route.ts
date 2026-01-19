@@ -81,7 +81,7 @@ export default [
       {
         name: 'roles',
         path: '/sys/roles',
-        routers: [
+        routes: [
           {
             path: '/sys/roles',
             redirect: '/sys/roles/list',
@@ -115,7 +115,7 @@ export default [
       {
         name: 'users',
         path: '/sys/users',
-        routers: [
+        routes: [
           {
             path: '/sys/users',
             redirect: '/sys/users/list',
@@ -128,7 +128,7 @@ export default [
           },
           {
             name: 'create',
-            path: '/sys/users/add',
+            path: '/sys/users/create',
             component: './Sys/User/Edit',
             hideInMenu: true,
           },

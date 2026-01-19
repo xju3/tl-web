@@ -7,6 +7,7 @@ export default [
       {
         name: 'cabinets',
         path: '/inst/cabinets',
+        hideChildrenInMenu: true,
         routes: [
           {
             path: '/inst/cabinets',
@@ -35,6 +36,7 @@ export default [
       {
         name: 'hosts',
         path: '/inst/hosts',
+        hideChildrenInMenu: true,
         routes: [
           {
             path: '/inst/hosts',
@@ -63,6 +65,7 @@ export default [
       {
         name: 'cabinet-groups',
         path: '/inst/cabinet-groups',
+        hideChildrenInMenu: true,
         routes: [
           {
             path: '/inst/cabinet-groups',
