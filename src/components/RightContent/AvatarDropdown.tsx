@@ -49,6 +49,8 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
     await logout();
     const { search, pathname } = window.location;
     localStorage.removeItem('token');
+    localStorage.removeItem('menus');
+    localStorage.removeItem('user-info');
     const urlParams = new URL(window.location.href).searchParams;
     const searchParams = new URLSearchParams({
       redirect: pathname + search,
