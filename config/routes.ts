@@ -10,30 +10,25 @@
  * @doc https://umijs.org/docs/guides/routes
  */
 
-import deviceRoute from './device.route';
-import instanceRoute from './instance.route';
-import inventoryRoute from './inventory.route';
-import manufactureRoute from './manufacture.route';
+// import deviceRoute from './device.route';
+// import instanceRoute from './instance.route';
+// import inventoryRoute from './inventory.route';
+// import manufactureRoute from './manufacture.route';
 import miscRoute from './misc.route';
-import orgRoute from './org.route';
-import settingRoute from './setting.route';
-import strategiesRoute from './strategies.route';
-import sysRoute from './sys.route';
+// import orgRoute from './org.route';
+// import settingRoute from './setting.route';
+// import strategiesRoute from './strategies.route';
+// import sysRoute from './sys.route';
 
 export default [
-  {
-    path: '/welcome',
-    name: 'welcome',
-    icon: 'smile',
-    component: './Common/Welcome',
-  },
-  ...deviceRoute,
-  ...instanceRoute,
-  ...manufactureRoute,
-  ...strategiesRoute,
-  ...inventoryRoute,
-  ...orgRoute,
-  ...sysRoute,
-  ...settingRoute,
+  //
+  // ...deviceRoute,
+  // ...instanceRoute,
+  // ...manufactureRoute,
+  // ...strategiesRoute,
+  // ...inventoryRoute,
+  // ...orgRoute,
+  // ...sysRoute,
+  // ...settingRoute,
   ...miscRoute,
 ];

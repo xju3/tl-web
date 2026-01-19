@@ -1,3 +1,4 @@
+import * as Icons from '@ant-design/icons';
 import { LinkOutlined } from '@ant-design/icons';
 import type { Settings as LayoutSettings } from '@ant-design/pro-components';
 import { SettingDrawer } from '@ant-design/pro-components';
@@ -14,10 +15,21 @@ import {
 import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
 import '@ant-design/v5-patch-for-react-19';
+import { getManagementMenus } from '@/services/Sys/Menu/service';
 
 const isDev = process.env.NODE_ENV === 'development';
 const isDevOrTest = isDev || process.env.CI;
 const loginPath = '/user/login';
+
+// Helper to render icon
+const IconMap = (iconName: string) => {
+  if (!iconName) return null;
+  // Convert first char to upper case just in case, though AntD icons are usually PascalCase
+  const fixIconName = iconName.charAt(0).toUpperCase() + iconName.slice(1);
+  const IconComponent =
+    (Icons as any)[fixIconName + 'Outlined'] || (Icons as any)[fixIconName];
+  return IconComponent ? <IconComponent /> : null;
+};
 
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
@@ -162,6 +174,66 @@ export const layout: RunTimeLayoutConfig = ({
           )}
         </>
       );
+    },
+    menu: {
+      request: async (params, defaultMenuData) => {
+        try {
+          const menus = await getManagementMenus();
+          if (!menus) return [];
+
+          const mapMenu = (menuItems: any[]): any[] => {
+            return menuItems.map((item) => {
+              const newItem = { ...item };
+
+              // 1. Fix Icon
+              if (newItem.icon && typeof newItem.icon === 'string') {
+                newItem.icon = IconMap(newItem.icon);
+              }
+
+              // Map 'visible' to 'hideInMenu' (inverse)
+              if (newItem.visible === false) {
+                newItem.hideInMenu = true;
+              }
+
+              if (newItem.children && newItem.children.length > 0) {
+                // Recursively map children first
+                newItem.children = mapMenu(newItem.children);
+
+                // Logic to add redirect if needed.
+                // The user said: "In the third layer menu's first record, add { path: '/device/cabinets', redirect: '/device/cabinets/list' }"
+                // "Here path is same as parent path, redirect is parent path + list node"
+
+                if (newItem.path) {
+                  const hasListChild = newItem.children.some(
+                    (child: any) => child.path === `${newItem.path}/list`,
+                  );
+                  if (hasListChild) {
+                    // Check if redirect already exists to avoid duplication if run multiple times (though request is per load)
+                    const hasRedirect = newItem.children.some(
+                      (child: any) =>
+                        child.path === newItem.path && child.redirect,
+                    );
+                    if (!hasRedirect) {
+                      newItem.children.unshift({
+                        path: newItem.path,
+                        redirect: `${newItem.path}/list`,
+                        hideInMenu: true,
+                      });
+                    }
+                  }
+                }
+              }
+
+              return newItem;
+            });
+          };
+
+          return mapMenu(menus);
+        } catch (error) {
+          console.error('Fetch menu error:', error);
+          return [];
+        }
+      },
     },
     ...initialState?.settings,
   };

@@ -1,5 +1,5 @@
 import type {MenuFilter, Menu} from './data.d';
-import {apiPost, apiDelete, apiGetById, apiPutPage, apiPut} from "@/services/common";
+import {apiPost, apiDelete, apiGetById, apiPutPage, apiPut, apiGet} from "@/services/common";
 import {ParamsType} from "@ant-design/pro-components";
 
 const menu_base_url = `sys/menus`;
@@ -14,6 +14,10 @@ export async function getMenus(
 
 export async function getMenuById(id: string) {
   return apiGetById<Menu>(menu_base_url, id);
+}
+
+export async function getManagementMenus() {
+  return apiGet<Menu[]>(`${menu_base_url}/management`, );
 }
 
 export async function addMenu(body: Menu, options?: { [key: string]: any }) {

@@ -37,4 +37,10 @@ export default [
     layout: false,
     path: './*',
   },
+  {
+    path: '/welcome',
+    name: 'welcome',
+    icon: 'smile',
+    component: './Common/Welcome',
+  },
 ];
